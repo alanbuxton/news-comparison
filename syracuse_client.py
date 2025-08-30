@@ -10,6 +10,7 @@ def call_syracuse_activities(params: Union[dict,None]):
         "Authorization": f"Token {SYRACUSE_API_KEY}"
     }
     response = requests.get(SYRACUSE_ENDPOINT, headers=headers, params=params)
+    response.raise_for_status()
     return response.json()
 
 def get_company_articles_for(company: str):
@@ -23,7 +24,11 @@ def get_industry_articles_for(industry: str, location: str):
     return articles
 
 def parse_response(resp_json) -> list[dict]:
-    return [item_to_article(x) for x in resp_json['results']]
+    try:
+        return [item_to_article(x) for x in resp_json['results']]
+    except:
+        print(f"Couldn't parse {resp_json}")
+        raise
 
 def item_to_article(item: dict):
     return {
