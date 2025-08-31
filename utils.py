@@ -1,5 +1,8 @@
 import os
 from datetime import date, timedelta
+from dotenv import load_dotenv
+
+load_dotenv()
 
 PERPLEXITY_API_KEY = os.environ.get('PERPLEXITY_API_KEY')
 SYRACUSE_API_KEY = os.environ.get('SYRACUSE_API_KEY')

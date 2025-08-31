@@ -11,6 +11,10 @@ It was prompted by me being underwhelmed with the Perplexity API, certainly comp
 
 Copy `.env.sample` to `.env` and update with your keys.
 
+Then
+
+`uv run main.py`
+
 # Results
 
 See [results](results) for the latest stats.
