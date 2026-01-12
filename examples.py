@@ -1,11 +1,15 @@
 industry_location_examples = [
     {"industry": "PE Resins", "location": "US"},
     {"industry": "Film Distribution", "location": "Midwest" },
+    {"industry": "Film Entertainment -> Film Distribution", "location": "Midwest" },
     {"industry": "Packaging Boxes", "location": "IN" },
+    {"industry": "Packaging -> Packaging Boxes", "location": "IN" },
     {"industry": "Road Freight", "location": "Europe"},
     {"industry": "MRO", "location": "South America"},
     {"industry": "Film (BOPP Film, BOPET, PE Film etc)", "location": "CN" },
-    {"industry": "Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"}
+    {"industry": "Flexible Packaging -> Film (BOPP Film, BOPET, PE Film etc)", "location": "CN" },
+    {"industry": "Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"},
+    {"industry": "Film Entertainment -> Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"},
 ]
 
 company_name_examples = [
@@ -24,6 +28,7 @@ company_name_examples = [
     "Braroll Acessorios Industriais",
     "Jindal Films",
     "Klöckner Pentaplast",
+    "Klockner Pentaplast",
     "Entertainment Partners",
     "Universal McCann",
     "Little Island Productions",

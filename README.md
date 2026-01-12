@@ -32,3 +32,9 @@ It's given me some ideas on where I could tinker to improve Syracuse. I'll test 
 Not much change in industry-wide news
 
 After recent changes, Syracuse is now much stronger contender for company-specific news. Next focus for attention will be industry news
+
+## 2026-01-06 summary
+
+Perplexity has improved a lot over the past 6-9 months. But it is generating a lot of false positives, so not great if you want to rely on it as your source of company or industry news.
+
+Syracuse is holding its own well for industry news.
