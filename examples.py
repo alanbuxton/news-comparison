@@ -3,13 +3,14 @@ industry_location_examples = [
     {"industry": "Film Distribution", "location": "Midwest" },
     {"industry": "Film Entertainment -> Film Distribution", "location": "Midwest" },
     {"industry": "Packaging Boxes", "location": "IN" },
-    {"industry": "Packaging -> Packaging Boxes", "location": "IN" },
+    {"industry": "Packaging: Packaging Boxes", "location": "IN" },
+    {"industry": "Packaging: Packaging Boxes", "location": "india" },
     {"industry": "Road Freight", "location": "Europe"},
     {"industry": "MRO", "location": "South America"},
     {"industry": "Film (BOPP Film, BOPET, PE Film etc)", "location": "CN" },
-    {"industry": "Flexible Packaging -> Film (BOPP Film, BOPET, PE Film etc)", "location": "CN" },
+    {"industry": "Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc)", "location": "CN" },
     {"industry": "Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"},
-    {"industry": "Film Entertainment -> Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"},
+    {"industry": "Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"},
 ]
 
 company_name_examples = [
@@ -34,4 +35,7 @@ company_name_examples = [
     "Little Island Productions",
     "Commerzbank AG",
     "Linklaters",
+    "CBS News",
+    "Deloitte",
+    "Bloomberg",
 ]
