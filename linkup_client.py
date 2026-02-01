@@ -102,7 +102,8 @@ def item_to_article(item: dict):
         pub_date = pub_date.replace(tzinfo=timezone.utc)
         return {
             "headline": item['headline'],
-            "published_date": pub_date,
+            "published_date_clean": pub_date,
+            "published_date": item["publication_date"],
             "summary_text": item['summary'],
             "published_by": item['source'],
             "document_url": item['url'],

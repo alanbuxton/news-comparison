@@ -1,4 +1,4 @@
-from datetime import datetime, timezone, time
+from datetime import datetime, timezone, time, date
 import syracuse_client
 import perplexity_client
 import linkup_client
@@ -59,7 +59,7 @@ def filter_recent_real_articles(articles, min_date=MIN_DATE):
     min_datetime = min_datetime.replace(tzinfo=timezone.utc)
     articles_to_keep = []
     for article in articles:
-        if article['published_date'] < min_datetime:
+        if isinstance(article['published_date_clean'], date) and article['published_date_clean'] < min_datetime:
             continue
         if article['document_url'] is None:
             continue
@@ -75,7 +75,7 @@ def print_articles(arts):
     for art in arts:
         print(art['headline'])
         act_class_str = f" - {art['activity_type']}" if art.get('activity_type') else ''
-        print(f"{art['published_by']} - {art['published_date']} {act_class_str}")
+        print(f"{art['published_by']} - {art['published_date_clean']} (raw date: {art['published_date']}) {act_class_str}")
         print(art['document_url'])
         print(art['summary_text'])
         print()

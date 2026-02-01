@@ -19,7 +19,7 @@ def get_company_articles_for(company: str):
     return articles
 
 def get_industry_articles_for(industry: str, location: str):
-    resp = call_syracuse_activities({"industry_name":industry, "location_id":location})
+    resp = call_syracuse_activities({"industry":industry, "location":location})
     articles = parse_response(resp)
     return articles
 
@@ -33,7 +33,8 @@ def parse_response(resp_json) -> list[dict]:
 def item_to_article(item: dict):
     return {
         "headline": item['headline'],
-        "published_date": datetime.fromisoformat(item["date_published"]),
+        "published_date_clean": datetime.fromisoformat(item["date_published"]),
+        "published_date": item["date_published"],
         "summary_text": item['document_extract'],
         "published_by": item['source_organization'],
         "document_url": item['document_url'],

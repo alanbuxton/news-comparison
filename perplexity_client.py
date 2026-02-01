@@ -16,17 +16,20 @@ def get_company_articles_for(company: str):
     system_command = build_company_system_command(company)
     payload = build_payload(user_command, system_command)
     response = get_news(payload)
-    company_articles = perplexity_response_to_articles(response)
-    return company_articles
+    if response:
+        company_articles = perplexity_response_to_articles(response)
+        return company_articles
+    else:
+        return []
 
-def parse_perplexity_responses(perplexity_content: dict):
+def parse_perplexity_responses(perplexity_content: dict) -> list:
     articles = []
     for item in perplexity_content:
         try:
             pub_date = datetime.fromisoformat(item["published_date"]) # Needs Python 3.11 or higher to work
             if isinstance(pub_date, date) and pub_date.tzinfo is None:
                 pub_date = pub_date.replace(tzinfo=timezone.utc)
-            item["published_date"] = pub_date
+            item["published_date_clean"] = pub_date
             articles.append(item)
         except: # date not always in isoformat
             pass
@@ -72,8 +75,14 @@ def get_news(payload: dict):
     if PERPLEXITY_API_KEY is None or PERPLEXITY_API_KEY.strip() == '' or PERPLEXITY_API_KEY == 'my_perplexity_key':
         return {'choices':[{"message": {"content": "[]"}}]}
     headers = {"Authorization": f"Bearer {PERPLEXITY_API_KEY}"}
-    response = requests.post(PERPLEXITY_ENDPOINT, headers=headers, json=payload).json()
-    return response
+    response = requests.post(PERPLEXITY_ENDPOINT, headers=headers, json=payload)
+    try:
+        response_json = response.json()
+        return response_json
+    except:
+        print(f"error parsing {response}")
+        return None
+
 
 def build_payload(user_command :str, system_command: str, date_to :date = None, date_from :date = None):
     if date_to is None:
