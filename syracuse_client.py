@@ -1,7 +1,9 @@
-from utils import SYRACUSE_API_KEY, SYRACUSE_ENDPOINT
+from utils import SYRACUSE_API_KEY
 import requests
 from typing import Union
 from datetime import datetime
+
+SYRACUSE_ENDPOINT="https://syracuse.1145.am/api/v1/stories"
 
 def call_syracuse_activities(params: Union[dict,None]):
     if SYRACUSE_API_KEY is None or SYRACUSE_API_KEY.strip() == '' or SYRACUSE_API_KEY == 'my_syracuse_key':

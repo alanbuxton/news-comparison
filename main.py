@@ -2,56 +2,59 @@ from datetime import datetime, timezone, time, date
 import syracuse_client
 import perplexity_client
 import linkup_client
+import exa_client
+import newsapi_client
+import tavily_client
 from examples import industry_location_examples, company_name_examples
 from utils import MIN_DATE
+
+CLIENTS = {"Exa": exa_client, "Linkup": linkup_client, "NewsAPI": newsapi_client, "Perplexity": perplexity_client, 
+           "Syracuse": syracuse_client, "Tavily": tavily_client}
 
 def compare_company_results(company: str):
     print("-" * 40)
     print(f"--- {company}")
     print("-" * 40)
-    t1 = datetime.now(tz=timezone.utc)
-    p_arts = perplexity_client.get_company_articles_for(company)
-    t2 = datetime.now(tz=timezone.utc)
-    s_arts = syracuse_client.get_company_articles_for(company)
-    t3 = datetime.now(tz=timezone.utc)
-    l_arts = linkup_client.get_company_articles_for(company)
-    t4 = datetime.now(tz=timezone.utc)
-    p_arts = filter_recent_real_articles(p_arts)
-    s_arts = filter_recent_real_articles(s_arts)
-    l_arts = filter_recent_real_articles(l_arts)
-    print_comparison(p_arts, s_arts, l_arts, t1, t2, t3, t4)
+    results_summary = []
+    results_details = {}
+    for provider, client in CLIENTS.items():
+        start_time = datetime.now(tz=timezone.utc)
+        arts = client.get_company_articles_for(company)
+        end_time = datetime.now(tz=timezone.utc)
+        duration = end_time - start_time
+        arts = filter_recent_real_articles(arts)
+        stats = f"{provider} got {len(arts)} in {duration}"
+        results_summary.append(stats)
+        results_details[provider] = arts
+    print_comparison(results_summary, results_details)
 
-def print_comparison(p_arts, s_arts, l_arts, t1, t2, t3, t4):
-    print(f"***** Perplexity got {len(p_arts)} in {t2-t1}; Syracuse got {len(s_arts)} in {t3-t2}: Linkup got {len(l_arts)} in {t4-t3} *****")
-    print("*" * 20)
-    print("*** Perplexity")
-    print("*" * 20)
-    print_articles(p_arts)
-    print("*" * 20)
-    print("Syracuse")
-    print("*" * 20)
-    print_articles(s_arts)
-    print("*" * 20)
-    print("LinkUp")
-    print("*" * 20)
-    print_articles(l_arts)
+def print_comparison(results_summary, results_details):
+    print(f"***** {'; '.join(results_summary)} *****")
     print()
+    for provider, results in results_details.items():
+        print("*" * 20)
+        print(f"*** {provider}")
+        print("*" * 20)
+        print_articles(results)
+        print()
 
 def compare_industry_location_results(industry: str, location: str):
     print("-" * 40)
     print(f"--- {industry} - {location}")
     print("-" * 40)
-    t1 = datetime.now(tz=timezone.utc)
-    p_arts = perplexity_client.get_industry_articles_for(industry, location)
-    t2 = datetime.now(tz=timezone.utc)
-    s_arts = syracuse_client.get_industry_articles_for(industry, location)
-    t3 = datetime.now(tz=timezone.utc)
-    l_arts = linkup_client.get_industry_articles_for(industry, location)
-    t4 = datetime.now(tz=timezone.utc)
-    p_arts = filter_recent_real_articles(p_arts)
-    s_arts = filter_recent_real_articles(s_arts)
-    l_arts = filter_recent_real_articles(l_arts)
-    print_comparison(p_arts, s_arts, l_arts, t1, t2, t3, t4)
+
+    results_summary = []
+    results_details = {}
+    for provider, client in CLIENTS.items():
+        start_time = datetime.now(tz=timezone.utc)
+        arts = client.get_industry_articles_for(industry, location)
+        end_time = datetime.now(tz=timezone.utc)
+        duration = end_time - start_time
+        arts = filter_recent_real_articles(arts)
+        stats = f"{provider} got {len(arts)} in {duration}"
+        results_summary.append(stats)
+        results_details[provider] = arts
+    print_comparison(results_summary, results_details)
 
 def filter_recent_real_articles(articles, min_date=MIN_DATE):
     seen_urls = set()
@@ -72,10 +75,11 @@ def filter_recent_real_articles(articles, min_date=MIN_DATE):
     return articles_to_keep
 
 def print_articles(arts):
-    for art in arts:
+    for art in sorted(arts, key=lambda x: x['published_date'], reverse=True):
         print(art['headline'])
         act_class_str = f" - {art['activity_type']}" if art.get('activity_type') else ''
-        print(f"{art['published_by']} - {art['published_date_clean']} (raw date: {art['published_date']}) {act_class_str}")
+        raw_date_str = f"(raw date: {art['published_date']})" if art['published_date'] else ''
+        print(f"{art['published_by']} - {art['published_date_clean']}{raw_date_str}{act_class_str}")
         print(art['document_url'])
         print(art['summary_text'])
         print()

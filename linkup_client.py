@@ -1,5 +1,5 @@
 from linkup import LinkupClient
-from utils import LINKUP_API_KEY
+from utils import LINKUP_API_KEY, MAX_DATE, MIN_DATE
 import json
 from datetime import datetime, timezone
 
@@ -64,7 +64,7 @@ def output_schema():
     return json.dumps(schema)
 
 def industry_query(industry, location):
-    prompt = (f"Fetch 10 recent news related to the {industry} industry in {location}.\n"
+    prompt = (f"Fetch recent news related to the {industry} industry in {location}.\n"
     "Focus on:\n"
     "- Market trends and macroeconomic developments\n"
     "- Regulatory or policy updates\n"
@@ -76,11 +76,11 @@ def industry_query(industry, location):
     return prompt
 
 def company_query(company_name):
-    prompt = (f"Find 10 recent news mentioning {company_name}.\n\n"
+    prompt = (f"Find recent news mentioning {company_name}.\n\n"
     "Prioritize:\n- Product launches, strategic moves, M&A activity\n- Financial performance or investment news\n"
     "- Regulatory issues or market positioning updates\n- Regional relevance or expansion activities\n\n"
     "Summarize each relevant article in 2-3 sentences, including source, date, and URL.\n"
-    "Only include information from trustworthy business or industry-specific media outlets.\n"
+    "Only include information from trustworthy business or industry-specific media outlets."
     )
     return prompt
 
@@ -93,6 +93,8 @@ def do_query(query):
         output_type="structured",
         structured_output_schema=output_schema(),
         include_images=False,
+        from_date=MIN_DATE,
+        to_date=MAX_DATE,
         )
     return response
 
@@ -109,4 +111,5 @@ def item_to_article(item: dict):
             "document_url": item['url'],
         }
     except: # date not always in iso format
+        print(f"error parsing {item}")        
         return None

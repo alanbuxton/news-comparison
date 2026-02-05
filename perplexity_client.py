@@ -1,7 +1,9 @@
 import requests
-from utils import PERPLEXITY_API_KEY, PERPLEXITY_ENDPOINT
+from utils import PERPLEXITY_API_KEY, MIN_DATE, MAX_DATE
 from datetime import date, timedelta, datetime, timezone
 import json
+
+PERPLEXITY_ENDPOINT="https://api.perplexity.ai/chat/completions"
 
 def get_industry_articles_for(industry: str, location: str):
     user_command = build_industry_user_command(industry, location)
@@ -32,6 +34,7 @@ def parse_perplexity_responses(perplexity_content: dict) -> list:
             item["published_date_clean"] = pub_date
             articles.append(item)
         except: # date not always in isoformat
+            print(f"error parsing {item}")
             pass
     return sorted(articles, key=lambda x: x["published_date"], reverse=True)
 
@@ -84,11 +87,7 @@ def get_news(payload: dict):
         return None
 
 
-def build_payload(user_command :str, system_command: str, date_to :date = None, date_from :date = None):
-    if date_to is None:
-        date_to = date.today()
-    if date_from is None:
-        date_from = date_to - timedelta(days=90)
+def build_payload(user_command :str, system_command: str):
 
     payload = {
         "model": "sonar",
@@ -117,7 +116,7 @@ def build_payload(user_command :str, system_command: str, date_to :date = None, 
         "web_search_options": {
             "search_context_size": "medium"
         },
-        "search_after_date_filter": date_from.strftime("%m/%d/%Y"),
-        "search_before_date_filter": date_to.strftime("%m/%d/%Y"),
+        "search_after_date_filter": MIN_DATE.strftime("%m/%d/%Y"),
+        "search_before_date_filter": MAX_DATE.strftime("%m/%d/%Y"),
     }
     return payload
