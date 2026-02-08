@@ -1,28 +1,32 @@
-from utils import EXA_API_KEY, MIN_DATE, MAX_DATE
+from utils import EXA_API_KEY, MIN_DATE, MAX_DATE, log_error
 from datetime import datetime
 from exa_py import Exa
 from urllib.parse import urlparse
 
+PROVIDER_NAME = "Exa"
+
 def get_industry_articles_for(industry: str, location: str):
     query = industry_query(industry, location)
-    resp = do_query(query)
+    query_context = f"industry={industry}, location={location}"
+    resp = do_query(query, query_context)
     articles = []
     if resp is None: 
         return articles
     for item in resp.results:
-        article = item_to_article(item)
+        article = item_to_article(item, query_context)
         if article is not None:
             articles.append(article)
     return sorted(articles, key=lambda x: x["published_date"], reverse=True)
 
 def get_company_articles_for(company: str):
     query = company_query(company)
-    resp = do_query(query)
+    query_context = f"company={company}"
+    resp = do_query(query, query_context)
     articles = []
     if resp is None:
         return articles
     for item in resp.results:
-        article = item_to_article(item)
+        article = item_to_article(item, query_context)
         if article is not None:
             articles.append(article)
     return sorted(articles, key=lambda x: x["published_date"], reverse=True)
@@ -46,27 +50,31 @@ def company_query(company_name):
     )
     return prompt
 
-def do_query(query):
+def do_query(query, query_context: str):
     if EXA_API_KEY is None or EXA_API_KEY.strip() == '' or EXA_API_KEY == 'my_exa_key':
         return None
     
-    client = Exa(EXA_API_KEY)
-    response = client.search(query,
-        end_published_date = MAX_DATE.isoformat(),
-        start_published_date = MIN_DATE.isoformat(),
-        type = "auto",
-        contents = {
-          "highlights": True
-        }
+    try:
+        client = Exa(EXA_API_KEY)
+        response = client.search(query,
+            end_published_date=MAX_DATE.isoformat(),
+            start_published_date=MIN_DATE.isoformat(),
+            type="auto",
+            contents={
+                "highlights": True
+            }
         )
-    return response
+        return response
+    except Exception as e:
+        log_error(PROVIDER_NAME, "API_QUERY", query_context, str(e), {"query": query[:400]})
+        return None
 
-def item_to_article(item):
+def item_to_article(item, query_context: str):
     try:
         pub_date = datetime.fromisoformat(item.published_date)
         parsed_url = urlparse(item.url)
         top_highlight = item.highlights[0] if len(item.highlights) > 0 else ""
-        top_highlight = top_highlight.replace("\n"," ")
+        top_highlight = top_highlight.replace("\n", " ")
         author_string = f" ({item.author})" if item.author else ""
         return {
             "headline": item.title,
@@ -76,6 +84,6 @@ def item_to_article(item):
             "published_by": f"{parsed_url.netloc}{author_string}",
             "document_url": item.url,
         }
-    except: 
-        print(f"error parsing {item}")
+    except Exception as e:
+        log_error(PROVIDER_NAME, "PARSE_ARTICLE", query_context, str(e), {"url": getattr(item, 'url', 'unknown')})
         return None

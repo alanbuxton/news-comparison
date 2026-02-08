@@ -1,65 +1,69 @@
 from linkup import LinkupClient
-from utils import LINKUP_API_KEY, MAX_DATE, MIN_DATE
+from utils import LINKUP_API_KEY, MAX_DATE, MIN_DATE, log_error
 import json
 from datetime import datetime, timezone
 
+PROVIDER_NAME = "Linkup"
+
 def get_industry_articles_for(industry: str, location: str):
     query = industry_query(industry, location)
-    results = do_query(query)
+    query_context = f"industry={industry}, location={location}"
+    results = do_query(query, query_context)
     articles = []
     for item in results['articles']:
-        article = item_to_article(item)
+        article = item_to_article(item, query_context)
         if article is not None:
             articles.append(article)
     return sorted(articles, key=lambda x: x["published_date"], reverse=True)
 
 def get_company_articles_for(company: str):
     query = company_query(company)
-    results = do_query(query)
+    query_context = f"company={company}"
+    results = do_query(query, query_context)
     articles = []
     for item in results['articles']:
-        article = item_to_article(item)
+        article = item_to_article(item, query_context)
         if article is not None:
             articles.append(article)
     return sorted(articles, key=lambda x: x["published_date"], reverse=True)
 
 def output_schema():
     schema = {
-      "type": "object",
-      "properties": {
-        "articles": {
-          "type": "array",
-          "description": "List of news articles related to the specified company or industry.",
-          "items": {
-            "type": "object",
-            "properties": {
-              "headline": {
-                "type": "string",
-                "description": "Title of the news article"
-              },
-              "publication_date": {
-                "type": "string",
-                "description": "Date when the article was published",
-                "format": "date-time"
-              },
-              "summary": {
-                "type": "string",
-                "description": "Brief summary of the article (max 3 lines)"
-              },
-              "source": {
-                "type": "string",
-                "description": "News source or publication name"
-              },
-              "url": {
-                "type": "string",
-                "description": "Link to the original article"
-              }
-            },
-            "required": ["headline", "publication_date", "source", "url"]
-          }
-        }
-      },
-      "required": ["articles"]
+        "type": "object",
+        "properties": {
+            "articles": {
+                "type": "array",
+                "description": "List of news articles related to the specified company or industry.",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "headline": {
+                            "type": "string",
+                            "description": "Title of the news article"
+                        },
+                        "publication_date": {
+                            "type": "string",
+                            "description": "Date when the article was published",
+                            "format": "date-time"
+                        },
+                        "summary": {
+                            "type": "string",
+                            "description": "Brief summary of the article (max 3 lines)"
+                        },
+                        "source": {
+                            "type": "string",
+                            "description": "News source or publication name"
+                        },
+                        "url": {
+                            "type": "string",
+                            "description": "Link to the original article"
+                        }
+                    },
+                    "required": ["headline", "publication_date", "source", "url"]
+                }
+            }
+        },
+        "required": ["articles"]
     }
     return json.dumps(schema)
 
@@ -84,21 +88,26 @@ def company_query(company_name):
     )
     return prompt
 
-def do_query(query):
+def do_query(query, query_context: str):
     if LINKUP_API_KEY is None or LINKUP_API_KEY.strip() == '' or LINKUP_API_KEY == 'my_linkup_key':
-        return {'articles':[]}
-    client = LinkupClient(api_key=LINKUP_API_KEY)
-    response = client.search(query=query,
-        depth="standard",
-        output_type="structured",
-        structured_output_schema=output_schema(),
-        include_images=False,
-        from_date=MIN_DATE,
-        to_date=MAX_DATE,
+        return {'articles': []}
+    
+    try:
+        client = LinkupClient(api_key=LINKUP_API_KEY)
+        response = client.search(query=query,
+            depth="standard",
+            output_type="structured",
+            structured_output_schema=output_schema(),
+            include_images=False,
+            from_date=MIN_DATE,
+            to_date=MAX_DATE,
         )
-    return response
+        return response
+    except Exception as e:
+        log_error(PROVIDER_NAME, "API_QUERY", query_context, str(e), {"query": query[:400]})
+        return {'articles': []}
 
-def item_to_article(item: dict):
+def item_to_article(item: dict, query_context: str):
     try:
         pub_date = datetime.fromisoformat(item['publication_date'])
         pub_date = pub_date.replace(tzinfo=timezone.utc)
@@ -106,10 +115,10 @@ def item_to_article(item: dict):
             "headline": item['headline'],
             "published_date_clean": pub_date,
             "published_date": item["publication_date"],
-            "summary_text": item['summary'],
+            "summary_text": item.get('summary', ''),
             "published_by": item['source'],
             "document_url": item['url'],
         }
-    except: # date not always in iso format
-        print(f"error parsing {item}")        
+    except Exception as e:
+        log_error(PROVIDER_NAME, "PARSE_ARTICLE", query_context, str(e), item)
         return None

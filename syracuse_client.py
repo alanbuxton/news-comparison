@@ -1,45 +1,62 @@
-from utils import SYRACUSE_API_KEY
+from utils import SYRACUSE_API_KEY, log_error
 import requests
 from typing import Union
 from datetime import datetime
 import os
 
-SYRACUSE_ENDPOINT=os.environ.get("SYRACUSE_ENDPOINT","https://syracuse.1145.am/api/v1/stories")
+PROVIDER_NAME = "Syracuse"
+SYRACUSE_ENDPOINT = os.environ.get("SYRACUSE_ENDPOINT", "https://syracuse.1145.am/api/v1/stories")
 
-def call_syracuse_activities(params: Union[dict,None]):
+def call_syracuse_activities(params: Union[dict, None], query_context: str):
     if SYRACUSE_API_KEY is None or SYRACUSE_API_KEY.strip() == '' or SYRACUSE_API_KEY == 'my_syracuse_key':
-        return {'results':[]}
-    headers = {
-        "Authorization": f"Token {SYRACUSE_API_KEY}"
-    }
-    response = requests.get(SYRACUSE_ENDPOINT, headers=headers, params=params)
-    response.raise_for_status()
-    return response.json()
+        return {'results': []}
+    
+    try:
+        headers = {
+            "Authorization": f"Token {SYRACUSE_API_KEY}"
+        }
+        response = requests.get(SYRACUSE_ENDPOINT, headers=headers, params=params)
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        log_error(PROVIDER_NAME, "API_QUERY", query_context, str(e), {"params": params})
+        return {'results': []}
 
 def get_company_articles_for(company: str):
-    resp = call_syracuse_activities({"org_name":company})
-    articles = parse_response(resp)
+    query_context = f"company={company}"
+    resp = call_syracuse_activities({"org_name": company}, query_context)
+    articles = parse_response(resp, query_context)
     return articles
 
 def get_industry_articles_for(industry: str, location: str):
-    resp = call_syracuse_activities({"industry":industry, "location":location})
-    articles = parse_response(resp)
+    query_context = f"industry={industry}, location={location}"
+    resp = call_syracuse_activities({"industry": industry, "location": location}, query_context)
+    articles = parse_response(resp, query_context)
     return articles
 
-def parse_response(resp_json) -> list[dict]:
+def parse_response(resp_json, query_context: str) -> list[dict]:
     try:
-        return [item_to_article(x) for x in resp_json['results']]
-    except:
-        print(f"Couldn't parse {resp_json}")
-        raise
+        articles = []
+        for item in resp_json['results']:
+            article = item_to_article(item, query_context)
+            if article is not None:
+                articles.append(article)
+        return articles
+    except Exception as e:
+        log_error(PROVIDER_NAME, "PARSE_RESPONSE", query_context, str(e), resp_json)
+        return []
 
-def item_to_article(item: dict):
-    return {
-        "headline": item['headline'],
-        "published_date_clean": datetime.fromisoformat(item["date_published"]),
-        "published_date": item["date_published"],
-        "summary_text": item['document_extract'],
-        "published_by": item['source_organization'],
-        "document_url": item['document_url'],
-        "activity_type": item['activity_class'],
-    }
+def item_to_article(item: dict, query_context: str):
+    try:
+        return {
+            "headline": item['headline'],
+            "published_date_clean": datetime.fromisoformat(item["date_published"]),
+            "published_date": item["date_published"],
+            "summary_text": item['document_extract'],
+            "published_by": item['source_organization'],
+            "document_url": item['document_url'],
+            "activity_type": item['activity_class'],
+        }
+    except Exception as e:
+        log_error(PROVIDER_NAME, "PARSE_ARTICLE", query_context, str(e), item)
+        return None
