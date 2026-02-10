@@ -10,10 +10,14 @@ import tavily_client
 from examples import industry_location_examples, company_name_examples
 from utils import MIN_DATE
 
-CLIENTS = {"Exa": exa_client, "Linkup": linkup_client, 
-           "NewsAPI": newsapi_client, 
+# Excluding NewsAPI because it generates too much noise
+CLIENTS = {"Exa": exa_client, 
+           "Linkup": linkup_client, 
+        #    "NewsAPI": newsapi_client, 
            "Perplexity": perplexity_client, 
-           "Syracuse": syracuse_client, "Tavily": tavily_client}
+           "Syracuse": syracuse_client, 
+           "Tavily": tavily_client,
+        }
 
 def compare_company_results(company: str, output_file=None):
     output = []
@@ -110,10 +114,10 @@ def format_articles(arts):
     for art in sorted(arts, key=lambda x: x['published_date'], reverse=True):
         output.append(str(art.get('headline', '')))
         act_class_str = f" - {art['activity_type']}" if art.get('activity_type') else ''
-        raw_date_str = f"(raw date: {art['published_date']})" if art.get('published_date') else ''
+        raw_date_str = f"(raw date: {art['published_date']})" if art.get('published_date') else ""
         published_by = art.get('published_by', '')
-        published_date_clean = art.get('published_date_clean', '')
-        output.append(f"{published_by} - {published_date_clean}{raw_date_str}{act_class_str}")
+        published_date_clean = art.get('published_date_clean', 'No Date')
+        output.append(f"{published_by} - {published_date_clean} {raw_date_str} {act_class_str}")
         output.append(str(art.get('document_url', '')))
         output.append(str(art.get('summary_text', '')))
         output.append("")
