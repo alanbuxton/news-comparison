@@ -1,7 +1,7 @@
 industry_location_examples = [
     {"industry": "PE Resins", "location": "US"},
     {"industry": "Film Distribution", "location": "Midwest" },
-    {"industry": "Film Entertainment -> Film Distribution", "location": "Midwest" },
+    {"industry": "Film Entertainment: Film Distribution", "location": "Midwest" },
     {"industry": "Packaging Boxes", "location": "IN" },
     {"industry": "Packaging: Packaging Boxes", "location": "IN" },
     {"industry": "Packaging: Packaging Boxes", "location": "india" },
