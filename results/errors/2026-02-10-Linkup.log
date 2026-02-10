@@ -1,0 +1,880 @@
+[22:13:50] PARSE_ARTICLE - company=Borouge
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Borouge earnings drop as revenue falls 3% in 2025",
+  "publication_date": "2026-02",
+  "summary": "Borouge's full-year production reached 5.1 million tonnes, exceeding capacity despite the largest turnaround in company history. However, net profit fell in 2025 due to declining revenues from lower average selling prices. The company reaffirmed its intention to pay a 16.2 fils per share dividend with the second half payout expected in April 2026.",
+  "source": "AGBI",
+  "url": "https://www.agbi.com/petrochemicals/2026/02/borouge-earnings-drop-as-revenue-falls-3-in-2025/"
+}
+--------------------------------------------------------------------------------
+[22:17:13] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: '2024-01'
+Data: {
+  "headline": "HPCL-Mittal Energy Ltd awarded \u2018Petrochemicals Company of the Year 2024\u2019 and safety excellence awards",
+  "publication_date": "2024-01",
+  "summary": "HMEL received the \u2018Petrochemicals Company of the Year 2024\u2019 award by ENCIS and the \u2018Awards for Excellence in Safety Systems\u2019 by FICCI in November 2023, recognizing its leadership in petrochemical manufacturing and safety standards.",
+  "source": "Wikipedia",
+  "url": "https://en.wikipedia.org/wiki/HPCL-Mittal_Energy_Limited"
+}
+--------------------------------------------------------------------------------
+[22:19:51] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2025-11'
+Data: {
+  "headline": "Husky to Merge With CompoSecure in $5 Billion Deal",
+  "publication_date": "2025-11",
+  "summary": "Husky Technologies is set to be acquired by CompoSecure, backed by former Honeywell CEO David Cote, for about $5 billion. The transaction is expected to close in Q1 2026, combining Husky's injection molding expertise with CompoSecure's financial technology. This merger aims to leverage Husky's strong industry position and growth potential.",
+  "source": "PlasticsToday",
+  "url": "https://www.plasticstoday.com/business/husky-to-merge-with-composecure-in-5-billion-deal"
+}
+--------------------------------------------------------------------------------
+[22:19:51] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2025-11'
+Data: {
+  "headline": "Husky combines mono-PET bottle and cap in tamper-evident beverage solution",
+  "publication_date": "2025-11",
+  "summary": "Husky Technologies launched its HyCAP SecuRE+ tamper-evident mono-PET bottle and closure technology aimed at improving recyclability and product security, especially in the Middle East and Africa. The technology enhances capping reliability and production efficiency for high-speed beverage operations while supporting sustainability goals.",
+  "source": "Packaging Europe",
+  "url": "https://packagingeurope.com/news/husky-combines-mono-pet-bottle-and-cap-in-tamper-evident-beverage-solution/13842.article"
+}
+--------------------------------------------------------------------------------
+[22:19:51] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "CompoSecure announces $2.1 billion refinancing and Husky Technologies merger",
+  "publication_date": "2025-12",
+  "summary": "CompoSecure completed a $2.1 billion refinancing package and finalized a $7.4 billion merger with Husky Technologies, creating a diversified entity with substantial recurring revenues. The merger received stockholder approval and is expected to close in January 2026, with positive analyst outlooks on margin growth and organic expansion.",
+  "source": "Investing.com",
+  "url": "https://www.investing.com/news/sec-filings/composecure-announces-21-billion-refinancing-and-husky-technologies-merger-93CH-4448365"
+}
+--------------------------------------------------------------------------------
+[22:19:51] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "CompoSecure, Husky rebrand as Great Positions in Good Industries Inc.",
+  "publication_date": "2026-01",
+  "summary": "Following the merger, Husky Technologies retains its brand and operations under the new owner GPGI Inc. Both Husky and CompoSecure operate as distinct reporting segments within the capital platform. The rebranding reflects the investment philosophy focused on companies with strong market positions in good industries.",
+  "source": "Plastics News",
+  "url": "https://www.plasticsnews.com/suppliers/machinery/pn-composecure-husky-now-cpgi/"
+}
+--------------------------------------------------------------------------------
+[22:19:51] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2025-11'
+Data: {
+  "headline": "CompoSecure Announces $7.4B Business Combination with Husky Technologies",
+  "publication_date": "2025-11",
+  "summary": "Husky Technologies CEO Bradley Selleck emphasized that the $7.4 billion business combination with CompoSecure supports Husky\u2019s long-term strategy, innovation, and operational strength. The merger ensures continuity for employees and customers while enabling long-term investment and growth opportunities.",
+  "source": "Platinum Equity",
+  "url": "https://www.platinumequity.com/news/composecure-announces-business-combination-with-husky-technologies/"
+}
+--------------------------------------------------------------------------------
+[22:24:02] PARSE_ARTICLE - company=Borouge
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "Mechanically recycled polymer portfolio unveiled by Borealis and Borouge",
+  "publication_date": "2026-01",
+  "summary": "Borouge and Borealis launched the Recleo brand consolidating their recycled polymer portfolio to expand customer access to certified recycled materials, supporting circular economy integration in production systems.",
+  "source": "Packaging Europe",
+  "url": "https://packagingeurope.com/news/mechanically-recycled-polymer-portfolio-unveiled-by-borealis-and-borouge/13724.article"
+}
+--------------------------------------------------------------------------------
+[22:24:51] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "HPCL-Mittal Energy Limited awarded Petrochemicals Company of the Year 2024",
+  "publication_date": "2024",
+  "summary": "HMEL received the \u2018Petrochemicals Company of the Year 2024\u2019 award by the Energy & Climate Initiatives Society at the Downstream India Excellence Awards 2024 and also won the \u2018Awards for Excellence in Safety Systems\u2019 by FICCI in November 2023.",
+  "source": "Wikipedia",
+  "url": "https://en.wikipedia.org/wiki/HPCL-Mittal_Energy_Limited"
+}
+--------------------------------------------------------------------------------
+[22:27:27] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2025-11'
+Data: {
+  "headline": "Husky to Merge With CompoSecure in $5 Billion Deal",
+  "publication_date": "2025-11",
+  "summary": "Husky Technologies is set to be acquired by CompoSecure, backed by former Honeywell CEO David Cote, for about $5 billion. The transaction is expected to close in Q1 2026, combining Husky's injection molding expertise with CompoSecure's financial technology. The deal highlights Husky's strong market position and growth potential.",
+  "source": "PlasticsToday",
+  "url": "https://www.plasticstoday.com/business/husky-to-merge-with-composecure-in-5-billion-deal"
+}
+--------------------------------------------------------------------------------
+[22:27:27] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2025-11'
+Data: {
+  "headline": "Husky combines mono-PET bottle and cap in tamper-evident beverage solution",
+  "publication_date": "2025-11",
+  "summary": "Husky Technologies launched its HyCAP SecuRE+ tamper-evident mono-PET bottle and closure technology aimed at improving recyclability and product security in the Middle East and Africa. The technology enhances capping reliability and production efficiency for high-speed beverage operations while supporting sustainability goals.",
+  "source": "Packaging Europe",
+  "url": "https://packagingeurope.com/news/husky-combines-mono-pet-bottle-and-cap-in-tamper-evident-beverage-solution/13842.article"
+}
+--------------------------------------------------------------------------------
+[22:27:27] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "CompoSecure announces $2.1 billion refinancing and Husky Technologies merger",
+  "publication_date": "2025-12",
+  "summary": "CompoSecure completed a $2.1 billion refinancing package including senior secured notes and term loans to support its $7.4 billion merger with Husky Technologies. The merger, approved by stockholders, is expected to close in January 2026 and positions the combined company for margin growth and organic expansion.",
+  "source": "Investing.com",
+  "url": "https://www.investing.com/news/sec-filings/composecure-announces-21-billion-refinancing-and-husky-technologies-merger-93CH-4448365"
+}
+--------------------------------------------------------------------------------
+[22:27:27] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "CompoSecure, Husky rebrand as Great Positions in Good Industries Inc.",
+  "publication_date": "2026-01",
+  "summary": "Following the merger, Husky Technologies retains its brand and operations under the new owner GPGI Inc. Both Husky and CompoSecure operate as separate reporting segments within the diversified capital platform. The rebranding reflects the investment philosophy focused on companies with strong market positions in good industries.",
+  "source": "Plastics News",
+  "url": "https://www.plasticsnews.com/suppliers/machinery/pn-composecure-husky-now-cpgi/"
+}
+--------------------------------------------------------------------------------
+[22:27:27] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: '2025-11'
+Data: {
+  "headline": "CompoSecure Announces $7.4B Business Combination with Husky Technologies",
+  "publication_date": "2025-11",
+  "summary": "Husky Technologies CEO Bradley Selleck emphasized that the $7.4 billion business combination with CompoSecure supports Husky's long-term strategy, innovation, and operational strength. The deal ensures continuity for employees and customers while enabling long-term investment and growth opportunities.",
+  "source": "Platinum Equity",
+  "url": "https://www.platinumequity.com/news/composecure-announces-business-combination-with-husky-technologies/"
+}
+--------------------------------------------------------------------------------
+[22:28:49] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: Invalid isoformat string: '2026-02-17 to 2026-02-21'
+Data: {
+  "headline": "Kl\u00f6ckner Pentaplast to exhibit for the first time at Foodtech 2026",
+  "publication_date": "2026-02-17 to 2026-02-21",
+  "summary": "Kl\u00f6ckner Pentaplast announced its participation at Foodtech 2026 in Plovdiv, Bulgaria, showcasing its portfolio of rigid and flexible packaging solutions tailored for fresh and prepared food segments. The event targets regional and export markets in Europe and Asia, emphasizing packaging solutions for meat, protein, and dairy products. Visitors can meet the Kl\u00f6ckner Pentaplast team at stand 69A to discuss packaging needs.",
+  "source": "Plastech Vortal",
+  "url": "https://www.plastech.biz/en/news/Klockner-Pentaplast-to-exhibit-for-the-first-time-at-21737"
+}
+--------------------------------------------------------------------------------
+[22:28:49] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: Invalid isoformat string: '2024-06'
+Data: {
+  "headline": "Klockner Pentaplast gains US court approval",
+  "publication_date": "2024-06",
+  "summary": "Klockner Pentaplast received confirmation from the US Bankruptcy Court for the Southern District of Texas for its reorganisation plan, allowing the company to proceed with financial restructuring and exit Chapter 11. CEO Roberto Villaquiran highlighted that the approval provides a strong financial foundation to grow the portfolio, drive innovation, and deliver customer excellence. The company operates 27 production sites in 16 countries with over 5,000 employees.",
+  "source": "Packaging Gateway",
+  "url": "https://www.packaging-gateway.com/news/klockner-pentaplast-us-court-approval/"
+}
+--------------------------------------------------------------------------------
+[22:29:08] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Kl\u00f6ckner Pentaplast to make first appearance at FOODTECH 2026 - MEATing POINT Magazine",
+  "publication_date": "2026-02",
+  "summary": "Kl\u00f6ckner Pentaplast will showcase its latest rigid and flexible packaging innovations at FOODTECH 2026 in Bulgaria, marking its first appearance at the event. The company aims to highlight sustainable, high-performance packaging solutions for fresh and prepared food markets across Europe and Asia, supporting regional needs and export markets.",
+  "source": "MEATing POINT Magazine",
+  "url": "https://meatingpoint-mag.com/news/klockner-pentaplast-to-make-first-appearance-at-foodtech-2026/"
+}
+--------------------------------------------------------------------------------
+[22:30:03] PARSE_ARTICLE - company=Little Island Productions
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Little Island at Pier 55: Dynamic Summer Season of Cultural Events",
+  "publication_date": "2026",
+  "summary": "Little Island, a unique public park in New York City, is hosting over 110 live performances this summer, including music, theater, dance, and opera. The park features two performance venues and is accessible to all visitors. This cultural programming highlights Little Island's role as a significant arts venue in the region.",
+  "source": "Show-Score",
+  "url": "https://www.show-score.com/off-broadway-shows/little-island-summer-shows"
+}
+--------------------------------------------------------------------------------
+[22:30:03] PARSE_ARTICLE - company=Little Island Productions
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Little Island at Pier 55 - Wikipedia",
+  "publication_date": "2026",
+  "summary": "Little Island is an artificial island and public park in Manhattan, New York City, featuring two performance venues and a 687-seat amphitheater. It opened in May 2021 and continues to host cultural events and artist residencies, emphasizing its importance as a cultural and recreational space in the city.",
+  "source": "Wikipedia",
+  "url": "https://en.wikipedia.org/wiki/Little_Island_at_Pier_55"
+}
+--------------------------------------------------------------------------------
+[22:31:18] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'February 2026'
+Data: {
+  "headline": "CBS Moves Up 2026-27 Schedule Reveal To April 15 As Network Continues To Bypass Traditional Cycle",
+  "publication_date": "February 2026",
+  "summary": "CBS has advanced its 2026-27 primetime schedule reveal to April 15, continuing to bypass the traditional May upfront cycle. This move follows the network's shift to long-term development and smaller upfront presentations post-pandemic, with new drama series already known months in advance.",
+  "source": "Deadline",
+  "url": "https://deadline.com/2026/02/cbs-2026-27-schedule-reveal-date-pickups-cancellatiions-1236710352/"
+}
+--------------------------------------------------------------------------------
+[22:31:18] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'January 18, 2026'
+Data: {
+  "headline": "One Month Later, CBS Airs Postponed \u201860 Minutes\u2019 Report With Few Changes",
+  "publication_date": "January 18, 2026",
+  "summary": "CBS News aired a previously postponed 13-minute '60 Minutes' segment about Venezuelan men deported by the Trump administration, adding new comments and details to address concerns. The report's delay was due to editorial decisions to secure additional comments and ensure readiness.",
+  "source": "The New York Times",
+  "url": "https://www.nytimes.com/2026/01/18/business/media/cbs-60-minutes-venezuela-report.html"
+}
+--------------------------------------------------------------------------------
+[22:31:18] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'January 30, 2026'
+Data: {
+  "headline": "Bill Gates, Elon Musk among big names in Epstein files. Here's what the latest documents show.",
+  "publication_date": "January 30, 2026",
+  "summary": "CBS News reported on the latest Justice Department release of Jeffrey Epstein files, which include notable individuals such as Bill Gates and Elon Musk. CBS News is actively reviewing the documents in collaboration with other newsrooms to analyze the contents.",
+  "source": "CBS News",
+  "url": "https://www.cbsnews.com/news/bill-gates-elon-musk-epstein-files-what-documents-show/"
+}
+--------------------------------------------------------------------------------
+[22:31:18] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'February 4, 2026'
+Data: {
+  "headline": "Border czar says feds will withdraw 700 law enforcement personnel from Minnesota immediately",
+  "publication_date": "February 4, 2026",
+  "summary": "CBS News covered the announcement by border czar Tom Homan that 700 federal law enforcement personnel will be withdrawn from Minnesota immediately. The report includes reactions from local officials and details about the federal drawdown plans.",
+  "source": "CBS News Minnesota",
+  "url": "https://www.cbsnews.com/minnesota/live-updates/border-czar-homan-to-give-update-on-minnesota-as-top-corrections-official-questions-drawdown-timeline/"
+}
+--------------------------------------------------------------------------------
+[22:32:29] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "Deloitte is overhauling job titles for its US workforce \u2014 here's why",
+  "publication_date": "2026-01",
+  "summary": "Deloitte is implementing a comprehensive change to job titles for all its US employees, effective June 1, 2026, introducing a new leadership class. This change affects all divisions and reflects a shift in how the firm structures roles internally and externally.",
+  "source": "Business Insider",
+  "url": "https://www.businessinsider.com/deloitte-gives-us-employees-new-job-titles-leader-role-2026-1"
+}
+--------------------------------------------------------------------------------
+[22:32:29] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "Compared: How KPMG, EY, PwC, and Deloitte Performed in 2025 - Business Insider",
+  "publication_date": "2025-12",
+  "summary": "Deloitte reported a 4.8% annual revenue growth in its most recent financial year, maintaining steady growth compared to the previous year. The firm also expanded its workforce alongside EY and KPMG, while PwC reduced its headcount.",
+  "source": "Business Insider",
+  "url": "https://www.businessinsider.com/big-four-earnings-compared-ey-deloitte-pwc-kpmg-2025-12"
+}
+--------------------------------------------------------------------------------
+[22:32:29] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "'Fragmented' Microsoft tools undercut efficiency at Amazon and Whole Foods, internal Deloitte review found",
+  "publication_date": "2025-12",
+  "summary": "Deloitte conducted an 8-week review of Whole Foods' use of Microsoft 365 applications, identifying fragmented toolsets and security issues that reduce productivity. The findings highlight Deloitte's role in strategic operational reviews for major clients.",
+  "source": "Business Insider",
+  "url": "https://www.businessinsider.com/amazon-whole-foods-microsoft-365-software-integration-challenges-deloitte-2025-12"
+}
+--------------------------------------------------------------------------------
+[22:32:29] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: 'No date provided'
+Data: {
+  "headline": "Who is OpenAI\u2019s auditor? (Update: it\u2019s Deloitte)",
+  "publication_date": "No date provided",
+  "summary": "Deloitte serves as the auditor for OpenAI, indicating its involvement with leading AI companies and positioning in the AI market sector.",
+  "source": "Financial Times",
+  "url": "https://www.ft.com/content/3cff198e-25e5-481a-bd34-e26941e1d12d"
+}
+--------------------------------------------------------------------------------
+[22:33:31] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "The 2026 Insider\u2019s Guide to Resin Pricing",
+  "publication_date": "2026-01",
+  "summary": "Resin prices for major commodity resins including PE ended 2025 lower, with some expected to rise in 2026. Tariffs imposed in prior years have impacted resin manufacturing variably depending on import/export status. The plastics industry experienced a yearlong correction in 2025, with a Supreme Court ruling on tariffs pending.",
+  "source": "Plastics Today",
+  "url": "https://www.plasticstoday.com/resin-pricing/the-2026-insider-s-guide-to-resin-pricing"
+}
+--------------------------------------------------------------------------------
+[22:33:31] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "Plastic Resin Market Size | Companies Analysis 2026- 2035",
+  "publication_date": "2026-01",
+  "summary": "The global plastic resin market is projected to grow from USD 894.93 billion in 2026 to USD 1,384.76 billion by 2035 at a CAGR of 4.97%. Key players include ExxonMobil Chemical, Dow Inc., LyondellBasell, SABIC, BASF, INEOS, and others. Asia Pacific dominates the market, but North America and Europe show significant growth. The market is driven by packaging, construction, and industrial applications.",
+  "source": "Towards Chem and Materials",
+  "url": "https://www.towardschemandmaterials.com/insights/plastic-resin-market"
+}
+--------------------------------------------------------------------------------
+[22:33:31] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "2026 could be end of down cycle for resins - Plastics News",
+  "publication_date": "2026-01",
+  "summary": "After a turbulent 2025 with oversupply and weak demand, resin markets may see a modest recovery in 2026 as production slows, exports rise, and demand rebounds.",
+  "source": "Plastics News",
+  "url": "https://www.plasticsnews.com/suppliers/materials/pn-materials-outlook-2026/"
+}
+--------------------------------------------------------------------------------
+[22:33:31] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "Resin Market Size | Companies Analysis 2026- 2035",
+  "publication_date": "2026-01",
+  "summary": "The global resin market is projected to grow from USD 702.05 billion in 2025 to USD 1,156.71 billion by 2035 at a CAGR of 5.12%. Leading companies include Dow Inc., BASF SE, LyondellBasell, ExxonMobil Chemical, Covestro, DuPont, Arkema, and INEOS. Asia Pacific holds the largest market share, with Europe expected to be the fastest growing region due to regulatory pressure and demand for specialty and bio-based resins.",
+  "source": "Towards Chem and Materials",
+  "url": "https://www.towardschemandmaterials.com/insights/resin-market"
+}
+--------------------------------------------------------------------------------
+[22:33:31] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "Resin Prices Stable Amid Global Shifts - Star Plastics",
+  "publication_date": "2026-01",
+  "summary": "Dow's Freeport plant, housing 44% of its US PE capacity, remains offline impacting supply. Tariffs between Mexico and China are expected to rise in 2026, affecting plastics and resin imports. New US tariffs on lumber and wood products may increase housing costs. Dow's Poly-7 expansion aimed to boost resin supply for export markets but is currently impacted by outages.",
+  "source": "Star Plastics",
+  "url": "https://www.starplastics.com/resin-prices-stable-amid-global-shifts/"
+}
+--------------------------------------------------------------------------------
+[22:34:54] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India's Corrugated Paper Box Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "India is the world's third-largest consumer and producer of corrugated paper boxes with 12 million tons volume, driven by sectors like food, beverages, pharmaceuticals, and e-commerce. The market is evolving towards more complex, value-added packaging products amid industry consolidation and improving outlook.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/india-cartons-boxes-and-cases-of-corrugated-paper-or-paperboard-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[22:34:54] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Best Packaging Stocks in India (2026)",
+  "publication_date": "2026",
+  "summary": "India's packaging industry is projected to reach $204.81 billion by 2025 with a CAGR of 26.7%, driven by exports, low costs, and skilled labor. Key players include AGI Greenpac Ltd, EPL Ltd, Jindal Poly Films Ltd, and Uflex Ltd. Trends include sustainability focus and government regulations impacting production costs and product offerings.",
+  "source": "Tickertape",
+  "url": "https://www.tickertape.in/stocks/collections/packaging-stocks"
+}
+--------------------------------------------------------------------------------
+[22:34:54] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "5 packaging industry trends to watch in 2026 | Packaging Dive",
+  "publication_date": "2026",
+  "summary": "The packaging industry is experiencing consolidation with fewer megadeals expected in 2026. Sustainability efforts are shaped by extended producer responsibility programs. Demand outlook is cautious with excess capacity in some segments. Focus is shifting to smaller players and innovation in smart packaging and regulatory compliance.",
+  "source": "Packaging Dive",
+  "url": "https://www.packagingdive.com/news/packaging-industry-trends-2026-epr-labeling-containerboard-automation/809071/"
+}
+--------------------------------------------------------------------------------
+[22:34:54] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top 10 Packaging Companies in India (2026 Rankings)",
+  "publication_date": "2026",
+  "summary": "India's packaging market is dominated by flexible packaging, followed by rigid and corrugated boxes. The industry is growing at 10-11% annually, driven by urbanization, e-commerce, and FMCG demand. Companies are adopting recyclable plastics and biodegradable materials to meet regulations and consumer demand for eco-friendly packaging.",
+  "source": "7knetwork",
+  "url": "https://7knetwork.com/packaging-companies-in-india/"
+}
+--------------------------------------------------------------------------------
+[22:34:54] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "The Key Trends Shaping the Packaging Industry in 2026",
+  "publication_date": "2026",
+  "summary": "Key trends include a shift to mono-material packaging for recyclability, mainstream adoption of smart packaging, personalized packaging enabled by digital printing, and mandatory environmental labeling driven by regulations. Reusable packaging is also gaining importance as part of sustainability efforts.",
+  "source": "Packaging World Insights",
+  "url": "https://www.packagingworldinsights.com/trends/the-key-trends-shaping-the-packaging-industry-in-2026/"
+}
+--------------------------------------------------------------------------------
+[22:34:54] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top 8 Packaging Stocks In India 2026 | Best Packaging Companies To Watch",
+  "publication_date": "2026",
+  "summary": "Mid-sized and microcap packaging firms like B&A Packaging and Anuroop Packaging specialize in cartons and corrugated boxes, serving steady demand in FMCG and logistics. Key financial metrics such as ROE, ROCE, and debt levels are critical for evaluating companies in this sector.",
+  "source": "Samco",
+  "url": "https://www.samco.in/knowledge-center/articles/top-packaging-stocks-in-india/"
+}
+--------------------------------------------------------------------------------
+[22:34:54] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Boxboard Packaging Market Outlook 2026\u20132036: Strategic Trends, Innovation Drivers and Growth Opportunities",
+  "publication_date": "2026",
+  "summary": "Asia Pacific, led by India and China, is expected to see fastest growth in boxboard packaging due to industrial expansion and e-commerce. Innovations include specialty fibers and smart packaging technologies, with a global market projected to grow at 6.5% CAGR to 2036.",
+  "source": "Newstrail",
+  "url": "https://www.newstrail.com/boxboard-packaging-market-outlook-2026-2036-strategic-trends-innovation-drivers-and-growth-opportunities/"
+}
+--------------------------------------------------------------------------------
+[22:34:54] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Key trends in packaging sector for 2026",
+  "publication_date": "2026",
+  "summary": "The packaging sector is undergoing structural transformation integrating sustainability, industrial efficiency, and digitalization. Systemic approaches to reuse, return, and reprocessing are emphasized, with flexible automation becoming a strategic priority in 2026.",
+  "source": "Packaging South Asia",
+  "url": "https://packagingsouthasia.com/type-of-article/key-trends-in-packaging/"
+}
+--------------------------------------------------------------------------------
+[22:35:29] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India's Corrugated Paper Box Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "India is the world's third-largest consumer and producer of corrugated paper boxes with 12 million tons volume, driven by sectors like food, beverages, pharmaceuticals, and e-commerce. The market is evolving towards more complex, value-added packaging products amid industry consolidation and improving outlook.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/india-cartons-boxes-and-cases-of-corrugated-paper-or-paperboard-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[22:35:29] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Best Packaging Stocks in India (2026)",
+  "publication_date": "2026",
+  "summary": "India's packaging industry is projected to reach $204.81 billion by 2025 at a 26.7% CAGR, driven by exports, low costs, and skilled labor. Key players include AGI Greenpac Ltd, EPL Ltd, Jindal Poly Films Ltd, and Uflex Ltd. Trends include commodity price impacts, sustainability focus, and regulatory influences on production costs and product offerings.",
+  "source": "Tickertape",
+  "url": "https://www.tickertape.in/stocks/collections/packaging-stocks"
+}
+--------------------------------------------------------------------------------
+[22:35:29] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top 10 Packaging Companies in India (2026 Rankings)",
+  "publication_date": "2026",
+  "summary": "The Indian packaging market is dominated by flexible packaging, followed by rigid packaging and corrugated boxes. Growth is driven by urbanization, e-commerce, and sustainability adoption. Companies are advancing beyond traditional packaging to innovative, eco-friendly solutions with a combined market cap over \u20b923,900 crore.",
+  "source": "7knetwork",
+  "url": "https://7knetwork.com/packaging-companies-in-india/"
+}
+--------------------------------------------------------------------------------
+[22:35:29] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "The Key Trends Shaping the Packaging Industry in 2026",
+  "publication_date": "2026",
+  "summary": "Key trends include a shift to mono-material packaging for recyclability, mainstream adoption of smart packaging, personalized packaging enabled by digital printing, and mandatory environmental labeling driven by regulations and ESG communication needs.",
+  "source": "Packaging World Insights",
+  "url": "https://www.packagingworldinsights.com/trends/the-key-trends-shaping-the-packaging-industry-in-2026/"
+}
+--------------------------------------------------------------------------------
+[22:35:29] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "5 packaging industry trends to watch in 2026 | Packaging Dive",
+  "publication_date": "2026",
+  "summary": "Industry consolidation continues with fewer megadeals expected; focus shifts to smaller players. Demand outlook remains cautious with excess capacity in some segments. Regulatory changes and consumer cost sensitivity drive innovation and sustainability efforts, especially under extended producer responsibility programs.",
+  "source": "Packaging Dive",
+  "url": "https://www.packagingdive.com/news/packaging-industry-trends-2026-epr-labeling-containerboard-automation/809071/"
+}
+--------------------------------------------------------------------------------
+[22:35:29] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Boxboard Packaging Market Outlook 2026\u20132036: Strategic Trends, Innovation Drivers and Growth Opportunities",
+  "publication_date": "2026",
+  "summary": "Asia Pacific, led by India and China, is the fastest-growing region for boxboard packaging due to industrial growth and e-commerce expansion. Innovations include specialty fibers and smart packaging technologies, with a global market projected to grow at 6.5% CAGR to 2036.",
+  "source": "Newstrail",
+  "url": "https://www.newstrail.com/boxboard-packaging-market-outlook-2026-2036-strategic-trends-innovation-drivers-and-growth-opportunities/"
+}
+--------------------------------------------------------------------------------
+[22:35:29] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Three key trends to affect the packaging sector in 2026 - Markem-Imaje comments",
+  "publication_date": "2026",
+  "summary": "Shift from 1D to 2D barcodes (QR codes, GS1 Digital Link) driven by transparency, sustainability, and regulatory demands. New EU rules require detailed on-pack information, pushing brands to adopt dynamic labeling for batch-level traceability and consumer engagement.",
+  "source": "Potato Gazette",
+  "url": "https://potatogazette.com/packaging/three-key-trends-to-affect-the-packaging-sector-in-2026-markem-imaje-comments/"
+}
+--------------------------------------------------------------------------------
+[22:35:29] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Packaging Trends 2026",
+  "publication_date": "2026",
+  "summary": "Transparency via carbon footprint labeling is a key trend, driven by regulatory anti-greenwashing efforts. Minimalist design and paperization to replace plastics are growing, enhancing sustainability and economic value of recovered materials in packaging.",
+  "source": "Creative Retail Packaging",
+  "url": "https://creativeretailpackaging.com/packaging-insights/packaging-trends/"
+}
+--------------------------------------------------------------------------------
+[22:36:12] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "India Rigid Plastic Packaging Market Size, Share & Growth 2035",
+  "publication_date": "2024",
+  "summary": "Major players like SABIC Innovative Plastics and Amcor Flexibles are investing heavily in sustainable technologies. The market is driven by regulatory support, shifting consumer preferences, and government incentives promoting sustainable packaging solutions, fostering innovation and growth in India.",
+  "source": "Market Research Future",
+  "url": "https://www.marketresearchfuture.com/reports/india-rigid-plastic-packaging-market-20707"
+}
+--------------------------------------------------------------------------------
+[22:36:12] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "India Plastic Packaging Market is set to reach USD 17.3 Billion by 2034 | Industry Growing at a CAGR of 3.10%",
+  "publication_date": "2024",
+  "summary": "Regulatory mandates such as FSSAI's requirement for recycled PET content are driving innovation and compliance in the plastic packaging market. Key players include UFlex, Chemco Group, and Kandoi Group, with the market aligning with global environmental standards for long-term sustainability.",
+  "source": "IMARC Group via openPR.com",
+  "url": "https://www.openpr.com/news/4379861/india-plastic-packaging-market-is-set-to-reach-usd-17-3-billion"
+}
+--------------------------------------------------------------------------------
+[22:36:12] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Best Packaging Stocks in India (2026)",
+  "publication_date": "2026",
+  "summary": "Prominent companies in the packaging sector include AGI Greenpac Ltd, EPL Ltd, Jindal Poly Films Ltd, and Uflex Ltd. The industry is focusing on eco-friendly packaging solutions driven by consumer and regulatory demand, with continuous innovation enhancing product appeal and functionality.",
+  "source": "Tickertape",
+  "url": "https://www.tickertape.in/stocks/collections/packaging-stocks"
+}
+--------------------------------------------------------------------------------
+[22:36:12] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "India Packaging Market See Incredible Growth 2025-2032 with Key Players Like Amcor \u2022 Tetra Pak \u2022 Uflex \u2022 Huhtamaki",
+  "publication_date": "2024",
+  "summary": "The India packaging market is rapidly evolving with a focus on regulatory frameworks, ESG trends, and innovation pipelines. Key players include Amcor, Tetra Pak, Uflex, and Huhtamaki, with the market poised for growth driven by technology integration and sustainability initiatives.",
+  "source": "Coherent Market Insights via openPR.com",
+  "url": "https://www.openpr.com/news/4295909/india-packaging-market-see-incredible-growth-2025-2032-with-key"
+}
+--------------------------------------------------------------------------------
+[22:36:12] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Evolving Packaging Standards in India: Navigating the Recent Changes",
+  "publication_date": "2025",
+  "summary": "Recent amendments to the Legal Metrology framework in India aim to enhance transparency, consistency, and accountability in packaging. These regulatory changes require reassessment of packaging, labeling, and digital product listings to ensure compliance and consumer protection.",
+  "source": "Lexplosion Solutions",
+  "url": "https://lexplosion.in/evolving-packaging-standards-in-india-navigating-the-recent-changes/"
+}
+--------------------------------------------------------------------------------
+[22:36:12] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Key trends in packaging sector for 2026",
+  "publication_date": "2026",
+  "summary": "The packaging industry in India is undergoing structural transformation with sustainability, industrial efficiency, and digitalization as key drivers. Smart packaging and traceability are gaining importance for regulatory compliance and supply chain transparency.",
+  "source": "Packaging South Asia",
+  "url": "https://packagingsouthasia.com/type-of-article/key-trends-in-packaging/"
+}
+--------------------------------------------------------------------------------
+[22:36:12] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "India Industrial Packaging Market Size, Share, Growth, Trends, Industry Outlook and Analysis 2025-2033",
+  "publication_date": "2024",
+  "summary": "India's industrial packaging market is expanding due to rising export activities and demand for world-class packaging solutions. Growth is supported by digital transformation, sustainability initiatives, and strategic policy support.",
+  "source": "IMARC Group via openPR.com",
+  "url": "https://www.openpr.com/news/4304097/india-industrial-packaging-market-size-share-growth-trends"
+}
+--------------------------------------------------------------------------------
+[22:36:12] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India's Corrugated Paper Box Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "India is the third-largest consumer and producer of corrugated paper boxes globally. The market is shifting from volume-driven growth to value, innovation, and sustainability, with investments in automation and recyclable fiber-based packaging solutions.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/india-cartons-boxes-and-cases-of-corrugated-paper-or-paperboard-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[22:36:12] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Redefining pharmaceutical packaging for a sustainable future | EY - India",
+  "publication_date": "2025",
+  "summary": "Pharmaceutical packaging in India is evolving with a focus on sustainability, regulatory compliance, and innovation. Developments include recyclable and low-carbon materials, smart packaging, and biodegradable solutions to meet environmental and consumer demands.",
+  "source": "EY India",
+  "url": "https://www.ey.com/en_in/insights/supply-chain/redefining-pharmaceutical-packaging-for-a-sustainable-future"
+}
+--------------------------------------------------------------------------------
+[22:38:07] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'October 22, 2025'
+Data: {
+  "headline": "Latin America Aircraft MRO Market Valuation Expected to Hit USD 9.52 billion by Key Players: Aeroman, General Electric Company, Safran SA",
+  "publication_date": "October 22, 2025",
+  "summary": "The Latin America Aircraft MRO Market is shaped by innovation, localization, and digital maturity, with investments in smart solutions enhancing turnaround times and cost competitiveness. Regulatory-driven innovation is meeting evolving safety and operational standards, with key players including Aeroman, General Electric Company, and Safran SA.",
+  "source": "openPR.com",
+  "url": "https://www.openpr.com/news/4375917/latin-america-aircraft-mro-market-valuation-expected-to-hit-usd"
+}
+--------------------------------------------------------------------------------
+[22:38:07] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'January 7, 2026'
+Data: {
+  "headline": "The 2026 Industrial Renaissance: A Strategic Analysis of MRO Brazil and the Path to Market Dominance \u2013 KTB Europe Blog",
+  "publication_date": "January 7, 2026",
+  "summary": "Brazil\u2019s MRO sector is entering a structural super-cycle with a projected 8.4% CAGR through 2031, driven by record investments and a historic transition to a simplified tax model. Integration of predictive technology with new regulatory realities is key for market dominance.",
+  "source": "KTB Europe Blog",
+  "url": "https://ktbeuropeblog.wordpress.com/2026/01/07/brazil-industrial-awakening-mro-2026/"
+}
+--------------------------------------------------------------------------------
+[22:38:07] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: '2024-10'
+Data: {
+  "headline": "Helicopter MRO Market Outlook 2031: Size, Trends & Future Growth",
+  "publication_date": "2024-10",
+  "summary": "Emerging markets in South & Central America present untapped opportunities for helicopter MRO, driven by variations in fleet size, regulatory frameworks, and technological adoption. Innovations include digitalization, remote monitoring, 3D printing, and AI-driven diagnostics.",
+  "source": "The Insight Partners",
+  "url": "https://www.theinsightpartners.com/reports/helicopter-mro-market"
+}
+--------------------------------------------------------------------------------
+[22:38:07] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Commercial MRO Market Size, Share & Industry Analysis, 2030",
+  "publication_date": "2024",
+  "summary": "South America has developed niche component-repair clusters supporting cargo fleets, contributing to balanced commercial aircraft MRO market development. The market is trending toward consolidation to leverage scale for digital investments and supply-chain efficiency.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/global-aircraft-maintenance-repair-and-overhaul-market-industry"
+}
+--------------------------------------------------------------------------------
+[22:38:07] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'January 2026'
+Data: {
+  "headline": "MRO Industry Rolling Daily Updates (January 2026) | Aviation Week Network",
+  "publication_date": "January 2026",
+  "summary": "VSE Corporation agreed to acquire Precision Aviation Group for $2.025 billion, expanding MRO, distribution, and supply chain services globally. Avmax Group acquired Condor Aircraft Accessories, enhancing component maintenance capabilities. Leadership changes at HAECO Composite Services focus on strategic growth and regulatory compliance.",
+  "source": "Aviation Week Network",
+  "url": "https://aviationweek.com/mro/mro-industry-rolling-daily-updates-january-2026"
+}
+--------------------------------------------------------------------------------
+[22:38:07] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Trends Point to a Strong Year for M&A in the MRO Sector in 2026",
+  "publication_date": "2026",
+  "summary": "The MRO sector is poised for dynamic mergers and acquisitions driven by sustained demand, aging fleets, and constrained new aircraft supply. Regulatory challenges and economic uncertainties are prompting consolidation strategies to achieve scale and foster innovation.",
+  "source": "ePlane AI",
+  "url": "https://www.eplaneai.com/news/trends-point-to-a-strong-year-for-ma-in-the-mro-sector-in-2026"
+}
+--------------------------------------------------------------------------------
+[22:38:07] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'October 22, 2025'
+Data: {
+  "headline": "Future Perspective: Key Trends Shaping the Aviation MRO Market Up to 2030",
+  "publication_date": "October 22, 2025",
+  "summary": "Predictive maintenance using AI and advanced diagnostics is a pivotal growth driver in aviation MRO. The market faces stringent regulatory demands and is segmented by service type, aircraft type, and end user. Digitalization and automation are key trends shaping the industry.",
+  "source": "The Business Research Company via openPR.com",
+  "url": "https://www.openpr.com/news/4350245/future-perspective-key-trends-shaping-the-aviation-mro-market"
+}
+--------------------------------------------------------------------------------
+[22:38:07] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Argentina Aerospace And Defense MRO Market Size & Outlook, 2030",
+  "publication_date": "2024",
+  "summary": "Argentina's aerospace and defense MRO market shows growth with engine maintenance as the largest segment. Digital transformation of MRO facilities has led to significant time and cost savings in fleet maintenance.",
+  "source": "Grand View Research",
+  "url": "https://www.grandviewresearch.com/horizon/outlook/aerospace-and-defense-mro-market/argentina"
+}
+--------------------------------------------------------------------------------
+[22:38:34] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPET Films Market (2026-2029): Industry Insights, SWOT Analysis, Market Size, Share, and Key Growth Factors",
+  "publication_date": "2026",
+  "summary": "The BOPET films market is expected to expand steadily due to growing demand in flexible packaging, electronics, and sustainable applications. Major companies include UFlex and Polyplex, offering a wide range of BOPET, BOPP, CPP, metallized, and coated films for food, pharmaceutical, and industrial packaging.",
+  "source": "Barchart",
+  "url": "https://www.barchart.com/story/news/37279850/bopet-films-market-2026-2029-industry-insights-swot-analysis-market-size-share-and-key-growth-factors"
+}
+--------------------------------------------------------------------------------
+[22:38:34] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPET Films Market Size, Industry Share Forecast [Latest]",
+  "publication_date": "2026",
+  "summary": "Demand for BOPET films is driven by convenience foods, e-commerce growth, urbanization, and rising disposable incomes, especially in Asia Pacific. Packaging applications dominate, fueled by the need for high-barrier, durable, and sustainable materials. The market is seeing developments in PET chip technology and increased adoption of eco-friendly films.",
+  "source": "MarketsandMarkets",
+  "url": "https://www.marketsandmarkets.com/Market-Reports/bopet-films-market-92671991.html"
+}
+--------------------------------------------------------------------------------
+[22:38:34] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "5 Leading BOPP Films Manufacturers",
+  "publication_date": "2026",
+  "summary": "Key global BOPP film manufacturers include Cosmo Films Limited, CCL Industries, Jindal Poly Films, Uflex, and Toray Industries. BOPP films are valued for toughness, moisture resistance, and printability, with products available in various colors and finishes for packaging and labeling.",
+  "source": "Verified Market Research",
+  "url": "https://www.verifiedmarketresearch.com/blog/leading-bopp-films-manufacturers/"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPET Films Market Size, Industry Share Forecast [Latest]",
+  "publication_date": "2024",
+  "summary": "The BOPET films market in China is growing due to e-commerce expansion, solar energy demand, and smart packaging innovations. Challenges include supply chain disruptions and lack of recycling infrastructure, while opportunities lie in innovation and rising demand from emerging countries.",
+  "source": "MarketsandMarkets",
+  "url": "https://www.marketsandmarkets.com/Market-Reports/bopet-films-market-92671991.html"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Mono-Material Packaging Set to Redefine Global Flexible Film Industry by 2032",
+  "publication_date": "2024",
+  "summary": "Mono-material packaging, including BOPP films, is gaining traction in China driven by regulatory trends and consumer sustainability preferences. Innovations in material and sorting technologies enhance recyclability and profitability, with Asia, including China, seen as a high adoption region.",
+  "source": "QY Research via openPR.com",
+  "url": "https://www.openpr.com/news/4380834/mono-material-packaging-set-to-redefine-global-flexible-film"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Biaxially Oriented Polypropylene Film BOPP Film Price Trend Analysis for Strategic Market Positioning",
+  "publication_date": "2024",
+  "summary": "Qingdao Cloud Film Packaging Materials Co., Ltd. in China launched a heat sealable BOPP film to revolutionize flexible packaging and labeling. Price trends are influenced by polypropylene resin costs, global demand, logistics, and capacity changes among manufacturers.",
+  "source": "Procurement Resource via openPR.com",
+  "url": "https://www.openpr.com/news/4308680/biaxially-oriented-polypropylene-film-bopp-film-price-trend"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Biaxially Oriented Polypropylene (BOPP) Films Market Size, Share, Growth | Report, 2035",
+  "publication_date": "2024",
+  "summary": "The BOPP films market in China is driven by FMCG, medical, and industrial sectors with growing demand for sustainable and high-performance packaging. Technological advancements improve barrier properties, supporting food packaging and environmental goals.",
+  "source": "Market Research Future",
+  "url": "https://www.marketresearchfuture.com/reports/biaxially-oriented-polypropylene-films-market-10229"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPP Films Market Share Driven by Growing Flexible Packaging Demand and Advancements in Film Processing Technologies",
+  "publication_date": "2024",
+  "summary": "The BOPP films market is expanding in China due to rising demand for flexible packaging and innovations in film processing technologies. Key players include Toray Plastics, Profol, and Jindal Films. Sustainability and recyclability are major market drivers.",
+  "source": "Valuates Reports via openPR.com",
+  "url": "https://www.openpr.com/news/4305044/bopp-films-market-share-driven-by-growing-flexible-packaging"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "BOPP Films Market: Enhancing Packaging Efficiency and Sustainability Worldwide",
+  "publication_date": "2023",
+  "summary": "Asia-Pacific, including China, dominates the global BOPP films market due to high packaging demand. Market growth is driven by flexible packaging trends, sustainability initiatives, and technological innovations despite raw material price fluctuations and recycling challenges.",
+  "source": "Newstrail",
+  "url": "https://www.newstrail.com/bopp-films-market/"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "5 Leading BOPP Films Manufacturers",
+  "publication_date": "2024",
+  "summary": "Key players in the BOPP films industry include Cosmo Films Limited and Uflex, with significant presence in Asia including China. These companies focus on innovation, quality, and expanding global footprints in flexible packaging.",
+  "source": "Verified Market Research",
+  "url": "https://www.verifiedmarketresearch.com/blog/leading-bopp-films-manufacturers/"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Industrial Packaging Films Market in Asia | Report - IndexBox",
+  "publication_date": "2024",
+  "summary": "The Asia industrial packaging films market, including BOPP and BOPET films, is growing due to industrialization and expanding consumer markets in China. The market covers a wide polymer base and includes major producers of BOPP and BOPET films.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/asia-industrial-packaging-films-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Heat Sealable BOPP Film For Flexible Packaging - CloudFilm",
+  "publication_date": "2024",
+  "summary": "Qingdao Cloud Film Packaging Materials Co., Ltd., a leading Chinese supplier, offers heat sealable BOPP films with excellent clarity, gloss, and strong heat seal performance, suitable for various packaging applications including electronics and textiles.",
+  "source": "CloudFilm",
+  "url": "https://www.cloudflexfilm.com/product/heat-sealable-bopp-film/"
+}
+--------------------------------------------------------------------------------
+[22:39:18] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPET Films Market (2026-2029): Industry Insights, SWOT Analysis, Market Size, Share, and Key Growth Factors",
+  "publication_date": "2024",
+  "summary": "BOPET films in China benefit from strong food and beverage sector demand and strict sustainability mandates. Leading players like UFlex and Jindal Poly Films drive innovation and capacity growth, focusing on bio-based and recyclable film versions.",
+  "source": "Barchart",
+  "url": "https://www.barchart.com/story/news/37279850/bopet-films-market-2026-2029-industry-insights-swot-analysis-market-size-share-and-key-growth-factors"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "2026 Retail Industry Global Outlook",
+  "publication_date": "2026",
+  "summary": "Retailers in North America are adapting to a structural shift toward value-seeking consumer behaviors, focusing on efficiency and innovation to meet demand for fair pricing and value.",
+  "source": "Deloitte Insights",
+  "url": "https://www.deloitte.com/us/en/insights/industry/retail-distribution/retail-distribution-industry-outlook.html"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Music Distribution Services Market Size Growing at 6.2% CAGR Reach USD 1.68 Billion by 2030",
+  "publication_date": "2026",
+  "summary": "North America holds the largest share of the global music distribution services market, driven by key players like The Orchard (Sony), Spotify, and Tunecore, with market growth fueled by streaming and technological innovation.",
+  "source": "Allied Market Research via openPR.com",
+  "url": "https://www.openpr.com/news/4351218/music-distribution-services-market-size-growing-at-6-2-cagr"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Industrial Distribution Market 2026-2033: Growth Overview, Facts & Figures, Segmentation, Future Trends, and Historical Analysis",
+  "publication_date": "2026",
+  "summary": "The North American industrial distribution market is influenced by technology trends and regulatory frameworks, with companies like Grainger and Fastenal leading, amid evolving market dynamics and competitive landscape.",
+  "source": "Coherent Market Insights via openPR.com",
+  "url": "https://www.openpr.com/news/4347332/industrial-distribution-market-2026-2033-growth-overview"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Trends Shaping Wholesale Distribution Technology in 2026 \u2014 Crescense - SAP Partner and Value-Added Reseller",
+  "publication_date": "2026",
+  "summary": "Wholesale distribution in North America is rapidly adopting AI and hyperautomation technologies, with major players like McLane Co. investing heavily to improve efficiency and meet sustainability and regulatory demands.",
+  "source": "Crescense",
+  "url": "https://www.crescenseinc.com/insights/2026-wholesale-distribution-technology-trends"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "ITS Logistics January Supply Chain Report: Transportation Markets Show Early Signs of Capacity Challenges Despite Soft Demand",
+  "publication_date": "2026-01",
+  "summary": "North American transportation and distribution markets face early capacity constraints despite soft demand, with ITS Logistics highlighting challenges in truckload markets and evolving warehouse trends driven by inventory strategies.",
+  "source": "Markets Insider",
+  "url": "https://markets.businessinsider.com/news/stocks/its-logistics-january-supply-chain-report-transportation-markets-show-early-signs-of-capacity-challenges-despite-soft-demand-1035762956"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Wholesale Distribution Industry Statistics: Market Data Report 2026",
+  "publication_date": "2026",
+  "summary": "The North American wholesale distribution market was valued at $10.5 trillion in 2022, with regulatory compliance cited as a major cost driver and ongoing consolidation shaping the competitive landscape.",
+  "source": "Gitnux",
+  "url": "https://gitnux.org/wholesale-distribution-industry-statistics/"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Livingstone\u2019s Insights on Industrial Distribution Market Trends",
+  "publication_date": "2026",
+  "summary": "Industrial distribution in North America is evolving with agile supply chains, digital capabilities, and value-added services, supported by strong demand in energy, midstream infrastructure, and data center development.",
+  "source": "Livingstone",
+  "url": "https://livingstonepartners.com/en-us/insights/livingstones-insights-on-industrial-distribution-market-trends/"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Here\u2019s Where Distributors Rank on Fortune\u2019s 2026 America\u2019s Best Companies List - Modern Distribution Management",
+  "publication_date": "2026",
+  "summary": "Major distribution sector deals include Lowe\u2019s $8.8 billion acquisition of Foundation Building Materials and Air Liquide USA\u2019s ownership of Airgas, highlighting consolidation among key players in the U.S. distribution industry.",
+  "source": "Modern Distribution Management",
+  "url": "https://www.mdm.com/article/featured/featured-blog/heres-where-distributors-rank-on-fortunes-2026-americas-best-companies-list/"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Medical Device Distribution Services Market Size, Report 2034",
+  "publication_date": "2026",
+  "summary": "North America accounts for 39.2% of the global medical device distribution services market, with leading companies like Cardinal Health and McKesson driving innovation in logistics, inventory management, and regulatory compliance.",
+  "source": "Global Market Insights",
+  "url": "https://www.gminsights.com/industry-analysis/medical-device-distribution-services-market"
+}
+--------------------------------------------------------------------------------
+[22:39:57] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "5 supply chain management trends to watch in 2026 | Supply Chain Dive",
+  "publication_date": "2026",
+  "summary": "Supply chains in North America face ongoing uncertainty with tariff impacts and regulatory changes, while companies increasingly deploy AI and optimize SKU mixes to meet evolving demand and compliance requirements.",
+  "source": "Supply Chain Dive",
+  "url": "https://www.supplychaindive.com/news/supply-chain-trends-risks-2026-retail-manufacturing/808797/"
+}
+--------------------------------------------------------------------------------
