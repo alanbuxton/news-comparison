@@ -59,6 +59,8 @@ def do_query(query, query_context: str):
         response = client.search(query,
             end_published_date=MAX_DATE.isoformat(),
             start_published_date=MIN_DATE.isoformat(),
+            category="news",
+            num_results=50,
             type="auto",
             contents={
                 "highlights": True
