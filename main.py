@@ -1,6 +1,7 @@
 from datetime import datetime, timezone, time, date
 import os
 import argparse
+import csv
 import syracuse_client
 import perplexity_client
 import linkup_client
@@ -19,32 +20,29 @@ CLIENTS = {"Exa": exa_client,
            "Tavily": tavily_client,
         }
 
-def compare_company_results(company: str, output_file=None):
-    output = []
-    output.append("-" * 40)
-    output.append(f"--- {company}")
-    output.append("-" * 40)
-    
+def compare_company_results(company: str, csv_writer=None):
+    """Compare company results across providers and write to CSV"""
     results_summary = []
     results_details = {}
+    
     for provider, client in CLIENTS.items():
         start_time = datetime.now(tz=timezone.utc)
         arts = client.get_company_articles_for(company)
         end_time = datetime.now(tz=timezone.utc)
         duration = end_time - start_time
         arts = filter_recent_real_articles(arts)
-        stats = f"{provider} got {len(arts)} in {duration}"
-        results_summary.append(stats)
+        results_summary.append({
+            'provider': provider,
+            'count': len(arts),
+            'duration': duration.total_seconds()
+        })
         results_details[provider] = arts
     
-    comparison_output = format_comparison(results_summary, results_details)
-    output.extend(comparison_output)
+    # Write results to CSV
+    if csv_writer:
+        write_articles_to_csv(csv_writer, company, None, None, results_details)
     
-    result_text = '\n'.join(output)
-    if output_file:
-        output_file.write(result_text + '\n')
-    else:
-        print(result_text)
+    return results_summary, results_details
 
 def format_comparison(results_summary, results_details):
     output = []
@@ -64,32 +62,54 @@ def print_comparison(results_summary, results_details):
     comparison_output = format_comparison(results_summary, results_details)
     print('\n'.join(comparison_output))
 
-def compare_industry_location_results(industry: str, location: str, output_file=None):
-    output = []
-    output.append("-" * 40)
-    output.append(f"--- {industry} - {location}")
-    output.append("-" * 40)
-
+def compare_industry_location_results(industry: str, location: str, csv_writer=None):
+    """Compare industry/location results across providers and write to CSV"""
     results_summary = []
     results_details = {}
+    
     for provider, client in CLIENTS.items():
         start_time = datetime.now(tz=timezone.utc)
         arts = client.get_industry_articles_for(industry, location)
         end_time = datetime.now(tz=timezone.utc)
         duration = end_time - start_time
         arts = filter_recent_real_articles(arts)
-        stats = f"{provider} got {len(arts)} in {duration}"
-        results_summary.append(stats)
+        results_summary.append({
+            'provider': provider,
+            'count': len(arts),
+            'duration': duration.total_seconds()
+        })
         results_details[provider] = arts
     
-    comparison_output = format_comparison(results_summary, results_details)
-    output.extend(comparison_output)
+    # Write results to CSV
+    if csv_writer:
+        write_articles_to_csv(csv_writer, None, industry, location, results_details)
     
-    result_text = '\n'.join(output)
-    if output_file:
-        output_file.write(result_text + '\n')
-    else:
-        print(result_text)
+    return results_summary, results_details
+
+def write_articles_to_csv(csv_writer, company=None, industry=None, location=None, results_details=None):
+    """Write article results to CSV file"""
+    for provider, articles in results_details.items():
+        for article in articles:
+            # Clean all text fields to remove line breaks and normalize whitespace
+            def clean_text(text):
+                if text and isinstance(text, str):
+                    return ' '.join(text.split())
+                return text
+            
+            row = {
+                'company': company or '',
+                'industry': industry or '',
+                'location': location or '',
+                'provider': provider,
+                'headline': clean_text(article.get('headline', '')),
+                'published_by': clean_text(article.get('published_by', '')),
+                'published_date': article.get('published_date', ''),
+                'published_date_clean': article.get('published_date_clean', ''),
+                'activity_type': clean_text(article.get('activity_type', '')),
+                'document_url': article.get('document_url', ''),
+                'summary_text': clean_text(article.get('summary_text', ''))
+            }
+            csv_writer.writerow(row)
 
 def filter_recent_real_articles(articles, min_date=MIN_DATE):
     seen_urls = set()
@@ -97,6 +117,11 @@ def filter_recent_real_articles(articles, min_date=MIN_DATE):
     min_datetime = min_datetime.replace(tzinfo=timezone.utc)
     articles_to_keep = []
     for article in articles:
+        # Always keep error rows
+        if article.get('headline') == '*** ERROR ***':
+            articles_to_keep.append(article)
+            continue
+            
         if isinstance(article['published_date_clean'], date) and article['published_date_clean'] < min_datetime:
             continue
         if article['document_url'] is None:
@@ -128,37 +153,51 @@ def print_articles(arts):
     print('\n'.join(articles_output))
 
 def run_comparison(prefix: str, output_dir: str = 'results'):
+    """Run comparison and output results to CSV files"""
     # Create results directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
     
-    companies_file = os.path.join(output_dir, f"{prefix}-companies.txt")
-    industries_file = os.path.join(output_dir, f"{prefix}-industries.txt")
+    companies_file = os.path.join(output_dir, f"{prefix}-companies.csv")
+    industries_file = os.path.join(output_dir, f"{prefix}-industries.csv")
     
     print(f"Running comparison with prefix '{prefix}'...")
     print(f"Output directory: {output_dir}")
     print()
     
+    # Define CSV headers
+    csv_headers = [
+        'company', 'industry', 'location', 'provider', 'headline', 
+        'published_by', 'published_date', 'published_date_clean', 
+        'activity_type', 'document_url', 'summary_text'
+    ]
+    
     # Write companies results
     print("Processing companies...")
-    with open(companies_file, 'w') as f:
-        f.write("*" * 50 + "\n")
-        f.write("*** COMPANIES\n")
-        f.write("*" * 50 + "\n")
-        f.write("\n")
+    with open(companies_file, 'w', newline='', encoding='utf-8') as f:
+        csv_writer = csv.DictWriter(f, fieldnames=csv_headers)
+        csv_writer.writeheader()
         
         for company_name in company_name_examples:
-            compare_company_results(company_name, output_file=f)
+            print(f"  - {company_name}")
+            summary, details = compare_company_results(company_name, csv_writer=csv_writer)
+            # Print summary to console
+            summary_str = '; '.join([f"{s['provider']} got {s['count']} in {s['duration']:.2f}s" for s in summary])
+            print(f"    {summary_str}")
     
     # Write industries results
-    print("Processing industries/locations...")
-    with open(industries_file, 'w') as f:
-        f.write("*" * 50 + "\n")
-        f.write("*** INDUSTRY / LOCATIONS\n")
-        f.write("*" * 50 + "\n")
-        f.write("\n")
+    print("\nProcessing industries/locations...")
+    with open(industries_file, 'w', newline='', encoding='utf-8') as f:
+        csv_writer = csv.DictWriter(f, fieldnames=csv_headers)
+        csv_writer.writeheader()
         
         for industry_location in industry_location_examples:
-            compare_industry_location_results(**industry_location, output_file=f)
+            industry = industry_location['industry']
+            location = industry_location['location']
+            print(f"  - {industry} - {location}")
+            summary, details = compare_industry_location_results(**industry_location, csv_writer=csv_writer)
+            # Print summary to console
+            summary_str = '; '.join([f"{s['provider']} got {s['count']} in {s['duration']:.2f}s" for s in summary])
+            print(f"    {summary_str}")
     
     print()
     print("✓ Results written to:")
@@ -180,7 +219,7 @@ Examples:
     parser.add_argument(
         'prefix',
         type=str,
-        help='Prefix for output filenames (e.g., "test_run" creates test_run-companies.txt)'
+        help='Prefix for output filenames (e.g., "test_run" creates test_run-companies.csv)'
     )
     
     parser.add_argument(

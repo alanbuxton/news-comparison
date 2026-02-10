@@ -40,7 +40,16 @@ def parse_perplexity_responses(perplexity_content: dict, query_context: str) -> 
             articles.append(item)
         except Exception as e:
             log_error(PROVIDER_NAME, "PARSE_DATE", query_context, str(e), item)
-    return sorted(articles, key=lambda x: x["published_date"], reverse=True)
+            # Add error to CSV output
+            articles.append({
+                "headline": "*** ERROR ***",
+                "summary_text": str(e),
+                "published_date": "",
+                "published_date_clean": "",
+                "published_by": "",
+                "document_url": getattr(item, 'document_url', 'unknown'),
+            })
+    return sorted(articles, key=lambda x: x.get("published_date", ""), reverse=True)
 
 def perplexity_response_to_articles(response, query_context: str):
     try:

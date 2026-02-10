@@ -12,9 +12,8 @@ def get_industry_articles_for(industry: str, location: str):
     articles = []
     for item in results['results']:
         article = item_to_article(item, query_context)
-        if article is not None:
-            articles.append(article)
-    return sorted(articles, key=lambda x: x["published_date"], reverse=True)
+        articles.append(article)
+    return sorted(articles, key=lambda x: x.get("published_date", ""), reverse=True)
 
 def get_company_articles_for(company: str):
     query = company_query(company)
@@ -23,9 +22,8 @@ def get_company_articles_for(company: str):
     articles = []
     for item in results['results']:
         article = item_to_article(item, query_context)
-        if article is not None:
-            articles.append(article)
-    return sorted(articles, key=lambda x: x["published_date"], reverse=True)
+        articles.append(article)
+    return sorted(articles, key=lambda x: x.get("published_date", ""), reverse=True)
 
 def industry_query(industry, location):
     prompt = (f"Fetch recent news related to the {industry} industry in {location}.\n"
@@ -76,4 +74,11 @@ def item_to_article(item: dict, query_context: str):
         }
     except Exception as e:
         log_error(PROVIDER_NAME, "PARSE_ARTICLE", query_context, str(e), item)
-        return None
+        return {
+            "headline": "*** ERROR ***",
+            "summary_text": str(e),
+            "published_date": "",
+            "published_date_clean": "",
+            "published_by": "",
+            "document_url": getattr(item, 'url', 'unknown'),
+        }

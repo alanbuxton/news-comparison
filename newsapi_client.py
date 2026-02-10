@@ -42,8 +42,7 @@ def parse_response(resp_json, query_context: str) -> list[dict]:
         articles = []
         for item in resp_json['articles']:
             article = item_to_article(item, query_context)
-            if article is not None:
-                articles.append(article)
+            articles.append(article)
         return articles
     except Exception as e:
         log_error(PROVIDER_NAME, "PARSE_RESPONSE", query_context, str(e), resp_json)
@@ -61,4 +60,11 @@ def item_to_article(item: dict, query_context: str):
         }
     except Exception as e:
         log_error(PROVIDER_NAME, "PARSE_ARTICLE", query_context, str(e), item)
-        return None
+        return {
+            "headline": "*** ERROR ***",
+            "summary_text": str(e),
+            "published_date": "",
+            "published_date_clean": "",
+            "published_by": "",
+            "document_url": getattr(item, 'url', 'unknown'),
+        }
