@@ -6,7 +6,7 @@ Here is the prompt I used:
 
 > Given the attached results from comparing different news providers, which one is the best? Please be sure to check that the published dates are the correct ones and that the story is primarily about the company or region/industry mentioned.
 
-The file attached is [2026-01-06-results.txt](../2026-01-06-results.txt)
+The file attached is [results.txt](../results.txt)
 
 ### Step 1 - using my own account
 

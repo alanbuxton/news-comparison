@@ -45,7 +45,7 @@ When assessing each story check that:
 When providing your analysis give your reasoning and refer to specific articles to support your assessment.
 ```
 
-File to attach: [2026-03-02-companies.csv](2026-03-02-companies.csv)
+File to attach: [companies.csv](companies.csv)
 
 
 Prompt used (Industries):
@@ -92,7 +92,7 @@ When assessing each story check that:
 When providing your analysis give your reasoning and refer to specific articles to support your assessment.
 ```
 
-File to attach: [2026-03-02-industries.csv](2026-03-02-industries.csv)
+File to attach: [industries.csv](industries.csv)
 
 ## AI Results
 
@@ -116,7 +116,7 @@ Tavily – Too noisy for executive business context unless heavily filtered.
 | Volume                  | High               | Moderate    | Low           | Moderate    | Very High                        |
 | Best for exec prep      | ⚠️                 | ✅           | ⭐ Best        | ⚠️          | ❌                                |
 
-Full response: [2026-03-02-AI-analysis/chatgpt-companies.md](2026-03-02-AI-analysis/chatgpt-companies.md)
+Full response: [chatgpt-companies.md](AI-analysis/chatgpt-companies.md)
 
 
 #### Industry / Locations
@@ -136,7 +136,7 @@ Others:
 | Syracuse   | Very High      | Low       | Strong            | Excellent           | Excellent              |
 | Tavily     | Mixed          | Very High | Inconsistent      | Uneven              | Poor                   |
 
-Full response: [2026-03-02-AI-analysis/chatgpt-industries.md](2026-03-02-AI-analysis/chatgpt-industries.md)
+Full response: [chatgpt-industries.md](AI-analysis/chatgpt-industries.md)
 
 ### Claude (local account, only used for provider comparison)
 
@@ -160,7 +160,7 @@ Others:
 | Coverage of obscure companies | ❌ | ❌ | ⚠️ | ❌ | ❌ |
 
 
-Full response: [2026-03-02-AI-analysis/claude-companies.md](2026-03-02-AI-analysis/claude-companies.md)
+Full response: [claude-companies.md](AI-analysis/claude-companies.md)
 
 #### Industry / Locations
 
@@ -172,4 +172,4 @@ Others
 - Tavily (too much noise)
 - Perplexity (hallucination)
 
-Full response: [2026-03-02-AI-analysis/claude-industries.md](2026-03-02-AI-analysis/claude-companies.md)
+Full response: [claude-industries.md](AI-analysis/claude-industries.md)

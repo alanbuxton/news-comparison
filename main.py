@@ -9,7 +9,7 @@ import exa_client
 import newsapi_client
 import tavily_client
 from examples import industry_location_examples, company_name_examples
-from utils import MIN_DATE
+from utils import MIN_DATE, set_error_log_dir
 
 # Excluding NewsAPI because it generates too much noise
 CLIENTS = {"Exa": exa_client, 
@@ -154,14 +154,16 @@ def print_articles(arts):
 
 def run_comparison(prefix: str, output_dir: str = 'results'):
     """Run comparison and output results to CSV files"""
-    # Create results directory if it doesn't exist
-    os.makedirs(output_dir, exist_ok=True)
-    
-    companies_file = os.path.join(output_dir, f"{prefix}-companies.csv")
-    industries_file = os.path.join(output_dir, f"{prefix}-industries.csv")
-    
+    # Create a per-run subdirectory: {output_dir}/{prefix}/
+    run_dir = os.path.join(output_dir, prefix)
+    os.makedirs(run_dir, exist_ok=True)
+    set_error_log_dir(os.path.join(run_dir, "errors"))
+
+    companies_file = os.path.join(run_dir, "companies.csv")
+    industries_file = os.path.join(run_dir, "industries.csv")
+
     print(f"Running comparison with prefix '{prefix}'...")
-    print(f"Output directory: {output_dir}")
+    print(f"Output directory: {run_dir}")
     print()
     
     # Define CSV headers
@@ -203,6 +205,7 @@ def run_comparison(prefix: str, output_dir: str = 'results'):
     print("✓ Results written to:")
     print(f"  - {companies_file}")
     print(f"  - {industries_file}")
+    print(f"  - {run_dir}/errors/ (if any errors occurred)")
 
 def main():
     parser = argparse.ArgumentParser(

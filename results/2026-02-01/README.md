@@ -18,7 +18,7 @@ I don't want noise on normal company activities, but I do want to know context t
 When checking the providers please check that the articles are real articles, that the dates are the correct published dates and that there is some notable relevance to the company or industry/region in question.
 ```
 
-File to attach: [2026-02-01-results.txt](2026-02-01-results.txt)
+File to attach: [results.txt](results.txt)
 
 ## Claude Sonnet 4.5
 
@@ -28,7 +28,7 @@ This is using my main Claude account, which doesn't explicitly know about Syracu
 - Then Linkup and Perplexity
 - Warns against Perplexity's fabrications
 
-Full results: [claude-sonnet-4.5.md](2026-02-01-AI-analysis/claude-sonnet-4.5.md)
+Full results: [claude-sonnet-4.5.md](AI-analysis/claude-sonnet-4.5.md)
 
 ## ChatGPT
 
@@ -36,7 +36,7 @@ This is using a new ChatGPT account I created recently with a burner gmail accou
 
 - Recommends Syracuse
 
-Full results: [chatgpt.md](2026-02-01-AI-analysis/chatgpt.md)
+Full results: [chatgpt.md](AI-analysis/chatgpt.md)
 
 ## ChatGPT v2
 
@@ -44,15 +44,15 @@ This is using a separate account that is nothing to do with my account. Differen
 
 - Recommends Syracuse
 
-Full results: [chatgpt-v2.md](2026-02-01-AI-analysis/chatgpt-v2.md)
+Full results: [chatgpt-v2.md](AI-analysis/chatgpt-v2.md)
 
 ## Grok
 
 Same tester as ChatGPT v2 - completely different environment
 
-- Recommends Syracuse 
+- Recommends Syracuse
 
-Full results: [grok.md](2026-02-01-AI-analysis/grok.md)
+Full results: [grok.md](AI-analysis/grok.md)
 
 ## Copilot
 
@@ -60,7 +60,7 @@ Same tester as ChatGPT v2 - completely different environment
 
 - Recommends Linkup
 
-Full results: [copilot.md](2026-02-01-AI-analysis/copilot.md)
+Full results: [copilot.md](AI-analysis/copilot.md)
 
 ## Gemini
 
@@ -68,4 +68,4 @@ Same tester as ChatGPT v2 - completely different environment
 
 - Recommends Syracuse
 
-Full results: [gemini.md](2026-02-01-AI-analysis/gemini.md)
+Full results: [gemini.md](AI-analysis/gemini.md)

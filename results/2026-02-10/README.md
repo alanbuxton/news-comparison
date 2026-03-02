@@ -45,7 +45,7 @@ When assessing each story check that:
 When providing your analysis give your reasoning and refer to specific articles to support your assessment.
 ```
 
-File to attach: [2026-02-10-companies.csv](2026-02-10-companies.csv)
+File to attach: [companies.csv](companies.csv)
 
 
 Prompt used (Industries):
@@ -92,7 +92,7 @@ When assessing each story check that:
 When providing your analysis give your reasoning and refer to specific articles to support your assessment.
 ```
 
-File to attach: [2026-02-10-industries.csv](2026-02-10-industries.csv)
+File to attach: [industries.csv](industries.csv)
 
 ## AI Results
 
@@ -108,7 +108,7 @@ File to attach: [2026-02-10-industries.csv](2026-02-10-industries.csv)
 | Exa            | 1,089   | Medium (~24%)    | Mixed              | Weak summaries  | Needs filtering |
 | Tavily         | 1,915   | Very high (~75%) | Low                | Inconsistent    | Not suitable    |
 
-Full response: [2026-02-10-AI-analysis/chatgpt-companies.md](2026-02-10-AI-analysis/chatgpt-companies.md)
+Full response: [chatgpt-companies.md](AI-analysis/chatgpt-companies.md)
 
 
 #### Industry / Locations
@@ -121,7 +121,7 @@ Full response: [2026-02-10-AI-analysis/chatgpt-companies.md](2026-02-10-AI-analy
 | Perplexity   | Very low  | Low                       | Low                | OK but wrong content type     | High        | Poor                   |
 | Tavily       | Very high | Medium                    | Low–medium         | OK                            | Very high   | Poor for this use case |
 
-Full response: [2026-02-10-AI-analysis/chatgpt-industries.md](2026-02-10-AI-analysis/chatgpt-industries.md)
+Full response: [chatgpt-industries.md](AI-analysis/chatgpt-industries.md)
 
 ### Claude (local account, only used for provider comparison)
 
@@ -132,7 +132,7 @@ Full response: [2026-02-10-AI-analysis/chatgpt-industries.md](2026-02-10-AI-anal
 
 Avoid Tavily, Exa, Linkup
 
-Full response: [2026-02-10-AI-analysis/claude-companies.md](2026-02-10-AI-analysis/claude-companies.md)
+Full response: [claude-companies.md](AI-analysis/claude-companies.md)
 
 #### Industry / Locations
 
@@ -146,4 +146,4 @@ Full response: [2026-02-10-AI-analysis/claude-companies.md](2026-02-10-AI-analys
 | Exa       | 8.8%      | 478          | 242 chars   | ~60%        | Good          | Mixed        |
 | Tavily    | 0%        | 787          | 938 chars   | ~50%        | Unknown ❌     | Unknown      |
 
-Full response: [2026-02-10-AI-analysis/claude-industries.md](2026-02-10-AI-analysis/claude-companies.md)
+Full response: [claude-industries.md](AI-analysis/claude-companies.md)

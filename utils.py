@@ -15,10 +15,14 @@ MAX_DATE = datetime.now(tz=timezone.utc)
 MIN_DATE = MAX_DATE - timedelta(days=90)
 ERROR_LOG_DIR = "results/errors"
 
+def set_error_log_dir(dir_path: str):
+    global ERROR_LOG_DIR
+    ERROR_LOG_DIR = dir_path
+
 def log_error(provider: str, error_type: str, query_context: str, error_message: str, data: dict = None):
     """
     Log errors to a file organized by provider and date.
-    
+
     Args:
         provider: Name of the provider (e.g., "Tavily", "Exa")
         error_type: Type of error (e.g., "API_QUERY", "PARSE_ARTICLE")
@@ -27,13 +31,12 @@ def log_error(provider: str, error_type: str, query_context: str, error_message:
         data: Optional additional data to log (will be JSON serialized)
     """
     os.makedirs(ERROR_LOG_DIR, exist_ok=True)
-    
+
     timestamp = datetime.now(tz=timezone.utc)
-    date_str = timestamp.strftime("%Y-%m-%d")
     time_str = timestamp.strftime("%H:%M:%S")
-    
-    # Create filename: errors/2026-02-07-Tavily.log
-    log_file = os.path.join(ERROR_LOG_DIR, f"{date_str}-{provider}.log")
+
+    # Create filename: {run_dir}/errors/{Provider}.log
+    log_file = os.path.join(ERROR_LOG_DIR, f"{provider}.log")
     
     error_entry = {
         "timestamp": timestamp.isoformat(),
