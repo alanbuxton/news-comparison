@@ -1,0 +1,1674 @@
+[20:46:44] PARSE_ARTICLE - company=ExxonMobil
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://corporate.exxonmobil.com/news/news-releases/2020/1130_exxonmobil-to-prioritize-capital-investments-on-high-value-assets"
+}
+--------------------------------------------------------------------------------
+[20:46:44] PARSE_ARTICLE - company=ExxonMobil
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.reuters.com/business/energy/exxon-beats-profit-estimates-eyes-acquisition-opportunities-2025-08-01/"
+}
+--------------------------------------------------------------------------------
+[20:46:44] PARSE_ARTICLE - company=ExxonMobil
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://corporate.exxonmobil.com/news/news-releases/2025/1209-exxonmobil-raises-2030-plan-transformation"
+}
+--------------------------------------------------------------------------------
+[20:46:44] PARSE_ARTICLE - company=ExxonMobil
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://seekingalpha.com/article/4851648-exxon-mobil-corporation-xom-discusses-corporate-plan-transformation-enhanced-earnings-and"
+}
+--------------------------------------------------------------------------------
+[20:46:44] PARSE_ARTICLE - company=ExxonMobil
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://oilgasleads.com/exxonmobils-top-5-priorities-for-2026/"
+}
+--------------------------------------------------------------------------------
+[20:46:44] PARSE_ARTICLE - company=ExxonMobil
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.linkedin.com/posts/ron-bousso-85769a1_exxonmobil-released-its-updated-corporate-activity-7404182781230223360-8kWY"
+}
+--------------------------------------------------------------------------------
+[20:46:44] PARSE_ARTICLE - company=ExxonMobil
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://corporate.exxonmobil.com/publications/advancing-climate-solutions/positioned-for-growth-in-a-lower-emission-future"
+}
+--------------------------------------------------------------------------------
+[20:46:44] PARSE_ARTICLE - company=ExxonMobil
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://finance.yahoo.com/news/exxon-mobil-weighs-long-term-191223818.html"
+}
+--------------------------------------------------------------------------------
+[20:47:08] PARSE_ARTICLE - company=Borouge
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.borouge.com/en/media/Pages/News/Borouge-FY-Q4-25-Results.aspx"
+}
+--------------------------------------------------------------------------------
+[20:47:08] PARSE_ARTICLE - company=Borouge
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sec.gov/Archives/edgar/data/1758736/000110465920078436/a20-12968_120f.htm"
+}
+--------------------------------------------------------------------------------
+[20:47:08] PARSE_ARTICLE - company=Borouge
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.opec.org/assets/assetdb/woo-2025.pdf"
+}
+--------------------------------------------------------------------------------
+[20:47:08] PARSE_ARTICLE - company=Borouge
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.reuters.com/markets/deals/borouge-proposes-shares-buyback-after-stock-slides-merger-news-2025-03-17/"
+}
+--------------------------------------------------------------------------------
+[20:47:08] PARSE_ARTICLE - company=Borouge
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.borealisgroup.com/storage/Company/Investor-Relations/Financial-Reports/Borealis-Combined-Report-2020_Group_EN.pdf"
+}
+--------------------------------------------------------------------------------
+[20:47:08] PARSE_ARTICLE - company=Borouge
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.arabtimesonline.com/uploads/imported_images/pdf/2023/may/01/ATKWT20230501.pdf"
+}
+--------------------------------------------------------------------------------
+[20:47:08] PARSE_ARTICLE - company=Borouge
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://reports.omv.com/en/annual-report/2024/_assets/downloads/entire-omv-ar24.pdf"
+}
+--------------------------------------------------------------------------------
+[20:47:37] PARSE_ARTICLE - company=Sigma Chemtrade
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.acc.com/sites/default/files/resources/vl/membersonly/Article/1485510_1.pdf"
+}
+--------------------------------------------------------------------------------
+[20:47:37] PARSE_ARTICLE - company=Sigma Chemtrade
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "http://www.pub.nl.ca/applications/2016/NP2016GRA/files/application/NP-2016-2017GeneralRateApplication-Volume3-2015-10-16.pdf"
+}
+--------------------------------------------------------------------------------
+[20:47:37] PARSE_ARTICLE - company=Sigma Chemtrade
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.nbfwm.ca/content/dam/fbngp/microsites/equipe-gelinas-bosse/vision/vision-january-21.pdf"
+}
+--------------------------------------------------------------------------------
+[20:47:37] PARSE_ARTICLE - company=Sigma Chemtrade
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://doccenter.cityofevanston.org/WebLink/DocView.aspx?dbid=0&id=133413&repo=Other-City-Departments"
+}
+--------------------------------------------------------------------------------
+[20:47:37] PARSE_ARTICLE - company=Sigma Chemtrade
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.americanbar.org/content/dam/aba/publications/international-law-year-in-review/yir2018.pdf"
+}
+--------------------------------------------------------------------------------
+[20:47:37] PARSE_ARTICLE - company=Sigma Chemtrade
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.nbfwm.ca/content/dam/fbngp/microsites/equipe-gelinas-bosse/vision/vision-february-21.pdf"
+}
+--------------------------------------------------------------------------------
+[20:47:37] PARSE_ARTICLE - company=Sigma Chemtrade
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.nbfwm.ca/content/dam/fbngp/microsites/equipe-gelinas-bosse/vision/Vision%20-%20April22.pdf"
+}
+--------------------------------------------------------------------------------
+[20:48:04] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://psuwatch.com/newsupdates/hpcl-mittal-energy-halts-russian-oil-purchases-clarifies-ships-used-not-under-sanctions"
+}
+--------------------------------------------------------------------------------
+[20:48:04] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://m.economictimes.com/industry/energy/oil-gas/hpcl-mittal-energy-jv-suspends-russian-oil-buy-says-ships-that-delivered-oil-not-under-us-sanctions/articleshow/124902387.cms"
+}
+--------------------------------------------------------------------------------
+[20:48:04] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://safgroup.ca/wp-content/uploads/2024/07/Supplemental-Documents-Package-March-17-2024.pdf"
+}
+--------------------------------------------------------------------------------
+[20:48:04] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.amsshardul.com/wp-content/uploads/2023/03/Navigating-Tricky-Water-2023-2.pdf"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://pmcf.com/industry-updates/packaging-ma-update-november-2025/"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.walkersglobal.com/en/Insights/2026/01/Key-corporate-M-and-A-trends-for-2026"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mckinsey.com/capabilities/m-and-a/our-insights/top-m-and-a-trends"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.investmentbanking.deloitte.com/xa/en/services/mergers-acquisitions-advisory/perspectives/packaging-update.html"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://markets.businessinsider.com/news/stocks/financial-services-m-a-activity-signals-strategic-repositioning-amid-margin-pressure-and-regulatory-complexity-1035765539"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.packagingdive.com/news/packaging-acquisition-trends-pandemic-plastic-private-equity/646915/"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ey.com/en_gl/newsroom/2026/01/global-financial-services-m-and-a-activity-rose-in-2025-with-93-deals-over-1b-in-value-announced"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.theglobeandmail.com/investing/markets/stocks/AEM/pressreleases/450702/global-strategic-takes-new-position-in-or-royalties-stock-valued-at-80-million-according-to-recent-sec-filing/"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.jpmorgan.com/insights/banking/global-dealmaking-trends-driving-growth"
+}
+--------------------------------------------------------------------------------
+[20:48:33] PARSE_ARTICLE - company=L M Goes Embalagens
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://deloitte.wsj.com/cfo/new-trends-in-consumer-products-m-a-pose-opportunities-challenges-01671444547"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.aberdeeninvestments.com/docs?editionid=b60edb46-3cbb-4b15-9e15-022e4fbe473d"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://es.nvenergy.com/publish/content/dam/nvenergy/brochures_arch/about-nvenergy/rates-regulatory/recent-regulatory-filings/south/grc/NPC-Volume-5.pdf"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sec.gov/Archives/edgar/data/2005951/000110465925038031/tm256462-5_424b3.htm"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.rockymountainpower.net/content/dam/pcorp/documents/en/rockymountainpower/rates-regulation/idaho/filings/case-no--pac-e-24-04/04_Direct_Testimony_and_Exhibits_Ann_E._Bulkley.pdf"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://materials.proxyvote.com/Approved/75321W/20250328/FO10K_602596.PDF"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.cmpcpulp.com/assets/uploads/2025/05/CMPC-2024-INTEGRATED-REPORT.pdf"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://colcapital.org/wp-content/uploads/2024/07/Inversionistas-ECLAC-Foreign-Direct-Investment-in-Latin-America-2023.pdf"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.hbs.edu/ris/download.aspx?name=21-119.pdf"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.listcorp.com/asx/amc/amcor-limited/news/annual-report-2930916.html"
+}
+--------------------------------------------------------------------------------
+[20:48:51] PARSE_ARTICLE - company=Westrock
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://insurancenewsnet.com/oarticle/proxy-statement-form-def-14a-519"
+}
+--------------------------------------------------------------------------------
+[20:49:25] PARSE_ARTICLE - company=International Paper
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.benchmarkintl.com/insights/the-global-ma-outlook-for-2026-a-year-of-opportunity-evolution/"
+}
+--------------------------------------------------------------------------------
+[20:49:25] PARSE_ARTICLE - company=International Paper
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://link.springer.com/article/10.1007/s44274-025-00480-8"
+}
+--------------------------------------------------------------------------------
+[20:49:25] PARSE_ARTICLE - company=International Paper
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mdpi.com/2674-1032/4/3/43"
+}
+--------------------------------------------------------------------------------
+[20:49:25] PARSE_ARTICLE - company=International Paper
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.deloitte.com/us/en/insights/industry/financial-services/financial-services-industry-outlooks/banking-industry-outlook.html"
+}
+--------------------------------------------------------------------------------
+[20:49:25] PARSE_ARTICLE - company=International Paper
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mckinsey.com/industries/private-capital/our-insights/global-private-markets-report"
+}
+--------------------------------------------------------------------------------
+[20:49:25] PARSE_ARTICLE - company=International Paper
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.pwc.com/gx/en/services/deals/trends.html"
+}
+--------------------------------------------------------------------------------
+[20:49:25] PARSE_ARTICLE - company=International Paper
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.walkersglobal.com/en/Insights/2026/01/Key-corporate-M-and-A-trends-for-2026"
+}
+--------------------------------------------------------------------------------
+[20:49:25] PARSE_ARTICLE - company=International Paper
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ey.com/en_us/insights/mergers-acquisitions/m-and-a-activity-report"
+}
+--------------------------------------------------------------------------------
+[20:49:25] PARSE_ARTICLE - company=International Paper
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.jpmorgan.com/investment-banking/mergers-and-acquisitions-market-outlook"
+}
+--------------------------------------------------------------------------------
+[20:49:57] PARSE_ARTICLE - company=Dine Cartonnages
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.scribd.com/document/666269058/WSJ-Weekend-050823"
+}
+--------------------------------------------------------------------------------
+[20:49:57] PARSE_ARTICLE - company=Dine Cartonnages
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://archive.org/stream/FinancialTimes1995UKEnglish/Dec%2012%201995%2C%20Financial%20Times%2C%20%2312%2C%20UK%20%28en%29_djvu.txt"
+}
+--------------------------------------------------------------------------------
+[20:49:57] PARSE_ARTICLE - company=Dine Cartonnages
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.scribd.com/document/452019157/LINE-AND-PATH-FOLLOWER"
+}
+--------------------------------------------------------------------------------
+[20:49:57] PARSE_ARTICLE - company=Dine Cartonnages
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://archive.org/stream/FinancialTimes1998UKEnglish/Feb%2027%201998%2C%20Financial%20Times%2C%20%2327%2C%20UK%20%28en%29_djvu.txt"
+}
+--------------------------------------------------------------------------------
+[20:49:57] PARSE_ARTICLE - company=Dine Cartonnages
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://archive.org/stream/FinancialTimes1998UKEnglish/Feb%2021%201998%2C%20Financial%20Times%2C%20%2321%2C%20UK%20%28en%29_djvu.txt"
+}
+--------------------------------------------------------------------------------
+[20:50:08] PARSE_ARTICLE - company=Jiangin Yonghe Packaging Products
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://pmcf.com/industry-updates/packaging-ma-update-november-2025/"
+}
+--------------------------------------------------------------------------------
+[20:50:08] PARSE_ARTICLE - company=Jiangin Yonghe Packaging Products
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0328/2025032802866.pdf"
+}
+--------------------------------------------------------------------------------
+[20:50:25] PARSE_ARTICLE - company=Fritz Foss
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2018/11/perspectives-on-global-development-2019_g1g98eca/persp_glob_dev-2019-en.pdf"
+}
+--------------------------------------------------------------------------------
+[20:50:25] PARSE_ARTICLE - company=Fritz Foss
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.journals.uchicago.edu/doi/10.1086/466560"
+}
+--------------------------------------------------------------------------------
+[20:50:25] PARSE_ARTICLE - company=Fritz Foss
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://mediatum.ub.tum.de/doc/1685972/1685972.pdf"
+}
+--------------------------------------------------------------------------------
+[20:50:25] PARSE_ARTICLE - company=Fritz Foss
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.academia.edu/2942105/Performance_measurement_and_performance_management"
+}
+--------------------------------------------------------------------------------
+[20:50:41] PARSE_ARTICLE - company=Husky Technologies
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ftc.gov/system/files/documents/cases/d09393_-_respondents_reply_to_complaint_counsel_s_post-trial_proposed_findings_of_fact_and_conclusions_of_law.pdf"
+}
+--------------------------------------------------------------------------------
+[20:50:41] PARSE_ARTICLE - company=Husky Technologies
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sec.gov/Archives/edgar/data/1785880/000121390021047420/ea147175-f1a10_lohacoltd.htm"
+}
+--------------------------------------------------------------------------------
+[20:50:41] PARSE_ARTICLE - company=Husky Technologies
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.jmcti.org/kaigai/Latin/2008/2008_06/2008_06_Sp01.pdf"
+}
+--------------------------------------------------------------------------------
+[20:50:41] PARSE_ARTICLE - company=Husky Technologies
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://henryjacksonsociety.org/wp-content/uploads/2019/01/HJS-Safeguarding-Our-Systems-Report-NEW-BW-Inner-web.pdf"
+}
+--------------------------------------------------------------------------------
+[20:50:41] PARSE_ARTICLE - company=Husky Technologies
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.abchina.com/en/investor-relations/corporate-announcements/Announcements/201603/W020160316587855085510.pdf"
+}
+--------------------------------------------------------------------------------
+[20:50:41] PARSE_ARTICLE - company=Husky Technologies
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://cpb-us-w2.wpmucdn.com/sites.uwm.edu/dist/a/585/files/2018/07/IMCPClassof2019Reports-14fejax.pdf"
+}
+--------------------------------------------------------------------------------
+[20:50:41] PARSE_ARTICLE - company=Husky Technologies
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.giminstitute.org/wp-content/uploads/2018/09/GIMI-RESUME-BOOK-Q3-2018.pdf"
+}
+--------------------------------------------------------------------------------
+[20:51:07] PARSE_ARTICLE - company=KRC Custom Manufacturing
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://prophet.com/page/2/?p=t"
+}
+--------------------------------------------------------------------------------
+[20:51:07] PARSE_ARTICLE - company=KRC Custom Manufacturing
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sipotra.it/wp-content/uploads/2021/05/An-Investment-Perspective-on-Global-Value-Chains-1.pdf"
+}
+--------------------------------------------------------------------------------
+[20:51:07] PARSE_ARTICLE - company=KRC Custom Manufacturing
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://assets.kpmg.com/content/dam/kpmg/ie/pdf/2020/06/fuel-forecourt-retail-market.pdf"
+}
+--------------------------------------------------------------------------------
+[20:51:07] PARSE_ARTICLE - company=KRC Custom Manufacturing
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.havas.com/wp-content/uploads/2025/04/havas_nv_ra_gb_2024_20250415_17h04.pdf"
+}
+--------------------------------------------------------------------------------
+[20:51:07] PARSE_ARTICLE - company=KRC Custom Manufacturing
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://documents1.worldbank.org/curated/en/442061621002318640/pdf/An-Investment-Perspective-on-Global-Value-Chains.pdf"
+}
+--------------------------------------------------------------------------------
+[20:51:07] PARSE_ARTICLE - company=KRC Custom Manufacturing
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sec.gov/Archives/edgar/data/1946025/000119312524075863/d403554df1a.htm"
+}
+--------------------------------------------------------------------------------
+[20:51:07] PARSE_ARTICLE - company=KRC Custom Manufacturing
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://unctad.org/system/files/official-document/iteteb20069_en.pdf"
+}
+--------------------------------------------------------------------------------
+[20:51:07] PARSE_ARTICLE - company=KRC Custom Manufacturing
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://mergerscorp.com/businesses-for-sale/"
+}
+--------------------------------------------------------------------------------
+[20:51:07] PARSE_ARTICLE - company=KRC Custom Manufacturing
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://greenseedgroup.com/news/"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mckinsey.com/capabilities/m-and-a/our-insights/top-m-and-a-trends"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.pwc.com/gx/en/services/deals/trends.html"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.benchmarkintl.com/insights/the-global-ma-outlook-for-2026-a-year-of-opportunity-evolution/"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.walkersglobal.com/en/Insights/2026/01/Key-corporate-M-and-A-trends-for-2026"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.lexpert.ca/news/mergers-acquisitions-law/a-third-of-canadas-business-leaders-will-pursue-major-acquisitions-in-2026-kpmg-survey/393908"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://cassels.com/insights/an-update-on-private-equity-ma-in-canada/"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ropesgray.com/en/insights/alerts/2026/01/dealmakers-digest-january-2026"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.theglobeandmail.com/investing/markets/stocks/MC/pressreleases/39598/mc-q4-deep-dive-ma-momentum-capital-markets-expansion-and-strategic-hires-drive-growth/"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.prnewswire.com/news-releases/building-products-ma-poised-for-growth-in-2026-302674389.html"
+}
+--------------------------------------------------------------------------------
+[20:51:22] PARSE_ARTICLE - company=Braroll Acessorios Industriais
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.pwc.com/gx/en/services/deals/trends/industrials-services.html"
+}
+--------------------------------------------------------------------------------
+[20:51:37] PARSE_ARTICLE - company=Jindal Films
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.jindalfilms.com/category/news/"
+}
+--------------------------------------------------------------------------------
+[20:51:37] PARSE_ARTICLE - company=Jindal Films
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.plasticsnews.com/news/jindal-films-close-shawnee-okla-plant/"
+}
+--------------------------------------------------------------------------------
+[20:51:37] PARSE_ARTICLE - company=Jindal Films
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.jindalfilms.com/category/news/page/3/"
+}
+--------------------------------------------------------------------------------
+[20:51:37] PARSE_ARTICLE - company=Jindal Films
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.jmcti.org/kaigai/Latin/2008/2008_06/2008_06_Sp01.pdf"
+}
+--------------------------------------------------------------------------------
+[20:51:37] PARSE_ARTICLE - company=Jindal Films
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.saint-gobain.com/sites/saint-gobain.com/files/sgo2020_urd_en_mel_210326_def.pdf"
+}
+--------------------------------------------------------------------------------
+[20:51:37] PARSE_ARTICLE - company=Jindal Films
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.bayareaeconomy.org/files/pdf/GlobalReachFullReportWeb.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:08] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.barcelonaglobal.org/who-is-who/individual-members/"
+}
+--------------------------------------------------------------------------------
+[20:52:08] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sigplc.com/~/media/Files/S/SIG-PLC/documents/reports-and-presentations/2025/sig-annual-report-2024.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:08] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.labelsandlabeling.com/sites/labelsandlabeling/files/magazine/labels-vol38-issue1-2016/content/labels-vol38-issue1-2016.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:08] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.hiltonfoods.com/media/qh1ihrrs/hiltonfoods_ar2024_webready.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:08] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.huhtamaki.com/globalassets/global/investors/reports-and-presentations/en/2024/huhtamaki-annual-report-2024.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:08] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sec.gov/Archives/edgar/data/1824993/000119312520316045/d30832d424b4.htm"
+}
+--------------------------------------------------------------------------------
+[20:52:08] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://static.aviva.io/content/dam/aviva-investors/main/assets/capabilities/reports-and-financial-statements/aviva-investors-investment-funds-icvc/long-reports-and-financial-statements/aviva-investors-investment-funds-Ann-151019-lf-final.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:30] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.weil.com/-/media/mailings/2025/q2/weil-private-equity-sponsor-sync-q2-2025.pdf?rev=ed9b812d6ae64ece8f6669e2543e814b"
+}
+--------------------------------------------------------------------------------
+[20:52:30] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.labelsandlabeling.com/sites/labelsandlabeling/files/magazine/labels-vol38-issue1-2016/content/labels-vol38-issue1-2016.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:30] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.packagingmag.co.za/wp-content/uploads/2018/09/PPM_August_2018.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:30] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.barcelonaglobal.org/who-is-who/individual-members/"
+}
+--------------------------------------------------------------------------------
+[20:52:30] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.dentons.com/~/media/MLA%20Import/pdf/F/Financier_Worldwide_International_MA_ebook.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:30] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sigplc.com/~/media/Files/S/SIG-PLC/documents/reports-and-presentations/2025/sig-annual-report-2024.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:30] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sec.gov/Archives/edgar/data/1824993/000119312520316045/d30832d424b4.htm"
+}
+--------------------------------------------------------------------------------
+[20:52:30] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.yumpu.com/en/document/view/14346084/4-labels-labeling"
+}
+--------------------------------------------------------------------------------
+[20:52:30] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://ceelegalmatters.com/Magazines/ISSUE_CEELM_3.6_free.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:52] PARSE_ARTICLE - company=Entertainment Partners
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/an-entertainment-company-tracks-market-trends-to-capture-emerging-opportunities"
+}
+--------------------------------------------------------------------------------
+[20:52:52] PARSE_ARTICLE - company=Entertainment Partners
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.walkersglobal.com/en/Insights/2026/01/Key-corporate-M-and-A-trends-for-2026"
+}
+--------------------------------------------------------------------------------
+[20:52:52] PARSE_ARTICLE - company=Entertainment Partners
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ey.com/en_us/insights/mergers-acquisitions/m-and-a-activity-report"
+}
+--------------------------------------------------------------------------------
+[20:52:52] PARSE_ARTICLE - company=Entertainment Partners
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.benchmarkintl.com/insights/the-global-ma-outlook-for-2026-a-year-of-opportunity-evolution/"
+}
+--------------------------------------------------------------------------------
+[20:52:52] PARSE_ARTICLE - company=Entertainment Partners
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.deloitte.com/us/en/insights/industry/financial-services/financial-services-industry-outlooks/banking-industry-outlook.html"
+}
+--------------------------------------------------------------------------------
+[20:52:52] PARSE_ARTICLE - company=Entertainment Partners
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mckinsey.com/capabilities/m-and-a/our-insights/top-m-and-a-trends"
+}
+--------------------------------------------------------------------------------
+[20:52:52] PARSE_ARTICLE - company=Entertainment Partners
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.alixpartners.com/media/ow1n5vey/2025-media-entertainment-industry-predictions-report.pdf"
+}
+--------------------------------------------------------------------------------
+[20:52:52] PARSE_ARTICLE - company=Entertainment Partners
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.pwc.com/gx/en/services/deals/trends.html"
+}
+--------------------------------------------------------------------------------
+[20:52:52] PARSE_ARTICLE - company=Entertainment Partners
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://academic.oup.com/icc/article/30/5/1307/6365871"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mckinsey.com/capabilities/m-and-a/our-insights/top-m-and-a-trends"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://academic.oup.com/icc/article/30/5/1307/6365871"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mdpi.com/2071-1050/16/2/613"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ey.com/en_gl/newsroom/2026/01/global-financial-services-m-and-a-activity-rose-in-2025-with-93-deals-over-1b-in-value-announced"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://documents1.worldbank.org/curated/en/099031924192524293/pdf/P180107173682d0431bf651fded74199f10.pdf"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mckinsey.com.br/capabilities/m-and-a/our-insights/top-m-and-a-trends"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sciencedirect.com/science/article/pii/S0959652624016615"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.efpia.eu/media/sr3fpeqh/a-comparative-analysis-of-biopharmaceutical-strategies-in-10-countries.pdf"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://assets.publishing.service.gov.uk/media/607979c7d3bf7f400f5b3c65/KalifaReviewofUKFintech01.pdf"
+}
+--------------------------------------------------------------------------------
+[20:53:16] PARSE_ARTICLE - company=Universal McCann
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://alphafmc.com/news-insights/"
+}
+--------------------------------------------------------------------------------
+[20:53:40] PARSE_ARTICLE - company=Little Island Productions
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ey.com/en_uk/insights/ipo/trends"
+}
+--------------------------------------------------------------------------------
+[20:53:40] PARSE_ARTICLE - company=Little Island Productions
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.nimdzi.com/nimdzi-100-2025/"
+}
+--------------------------------------------------------------------------------
+[20:53:40] PARSE_ARTICLE - company=Little Island Productions
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.pwc.com/gx/en/issues/value-in-motion/reinventing-company-for-growth.html"
+}
+--------------------------------------------------------------------------------
+[20:53:40] PARSE_ARTICLE - company=Little Island Productions
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://unctad.org/system/files/official-document/wir2025_en.pdf"
+}
+--------------------------------------------------------------------------------
+[20:53:40] PARSE_ARTICLE - company=Little Island Productions
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.oecd.org/en/publications/asia-capital-markets-report-2025_02172cdc-en/full-report/equity-markets_21fa56c1.html"
+}
+--------------------------------------------------------------------------------
+[20:53:40] PARSE_ARTICLE - company=Little Island Productions
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.jpmorgan.com/content/dam/jpmorgan/documents/wealth-management/outlook-2025-building-on-strength.pdf"
+}
+--------------------------------------------------------------------------------
+[20:53:40] PARSE_ARTICLE - company=Little Island Productions
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.morganstanley.com/insights/podcasts/thoughts-on-the-market"
+}
+--------------------------------------------------------------------------------
+[20:53:40] PARSE_ARTICLE - company=Little Island Productions
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.iese.edu/media/research/pdfs/ESTUDIO-137.pdf"
+}
+--------------------------------------------------------------------------------
+[20:53:40] PARSE_ARTICLE - company=Little Island Productions
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://assets.kpmg.com/content/dam/kpmg/xx/pdf/2021/11/rethinking-supply-chains-in-asia-pacific.pdf"
+}
+--------------------------------------------------------------------------------
+[20:53:55] PARSE_ARTICLE - company=Commerzbank AG
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.bloomberg.com/news/articles/2026-02-10/commerzbank-starts-new-540-million-buyback-as-earnings-beat"
+}
+--------------------------------------------------------------------------------
+[20:53:55] PARSE_ARTICLE - company=Commerzbank AG
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.reuters.com/business/finance/commerzbank-considering-its-own-acquisitions-ceo-tells-paper-2024-10-18/"
+}
+--------------------------------------------------------------------------------
+[20:53:55] PARSE_ARTICLE - company=Commerzbank AG
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.reuters.com/business/finance/key-elements-commerzbanks-strategy-update-it-fends-off-unicredit-2025-02-13/"
+}
+--------------------------------------------------------------------------------
+[20:53:55] PARSE_ARTICLE - company=Commerzbank AG
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.commerzbank.de/group/newsroom/press-releases/"
+}
+--------------------------------------------------------------------------------
+[20:53:55] PARSE_ARTICLE - company=Commerzbank AG
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.reuters.com/breakingviews/commerzbanks-ma-lines-defence-have-doubled-2025-05-09/"
+}
+--------------------------------------------------------------------------------
+[20:53:55] PARSE_ARTICLE - company=Commerzbank AG
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://investor-relations.commerzbank.com/ir-news"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.linklaters.com/en/insights/publications/global-guide/public-m-and-a"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mckinsey.com/capabilities/m-and-a/our-insights/top-m-and-a-trends"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.benchmarkintl.com/insights/the-global-ma-outlook-for-2026-a-year-of-opportunity-evolution/"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.walkersglobal.com/en/Insights/2026/01/Key-corporate-M-and-A-trends-for-2026"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.linklaters.com/en/insights/publications/esg-newsletter/2025/july/esg-newsletter-july-2025"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://finance.yahoo.com/news/global-m-dealmakers-see-strategic-140000448.html"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.lexpert.ca/news/mergers-acquisitions-law/a-third-of-canadas-business-leaders-will-pursue-major-acquisitions-in-2026-kpmg-survey/393908"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.stoneybrookelevators.ca/markets/stocks.php?article=marketersmedia-2026-1-30-financial-services-m-and-a-activity-signals-strategic-repositioning-amid-margin-pressure-and-regulatory-complexity"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.confederationgroup.ca/ma-trends-in-canada-what-buyers-and-sellers-should-know-in-2026/"
+}
+--------------------------------------------------------------------------------
+[20:54:22] PARSE_ARTICLE - company=Linklaters
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.linklaters.com/en/about-us/news-and-deals/news/2024/may/global-public-m-and-a-reaches-361bn-in-the-first-quarter-of-2024-as-the-market-gains-momentum"
+}
+--------------------------------------------------------------------------------
+[20:54:56] PARSE_ARTICLE - company=CBS News
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ecb.europa.eu/press/pubbydate/2023/html/ecb.bopiipbook202310~d2c47838a5.en.html"
+}
+--------------------------------------------------------------------------------
+[20:54:56] PARSE_ARTICLE - company=CBS News
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.canalplusgroup.com/uploads/Canal_Prospectus_28a8b14278.pdf"
+}
+--------------------------------------------------------------------------------
+[20:54:56] PARSE_ARTICLE - company=CBS News
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://research-api.cbs.dk/ws/portalfiles/portal/60751228/246450_Master_Thesis_Laubrock_and_Ocal.pdf"
+}
+--------------------------------------------------------------------------------
+[20:54:56] PARSE_ARTICLE - company=CBS News
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.alixpartners.com/media/ow1n5vey/2025-media-entertainment-industry-predictions-report.pdf"
+}
+--------------------------------------------------------------------------------
+[20:54:56] PARSE_ARTICLE - company=CBS News
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.bis.org/ifc/publ/ifcb30.pdf"
+}
+--------------------------------------------------------------------------------
+[20:54:56] PARSE_ARTICLE - company=CBS News
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sec.gov/Archives/edgar/data/1579877/000119312514119230/d695618d424b4.htm"
+}
+--------------------------------------------------------------------------------
+[20:55:20] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.deloitte.com/southeast-asia/en/about/press-room/new-deloitte-report-transformational-ma-doubles-shareholder-returns.html"
+}
+--------------------------------------------------------------------------------
+[20:55:20] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.prnewswire.com/news-releases/new-deloitte-survey-corporate-and-private-equity-leaders-anticipate-stronger-ma-activity-in-2026-along-with-continued-volatility-relative-to-2025-302673258.html"
+}
+--------------------------------------------------------------------------------
+[20:55:20] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.deloitte.com/us/en/what-we-do/capabilities/mergers-acquisitions-restructuring/articles/ma-insights-strategy-and-trends.html"
+}
+--------------------------------------------------------------------------------
+[20:55:20] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.deloitte.com/us/en/what-we-do/capabilities/mergers-acquisitions-restructuring/articles/m-a-trends-report.html"
+}
+--------------------------------------------------------------------------------
+[20:55:20] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.deloitte.com/us/en/insights.html"
+}
+--------------------------------------------------------------------------------
+[20:55:20] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.deloitte.com/us/en/about/recognition/news.html"
+}
+--------------------------------------------------------------------------------
+[20:55:20] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.investmentbanking.deloitte.com/xa/en/services/mergers-acquisitions-advisory/perspectives/industry-m-and-a-updates.html"
+}
+--------------------------------------------------------------------------------
+[20:55:20] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.prnewswire.com/news-releases/dealmakers-prepare-and-pivot-for-ma-activity-in-2025-deloitte-2025-ma-trends-survey-302375372.html"
+}
+--------------------------------------------------------------------------------
+[20:55:20] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.prnewswire.com/news-releases/ma-activity-poised-for-a-rebound-in-2024-value-of-deals-expected-to-increase-deloitte-2024-ma-trends-survey-302041578.html"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.bloomberg.com/businessweek"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.bloomberg.com/"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.bloomberg.com/latest"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.apollo.com/insights-news/insights/2026/02/japans-new-investment-horizon-bloomberg-wall-street-week"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://nvca.org/wp-content/uploads/2023/03/NVCA-2023-Yearbook_FINALFINAL.pdf"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.principalam.com/us/finpro-education/exploring-paths-to-income-with-private-market-debt"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://assets.kpmg.com/content/dam/kpmg/xx/pdf/2024/02/pulse-of-fintech-h2-2023.pdf"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://home.treasury.gov/system/files/261/FSOC2023AnnualReport.pdf"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.stjohns.edu/academics/schools/peter-j-tobin-college-business/maurice-r-greenberg-school-risk-management-insurance-and-actuarial-science/kathryn-and-shelby-cullom-davis-library"
+}
+--------------------------------------------------------------------------------
+[20:55:51] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sipa.columbia.edu/sites/default/files/2025-06/Dell%20Final%20Report%20%281%29.pdf"
+}
+--------------------------------------------------------------------------------
+[20:56:12] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.argusmedia.com/ja/news-and-insights/latest-market-news/2675340-us-pe-exports-could-lose-market-share-on-new-tariffs"
+}
+--------------------------------------------------------------------------------
+[20:56:12] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www3.weforum.org/docs/WEF_The_New_Plastics_Economy.pdf"
+}
+--------------------------------------------------------------------------------
+[20:56:12] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.bloomberg.com/"
+}
+--------------------------------------------------------------------------------
+[20:56:12] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2022/02/global-plastics-outlook_a653d1c9/de747aef-en.pdf"
+}
+--------------------------------------------------------------------------------
+[20:56:12] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ibisworld.com/united-states/industry/plastic-resin-manufacturing/473/"
+}
+--------------------------------------------------------------------------------
+[20:56:12] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.plasticsnews.com/news/north-american-resin-markets-face-continued-challenges-2025/"
+}
+--------------------------------------------------------------------------------
+[20:56:12] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://content.ellenmacarthurfoundation.org/m/1775fbba280fa21/original/The-New-Plastics-Economy-Rethinking-the-future-of-plastics.pdf"
+}
+--------------------------------------------------------------------------------
+[20:56:12] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.marketsandmarkets.com/Market-Reports/construction-plastics-market-233437057.html"
+}
+--------------------------------------------------------------------------------
+[20:56:47] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.bls.gov/bls/congressional-reports/assessing-the-impact-of-new-technologies-on-the-labor-market.htm"
+}
+--------------------------------------------------------------------------------
+[20:56:47] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9159701/"
+}
+--------------------------------------------------------------------------------
+[20:56:47] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.dhs.gov/terms"
+}
+--------------------------------------------------------------------------------
+[20:56:47] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://content.ellenmacarthurfoundation.org/m/50c85a620a58955/original/Towards-the-circular-economy-Vol-2.pdf"
+}
+--------------------------------------------------------------------------------
+[20:56:47] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://library.uniq.edu.iq/storage/books/file/kotler_keller_-_marketing_management_14th_edition/1666787488kotler_keller_-_marketing_management_14th_edition.pdf"
+}
+--------------------------------------------------------------------------------
+[20:56:47] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.hhs.gov/sites/default/files/chep-sgr-full-report.pdf"
+}
+--------------------------------------------------------------------------------
+[20:56:47] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.pewresearch.org/wp-content/uploads/sites/20/2023/06/PI_2023.06.21_Best-Worst-Digital-Life_2035_FINAL.pdf"
+}
+--------------------------------------------------------------------------------
+[20:57:09] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.congress.gov/crs-product/R45148"
+}
+--------------------------------------------------------------------------------
+[20:57:09] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://media.investor.foxcorporation.com/wp-content/uploads/2025/03/13125605/FOX-Annual-Report-2023.pdf"
+}
+--------------------------------------------------------------------------------
+[20:57:09] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.cnbc.com/video/2025/12/08/film-industry-deals-should-be-evaluated-on-impact-to-employment-and-competition-rep-laura-friedman.html"
+}
+--------------------------------------------------------------------------------
+[20:57:09] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://newsroom.technavio.org/movie-production-market-industry-analysis"
+}
+--------------------------------------------------------------------------------
+[20:57:09] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.bls.gov/bls/congressional-reports/assessing-the-impact-of-new-technologies-on-the-labor-market.htm"
+}
+--------------------------------------------------------------------------------
+[20:57:09] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.rd.usda.gov/media/file/download/usda-rd-economic-impact-analysis-us-biobased-products-industry-2023-508.pdf"
+}
+--------------------------------------------------------------------------------
+[20:57:09] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://gov.texas.gov/uploads/files/business/Bigger.Better_.Texas_._Economic_Development_Strategic_Plan_.pdf"
+}
+--------------------------------------------------------------------------------
+[20:57:09] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2019/04/oecd-employment-outlook-2019_0d35ae00/9ee00155-en.pdf"
+}
+--------------------------------------------------------------------------------
+[20:57:36] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.fastmarkets.com/insights/how-fast-does-the-us-economy-need-to-grow-to-support-box-shipments-growth/"
+}
+--------------------------------------------------------------------------------
+[20:57:36] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://modula.us/blog/packaging-industry-outlook/"
+}
+--------------------------------------------------------------------------------
+[20:57:36] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.packaging-gateway.com/features/packaging-faces-disruption-from-new-market-forces/"
+}
+--------------------------------------------------------------------------------
+[20:57:36] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www3.weforum.org/docs/WEF_The_New_Plastics_Economy.pdf"
+}
+--------------------------------------------------------------------------------
+[20:57:36] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://whattheythink.com/news/128825-new-years-evolution-packaging-industry-experts-look-ahead-2026/"
+}
+--------------------------------------------------------------------------------
+[20:57:36] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.idos-research.de/uploads/media/DP_8.2023_01.pdf"
+}
+--------------------------------------------------------------------------------
+[20:58:10] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://whattheythink.com/news/128825-new-years-evolution-packaging-industry-experts-look-ahead-2026/"
+}
+--------------------------------------------------------------------------------
+[20:58:10] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://epackagingsw.com/blog/9-flexible-packaging-industry-trends-to-watch-in-2025-beyond"
+}
+--------------------------------------------------------------------------------
+[20:58:10] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.prnewswire.com/news-releases/corrugated-boxes-market-worth-212-3-billion-by-2034---exclusive-report-by-the-research-insights-302453340.html"
+}
+--------------------------------------------------------------------------------
+[20:58:10] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.enel.com/content/dam/enel-com/documenti/investitori/sostenibilita/2023/sustainability-report_2023.pdf"
+}
+--------------------------------------------------------------------------------
+[20:58:10] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ipcc.ch/report/ar6/wg3/chapter/chapter-10/"
+}
+--------------------------------------------------------------------------------
+[20:58:10] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www3.weforum.org/docs/WEF_The_New_Plastics_Economy.pdf"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://finance.yahoo.com/news/india-launches-national-challenge-reshape-005422351.html"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.meghmaniglobal.com/why-indias-packaging-solutions-industry-is-booming/"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.imap.com/en/insights/2025/Indias_Packaging_Industry_A_Billion_Dollar_Transformation_Beckons~cv"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.linkedin.com/pulse/future-packaging-industries-india-innovations-iqxzf"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.tecnovaglobal.com/blog/indias-f-b-packaging-boom-innovations-market-shift"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.imarcgroup.com/india-corrugated-boxes-market"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.futuremarketinsights.com/reports/consumer-packaging-industry-analysis-in-india"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.kenresearch.com/industry-reports/india-corrugated-boxes-market"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ibef.org/industry/paper-packaging"
+}
+--------------------------------------------------------------------------------
+[20:58:40] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mordorintelligence.com/industry-reports/india-ecommerce-packaging-market"
+}
+--------------------------------------------------------------------------------
+[20:59:06] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://market-insights.upply.com/en/european-road-freight-weak-demand-weighs-on-spot-rates"
+}
+--------------------------------------------------------------------------------
+[20:59:06] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.prnewswire.com/news-releases/road-freight-transportation-market-in-europe-to-grow-by-usd-41-2-billion-2025-2029-driven-by-importance-in-intermodal-transport-report-highlights-ai-powered-evolution---technavio-302357274.html"
+}
+--------------------------------------------------------------------------------
+[20:59:06] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://ti-insight.com/briefs/the-european-road-freight-market-is-recovering/"
+}
+--------------------------------------------------------------------------------
+[20:59:06] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.exfreight.com/whats-changing-in-europe-freight-2025-ftl-tech-and-policy/"
+}
+--------------------------------------------------------------------------------
+[20:59:06] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.linkedin.com/pulse/market-overview-european-road-transport-q4-2024-trends-evelyne-leveke-7ruxf"
+}
+--------------------------------------------------------------------------------
+[20:59:06] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mordorintelligence.com/industry-reports/europe-road-freight-transport-market"
+}
+--------------------------------------------------------------------------------
+[20:59:06] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.marketdataforecast.com/market-reports/Europe-road-freight-transportation-market"
+}
+--------------------------------------------------------------------------------
+[20:59:06] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.technavio.com/report/road-freight-transport-market-analysis"
+}
+--------------------------------------------------------------------------------
+[20:59:06] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://transport.ec.europa.eu/news-events/news/new-eu-transport-report-current-trends-and-issues-2024-06-27_en"
+}
+--------------------------------------------------------------------------------
+[20:59:36] PARSE_ARTICLE - industry=MRO, location=South America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mordorintelligence.com/industry-reports/latin-america-aircraft-mro-market"
+}
+--------------------------------------------------------------------------------
+[20:59:36] PARSE_ARTICLE - industry=MRO, location=South America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.cognitivemarketresearch.com/regional-analysis/south-america-aircraft-mro-market-report"
+}
+--------------------------------------------------------------------------------
+[20:59:36] PARSE_ARTICLE - industry=MRO, location=South America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://aviationweek.com/podcasts/mro-podcast/podcast-latin-americas-mro-market-rise"
+}
+--------------------------------------------------------------------------------
+[20:59:36] PARSE_ARTICLE - industry=MRO, location=South America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://fltechnics.com/fl-technics-ceo-on-the-mro-trends-that-will-define-aviation-in-2026/"
+}
+--------------------------------------------------------------------------------
+[20:59:36] PARSE_ARTICLE - industry=MRO, location=South America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.theinsightpartners.com/reports/south-and-central-america-aircraft-mro-market"
+}
+--------------------------------------------------------------------------------
+[20:59:36] PARSE_ARTICLE - industry=MRO, location=South America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://altonaviation.com/alton_insights/latin-american-mro-industry-trends-market-forecast/"
+}
+--------------------------------------------------------------------------------
+[20:59:36] PARSE_ARTICLE - industry=MRO, location=South America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.kenresearch.com/united-states-maintenance-repair-and-operations-mro-market"
+}
+--------------------------------------------------------------------------------
+[21:00:01] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.hardvogue.com/a-the-rise-of-bopp-film-manufacturing-in-china-a-growing-industry.html"
+}
+--------------------------------------------------------------------------------
+[21:00:01] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.kenresearch.com/china-bopp-film-market"
+}
+--------------------------------------------------------------------------------
+[21:00:01] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mordorintelligence.com/industry-reports/china-bopp-film-market"
+}
+--------------------------------------------------------------------------------
+[21:00:01] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.factmr.com/report/bopp-films-market"
+}
+--------------------------------------------------------------------------------
+[21:00:01] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://insights.made-in-china.com/BOPP-Film-Industry-Trends-and-Market-Analysis_YtgfaUXdqmie.html"
+}
+--------------------------------------------------------------------------------
+[21:00:01] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.gminsights.com/industry-analysis/bopp-films-market"
+}
+--------------------------------------------------------------------------------
+[21:00:01] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.chemanalyst.com/industry-report/europe-bopp-and-bopet-films-market-526"
+}
+--------------------------------------------------------------------------------
+[21:00:01] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.marketsandmarkets.com/ResearchInsight/trump-tariff-impact-on-bopet-films-market.asp"
+}
+--------------------------------------------------------------------------------
+[21:00:01] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.snsinsider.com/reports/bopet-film-market-1424"
+}
+--------------------------------------------------------------------------------
+[21:00:28] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.hardvogue.com/a-the-rise-of-bopp-film-manufacturing-in-china-a-growing-industry.html"
+}
+--------------------------------------------------------------------------------
+[21:00:28] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://tofortpack.com/About_Us/News/global-flexible/packaging-films-market-trends.html"
+}
+--------------------------------------------------------------------------------
+[21:00:28] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.kenresearch.com/china-bopp-film-market"
+}
+--------------------------------------------------------------------------------
+[21:00:28] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://epackagingsw.com/blog/9-flexible-packaging-industry-trends-to-watch-in-2025-beyond"
+}
+--------------------------------------------------------------------------------
+[21:00:28] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.fortunebusinessinsights.com/flexible-film-market-104653"
+}
+--------------------------------------------------------------------------------
+[21:00:28] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.mordorintelligence.com/industry-reports/latin-america-plastic-packaging-films-market"
+}
+--------------------------------------------------------------------------------
+[21:00:28] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.flexpack-europe.org/press-releases"
+}
+--------------------------------------------------------------------------------
+[21:00:28] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.amiplastics.com/market-intelligence/market-report/pe-consumer-packaging-films-global-market-2025"
+}
+--------------------------------------------------------------------------------
+[21:00:28] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.marketsandmarkets.com/Market-Reports/packaging-film-market-1283.html"
+}
+--------------------------------------------------------------------------------
+[21:00:55] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://alphafmc.com/news-insights/"
+}
+--------------------------------------------------------------------------------
+[21:00:55] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.linkedin.com/pulse/global-press-release-distribution-service-market-trends-nzsbf/"
+}
+--------------------------------------------------------------------------------
+[21:00:55] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.anz.com/content/dam/anzcom/pdf/institutional/reports/future-of-the-global-supply-chain.pdf"
+}
+--------------------------------------------------------------------------------
+[21:00:55] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.wedosupplychain.com/blog/navigating-the-future-key-trends-shaping-north-america-logistics-in-2025"
+}
+--------------------------------------------------------------------------------
+[21:00:55] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.einpresswire.com/article/709490258/north-america-leads-distribution-systems-market-emerging-technologies-propels-to-new-heights-by-2032"
+}
+--------------------------------------------------------------------------------
+[21:00:55] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sciencedirect.com/science/article/pii/S2096248725000025"
+}
+--------------------------------------------------------------------------------
+[21:00:55] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2020/12/anticipatory-innovation-governance_d1aded4e/cce14d80-en.pdf"
+}
+--------------------------------------------------------------------------------
+[21:00:55] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.inderscience.com/info/ingeneral/forthcoming.php?jcode=ijlsm"
+}
+--------------------------------------------------------------------------------
+[21:01:31] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.linkedin.com/pulse/united-states-film-distribution-market-size-key-highlights-tik1c/"
+}
+--------------------------------------------------------------------------------
+[21:01:31] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ep.com/blog/film-incentives-north-america-entertainment-industry-2024-review-look-ahead-2025/"
+}
+--------------------------------------------------------------------------------
+[21:01:31] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.technavio.com/report/movie-production-market-industry-analysis"
+}
+--------------------------------------------------------------------------------
+[21:01:31] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.ibisworld.com/global/industry/global-movie-production-distribution/2150/"
+}
+--------------------------------------------------------------------------------
+[21:01:31] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.dailyjournal.com/articles/384203-hollywood-faces-uncertainty-as-streaming-struggles-shape-entertainment-industry-s-future"
+}
+--------------------------------------------------------------------------------
+[21:01:31] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.prnewswire.com/news-releases/movie-production-market-to-grow-by-usd-56-11-billion-2024-2028-fueled-by-global-box-office-popularity-report-highlights-how-ai-is-redefining-the-landscape---technavio-302325737.html"
+}
+--------------------------------------------------------------------------------
+[21:01:31] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.sphericalinsights.com/reports/movies-and-entertainment-market"
+}
+--------------------------------------------------------------------------------
+[21:01:31] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.marklitwak.com/blog/the-new-reality-for-independent-filmmakers-navigating-a-transformed-industry-landscape-in-2025"
+}
+--------------------------------------------------------------------------------
+[21:01:31] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: fromisoformat: argument must be str
+Data: {
+  "url": "https://www.skyquestt.com/report/movies-and-entertainment-market"
+}
+--------------------------------------------------------------------------------

@@ -1,0 +1,1040 @@
+[20:47:23] PARSE_ARTICLE - company=Borouge
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "Borouge completes AI proof of concept in Ruwais",
+  "publication_date": "2026-01",
+  "summary": "Borouge successfully completed a proof of concept for AI-powered autonomous operations at its Ruwais facility in collaboration with Honeywell, aiming to enhance operational performance and competitiveness. The initiative is part of Borouge's AI, Digitalisation & Technology program targeting $575 million in value generation in 2025. The company plans to scale this technology across its facilities to support ADNOC's ambition to be the most AI-enabled energy company.",
+  "source": "Energy Connects",
+  "url": "https://www.energyconnects.com/news/technology/2026/january/borouge-completes-ai-proof-of-concept-in-ruwais/"
+}
+--------------------------------------------------------------------------------
+[20:47:23] PARSE_ARTICLE - company=Borouge
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Borouge and KEI Industries Sign MoU to Strengthen India\u2019s Power Transmission Infrastructure",
+  "publication_date": "2026",
+  "summary": "Borouge signed a Memorandum of Understanding with KEI Industries to collaborate in India's power transmission sector, leveraging Borouge's innovative cross-linked polyethylene for power cables. This partnership aims to enhance infrastructure development and expand Borouge's regional presence in India.",
+  "source": "Wire & Cable India",
+  "url": "https://www.wirecable.in/borouge-and-kei-industries-sign-mou/"
+}
+--------------------------------------------------------------------------------
+[20:49:43] PARSE_ARTICLE - company=International Paper
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "International Paper (IP) Is Down 7.1% After Georgetown Closure And Regional Split Plan - What's Changed",
+  "publication_date": "2026-02",
+  "summary": "International Paper plans to close its Georgetown plant by end of 2026 and split into two companies focused on North America and EMEA. The restructuring aims to create a more focused business despite recent losses and challenges like higher energy costs.",
+  "source": "Simply Wall St News",
+  "url": "https://simplywall.st/stocks/us/materials/nyse-ip/international-paper/news/international-paper-ip-is-down-71-after-georgetown-closure-a"
+}
+--------------------------------------------------------------------------------
+[20:49:43] PARSE_ARTICLE - company=International Paper
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "International Paper to split into two separate companies",
+  "publication_date": "2026-01",
+  "summary": "International Paper will retain a significant ownership stake in the new EMEA company and plans continued investment in the region to improve free cash flow and margins. The spin-off combines legacy DS Smith and IP assets to create a focused packaging business in EMEA.",
+  "source": "Packaging Europe",
+  "url": "https://packagingeurope.com/news/international-paper-to-split-into-two-separate-companies/13866.article"
+}
+--------------------------------------------------------------------------------
+[20:52:17] PARSE_ARTICLE - company=Klöckner Pentaplast
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "Company restructuring not expected to affect Gordonsville facility",
+  "publication_date": "2025-12",
+  "summary": "Kl\u00f6ckner Pentaplast filed for Chapter 11 protection to raise capital, restructure finances, and adjust ownership while continuing normal operations. The restructuring is expected to strengthen the company's financial foundation and ownership without impacting local workers at the Gordonsville facility.",
+  "source": "CBS19 News",
+  "url": "https://www.cbs19news.com/news/company-restructuring-not-expected-to-affect-gordonsville-facility/article_4149f387-d5a8-473c-bba7-44b64ee9149e.html"
+}
+--------------------------------------------------------------------------------
+[20:52:40] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "Kl\u00f6ckner Pentaplast cuts \u20ac1.3bn in debt through Chapter 11 restructuring",
+  "publication_date": "2025-12",
+  "summary": "Kl\u00f6ckner Pentaplast completed its Chapter 11 restructuring, removing approximately \u20ac1.3 billion ($1.5 billion) in funded debt from its balance sheet. Ownership shifted to a consortium led by Redwood Capital Management funds following court approval.",
+  "source": "Packaging Gateway",
+  "url": "https://www.packaging-gateway.com/news/klockner-pentaplast-cuts-debt-chapter-11/"
+}
+--------------------------------------------------------------------------------
+[20:52:40] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "Company restructuring not expected to affect Gordonsville facility",
+  "publication_date": "2025-12",
+  "summary": "Kl\u00f6ckner Pentaplast's Chapter 11 restructuring and financial restructuring support agreement are not expected to impact local workers at its Gordonsville facility. The restructuring aims to strengthen the company's financial foundation and ownership structure while continuing normal operations.",
+  "source": "CBS19 News",
+  "url": "https://www.cbs19news.com/news/company-restructuring-not-expected-to-affect-gordonsville-facility/article_4149f387-d5a8-473c-bba7-44b64ee9149e.html"
+}
+--------------------------------------------------------------------------------
+[20:53:27] PARSE_ARTICLE - company=Universal McCann
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "McCann, MullenLowe unite to form integrated creative agency in Singapore",
+  "publication_date": "2025-12",
+  "summary": "McCann Singapore and MullenLowe Singapore are merging under Omnicom\u2019s new structure to create a unified creative agency. The merger leverages complementary strengths and longstanding IPG heritage, with Brandon Cheung supporting the transition into early 2026.",
+  "source": "MARKETECH APAC",
+  "url": "https://marketech-apac.com/mccann-mullenlowe-unite-to-form-integrated-creative-agency-in-singapore/"
+}
+--------------------------------------------------------------------------------
+[20:53:27] PARSE_ARTICLE - company=Universal McCann
+Error: Invalid isoformat string: '2024-11'
+Data: {
+  "headline": "Perplexity Abandons Ads, Says Advertising Undermines User Trust in AI",
+  "publication_date": "2024-11",
+  "summary": "Perplexity launched its ad program in November 2024 with Universal McCann among the first partners. Sponsored content was labeled beside chatbot answers, but the company stated ads did not influence responses.",
+  "source": "Techloy",
+  "url": "https://www.techloy.com/perplexity-abandons-ads-says-advertising-undermines-user-trust-in-ai/"
+}
+--------------------------------------------------------------------------------
+[20:53:45] PARSE_ARTICLE - company=Little Island Productions
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Little Island at Pier 55 - Wikipedia",
+  "publication_date": "2026-02",
+  "summary": "Little Island is an award-winning public park in New York City featuring two performance venues and presenting a series of new works across dance, music, theater, and opera from June through September. It is ADA compliant and accessible, hosting cultural events throughout the summer season.",
+  "source": "Wikipedia",
+  "url": "https://en.wikipedia.org/wiki/Little_Island_at_Pier_55"
+}
+--------------------------------------------------------------------------------
+[20:53:45] PARSE_ARTICLE - company=Little Island Productions
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Little Island | TDF",
+  "publication_date": "2026-02",
+  "summary": "Little Island hosts a summer series of cultural events including dance, music, theater, and opera from June to September. The venue is fully ADA compliant with accessible pathways and seating, supporting a diverse range of performances and audience needs.",
+  "source": "TDF",
+  "url": "https://www.tdf.org/theaters/2057/little-island/"
+}
+--------------------------------------------------------------------------------
+[20:53:45] PARSE_ARTICLE - company=Little Island Productions
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Show Score | Little Island Summer Shows NYC Reviews and Tickets",
+  "publication_date": "2026-02",
+  "summary": "Little Island at Pier 55 is presenting over 110 live performances this summer, spanning music, theater, dance, opera, and interdisciplinary works. The season features a wide range of artists and productions, highlighting the venue's active role in New York City's cultural scene.",
+  "source": "Show-Score",
+  "url": "https://www.show-score.com/off-broadway-shows/little-island-summer-shows"
+}
+--------------------------------------------------------------------------------
+[20:54:39] PARSE_ARTICLE - company=Linklaters
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Linklaters Continues US Expansion With New Office",
+  "publication_date": "2026-02",
+  "summary": "Linklaters is expanding aggressively in the US, recently leasing an additional 48,000 square feet at 1290 Avenue of the Americas in New York, increasing its total office space in the city to over 150,000 square feet, signaling strong regional growth.",
+  "source": "LawFuel",
+  "url": "https://www.lawfuel.com/linklaters-continues-us-expansion-with-new-office/"
+}
+--------------------------------------------------------------------------------
+[20:54:39] PARSE_ARTICLE - company=Linklaters
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Linklaters advises on Zijin Mining\u2019s US$1.5bn zero-coupon H-share convertible bond offering",
+  "publication_date": "2026-02",
+  "summary": "Linklaters advised Zijin Mining on a US$1.5 billion zero-coupon H-share convertible bond offering, the largest convertible bond issuance globally so far in 2026, and the first negative-yield convertible bond in the Asia-Pacific mining sector, highlighting its expertise in complex financial instruments.",
+  "source": "Legal Desire",
+  "url": "https://legaldesire.com/linklaters-advises-on-zijin-minings-us1-5bn-zero-coupon-h-share-convertible-bond-offering/"
+}
+--------------------------------------------------------------------------------
+[20:55:08] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'March 1, 2026'
+Data: {
+  "headline": "Exclusive: A new CBS News emerges amid Iran crisis",
+  "publication_date": "March 1, 2026",
+  "summary": "Bari Weiss, the new CBS News editor-in-chief, is steering the network with a right-leaning and pro-Israel editorial stance, particularly evident in coverage of the Iran protests and US military buildup. Weiss has been highly engaged in directing coverage, reflecting a shift in the network's editorial leadership amid geopolitical tensions.",
+  "source": "Semafor",
+  "url": "https://www.semafor.com/article/03/01/2026/a-new-cbs-news-emerges-amid-iran-crisis"
+}
+--------------------------------------------------------------------------------
+[20:55:08] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'February 27, 2026'
+Data: {
+  "headline": "Departing CBS News producer claims political bias as Paramount poised to buy Warner Bros",
+  "publication_date": "February 27, 2026",
+  "summary": "A veteran CBS News producer departing after 46 years alleges political bias within the network, citing a chilling effect on newsroom feedback and criticism. This comes as Paramount, CBS News' parent company, is set to acquire Warner Bros, raising concerns about editorial independence.",
+  "source": "The Guardian",
+  "url": "https://www.theguardian.com/media/2026/feb/27/cbs-news-political-bias-paramount-warner-bros"
+}
+--------------------------------------------------------------------------------
+[20:55:08] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'February 27, 2026'
+Data: {
+  "headline": "David Ellison Is Shaking Up CBS News; CNN Looks to Be Next",
+  "publication_date": "February 27, 2026",
+  "summary": "David Ellison is leading significant changes at CBS News amid the impending acquisition of Warner Bros, which also owns CNN. The media landscape is shifting as these major news organizations come under new ownership, with potential impacts on editorial direction and operations.",
+  "source": "Bloomberg",
+  "url": "https://www.bloomberg.com/news/articles/2026-02-27/david-ellison-is-shaking-up-cbs-news-cnn-looks-to-be-next"
+}
+--------------------------------------------------------------------------------
+[20:55:08] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'February 27, 2026'
+Data: {
+  "headline": "CBS News and CNN staffers fear \u2018disaster\u2019 as Paramount wins Warner Bros battle",
+  "publication_date": "February 27, 2026",
+  "summary": "Staff at CBS News and CNN express anxiety over Paramount's acquisition of Warner Bros Discovery, fearing ideological shifts under Trump-friendly ownership. Concerns include potential programming changes and the influence of CBS News editor-in-chief Bari Weiss in shaping network direction.",
+  "source": "The Guardian",
+  "url": "https://www.theguardian.com/media/2026/feb/27/cbs-news-cnn-paramount-warner-bros-employees"
+}
+--------------------------------------------------------------------------------
+[20:55:08] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'February 21, 2026'
+Data: {
+  "headline": "CBS News is convulsing as Larry Ellison tries to please Trump",
+  "publication_date": "February 21, 2026",
+  "summary": "CBS News is experiencing internal turmoil following its acquisition financed by Trump supporter Larry Ellison, with reports of loss of editorial independence and political bias. High-profile departures and editorial conflicts highlight challenges in maintaining journalistic standards under new ownership.",
+  "source": "The Guardian",
+  "url": "https://www.theguardian.com/commentisfree/2026/feb/21/cbs-trump-anderson-cooper-stephen-colbert-paramount"
+}
+--------------------------------------------------------------------------------
+[20:55:37] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "Deloitte is overhauling job titles for its US workforce \u2014 here's why",
+  "publication_date": "2026-01",
+  "summary": "Deloitte is implementing a major overhaul of job titles for its US employees, effective June 1, 2026, introducing a new class of leader and changing traditional progression paths. This change affects all US divisions and impacts 181,500 employees.",
+  "source": "Business Insider",
+  "url": "https://www.businessinsider.com/deloitte-gives-us-employees-new-job-titles-leader-role-2026-1"
+}
+--------------------------------------------------------------------------------
+[20:55:37] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "Compared: How KPMG, EY, PwC, and Deloitte Performed in 2025",
+  "publication_date": "2025-12",
+  "summary": "Deloitte recorded a 4.8% annual revenue growth in its most recent financial year, maintaining steady growth compared to the previous year. The firm also expanded its workforce alongside EY and KPMG, while PwC reduced its headcount.",
+  "source": "Business Insider",
+  "url": "https://www.businessinsider.com/big-four-earnings-compared-ey-deloitte-pwc-kpmg-2025-12"
+}
+--------------------------------------------------------------------------------
+[20:55:37] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Deloitte shake-up of global structure set to trigger UK leadership race",
+  "publication_date": "2026",
+  "summary": "Deloitte is overhauling its global structure to integrate operations across 80 countries in Europe and the Middle East, a move expected to trigger a leadership race in the UK.",
+  "source": "Financial Times",
+  "url": "https://www.ft.com/content/d3e01007-7fd8-4a1a-84ad-26e13ee11ddb"
+}
+--------------------------------------------------------------------------------
+[20:55:37] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "Deloitte rolled out Zora AI, an agentic platform built with Nvidia",
+  "publication_date": "2025-12",
+  "summary": "Deloitte launched Zora AI, a platform developed with Nvidia that provides clients with intelligent digital workers capable of autonomously completing tasks, reflecting the firm's strategic move into AI-driven consulting services.",
+  "source": "Business Insider",
+  "url": "https://www.businessinsider.com/how-ai-changed-big-four-workflow-hiring-jobs-2025-12"
+}
+--------------------------------------------------------------------------------
+[20:55:37] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "Deloitte conducted an 8-week review of Whole Foods' use of Microsoft applications",
+  "publication_date": "2025-12",
+  "summary": "Deloitte's internal review found inefficiencies at Whole Foods due to fragmented Microsoft toolsets, loose security, and complex user management, impacting collaboration with Amazon employees.",
+  "source": "Business Insider",
+  "url": "https://www.businessinsider.com/amazon-whole-foods-microsoft-365-software-integration-challenges-deloitte-2025-12"
+}
+--------------------------------------------------------------------------------
+[20:55:37] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Palantir and Deloitte among beneficiaries of spending by government agencies",
+  "publication_date": "2026",
+  "summary": "Deloitte is identified as a beneficiary of increased government spending linked to immigration enforcement policies under the Trump administration.",
+  "source": "Financial Times",
+  "url": "https://www.ft.com/content/c74170d3-237d-459c-8642-bfd71530897d"
+}
+--------------------------------------------------------------------------------
+[20:55:37] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Deloitte received the most gold awards in the ninth annual FT-Statista listing of consultancies",
+  "publication_date": "2026",
+  "summary": "Deloitte earned the highest number of gold ratings (25) in the UK\u2019s Leading Management Consultants 2026 ratings, highlighting its strong market positioning and reputation in consulting.",
+  "source": "Financial Times",
+  "url": "https://www.ft.com/content/dfaff23c-9e47-43f7-8c0f-393939c1c16f"
+}
+--------------------------------------------------------------------------------
+[20:56:30] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Pe Pipe Resin Market Analysis 2026 - Latest Data & Current Insights",
+  "publication_date": "2026-02",
+  "summary": "The US PE pipe resin market is projected to grow at a CAGR of 6.94% from $5.91 billion in 2026 to $8.84 billion by 2032, driven by innovation and sustainability trends.",
+  "source": "WeReports",
+  "url": "https://wereports.com/report/pe-pipe-resin-market"
+}
+--------------------------------------------------------------------------------
+[20:57:24] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Future of Film Distribution : Strategy Guide for Buyers",
+  "publication_date": "2026",
+  "summary": "The film distribution industry faces a data deficit due to lack of centralized intelligence, leading to reliance on fragmented information. AI platforms like Vitrina help acquisition leads find trending titles faster, aiding strategic mergers like Radial Entertainment's to thrive in multi-platform licensing.",
+  "source": "Vitrina.ai Blog",
+  "url": "https://vitrina.ai/blog/the-future-of-film-sales-and-distribution-emerging-models-new-platforms-and-evolving-viewer-preferences/"
+}
+--------------------------------------------------------------------------------
+[20:57:24] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "What AI could mean for film and TV production and the industry\u2019s future",
+  "publication_date": "2026",
+  "summary": "AI is expected to democratize high-end content creation, shift consumer attention to user-generated content and smaller studios, and enable new forms of immersive and personalized entertainment. However, AI-generated content quality is not yet premium, and its impact on jobs and creativity remains uncertain.",
+  "source": "McKinsey & Company",
+  "url": "https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/what-ai-could-mean-for-film-and-tv-production-and-the-industrys-future"
+}
+--------------------------------------------------------------------------------
+[20:57:24] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "9 Major Trends Shaping the Entertainment, Movie, Publishing and Media Industry: Insights for Investors, Consultants and Marketing Professionals in 2026",
+  "publication_date": "2026",
+  "summary": "Key trends include legal and ethical debates over copyright and AI, subscription fatigue, platform competition, rising content costs, and the rapid adoption of AI tools in scriptwriting, editing, and content recommendation, shaping the industry's next growth phase.",
+  "source": "Plunkett Research, Ltd.",
+  "url": "https://www.plunkettresearch.com/9-major-trends-shaping-the-entertainment-movie-publishing-and-media-industry-insights-for-investors-consultants-and-marketing-professionals-in-2026/"
+}
+--------------------------------------------------------------------------------
+[20:57:24] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "3 Film & Television Production Stocks to Watch Amid Dull Industry Trends",
+  "publication_date": "2026-01",
+  "summary": "The film and TV production industry is investing heavily in original programming and exclusive rights amid operational constraints on theaters. Notable moves include Zuffa Boxing's launch on Paramount+, partnerships enhancing brand integration, and Warner's pioneering AI music generation licensing, signaling innovation and vertical integration.",
+  "source": "PrimePublishers.com",
+  "url": "https://www.primepublishers.com/3-film-television-production-stocks-to-watch-amid-dull-industry-trends/article_b5de21f9-a3f7-5d8f-810e-ffd508a35be0.html"
+}
+--------------------------------------------------------------------------------
+[20:57:24] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Media and entertainment outlook | Deloitte Insights",
+  "publication_date": "2025",
+  "summary": "Generative AI is poised to both amplify and disrupt the media industry, making studios more efficient while eroding premium content moats. The outlook anticipates more consolidation in an acquisition-friendly regulatory environment in 2025.",
+  "source": "Deloitte Insights",
+  "url": "https://www.deloitte.com/us/en/insights/industry/technology/technology-media-telecom-outlooks/2025-media-entertainment-outlook.html"
+}
+--------------------------------------------------------------------------------
+[20:57:24] PARSE_ARTICLE - industry=Film Entertainment: Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Los Angeles\u2019 Hold on Hollywood Is Slipping",
+  "publication_date": "2026",
+  "summary": "Film and TV production is declining in Los Angeles as studios like Netflix, Paramount, and Lionsgate expand production bases in New Jersey and other states offering generous tax incentives. Illinois is emerging as a player, reflecting a shift in production hubs away from California.",
+  "source": "Hollywood Reporter",
+  "url": "https://www.hollywoodreporter.com/business/business-news/los-angeles-hollywood-production-slipping-1236478609/"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Packaging Trends in India: Emerging 2026 Insights",
+  "publication_date": "2026",
+  "summary": "Indian packaging is shifting towards high-tech, sustainable brand storytelling driven by conscious consumerism and e-commerce growth. Innovations include specialized carton shapes, right-sized packaging for e-commerce, and sustainability by reducing void fill.",
+  "source": "Robus India",
+  "url": "https://www.robusindia.com/emerging-packaging-trends-in-india/"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: 'December 16, 2025'
+Data: {
+  "headline": "Packaging Trends for E-commerce 2026 Guide",
+  "publication_date": "December 16, 2025",
+  "summary": "E-commerce packaging is now a marketing tool with brands investing in custom boxes, printed logos, and unique styles to enhance unboxing experiences. Smart packaging technology is expanding beyond luxury brands to mainstream use.",
+  "source": "Upack",
+  "url": "https://www.upack.in/blog/post/packaging-trends-for-e-commerce-and-logistics-in-2026-the-complete-industry-guide"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Packaging Industry in India: Growth & Future Scope",
+  "publication_date": "2026",
+  "summary": "The Indian packaging industry is rapidly growing, projected to reach over $140 billion by 2029, driven by e-commerce, pharmaceuticals, and organized retail. Paper-based packaging is growing at 12% CAGR due to environmental regulations.",
+  "source": "Robus India",
+  "url": "https://www.robusindia.com/packaging-industry-in-india-growth-and-future-scope/"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India's Corrugated Paper Box Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "India is the world's third-largest consumer and producer of corrugated paper boxes with diverse product mixes. Demand is driven by food, consumer goods, industrial, pharmaceutical, and e-commerce sectors, with evolving value-added packaging products.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/india-cartons-boxes-and-cases-of-corrugated-paper-or-paperboard-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top 10 Packaging Design Trends 2026 That Gen Z Consumers Demand",
+  "publication_date": "2026",
+  "summary": "Typography-led packaging and color psychology are key trends driven by Gen Z consumers seeking authenticity, sustainability, and digital connectivity. Packaging is becoming an experience and marketing tool reflecting brand values.",
+  "source": "Artexpress",
+  "url": "https://artexpress.in/packaging-design-2026/"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top 8 Packaging Stocks In India 2026 | Best Packaging Companies To Watch",
+  "publication_date": "2026",
+  "summary": "Key packaging companies in India include Arrow, B&A Packaging, Anuroop Packaging, Oricon, and Panther Industrial Products. Market cap, debt levels, and profitability metrics like ROE and ROCE are important for evaluating these firms.",
+  "source": "Samco",
+  "url": "https://www.samco.in/knowledge-center/articles/top-packaging-stocks-in-india/"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Best Packaging Stocks in India (2026)",
+  "publication_date": "2026",
+  "summary": "Prominent packaging companies include AGI Greenpac Ltd, EPL Ltd, Jindal Poly Films Ltd, and Uflex Ltd. The industry covers rigid, flexible, paper, and containerboard packaging, with growth driven by exports, sustainability trends, and regulations.",
+  "source": "Tickertape",
+  "url": "https://www.tickertape.in/stocks/collections/packaging-stocks"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Corrugated Boxes Market Size, Share & Growth Report, 2035",
+  "publication_date": "2026",
+  "summary": "The corrugated boxes market is growing due to e-commerce and food & beverage packaging needs. Trends include right-sized, lightweight, and protective packaging. UCanPack launched new corrugated boxes for e-commerce in January 2026.",
+  "source": "GM Insights",
+  "url": "https://www.gminsights.com/industry-analysis/corrugated-boxes-market"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: 'February 2026'
+Data: {
+  "headline": "Eco-Friendly Packaging Trends in India 2026: The Rise of Non-Woven Bags",
+  "publication_date": "February 2026",
+  "summary": "Eco-friendly packaging is rapidly growing in India with plastic bans and consumer shifts towards sustainable options like non-woven bags. The green packaging industry is expected to reach USD 57.2 billion by 2033.",
+  "source": "Go Green Nonwoven Bags",
+  "url": "https://www.gogreennonwovenbags.com/eco-friendly-packaging-trends-india-2026/"
+}
+--------------------------------------------------------------------------------
+[20:57:50] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "The Key Trends Shaping the Packaging Industry in 2026",
+  "publication_date": "2026",
+  "summary": "Key trends include mono-material packaging for recyclability, smart packaging moving to mainstream, personalized packaging via digital printing, and mandatory environmental labeling to meet regulations and ESG goals.",
+  "source": "Packaging World Insights",
+  "url": "https://www.packagingworldinsights.com/trends/the-key-trends-shaping-the-packaging-industry-in-2026/"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Packaging Trends in India: Emerging 2026 Insights",
+  "publication_date": "2026",
+  "summary": "Indian packaging is shifting towards high-tech, sustainable brand storytelling driven by conscious consumerism and e-commerce growth. Innovations include specialized carton shapes, right-size packaging for e-commerce, and sustainability by reducing void fill.",
+  "source": "Robus India",
+  "url": "https://www.robusindia.com/emerging-packaging-trends-in-india/"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: 'December 16, 2025'
+Data: {
+  "headline": "Packaging Trends for E-commerce 2026 Guide",
+  "publication_date": "December 16, 2025",
+  "summary": "E-commerce packaging is now a marketing tool with brands investing in custom boxes, printed logos, and unique styles to enhance unboxing experiences. Smart packaging technologies are increasingly adopted beyond luxury brands, impacting grocery and delivery packaging.",
+  "source": "Upack",
+  "url": "https://www.upack.in/blog/post/packaging-trends-for-e-commerce-and-logistics-in-2026-the-complete-industry-guide"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Packaging Industry in India: Growth & Future Scope",
+  "publication_date": "2026",
+  "summary": "India's packaging industry is rapidly growing, projected to reach over $140 billion by 2029, driven by e-commerce, pharmaceuticals, and organized retail. Paper-based packaging is growing fast due to environmental regulations, and quick-commerce demands specialized packaging like tamper-evident boxes.",
+  "source": "Robus India",
+  "url": "https://www.robusindia.com/packaging-industry-in-india-growth-and-future-scope/"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India's Corrugated Paper Box Market Report 2026",
+  "publication_date": "2026",
+  "summary": "India is the world's third-largest consumer and producer of corrugated paper boxes, with a diverse product mix evolving towards value-added designs. Demand is driven by food, retail, industrial, pharmaceuticals, and e-commerce sectors, reflecting modernization and growth.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/india-cartons-boxes-and-cases-of-corrugated-paper-or-paperboard-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top 10 Packaging Design Trends 2026 That Gen Z Consumers Demand",
+  "publication_date": "2026",
+  "summary": "Typography-led packaging and color psychology are key trends driven by Gen Z consumers seeking authenticity, sustainability, and digital connectivity. Packaging is becoming an experience and marketing tool reflecting brand values, especially in FMCG and lifestyle sectors.",
+  "source": "Artexpress",
+  "url": "https://artexpress.in/packaging-design-2026/"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top 8 Packaging Stocks In India 2026 | Best Packaging Companies To Watch",
+  "publication_date": "2026",
+  "summary": "Key packaging companies in India include Arrow, B&A Packaging, Anuroop Packaging, Oricon, and Panther Industrial Products. These firms specialize in cartons, paper-based, and corrugated box packaging, with market caps ranging from microcap to mid-sized, reflecting steady demand and niche markets.",
+  "source": "Samco",
+  "url": "https://www.samco.in/knowledge-center/articles/top-packaging-stocks-in-india/"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Best Packaging Stocks in India (2026)",
+  "publication_date": "2026",
+  "summary": "Prominent packaging companies in India include AGI Greenpac Ltd, EPL Ltd, Jindal Poly Films Ltd, and Uflex Ltd. The industry covers rigid, flexible, paper, and containerboard packaging, with growth driven by exports, sustainability trends, and government regulations.",
+  "source": "Tickertape",
+  "url": "https://www.tickertape.in/stocks/collections/packaging-stocks"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Corrugated Boxes Market Size, Share & Growth Report, 2035",
+  "publication_date": "2026",
+  "summary": "The corrugated boxes market is growing due to e-commerce and direct-to-consumer channels, with trends like right-sized, lightweight, and protective packaging. UCanPack launched new corrugated boxes for e-commerce in January 2026, enhancing protection and efficiency.",
+  "source": "GM Insights",
+  "url": "https://www.gminsights.com/industry-analysis/corrugated-boxes-market"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: 'February 2026'
+Data: {
+  "headline": "Eco-Friendly Packaging Trends in India 2026: The Rise of Non-Woven Bags",
+  "publication_date": "February 2026",
+  "summary": "Eco-friendly packaging is rapidly growing in India, driven by plastic bans and consumer demand for sustainable options like non-woven bags. The green packaging industry is expected to reach USD 57.2 billion by 2033, with infrastructure and suppliers ready for the shift.",
+  "source": "Go Green Nonwoven Bags",
+  "url": "https://www.gogreennonwovenbags.com/eco-friendly-packaging-trends-india-2026/"
+}
+--------------------------------------------------------------------------------
+[20:58:28] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2025-2026'
+Data: {
+  "headline": "Disposable Bento Box Market Trends 2025-2026: Complete Guide For Food Packaging Industry",
+  "publication_date": "2025-2026",
+  "summary": "The disposable bento box market is growing with a focus on eco-friendly, PFAS-free packaging due to food safety concerns and regulatory pressures. The market is projected to grow at a CAGR of 3.2% to 2034, emphasizing sustainable materials and compliance.",
+  "source": "ManLuen Pack",
+  "url": "https://www.manluenpack.com/news/disposable-bento-box-market-trends-2025-2026-complete-guide-for-food-packaging-industry/"
+}
+--------------------------------------------------------------------------------
+[20:58:55] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Packaging Trends in India: Emerging 2026 Insights",
+  "publication_date": "2026",
+  "summary": "Indian packaging market is transforming with structural innovations in carton packaging, driven by conscious consumerism and e-commerce growth. Automation ensures quality and consistency, especially for luxury and pharmaceutical packaging.",
+  "source": "Robus India",
+  "url": "https://www.robusindia.com/emerging-packaging-trends-in-india/"
+}
+--------------------------------------------------------------------------------
+[20:58:55] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Packaging Industry in India: Growth & Future Scope",
+  "publication_date": "2026",
+  "summary": "The Indian packaging industry is growing at 22\u201325% annually, fueled by e-commerce, sustainability mandates, and automation. Paper-based packaging is growing at 12% CAGR due to environmental regulations. Quick-commerce demands specialized secondary packaging.",
+  "source": "Robus India",
+  "url": "https://www.robusindia.com/packaging-industry-in-india-growth-and-future-scope/"
+}
+--------------------------------------------------------------------------------
+[20:58:55] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Sustainable Packaging Solutions in India \u2013 Trends, Benefits & Future Outlook",
+  "publication_date": "2026",
+  "summary": "India's regulatory environment supports sustainable packaging with bans on single-use plastics and Extended Producer Responsibility policies. Brands are shifting to eco-friendly materials like paper bags and corrugated boxes to comply and innovate.",
+  "source": "Shree Krishna Paper Mills",
+  "url": "https://skpmil.com/blog/sustainable-packaging-solutions-in-india-trends-benefits-future-outlook/"
+}
+--------------------------------------------------------------------------------
+[20:58:55] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Best Packaging Stocks in India (2026)",
+  "publication_date": "2026",
+  "summary": "Key players include AGI Greenpac Ltd, EPL Ltd, Jindal Poly Films Ltd, and Uflex Ltd. The industry is innovating in eco-friendly packaging, with companies investing in sustainable materials and technologies to meet consumer and regulatory demands.",
+  "source": "Tickertape",
+  "url": "https://www.tickertape.in/stocks/collections/packaging-stocks"
+}
+--------------------------------------------------------------------------------
+[20:58:55] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India Emerges as Fastest Growing Packaging Market Globally - Regent Plast",
+  "publication_date": "2026",
+  "summary": "India is the fastest-growing packaging market globally, driven by a booming middle class and growth in FMCG and pharmaceuticals. Regent Plast leads with innovations like In-Mold Labeling and multi-layer bottles for luxury mass-market cosmetics.",
+  "source": "Regent Plast",
+  "url": "https://regentplast.com/india-emerges-as-fastest-growing-packaging-market-globally"
+}
+--------------------------------------------------------------------------------
+[20:58:55] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India Plastic Packaging Market is set to reach USD 17.3 Billion by 2034",
+  "publication_date": "2026",
+  "summary": "Regulatory mandates such as FSSAI's recycled PET content requirements drive innovation and compliance in plastic packaging. Key players include UFlex, Chemco Group, and Kandoi Group, focusing on sustainability and aligning with global standards.",
+  "source": "IMARC Group",
+  "url": "https://www.openpr.com/news/4379861/india-plastic-packaging-market-is-set-to-reach-usd-17-3-billion"
+}
+--------------------------------------------------------------------------------
+[20:58:55] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India Packaging Market See Incredible Growth 2025-2032 with Key Players Like Amcor, Tetra Pak, Uflex, Huhtamaki",
+  "publication_date": "2026",
+  "summary": "The India packaging market is rapidly evolving with a focus on regulatory frameworks, ESG trends, and innovation. Key players include Amcor, Tetra Pak, Uflex, and Huhtamaki, with growth driven by technology, sustainability, and investment outlooks.",
+  "source": "Coherent Market Insights via OpenPR",
+  "url": "https://www.openpr.com/news/4295909/india-packaging-market-see-incredible-growth-2025-2032-with-key"
+}
+--------------------------------------------------------------------------------
+[20:58:55] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "In-Depth Examination of Segments, Industry Trends, and Key Players in the Tube Packaging Market",
+  "publication_date": "2026",
+  "summary": "Impel-Stelda acquired Wimco Ltd to strengthen its position in the primary packaging market, focusing on e-commerce and sustainability. Innovations include recyclable paper-based packaging tubes, supporting freshness and home recycling.",
+  "source": "The Business Research Company via OpenPR",
+  "url": "https://www.openpr.com/news/4407092/in-depth-examination-of-segments-industry-trends-and-key"
+}
+--------------------------------------------------------------------------------
+[20:58:55] PARSE_ARTICLE - industry=Packaging: Packaging Boxes, location=india
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India's Corrugated Paper Box Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "India is the third-largest consumer and producer of corrugated paper boxes globally. Market growth is driven by e-commerce, automation, and innovation in cushioning and lightweight board grades. Pharmaceutical packaging demands high compliance and quality.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/india-cartons-boxes-and-cases-of-corrugated-paper-or-paperboard-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "2025 review of road transport in Europe - Market Insights",
+  "publication_date": "2025",
+  "summary": "European road freight volumes show stagnation due to sluggish economy; driver shortages and aging workforce prompt regulatory relaxation; decarbonisation efforts advance but face cost challenges; major sectors like steel and automotive impacted by tariffs.",
+  "source": "Market Insights Upply",
+  "url": "https://market-insights.upply.com/en/2025-review-of-road-transport-in-europe"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: 'Q4 2025'
+Data: {
+  "headline": "European road freight rates Q4 2025: Contract rates up, spot rates steady",
+  "publication_date": "Q4 2025",
+  "summary": "Contract freight rates in Europe increased quarter-on-quarter and year-on-year, while spot rates remained steady with slight quarterly growth but declined year-on-year; operators face disruptive regulations including new tolls and potential fossil fuel taxes.",
+  "source": "IRU - World Road Transport Organisation",
+  "url": "https://www.iru.org/news-resources/newsroom/european-road-freight-rates-q4-2025-contract-rates-spot-rates-steady"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Europe Trucks Market Size, Share, Trends & Analysis, 2033",
+  "publication_date": "2025",
+  "summary": "Europe truck market faces rising regulatory complexity on emissions and safety; key players focus on electrification, modular platforms, and telematics; driver shortages remain critical, especially in Germany, France, and UK; hydrogen technology emerging for decarbonisation.",
+  "source": "Market Data Forecast",
+  "url": "https://www.marketdataforecast.com/market-reports/europe-trucks-market"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Europe Long Haul Road Freight Transport Market Size, Share & 2030 Growth Trends Report",
+  "publication_date": "2025",
+  "summary": "Long haul road freight market expected to grow to $457.67 billion by 2030; major players include Girteka Logistics, DFDS, Raben Group; innovations like hydrogen auxiliary units and solar panels help reduce fuel costs and emissions; international freight growth outpaces domestic.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/europe-long-haul-road-freight-transport-market"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Will new regulations have road freight rates soaring in 2026?",
+  "publication_date": "2026",
+  "summary": "2026 brings significant regulatory changes including stricter dangerous goods enforcement, tachograph rules for vans, new safety tech for heavy vehicles, and expanding environmental zones; cost pressures from wages, tolls, and access restrictions expected to rise.",
+  "source": "CargoON",
+  "url": "https://cargoon.eu/en/digitalisation/new-regulations-in-2026/"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "The outlook for European road freight transport in 2026",
+  "publication_date": "2026",
+  "summary": "Moderate growth expected in 2026 with constrained supply and elevated costs; household consumption growth supports demand; driver shortage remains a key challenge; expert insights highlight ongoing economic and regulatory pressures.",
+  "source": "Upply Market Insights",
+  "url": "https://market-insights.upply.com/en/the-outlook-for-european-road-freight-transport-in-2026"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe 2026: The Road Transforms Amid Decarbonisation, Digitalisation and a New Regulatory Wall",
+  "publication_date": "2026",
+  "summary": "European road freight undergoing radical transformation with massive adoption of zero-emission vehicles, expanding charging infrastructure, and stringent regulatory controls aimed at safety, environment, and fair competition; digital and ecological innovation converge.",
+  "source": "Powerload Blog",
+  "url": "https://blog.powerload.es/2026/01/08/europe-2026-the-road-transforms-amid-decarbonisation-digitalisation-and-a-new-regulatory-wall/"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: 'December 2025'
+Data: {
+  "headline": "European road transport capacity shrinks as market volatility becomes the new normal",
+  "publication_date": "December 2025",
+  "summary": "European road freight market faces structural volatility and capacity shortages despite weak demand; companies like Girteka Logistics call for long-term contracts to manage instability; driver shortages and CO2 tolls contribute to challenges.",
+  "source": "Project Cargo Journal",
+  "url": "https://www.projectcargojournal.com/transport-installation/road-transport/2025/12/23/european-road-transport-capacity-shrinks-as-market-volatility-becomes-the-new-normal/"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe's Truck Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "European truck market at a pivotal point with regulatory-driven fleet renewal and electrification; major OEMs like Daimler, Traton, Volvo, DAF, and Iveco face disruption from new entrants and technology shifts; reshoring manufacturing alters freight patterns.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/europe-trucks-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[20:59:22] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Future of Freight - A point of view for decision-makers in the European logistics industry",
+  "publication_date": "2025",
+  "summary": "Geopolitical tensions, regulatory changes, climate and digitalization reshape European logistics; strategic priorities include diversifying gateways, building flexible intermodal corridors, and managing risks to maintain competitiveness.",
+  "source": "Deloitte Switzerland",
+  "url": "https://www.deloitte.com/ch/en/Industries/transportation/perspectives/future-of-freight-european-executive-brief.html"
+}
+--------------------------------------------------------------------------------
+[20:59:49] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'October 22, 2025'
+Data: {
+  "headline": "Latin America Aircraft MRO Market Valuation Expected to Hit USD 9.52 billion by Key Players: Aeroman, General Electric Company, Safran SA",
+  "publication_date": "October 22, 2025",
+  "summary": "The Latin America Aircraft MRO market is projected to reach USD 9.52 billion by 2025, driven by investments in smart solutions that improve turnaround times and cost competitiveness. Regulatory-driven innovation is shaping the market with a focus on safety, airworthiness, and operational standards. Key players include Aeroman, General Electric Company, and Safran SA.",
+  "source": "Verified Market Research via openPR.com",
+  "url": "https://www.openpr.com/news/4375917/latin-america-aircraft-mro-market-valuation-expected-to-hit-usd"
+}
+--------------------------------------------------------------------------------
+[20:59:49] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'January 2026'
+Data: {
+  "headline": "GracoRoberts Acquires Sky Mart to Expand Reach into Latin American MRO Market",
+  "publication_date": "January 2026",
+  "summary": "GracoRoberts, an aerospace chemicals distributor, acquired Sky Mart, a Miami-based aerospace chemical and lubricant distributor, to expand its presence in the Latin American MRO market. This acquisition enhances aircraft-on-ground capabilities and adds fulfillment centers in Miami, San Antonio, and Indianapolis.",
+  "source": "Aviation Week Network",
+  "url": "https://aviationweek.com/mro/mro-industry-rolling-daily-updates-january-2026"
+}
+--------------------------------------------------------------------------------
+[20:59:49] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'January 7, 2026'
+Data: {
+  "headline": "Brazil\u2019s MRO Sector Enters Structural Super-Cycle with 8.4% CAGR Through 2031",
+  "publication_date": "January 7, 2026",
+  "summary": "Brazil's MRO industry is undergoing a significant transformation with a projected CAGR of 8.4% through 2031, supported by a simplified tax model and record investments. The sector is shifting from reactive maintenance to integrated, digitally driven, performance-based services, positioning Brazil as a key industrial growth engine in South America.",
+  "source": "KTB Europe Blog",
+  "url": "https://ktbeuropeblog.wordpress.com/2026/01/07/brazil-industrial-awakening-mro-2026/"
+}
+--------------------------------------------------------------------------------
+[20:59:49] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'January 2026'
+Data: {
+  "headline": "IATA Renews Agreement with CFM International to Support Competition in Engine MRO Market",
+  "publication_date": "January 2026",
+  "summary": "The International Air Transport Association (IATA) renewed its agreement with CFM International through 2033 to promote increased competition in the MRO market for CFM engines. Limited competition was estimated to have increased engine leasing and maintenance costs by $5.7 billion in 2025, highlighting the importance of competitive MRO services.",
+  "source": "Aviation Week Network",
+  "url": "https://aviationweek.com/mro/mro-industry-rolling-daily-updates-january-2026"
+}
+--------------------------------------------------------------------------------
+[20:59:49] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "MRO Boosts Mexico\u2019s Aerospace Industry with Strategic Growth Opportunities",
+  "publication_date": "2025",
+  "summary": "Mexico's aerospace supply industry is leveraging the MRO segment as a strategic growth opportunity. MRO activities include preventive, predictive, and corrective maintenance, with emphasis on long-term investment in infrastructure, skilled labor, and regulatory compliance. The ecosystem offers diversification in engines, composites, electronics, and ground support equipment.",
+  "source": "MEXICONOW",
+  "url": "https://mexico-now.com/mro-boosts-mexicos-aerospace-industry/"
+}
+--------------------------------------------------------------------------------
+[20:59:49] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'January 9, 2026'
+Data: {
+  "headline": "Technological Innovations and Digitalization Drive Aviation MRO Market Growth",
+  "publication_date": "January 9, 2026",
+  "summary": "The aviation MRO market is expanding with adoption of AI-driven predictive maintenance and digital tools to enhance operational efficiency and reduce costs. Ramco Systems launched Aviation Software 6.0 with AI insights for MRO operations. The market is dynamic despite trade challenges, focusing on sustainability and operational excellence globally, including South America.",
+  "source": "GlobeNewswire",
+  "url": "https://www.globenewswire.com/news-release/2026/01/09/3215956/0/en/Aviation-MRO-Market-Report-2026-2030-and-2035-Opportunities-in-Adoption-of-AI-driven-Predictive-Maintenance-and-Outsourcing-to-Specialized-Third-party-Providers.html"
+}
+--------------------------------------------------------------------------------
+[21:00:15] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026-03-24 to 2026-03-28'
+Data: {
+  "headline": "Taian will make its appearance at the Expoprint & Conver Flexo Latin America 2026",
+  "publication_date": "2026-03-24 to 2026-03-28",
+  "summary": "Fujian Taian Lamination Film Co., Ltd. will exhibit its full range of thermal lamination films made from BOPP, PET, PP, BOPA, including eco-friendly and degradable types, at the largest printing and packaging industry event in Latin America.",
+  "source": "Fujian Taian Lamination Film Co., Ltd.",
+  "url": "https://www.fjlaminationfilms.com/news-show-5359.html"
+}
+--------------------------------------------------------------------------------
+[21:00:41] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPP Films Market Share Driven by Growing Flexible Packaging Demand and Advancements in Film Processing Technologies",
+  "publication_date": "2026",
+  "summary": "The BOPP films market is expanding with material innovation, advanced coating technologies, and a global shift toward sustainable packaging. Key companies include Toray Plastics, Profol, and Jindal Films Americas LLC, with strong growth in food and medical packaging sectors.",
+  "source": "Valuates Reports",
+  "url": "https://www.openpr.com/news/4305044/bopp-films-market-share-driven-by-growing-flexible-packaging"
+}
+--------------------------------------------------------------------------------
+[21:00:41] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPP Films Packaging Market Predicted to Surge to US$ 49.3 billion by 2033",
+  "publication_date": "2026",
+  "summary": "Strong demand for convenience foods and sustainability-driven innovations support BOPP film market growth in Asia including China. Regulatory emphasis on recyclable packaging and foreign investments in manufacturing facilities are key drivers.",
+  "source": "Persistence Market Research",
+  "url": "https://www.newstrail.com/bopp-films-packaging-market-predicted-to-surge-to-us-49-3-billion-by-2033-persistence-market-research/"
+}
+--------------------------------------------------------------------------------
+[21:00:41] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Mono-Material Packaging Set to Redefine Global Flexible Film Industry by 2032",
+  "publication_date": "2026",
+  "summary": "Mono-material BOPP films are growing rapidly in Asia, especially China, driven by regulatory forces, consumer sustainability preferences, and technological advances improving recyclability and performance margins.",
+  "source": "QY Research via openPR.com",
+  "url": "https://www.openpr.com/news/4380834/mono-material-packaging-set-to-redefine-global-flexible-film"
+}
+--------------------------------------------------------------------------------
+[21:00:41] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Japan's Rising Demand for Flexible and Eco-Friendly Packaging Propels the BOPP Films Market Forward",
+  "publication_date": "2026",
+  "summary": "Innovations in heat sealable and eco-friendly BOPP films are advancing flexible packaging in Asia, including China. Key players like Qingdao Cloud Film Packaging Materials Co., Ltd. are launching new products to meet sustainability and regulatory demands.",
+  "source": "DataM intelligence 4 Market Research LLP via openPR.com",
+  "url": "https://www.openpr.com/news/4330412/japan-s-rising-demand-for-flexible-and-eco-friendly-packaging"
+}
+--------------------------------------------------------------------------------
+[21:00:41] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Polypropylene Packaging Films Market Share, Size and Growth 2032",
+  "publication_date": "2026",
+  "summary": "BOPP films dominate polypropylene packaging with 62% share, widely used in food, personal care, and labeling. Leading companies in China and globally include Jindal Poly Films Ltd., UFlex Ltd., and Cosmo Films Ltd., focusing on high-barrier and sustainable mono-material solutions.",
+  "source": "Credence Research",
+  "url": "https://www.credenceresearch.com/report/polypropylene-packaging-films-market"
+}
+--------------------------------------------------------------------------------
+[21:00:41] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Specialty and High-Performance Films Market Size and Forecast 2032",
+  "publication_date": "2026",
+  "summary": "Asia Pacific, led by China, holds 34% of the specialty films market, driven by food packaging demand and sustainability trends. Companies like Clariant AG and Kaneka Corporation innovate bio-based and recyclable films to meet regulatory and consumer demands.",
+  "source": "Credence Research",
+  "url": "https://www.credenceresearch.com/report/specialty-and-high-performance-films-market"
+}
+--------------------------------------------------------------------------------
+[21:00:41] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Flexible Packaging Industry Trends of 2026",
+  "publication_date": "2026",
+  "summary": "The flexible packaging industry in China is innovating with recyclable film structures, smart packaging, and high-barrier solutions driven by regulatory requirements and consumer demand for sustainability and digital engagement.",
+  "source": "Glenroy",
+  "url": "https://www.glenroy.com/blog/flexible-packaging-trends-of-2026/"
+}
+--------------------------------------------------------------------------------
+[21:01:17] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Courier, Express and Parcel Market Trends 2026-2033: Innovation, Demand Outlook and Strategic Opportunities | DHL \u2022 FedEx \u2022 UPS \u2022 TNT",
+  "publication_date": "2026",
+  "summary": "The courier, express, and parcel market in North America is shaped by major players like DHL, FedEx, UPS, and TNT. The market is influenced by acquisitions, mergers, supply chain trends, financials, and technological innovations, with a focus on distribution channels and geographic segmentation.",
+  "source": "openPR.com",
+  "url": "https://www.openpr.com/news/4407200/courier-express-and-parcel-market-trends-2026-2033"
+}
+--------------------------------------------------------------------------------
+[21:01:17] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Distribution Pumps Market Global Demand to Accelerate by 2035 Amid Infrastructure and Industrial Investment",
+  "publication_date": "2026",
+  "summary": "In North America, accelerated replacement of aging pump assets and integration with smart water metering and SCADA systems are key trends. Demand is driven by government spending on sanitation infrastructure, regulatory tightening, and the trend towards water reuse and resource recovery, supporting growth in energy-efficient and corrosion-resistant pumps.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/blog/distribution-pumps-market-forecast-points-higher-toward-2035-driven-by-water-infrastructure-modernization/"
+}
+--------------------------------------------------------------------------------
+[21:01:17] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "2026 Retail Industry Global Outlook | Deloitte Insights",
+  "publication_date": "2026",
+  "summary": "Retailers in North America are adapting to a structural shift toward value-seeking consumer behavior, focusing on efficiency and innovation to deliver value. This shift is expected to influence wholesale distribution and retail supply chains significantly in 2026.",
+  "source": "Deloitte",
+  "url": "https://www.deloitte.com/us/en/insights/industry/retail-distribution/retail-distribution-industry-outlook.html"
+}
+--------------------------------------------------------------------------------
+[21:01:17] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Spare Parts Logistics Market Growing at 6.7% CAGR, Crossing $101.6 Billion by 2033",
+  "publication_date": "2026",
+  "summary": "North America is a mature market for spare parts distribution services characterized by advanced infrastructure and strong regulatory compliance. Market growth is driven by demographic shifts, urbanization, industrial cluster growth, and supply chain diversification to enhance resilience, with automation and sustainable logistics practices shaping competition.",
+  "source": "openPR.com",
+  "url": "https://www.openpr.com/news/4404294/spare-parts-logistics-market-growing-at-6-7-cagr-crossing"
+}
+--------------------------------------------------------------------------------
+[21:01:17] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Trends Shaping Wholesale Distribution Technology in 2026 \u2014 Crescense - SAP Partner and Value-Added Reseller",
+  "publication_date": "2026",
+  "summary": "Wholesale distribution in North America is undergoing technological transformation with investments in AI and hyperautomation by major players like McLane Co. Sustainability transparency and ESG concerns are driving technology adoption for efficiency and risk management.",
+  "source": "Crescense",
+  "url": "https://www.crescenseinc.com/insights/2026-wholesale-distribution-technology-trends"
+}
+--------------------------------------------------------------------------------
+[21:01:17] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Industrial Distribution Market 2026-2033: Growth Overview, Facts & Figures, Segmentation, Future Trends, and Historical Analysis | Grainger, Inc., Fastenal Company, MSC Industrial Direct Co.",
+  "publication_date": "2026",
+  "summary": "The North American industrial distribution market is influenced by technology trends and regulatory frameworks. Major players include Grainger, Fastenal, and MSC Industrial. The market is expected to grow with a focus on innovation and compliance.",
+  "source": "openPR.com",
+  "url": "https://www.openpr.com/news/4347332/industrial-distribution-market-2026-2033-growth-overview"
+}
+--------------------------------------------------------------------------------
+[21:01:17] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "E-Commerce Logistics Industry Outlook: USD 597.65 Billion in 2024 Rising to USD 1,792.4 Billion by 2035",
+  "publication_date": "2026",
+  "summary": "North America leads the e-commerce logistics market with about 40% global share, driven by robust infrastructure, rapid technology adoption, and regulatory support for innovations like drone deliveries. Competition among Amazon, UPS, and FedEx fosters continuous service improvements.",
+  "source": "openPR.com",
+  "url": "https://www.openpr.com/news/4406238/e-commerce-logistics-industry-outlook-usd-597-65-billion"
+}
+--------------------------------------------------------------------------------
+[21:01:17] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Distribution Automation Market Size, Trends, and Forecast",
+  "publication_date": "2026",
+  "summary": "Distribution automation in North America is growing with a focus on sustainability and energy efficiency. Utilities are investing in solutions integrating renewable energy and reducing carbon emissions. Innovation and collaboration among market players are driving advanced, environmentally friendly solutions.",
+  "source": "Strategic Revenue Insights",
+  "url": "https://www.strategicrevenueinsights.com/industry/distribution-automation-market"
+}
+--------------------------------------------------------------------------------
+[21:01:17] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "2026 Power and Utilities Industry Outlook | Deloitte Insights",
+  "publication_date": "2026",
+  "summary": "In North America, regulatory bodies like NERC and NARUC emphasize AI as a decision-support tool in electric distribution systems with cybersecurity standards evolving. Utilities focus on grid modernization, AI integration, and near-term reliability amid rising energy demands.",
+  "source": "Deloitte",
+  "url": "https://www.deloitte.com/us/en/insights/industry/power-and-utilities/power-and-utilities-industry-outlook.html"
+}
+--------------------------------------------------------------------------------
+[21:01:51] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top Film Distribution Companies in North America (2026)",
+  "publication_date": "2026",
+  "summary": "Independent film distributors have built significant market presence around major studios like Universal Pictures, which remains the most consistent domestic grossing studio. Distribution budgets vary widely from major studios to indie distributors. Vitrina maps over 140,000 entertainment companies to help producers connect with distributors across North America.",
+  "source": "Vitrina",
+  "url": "https://vitrina.ai/blog/top-film-distribution-companies-in-north-america-2024"
+}
+--------------------------------------------------------------------------------
+[21:01:51] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "Top five media & entertainment industry trends",
+  "publication_date": "2023",
+  "summary": "Media and entertainment companies are innovating to adapt to a fluid and uncertain business environment. Regulatory and tax hurdles remain key challenges for transactions. Capital allocation to metaverse initiatives is modest but ongoing, with companies appointing dedicated teams to drive innovation.",
+  "source": "EY",
+  "url": "https://www.ey.com/en_us/insights/media-entertainment/five-trends-to-watch-in-media-and-entertainment"
+}
+--------------------------------------------------------------------------------
+[21:01:51] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Film Developing Service Market Experiences Unexpected Renaissance Through 2033",
+  "publication_date": "2026",
+  "summary": "Environmental regulations in North America are tightening for analog film development, requiring investments in silver recovery and chemical neutralization to maintain compliance. Sustainability is becoming a critical factor in competitive positioning and operational compliance in the film developing service market.",
+  "source": "DataHorizzon Research via openPR",
+  "url": "https://www.openpr.com/news/4402940/film-developing-service-market-experiences-unexpected"
+}
+--------------------------------------------------------------------------------
+[21:01:51] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Eight talking points for the US film industry in 2026",
+  "publication_date": "2026",
+  "summary": "2025 saw new distributors emerge in the US film industry, with companies like Black Bear entering North American theatrical distribution. Regulatory scrutiny is intense around major deals such as Netflix's potential acquisition of Warner Bros. Discovery, which could impact theatrical windows and competition.",
+  "source": "Screen Daily",
+  "url": "https://www.screendaily.com/features/eight-talking-points-for-the-us-film-industry-in-2026/5212421.article"
+}
+--------------------------------------------------------------------------------
+[21:01:51] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Media and entertainment outlook | Deloitte Insights",
+  "publication_date": "2025",
+  "summary": "The industry is seeing more crossovers into TV and film from gaming IPs, with independent studios gaining ground. Consolidation is expected in an acquisition-friendly regulatory environment. AI is leveraged to improve ROI modeling and reduce risk in content production and distribution.",
+  "source": "Deloitte",
+  "url": "https://www.deloitte.com/us/en/insights/industry/technology/technology-media-telecom-outlooks/2025-media-entertainment-outlook.html"
+}
+--------------------------------------------------------------------------------
+[21:01:51] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "2026 Media & Entertainment Industry Outlook + Key Trends",
+  "publication_date": "2026",
+  "summary": "Privacy regulations are intensifying in North America, with the US progressing towards its own data privacy law. AI is increasingly used to automate content creation workflows and innovate content generation, impacting film and TV production and distribution.",
+  "source": "Intellias",
+  "url": "https://intellias.com/media-entertainment-industry-trends/"
+}
+--------------------------------------------------------------------------------
+[21:01:51] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "9 Major Trends Shaping the Entertainment, Movie, Publishing and Media Industry: Insights for Investors, Consultants and Marketing Professionals in 2026",
+  "publication_date": "2026",
+  "summary": "Streaming continues to dominate with media companies balancing subscriber growth, content spending, and advertising revenue. AI is reshaping creativity, and global audiences drive growth. The industry faces challenges from platform competition and rising content costs.",
+  "source": "Plunkett Research, Ltd.",
+  "url": "https://www.plunkettresearch.com/9-major-trends-shaping-the-entertainment-movie-publishing-and-media-industry-insights-for-investors-consultants-and-marketing-professionals-in-2026/"
+}
+--------------------------------------------------------------------------------
+[21:01:51] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top Film Distribution Companies Los Angeles 2026",
+  "publication_date": "2026",
+  "summary": "Netflix's planned acquisition of Warner Bros. Discovery faces intense regulatory scrutiny over market impact on film distribution competition. Paramount targets 15 theatrical releases annually starting 2026 and signed a global distribution deal with Legendary Entertainment. A24 institutionalizes technology and innovation leadership to scale.",
+  "source": "Vitrina",
+  "url": "https://vitrina.ai/blog/top-film-distribution-companies-in-los-angeles-2024"
+}
+--------------------------------------------------------------------------------
+[21:01:51] PARSE_ARTICLE - industry=Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "2026 in the Frame: 6 Key Media and Entertainment Trends to Watch",
+  "publication_date": "2026",
+  "summary": "Content creators are becoming Hollywood power players as studios embrace them as marketers and talent. AI integration deepens in creative workflows. The industry navigates political realities, AI growth, and pandemic aftereffects while seeking long-term audience engagement.",
+  "source": "The Wrap",
+  "url": "https://www.thewrap.com/industry-news/business/2026-media-entertainment-trends/"
+}
+--------------------------------------------------------------------------------

@@ -107,7 +107,7 @@ def get_news(payload: dict, query_context: str):
 
 def build_payload(user_command: str, system_command: str):
     payload = {
-        "model": "sonar",
+        "model": "sonar-pro",
         "messages": [
             {"role": "system", "content": system_command},
             {"role": "user", "content": user_command},

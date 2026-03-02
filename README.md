@@ -19,6 +19,15 @@ Then
 
 See [results](results) for the history of previous tests. Summary below in reverse date order, newest first.
 
+## 2026-03-02 summary
+
+No single winner this time round:
+
+* Industries/Regions: Syracuse favoured, with Exa second place.
+* Companies: Perplexity/Linkup (ChatGPT) or Syracuse/Linkup (Claude)
+
+Tavily is universally at the bottom.
+
 ## 2026-02-10 summary
 
 Added Exa and Tavily to the mix.

@@ -5,9 +5,9 @@ from datetime import datetime
 import os
 
 PROVIDER_NAME = "Syracuse"
-SYRACUSE_ENDPOINT = os.environ.get("SYRACUSE_ENDPOINT", "https://syracuse.1145.am/api/v1/stories")
+SYRACUSE_ENDPOINT_BASE = os.environ.get("SYRACUSE_ENDPOINT", "https://syracuse.1145.am/api/v1/stories")
 
-def call_syracuse_activities(params: Union[dict, None], query_context: str):
+def call_syracuse_activities(endpoint: str, params: Union[dict, None], query_context: str):
     if SYRACUSE_API_KEY is None or SYRACUSE_API_KEY.strip() == '' or SYRACUSE_API_KEY == 'my_syracuse_key':
         return {'results': []}
     
@@ -15,7 +15,7 @@ def call_syracuse_activities(params: Union[dict, None], query_context: str):
         headers = {
             "Authorization": f"Token {SYRACUSE_API_KEY}"
         }
-        response = requests.get(SYRACUSE_ENDPOINT, headers=headers, params=params)
+        response = requests.get(f"{SYRACUSE_ENDPOINT_BASE}/{endpoint}", headers=headers, params=params)
         response.raise_for_status()
         return response.json()
     except Exception as e:
@@ -24,13 +24,13 @@ def call_syracuse_activities(params: Union[dict, None], query_context: str):
 
 def get_company_articles_for(company: str):
     query_context = f"company={company}"
-    resp = call_syracuse_activities({"org_name": company}, query_context)
+    resp = call_syracuse_activities("organization", {"org_name": company}, query_context)
     articles = parse_response(resp, query_context)
     return articles
 
 def get_industry_articles_for(industry: str, location: str):
     query_context = f"industry={industry}, location={location}"
-    resp = call_syracuse_activities({"industry": industry, "location": location}, query_context)
+    resp = call_syracuse_activities("industry-location", {"industry": industry, "location": location}, query_context)
     articles = parse_response(resp, query_context)
     return articles
 
@@ -49,10 +49,10 @@ def item_to_article(item: dict, query_context: str):
     try:
         return {
             "headline": item['headline'],
-            "published_date_clean": datetime.fromisoformat(item["date_published"]),
-            "published_date": item["date_published"],
+            "published_date_clean": datetime.fromisoformat(item["published_date"]),
+            "published_date": item["published_date"],
             "summary_text": item['document_extract'],
-            "published_by": item['source_organization'],
+            "published_by": item['published_by'],
             "document_url": item['document_url'],
             "activity_type": item['activity_class'],
         }
