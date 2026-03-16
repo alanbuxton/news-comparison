@@ -123,6 +123,13 @@ Note: the mapping is re-randomised on every run of `analyse.py`, so Provider A i
 
 ## Results history
 
+### 2026-03-16
+
+No single winner across both query types:
+
+- **Companies:** Syracuse 1st (highest precision, no hallucinations, clean sources — but zero coverage for 7+ obscure companies), Linkup 2nd (best summaries, 21 errors causing complete failures for several companies), Perplexity 3rd (good coverage and summaries for known companies, but hallucinated articles for obscure Brazilian companies), Exa 4th (firehose of irrelevant syndicated content, scraped boilerplate summaries), Tavily last (no dates on any article, scraped navigation menus as summaries, >90% false-positive rate). [Details](results/2026-03-16/AI-analysis/claude-companies-20260316-201205.md)
+- **Industries:** Exa 1st (only provider returning relevant dated content across all 12 topics, despite duplication and boilerplate), Tavily 2nd (deepest source network including ICIS/Aviation Week but zero dates on every article), Perplexity 3rd (clean results for some topics but fatally thin at 35 articles and India/Indiana confusion), Syracuse 4th (best summary quality but severe coverage gaps — zero results for Film/CN and MRO/South America, frequent industry mismatches), Linkup last (87% error rate — essentially non-functional). [Details](results/2026-03-16/AI-analysis/claude-industries-20260316-201205.md)
+
 ### 2026-03-08
 
 Syracuse ranked 1st in both query types:
