@@ -47,7 +47,7 @@ def parse_perplexity_responses(perplexity_content: dict, query_context: str) -> 
                 "published_date": "",
                 "published_date_clean": "",
                 "published_by": "",
-                "document_url": getattr(item, 'document_url', 'unknown'),
+                "document_url": item.get('document_url', 'unknown'),
             })
     return sorted(articles, key=lambda x: x.get("published_date", ""), reverse=True)
 

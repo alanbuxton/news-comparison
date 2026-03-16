@@ -239,7 +239,6 @@ def _format_article(index: int, art: dict) -> list[str]:
     headline = art.get("headline", "").strip()
     source = art.get("published_by", "").strip()
     url = art.get("document_url", "").strip()
-    activity = art.get("activity_type", "").strip()
     summary = (art.get("summary_text") or "").strip()
     if len(summary) > MAX_SUMMARY_CHARS:
         summary = summary[:MAX_SUMMARY_CHARS] + "…"
@@ -247,8 +246,6 @@ def _format_article(index: int, art: dict) -> list[str]:
     label_parts = [f"[{date}]", headline]
     if source:
         label_parts.append(f"| {source}")
-    if activity:
-        label_parts.append(f"[{activity}]")
     lines.append(f"    {index}. {' '.join(label_parts)}")
     if url:
         lines.append(f"       URL: {url}")

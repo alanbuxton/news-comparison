@@ -85,7 +85,13 @@ def item_to_article(item, query_context: str):
             "document_url": item.url,
         }
     except Exception as e:
-        log_error(PROVIDER_NAME, "PARSE_ARTICLE", query_context, str(e), {"url": getattr(item, 'url', 'unknown')})
+        log_error(PROVIDER_NAME, "PARSE_ARTICLE", query_context, str(e), {
+            "url": getattr(item, 'url', 'unknown'),
+            "title": getattr(item, 'title', 'unknown'),
+            "published_date": getattr(item, 'published_date', 'unknown'),
+            "author": getattr(item, 'author', None),
+            "highlights": getattr(item, 'highlights', []),
+        })
         return {
             "headline": "*** ERROR ***",
             "summary_text": str(e),

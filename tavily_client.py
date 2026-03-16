@@ -80,5 +80,5 @@ def item_to_article(item: dict, query_context: str):
             "published_date": "",
             "published_date_clean": "",
             "published_by": "",
-            "document_url": getattr(item, 'url', 'unknown'),
+            "document_url": item.get('url', 'unknown'),
         }
