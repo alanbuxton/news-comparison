@@ -46,12 +46,13 @@ def parse_response(resp_json, query_context: str) -> list[dict]:
         return []
 
 def item_to_article(item: dict, query_context: str):
+    label_text = f"{item['label']}: " if item['label'] else ''
     try:
         return {
             "headline": item['headline'],
             "published_date_clean": datetime.fromisoformat(item["published_date"]),
             "published_date": item["published_date"],
-            "summary_text": item['document_extract'],
+            "summary_text": label_text + item['document_extract'],
             "published_by": item['published_by'],
             "document_url": item['document_url'],
             "activity_type": item['activity_class'],

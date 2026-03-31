@@ -123,6 +123,13 @@ Note: the mapping is re-randomised on every run of `analyse.py`, so Provider A i
 
 ## Results history
 
+### 2026-03-31
+
+Syracuse 1st in both query types:
+
+- **Companies:** Syracuse 1st (highest reliability — precise, no hallucination, best coverage depth for well-known companies at 20 articles each), Linkup 2nd (best per-article summary quality and near-perfect precision, but only 85 articles total and 26 errors — zero results for 3 companies), Exa 3rd (dates present, real news for well-known companies, but systematic injection of identical irrelevant filler articles across 15+ company searches), Perplexity 4th (strong precision and summaries for known companies, but hallucinated entire articles for L M Goes Embalagens and Husky Technologies — fabricated Reuters/Bloomberg/FT URLs), Tavily last (zero dates on all 1,943 articles, summaries are paywall boilerplate or scraped navigation chrome, 8+ companies returned zero relevant articles). [Details](results/2026-03-31/AI-analysis/claude-companies-20260331-214203.md)
+- **Industries:** Syracuse 1st (highest signal purity — virtually every article real, relevant, dated, and from authoritative sources; zero hallucination), Exa 2nd (broadest real coverage on several industrial topics but badly undermined by cross-topic pollution from the same ~10 irrelevant Nigerian/Ghanaian news articles injected across every topic, plus heavy syndication duplication), Linkup 3rd (best summary quality and high relevance precision, but 58% error rate and only 41 total articles — unreliable), Perplexity 4th (appears to deliver perfectly curated results but widespread hallucination — fake Reuters, Bloomberg, FT links with placeholder article IDs like "12345678" — making it actively dangerous), Tavily last (809 articles, zero dates, boilerplate summaries, catastrophic industry mismatching — cosmetics news for packaging boxes, cinema news for packaging film, US trucking for European road freight). [Details](results/2026-03-31/AI-analysis/claude-industries-20260331-214203.md)
+
 ### 2026-03-16
 
 No single winner across both query types:
