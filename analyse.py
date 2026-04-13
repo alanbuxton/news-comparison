@@ -210,6 +210,45 @@ reach 1st place. Distinguish between fixable issues and fundamental problems.
 List the honest weaknesses of the 1st-ranked provider.
 """
 
+README_SUMMARY_PROMPT = """\
+Two analyses of news search providers are below — one for company queries, one for \
+industry/location queries. Providers are coded A–E.
+
+Decode key: {decode_key}
+
+Use real provider names (not coded labels) throughout your response.
+
+Write a short "Results history" entry for a README.md. Output ONLY the entry — no \
+preamble, no commentary after. Follow this format exactly:
+
+### {date}
+
+[One sentence: e.g. "Syracuse 1st in both query types:" or \
+"No single winner across both query types:"]
+
+- **Companies:** [Provider] 1st (specific reason with concrete examples), \
+[Provider] 2nd (reason), [Provider] 3rd (reason), [Provider] 4th (reason), \
+[Provider] last (specific failures with examples).
+- **Industries:** [Provider] 1st (specific reason), ..., \
+[Provider] last (specific failures with examples).
+
+Rules:
+- Be specific — name companies that were missed, quote error rates, describe \
+hallucination patterns (e.g. "fabricated Reuters/Bloomberg URLs"), note zero-date issues.
+- Each bullet is a single sentence covering all five providers in rank order.
+- No [Details](...) links.
+
+---
+COMPANIES ANALYSIS
+
+{companies_analysis}
+
+---
+INDUSTRIES ANALYSIS
+
+{industries_analysis}
+"""
+
 
 # ---------------------------------------------------------------------------
 # Data loading and formatting
@@ -385,6 +424,43 @@ def call_claude(client: anthropic.Anthropic, model: str, data_text: str, prompt_
 
 
 # ---------------------------------------------------------------------------
+# README summary
+# ---------------------------------------------------------------------------
+
+def generate_readme_summary(
+    client: anthropic.Anthropic,
+    model: str,
+    companies_analysis: str,
+    industries_analysis: str,
+    label_to_provider: dict,
+    run_date: str,
+) -> str:
+    decode_key = ", ".join(f"{label}={provider}" for label, provider in sorted(label_to_provider.items()))
+    prompt = README_SUMMARY_PROMPT.format(
+        decode_key=decode_key,
+        date=run_date,
+        companies_analysis=companies_analysis,
+        industries_analysis=industries_analysis,
+    )
+    for attempt in range(4):
+        try:
+            response = client.messages.create(
+                model=model,
+                max_tokens=1024,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            text_block = next(b for b in response.content if b.type == "text")
+            return text_block.text
+        except anthropic.RateLimitError:
+            if attempt == 3:
+                raise
+            wait = 60 * (attempt + 1)
+            print(f"  Rate limit hit — waiting {wait}s before retry {attempt + 2}/4…")
+            time.sleep(wait)
+    raise RuntimeError("unreachable")
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -479,6 +555,67 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     for label, provider in sorted(label_to_provider.items()):
         print(f"  Provider {label} = {provider}")
 
+    # Generate README snippet
+    print("\nWaiting 60s before README summary to stay within token-per-minute rate limit…")
+    time.sleep(60)
+    print("Generating README summary…")
+    run_date = os.path.basename(os.path.normpath(results_dir))
+    readme_summary = generate_readme_summary(
+        client, model, companies_analysis, industries_analysis, label_to_provider, run_date
+    )
+    print("\n" + "=" * 60)
+    print("README SNIPPET — paste into Results history in README.md")
+    print("=" * 60)
+    print(readme_summary)
+    print("=" * 60)
+
+
+def run_readme_only(results_dir: str, model: str = DEFAULT_MODEL):
+    """Generate a README snippet from existing AI-analysis files without re-running analysis."""
+    ai_dir = os.path.join(results_dir, "AI-analysis")
+    if not os.path.isdir(ai_dir):
+        raise FileNotFoundError(f"No AI-analysis directory found in {results_dir}")
+
+    key_files = sorted(f for f in os.listdir(ai_dir) if f.startswith("decode-key-") and f.endswith(".json"))
+    if not key_files:
+        raise FileNotFoundError(f"No decode-key-*.json files found in {ai_dir}")
+
+    key_path = os.path.join(ai_dir, key_files[-1])
+    print(f"Using decode key: {key_path}")
+    with open(key_path) as f:
+        key_data = json.load(f)
+
+    label_to_provider = key_data["label_to_provider"]
+    timestamp = key_data["generated_at"]
+
+    companies_path = os.path.join(ai_dir, f"claude-companies-{timestamp}.md")
+    industries_path = os.path.join(ai_dir, f"claude-industries-{timestamp}.md")
+    for p in (companies_path, industries_path):
+        if not os.path.exists(p):
+            raise FileNotFoundError(f"Expected analysis file not found: {p}")
+
+    with open(companies_path) as f:
+        companies_analysis = f.read()
+    with open(industries_path) as f:
+        industries_analysis = f.read()
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise EnvironmentError("ANTHROPIC_API_KEY is not set in environment / .env")
+
+    client = anthropic.Anthropic(api_key=api_key)
+    run_date = os.path.basename(os.path.normpath(results_dir))
+
+    print("Generating README summary…")
+    readme_summary = generate_readme_summary(
+        client, model, companies_analysis, industries_analysis, label_to_provider, run_date
+    )
+    print("\n" + "=" * 60)
+    print("README SNIPPET — paste into Results history in README.md")
+    print("=" * 60)
+    print(readme_summary)
+    print("=" * 60)
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -489,6 +626,7 @@ Examples:
   %(prog)s results/2026-03-02
   %(prog)s results/2026-03-02 --model claude-sonnet-4-6
   %(prog)s results/2026-03-02 --max-articles 20
+  %(prog)s results/2026-03-02 --readme-only
         """,
     )
     parser.add_argument(
@@ -510,8 +648,16 @@ Examples:
         default=DEFAULT_MAX_ARTICLES,
         help=f"Max articles per company/topic per provider sent to the model (default: {DEFAULT_MAX_ARTICLES})",
     )
+    parser.add_argument(
+        "--readme-only",
+        action="store_true",
+        help="Skip analysis; generate README snippet from existing AI-analysis files",
+    )
     args = parser.parse_args()
-    run(args.results_dir, args.output_dir, args.model, args.max_articles)
+    if args.readme_only:
+        run_readme_only(args.results_dir, args.model)
+    else:
+        run(args.results_dir, args.output_dir, args.model, args.max_articles)
 
 
 if __name__ == "__main__":
