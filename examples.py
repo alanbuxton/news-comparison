@@ -11,6 +11,22 @@ industry_location_examples = [
     {"industry": "Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc)", "location": "CN" },
     {"industry": "Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"},
     {"industry": "Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"},
+    {"industry": "ALUMINIUM", "location": "Northern America" },
+    {"industry": "BOARD", "location": "Eastern Asia" },
+    {"industry": "CONSTRUCTION", "location": "Central Asia" },
+    {"industry": "ENERGY & UTILITY", "location": "South-eastern Asia" },
+    {"industry": "EQUIPMENT & MACHINERY", "location": "Southern Asia" },
+    {"industry": "EXTERNAL MANUFACTURING / TOLLING", "location": "Northern America" },
+    {"industry": "FACILITIES MANAGEMENT", "location": "New England" },
+    {"industry": "HR SERVICES", "location": "Mid Atlantic" },
+    {"industry": "IT & TELECOM", "location": "Northern Africa" },
+    {"industry": "LIQUIDS", "location": "Southern Africa" },
+    {"industry": "LOGISTICS", "location": "Western Africa" },
+    {"industry": "MRO", "location": "Eastern Africa" },
+    {"industry": "PACKAGING", "location": "Oceania" },
+    {"industry": "PAPER", "location": "Northern Europe" },
+    {"industry": "PROFESSIONAL SERVICES", "location": "Southern Europe" },
+    {"industry": "RESINS", "location": "Western Europe" },
 ]
 
 company_name_examples = [
