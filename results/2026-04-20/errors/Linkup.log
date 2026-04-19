@@ -1,0 +1,2340 @@
+[20:54:43] PARSE_ARTICLE - company=Borouge
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Borouge sales remain strong",
+  "publication_date": "2026-04",
+  "summary": "Despite a recent incident at its Ruwais facility, Borouge maintained high utilization rates and strong sales in Q1 2026 by using alternative routes and inventory storage. The company reported a net profit of $1.1 billion in 2025, reflecting robust financial performance.",
+  "source": "Oil & Gas Middle East",
+  "url": "https://www.oilandgasmiddleeast.com/news/borouge-sales-remain-strong"
+}
+--------------------------------------------------------------------------------
+[20:54:43] PARSE_ARTICLE - company=Borouge
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Borouge approves $1.32bn dividend amid strong 2025 performance",
+  "publication_date": "2026-04",
+  "summary": "Borouge approved a $1.32 billion dividend for 2025 supported by strong financial results and growth plans. Despite a recent incident causing temporary suspension at its Ruwais facility, the company maintained high utilization and sales through alternative routes in Q1 2026.",
+  "source": "Oil & Gas Middle East",
+  "url": "https://www.oilandgasmiddleeast.com/news/borouge-dividend-approved"
+}
+--------------------------------------------------------------------------------
+[20:56:29] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: 'January 22, 2026'
+Data: {
+  "headline": "HPCL-Mittal Energy Limited expands petrochemical investments and downstream projects",
+  "publication_date": "January 22, 2026",
+  "summary": "HPCL-Mittal Energy Limited (HMEL) announced a fresh \u20b92,600 crore investment to set up polypropylene downstream industries and fine chemical projects at its Bathinda refinery, enhancing value-added output beyond fuels. This move complements HPCL's broader strategy to scale up petrochemicals alongside refining expansion, positioning HMEL for growth in specialty chemicals and petrochemical products.",
+  "source": "Domain-b.com",
+  "url": "https://www.domain-b.com/industry/industry-general/hpcl-barmer-refinery-crude-start-jan"
+}
+--------------------------------------------------------------------------------
+[20:56:29] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: 'February 3, 2026'
+Data: {
+  "headline": "HPCL wins FIPI Oil Marketing Company of the Year Award 2025 at India Energy Week 2026",
+  "publication_date": "February 3, 2026",
+  "summary": "Hindustan Petroleum Corporation Limited (HPCL) received the prestigious FIPI Oil Marketing Company of the Year Award 2025 at India Energy Week 2026, recognizing its excellence in operational performance, digital initiatives, and sustainable energy solutions. The award was presented by the Union Minister of Petroleum and Natural Gas and highlights HPCL's leadership and innovation in the oil marketing sector.",
+  "source": "Sarkaritel.com",
+  "url": "https://www.sarkaritel.com/hpcl-bags-fipi-oil-marketing-company-of-the-year-award-2025-at-india-energy-week/"
+}
+--------------------------------------------------------------------------------
+[20:56:29] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: 'January 29, 2026'
+Data: {
+  "headline": "HPCL partners with Maraal Aerospace to develop solar-powered long-endurance drones",
+  "publication_date": "January 29, 2026",
+  "summary": "HPCL invested \u20b92 crore in IIT Kanpur-incubated startup Maraal Aerospace under its HP Udgam initiative to develop India's first solar-powered long-endurance UAV for defense and civilian applications. The partnership aims to promote clean energy innovation and strengthen India's aerospace capabilities with drones designed for surveillance, infrastructure inspection, and disaster management.",
+  "source": "IndianPSU.com",
+  "url": "https://indianpsu.com/hpcl-maraal-aerospace-solar-drone-iew-2026/"
+}
+--------------------------------------------------------------------------------
+[20:56:29] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: 'February 2026'
+Data: {
+  "headline": "HPCL and Indian Gas Exchange sign MoU to enhance access to Chhara LNG Terminal",
+  "publication_date": "February 2026",
+  "summary": "HPCL and Indian Gas Exchange (IGX) signed a strategic MoU to improve access to HPCL\u2019s LNG regasification infrastructure at Chhara, Gujarat, through a digital marketplace for transparent booking of regasification services. This collaboration aims to boost gas market liquidity and support the development of a more competitive natural gas market in India.",
+  "source": "IndianPSU.com",
+  "url": "https://indianpsu.com/hpcl-igx-mou-chhara-lng-terminal-iew-2026/"
+}
+--------------------------------------------------------------------------------
+[20:56:29] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: 'February 2026'
+Data: {
+  "headline": "HPCL signs 10-year LNG supply agreement with ADNOC subsidiary, deliveries from 2028",
+  "publication_date": "February 2026",
+  "summary": "HPCL signed a Sale Purchase Agreement with Abu Dhabi Gas Liquefaction Company, a subsidiary of ADNOC, for a 10-year LNG supply contract with deliveries starting in 2028. The agreement underscores the strengthening energy partnership between India and UAE and supports India's energy security and cleaner energy transition goals.",
+  "source": "PSU Watch",
+  "url": "https://psuwatch.com/newsupdates/hpcl-signs-10-year-lng-supply-pact-with-adnoc-subsidiary-deliveries-to-begin-in-2028"
+}
+--------------------------------------------------------------------------------
+[20:56:29] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "HPCL-Mittal Energy halts purchases of Russian crude following US sanctions",
+  "publication_date": "2025",
+  "summary": "HPCL-Mittal Energy Limited (HMEL) suspended further purchases of Russian crude oil in response to new US, EU, and UK restrictions on Russian oil imports. The decision aligns with Indian government energy security policies amid geopolitical pressures and reflects HMEL's strategic adjustment in crude sourcing.",
+  "source": "New Business Age",
+  "url": "https://www.newbusinessage.com/news/45989/indian-state-backed-refinery-halts-russian-oil/"
+}
+--------------------------------------------------------------------------------
+[20:56:29] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: 'February 18, 2026'
+Data: {
+  "headline": "HPCL-Mittal Energy buys Venezuelan crude oil to diversify supply mix",
+  "publication_date": "February 18, 2026",
+  "summary": "HPCL-Mittal Energy Ltd (HMEL) purchased Venezuelan crude oil for the first time in two years, acquiring one million barrels of Merey crude to diversify its supply sources amid reduced Russian oil imports. This move supports India's strategy to broaden crude sourcing and enhance energy security.",
+  "source": "MarketScreener UK",
+  "url": "https://uk.marketscreener.com/news/india-s-bharat-petroleum-hpcl-mittal-buy-venezuelan-oil-sources-say-ce7e5ddfdb8bf622"
+}
+--------------------------------------------------------------------------------
+[20:56:29] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "HPCL-Mittal Energy and Indraprastha Gas Limited sign agreement for CNG supply at retail outlets",
+  "publication_date": "2026",
+  "summary": "HMEL signed an agreement with Indraprastha Gas Limited to supply compressed natural gas (CNG) at selected HMEL retail outlets within IGL's distribution network. This collaboration aims to leverage both companies' strengths to expand cleaner fuel options for consumers.",
+  "source": "CGDIndia.net",
+  "url": "https://cgdindia.net/hmel-igl-signs-agreement-for-cng-supply/"
+}
+--------------------------------------------------------------------------------
+[20:56:29] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "HPCL-Mittal Energy undergoes internal reorganization with amalgamation of HMPL into HMEL",
+  "publication_date": "2026",
+  "summary": "The National Company Law Tribunal approved the scheme of amalgamation of HPCL-Mittal Pipelines Limited (HMPL) into HPCL-Mittal Energy Limited (HMEL), streamlining corporate structure. Khaitan & Co acted as deal counsel for this internal reorganization, enhancing operational efficiency.",
+  "source": "Khaitan & Co",
+  "url": "https://khaitanco.com/firm-matter/hpcl-mittal-pipelines-limited-and-hpcl-mittal-energy-limited-internal-reorganisation"
+}
+--------------------------------------------------------------------------------
+[20:57:41] PARSE_ARTICLE - company=International Paper
+Error: Invalid isoformat string: 'April 16, 2026'
+Data: {
+  "headline": "International Paper to Acquire North Pacific Paper Company",
+  "publication_date": "April 16, 2026",
+  "summary": "International Paper agreed to acquire North Pacific Paper Company (NORPAC) for $360 million. The acquisition will expand IP's West Coast reach and recycled containerboard output, enhancing system flexibility and reducing costs. NORPAC operates three machines producing about 1 million tons annually and employs approximately 500 people at its Longview, Washington mill.",
+  "source": "PR Newswire",
+  "url": "https://www.prnewswire.com/news-releases/international-paper-to-acquire-north-pacific-paper-company-302745070.html"
+}
+--------------------------------------------------------------------------------
+[20:57:41] PARSE_ARTICLE - company=International Paper
+Error: Invalid isoformat string: 'April 2026'
+Data: {
+  "headline": "International Paper 2026 Proxy Outlines Spin-off, DS Smith Integration and Board Reforms",
+  "publication_date": "April 2026",
+  "summary": "International Paper plans to separate its North American and EMEA packaging businesses into two independent, publicly traded companies within 12\u201315 months. The company reported strong 2025 packaging EBITDA growth and detailed integration of DS Smith acquired in 2025. New board term limits and leadership investments were also highlighted to support transformation and sustained growth.",
+  "source": "StockTitan",
+  "url": "https://www.stocktitan.net/sec-filings/IP/def-14a-international-paper-co-new-definitive-proxy-statement-1c322fe8d0bd.html"
+}
+--------------------------------------------------------------------------------
+[20:57:41] PARSE_ARTICLE - company=International Paper
+Error: Invalid isoformat string: 'January 29, 2026'
+Data: {
+  "headline": "International Paper to Split into Two Companies to Sharpen North America Focus",
+  "publication_date": "January 29, 2026",
+  "summary": "International Paper announced it will spin off its European packaging business into a separate publicly traded company, aiming to streamline operations and boost productivity in North America. The new EMEA company will combine DS Smith and IP operations and is expected to list on the London Stock Exchange. This move follows IP's $7.2 billion acquisition of DS Smith in 2024 and subsequent asset divestitures in Europe.",
+  "source": "Reuters",
+  "url": "https://www.reuters.com/business/packaging-firm-international-paper-split-into-two-companies-2026-01-29/"
+}
+--------------------------------------------------------------------------------
+[20:57:41] PARSE_ARTICLE - company=International Paper
+Error: Invalid isoformat string: 'February 25, 2026'
+Data: {
+  "headline": "International Paper Further Downsizing in South Carolina",
+  "publication_date": "February 25, 2026",
+  "summary": "International Paper announced the closure of its Georgetown, South Carolina plant, impacting 126 employees, as part of broader business restructuring. The company also expects at least seven additional closures and over 700 job cuts in the Europe, Middle East, and Africa region in 2026. These changes align with IP's ongoing optimization and the planned split into two independent companies.",
+  "source": "Packaging Dive",
+  "url": "https://www.packagingdive.com/news/international-paper-shutting-georgetown-south-carolina-plant/813037/"
+}
+--------------------------------------------------------------------------------
+[20:57:41] PARSE_ARTICLE - company=International Paper
+Error: Invalid isoformat string: 'April 18, 2026'
+Data: {
+  "headline": "AE Wealth Management Boosts Stake in International Paper",
+  "publication_date": "April 18, 2026",
+  "summary": "AE Wealth Management increased its holdings in International Paper by 12.8% in Q4 2025, now owning approximately 374,851 shares valued at $14.8 million. This institutional investment reflects confidence in IP's position and adaptability amid market challenges in the paper and packaging industry.",
+  "source": "Memphis Today",
+  "url": "https://nationaltoday.com/us/tn/memphis/news/2026/04/18/ae-wealth-management-boosts-stake-in-international-paper/"
+}
+--------------------------------------------------------------------------------
+[20:57:41] PARSE_ARTICLE - company=International Paper
+Error: Invalid isoformat string: 'April 16, 2026'
+Data: {
+  "headline": "International Paper Plans $225 Million Sustainable Packaging Facility in Mississippi",
+  "publication_date": "April 16, 2026",
+  "summary": "International Paper announced plans to build a 468,000-square-foot sustainable packaging facility in Rankin County, Mississippi, with a $225 million investment. Construction is set to begin in June 2026, targeting operational start in Q4 2027, aiming to replace outdated infrastructure and enhance operational efficiency and product quality.",
+  "source": "Intellectia.ai",
+  "url": "https://intellectia.ai/news/stock/international-paper-acquires-north-pacific-paper-for-360-million"
+}
+--------------------------------------------------------------------------------
+[21:00:14] PARSE_ARTICLE - company=Jindal Films
+Error: Invalid isoformat string: '2026-04-07 to 2026-04-15'
+Data: {
+  "headline": "Jindal Poly Films stock experiences volatility with upper and lower circuit hits in April 2026",
+  "publication_date": "2026-04-07 to 2026-04-15",
+  "summary": "Jindal Poly Films' stock hit upper circuit limits on April 7 and April 15, 2026, indicating strong buying interest, and hit a lower circuit on April 13, 2026, reflecting selling pressure amid sector headwinds and stock-specific factors. The stock remains a small-cap with market capitalization around Rs 3,200-3,300 crore and shows mixed technical signals.",
+  "source": "MarketsMojo",
+  "url": "https://www.marketsmojo.com/news/stocks-in-action/jindal-poly-films-ltd-hits-upper-circuit-amid-strong-buying-pressure-3947160"
+}
+--------------------------------------------------------------------------------
+[21:01:03] PARSE_ARTICLE - company=Klockner Pentaplast
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Kl\u00f6ckner Pentaplast advances as a leading packaging and innovation partner to the food industry",
+  "publication_date": "2026-02",
+  "summary": "Following its successful financial restructuring, Kl\u00f6ckner Pentaplast reaffirmed its strength and clear mandate to drive product innovation and sustainable growth across its global food packaging business. The company continues to focus on sustainability and innovation in food packaging solutions worldwide.",
+  "source": "Sustainable Packaging News",
+  "url": "https://spnews.com/klockner-pentaplast-advances/"
+}
+--------------------------------------------------------------------------------
+[21:01:22] PARSE_ARTICLE - company=Entertainment Partners
+Error: Invalid isoformat string: '2026-03'
+Data: {
+  "headline": "Brillstein Promotes Dari Bani, Geordan Somerville & Julia Weinstock",
+  "publication_date": "2026-03",
+  "summary": "Brillstein Entertainment Partners promoted Dari Bani to Manager, Comedy, and elevated Geordan Somerville and Julia Weinstock to Coordinator roles in the Comedy department, reflecting internal strategic talent development.",
+  "source": "Deadline",
+  "url": "https://deadline.com/2026/03/brillstein-promotes-dari-bani-geordan-somerville-1236769252/"
+}
+--------------------------------------------------------------------------------
+[21:01:22] PARSE_ARTICLE - company=Entertainment Partners
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Entertainment Partners Expands and Hires New Employees",
+  "publication_date": "2026",
+  "summary": "Entertainment Partners is expanding its operations and has recently hired new employees, indicating growth and increased market positioning in the entertainment production management sector.",
+  "source": "ZoomInfo",
+  "url": "https://www.zoominfo.com/c/entertainment-partners/49385009"
+}
+--------------------------------------------------------------------------------
+[21:01:22] PARSE_ARTICLE - company=Entertainment Partners
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Entertainment Partners Appoints Liana Dubois as Managing Director, Australia and New Zealand",
+  "publication_date": "2026",
+  "summary": "Entertainment Partners appointed Liana Dubois as Managing Director for Australia and New Zealand, signaling regional expansion and strategic market positioning in these territories.",
+  "source": "ZoomInfo",
+  "url": "https://www.zoominfo.com/c/ep-inc/49385009"
+}
+--------------------------------------------------------------------------------
+[21:01:50] PARSE_ARTICLE - company=Universal McCann
+Error: Invalid isoformat string: '2024-04-xx'
+Data: {
+  "headline": "UM parts ways with McCann Erickson Guangming Ltd to tackle China alone",
+  "publication_date": "2024-04-xx",
+  "summary": "Universal McCann (UM) announced it will operate independently under its own brand in China after 21 years of joint venture with McCann Erickson Guangming Ltd. This strategic move aims to strengthen UM's digital focus and brand clarity in the competitive Chinese market.",
+  "source": "Campaign Asia",
+  "url": "https://www.campaignasia.com/article/um-parts-ways-with-mccann-erickson-guangming-ltd-to-tackle-china-alone/3sm9dadcuu1ivgjf6uq15x05bz"
+}
+--------------------------------------------------------------------------------
+[21:01:50] PARSE_ARTICLE - company=Universal McCann
+Error: Invalid isoformat string: '2024-xx-xx'
+Data: {
+  "headline": "The $20M beast is loose: MOVE 2.0 changes out of home",
+  "publication_date": "2024-xx-xx",
+  "summary": "Universal McCann's national head of investment, Brittany Crowley, discussed the launch of the $20 million MOVE 2.0 tool with the Outdoor Media Association CEO Elizabeth McIntyre. The tool represents a significant strategic product launch in out-of-home media measurement and investment.",
+  "source": "Mediaweek",
+  "url": "https://www.mediaweek.com.au/mediaweek-newsmakers-move-2-0-unshackled/"
+}
+--------------------------------------------------------------------------------
+[21:01:50] PARSE_ARTICLE - company=Universal McCann
+Error: Invalid isoformat string: '2024-xx-xx'
+Data: {
+  "headline": "Universal McCann Worldwide is expanding and recently hired new employees",
+  "publication_date": "2024-xx-xx",
+  "summary": "Universal McCann Worldwide is undergoing expansion with recent new hires, indicating growth and increased operational capacity. The company also experienced leadership changes with the departure of Blair Alexander, Managing Director in New Zealand.",
+  "source": "ZoomInfo",
+  "url": "https://www.zoominfo.com/c/universal-mccann-worldwide-inc/295452787"
+}
+--------------------------------------------------------------------------------
+[21:01:50] PARSE_ARTICLE - company=Universal McCann
+Error: Invalid isoformat string: '2024-xx-xx'
+Data: {
+  "headline": "Universal McCann Australia is Australia's most awarded media agency",
+  "publication_date": "2024-xx-xx",
+  "summary": "UM Australia, part of Universal McCann, is recognized as Australia's most awarded media agency with offices in multiple cities and annual media billings exceeding A$800 million. The agency continues to win awards and maintain a strong market position in the region.",
+  "source": "LinkedIn UM Australia",
+  "url": "https://au.linkedin.com/company/um-australia"
+}
+--------------------------------------------------------------------------------
+[21:02:56] PARSE_ARTICLE - company=Linklaters
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Linklaters Continues US Expansion With New Office",
+  "publication_date": "2026-02",
+  "summary": "Linklaters expanded its U.S. presence by leasing an additional 48,000 square feet in New York, increasing its total office space in the city to over 150,000 square feet, reflecting aggressive growth in the U.S. market.",
+  "source": "LawFuel",
+  "url": "https://www.lawfuel.com/linklaters-continues-us-expansion-with-new-office/"
+}
+--------------------------------------------------------------------------------
+[21:03:23] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'April 15, 2026'
+Data: {
+  "headline": "CBS Fall 2026 Schedule Shifts: Major Shows Delayed and Renewed for Midseason",
+  "publication_date": "April 15, 2026",
+  "summary": "CBS announced significant changes to its 2026 fall TV lineup, delaying shows like Ghosts, Matlock, and NCIS: Sydney to 2027 while greenlighting new projects Cupertino and Einstein for the 2026-27 cycle. The network also renewed the Yellowstone spinoff Marshals for a second season after strong viewership.",
+  "source": "AceShowbiz",
+  "url": "https://www.aceshowbiz.com/news/view/00254159.html"
+}
+--------------------------------------------------------------------------------
+[21:03:23] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'April 15, 2026'
+Data: {
+  "headline": "CBS Reveals Fall 2026 Schedule: \u2018Matlock,\u2019 \u2018Ghosts\u2019 Held for Midseason as Three New Series Set Premieres",
+  "publication_date": "April 15, 2026",
+  "summary": "CBS unveiled its 2026-2027 primetime schedule featuring two new dramas including the NCIS spinoff 'NCIS: New York' and one new comedy, with returning series dominating the lineup. Shows Matlock and Ghosts are held for midseason, and the new drama Einstein was delayed to the 2026-2027 season due to limited schedule space.",
+  "source": "Variety",
+  "url": "https://variety.com/2026/tv/news/cbs-fall-2026-schedule-matlock-ghosts-midseason-new-shows-1236722112/"
+}
+--------------------------------------------------------------------------------
+[21:03:23] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'April 15, 2026'
+Data: {
+  "headline": "Inside CBS\u2019 2026 Primetime Schedule | Paramount",
+  "publication_date": "April 15, 2026",
+  "summary": "CBS is expanding the NCIS franchise with NCIS: New York and launching three new series: Cupertino, Einstein, and Eternally Yours, alongside 19 returning shows. CBS continues to lead in viewership with top primetime series and comedies, reinforcing its market position as a key entertainment destination.",
+  "source": "Paramount",
+  "url": "https://www.paramount.com/news/inside-cbs-2026-primetime-schedule"
+}
+--------------------------------------------------------------------------------
+[21:03:23] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'April 15, 2026'
+Data: {
+  "headline": "CBS 2026-27 Schedule: \u2018Ghosts,\u2019 \u2018Matlock\u2019 Move to Midseason, \u2018Cupertino\u2019 Legal Drama Gets Fall Spot",
+  "publication_date": "April 15, 2026",
+  "summary": "CBS announced its 2026-27 TV season schedule with Ghosts and Matlock moving to midseason and a new NCIS spinoff premiering in the fall. The legal drama Cupertino, starring Mike Colter, is a key new addition, highlighting CBS's strategic programming moves to maintain audience engagement.",
+  "source": "The Hollywood Reporter",
+  "url": "https://www.hollywoodreporter.com/tv/tv-news/cbs-2026-27-tv-schedule-1236565533/"
+}
+--------------------------------------------------------------------------------
+[21:03:23] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'April 15, 2026'
+Data: {
+  "headline": "CBS Fall TV Shows 2026: The Complete Schedule and Premiere Dates",
+  "publication_date": "April 15, 2026",
+  "summary": "CBS's 2026-2027 schedule includes four new shows, notably the legal drama Cupertino by Robert and Michelle King. The network broke tradition by announcing its fall schedule early, maintaining a conventional lineup with a mix of returning hits and new series to sustain its market presence.",
+  "source": "TV Guide",
+  "url": "https://www.tvguide.com/news/cbs-fall-tv-shows-2026-schedule/"
+}
+--------------------------------------------------------------------------------
+[21:03:23] PARSE_ARTICLE - company=CBS News
+Error: Invalid isoformat string: 'April 15, 2026'
+Data: {
+  "headline": "CBS Fall 2026 Schedule: 'Marshals' Moving to Fall, Plus 'FBI' and 'Elsbeth' Changes",
+  "publication_date": "April 15, 2026",
+  "summary": "CBS announced its Fall 2026 schedule with the show Marshals moving to Sundays, Elsbeth shifting time slots, and Ghosts and Matlock moving to midseason. These schedule adjustments reflect CBS's strategic programming to optimize viewership and maintain competitive positioning.",
+  "source": "TV Insider",
+  "url": "https://www.tvinsider.com/1252852/cbs-fall-2026-tv-schedule/"
+}
+--------------------------------------------------------------------------------
+[21:04:05] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Deloitte trims PTO, parental leave, other benefits for some US staff",
+  "publication_date": "2026-04",
+  "summary": "Deloitte announced internal changes to workplace policies including reductions in PTO and parental leave for some US employees as part of a broader talent restructuring. The firm introduced a new talent architecture and new job titles while retaining core benefits like medical coverage and tuition assistance.",
+  "source": "Business Insider",
+  "url": "https://www.businessinsider.com/deloitte-cuts-down-benefits-for-some-workers-big-four-ai-2026-4"
+}
+--------------------------------------------------------------------------------
+[21:04:05] PARSE_ARTICLE - company=Deloitte
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Modest growth projected for 2026 as uncertainty from Iran war, trade linger: Deloitte",
+  "publication_date": "2026-04",
+  "summary": "Deloitte forecasts modest economic growth in 2026 influenced by cautious consumer spending amid elevated energy prices and a softer labor market. The report highlights ongoing challenges in manufacturing employment and slower housing market recovery in Canada.",
+  "source": "ConstructConnect Canada",
+  "url": "https://canada.constructconnect.com/dcn/news/economic/2026/04/modest-growth-projected-for-2026-as-uncertainty-from-iran-war-trade-linger-deloitte"
+}
+--------------------------------------------------------------------------------
+[21:05:02] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "The 2026 Insider\u2019s Guide to Resin Pricing",
+  "publication_date": "2026-04",
+  "summary": "Major commodity and engineering resins including PE are under active producer price increase pressure in Q2 2026, influenced by geopolitical tensions and oil price surges affecting feedstock costs.",
+  "source": "PlasticsToday",
+  "url": "https://www.plasticstoday.com/resin-pricing/the-2026-insider-s-guide-to-resin-pricing"
+}
+--------------------------------------------------------------------------------
+[21:05:02] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-03'
+Data: {
+  "headline": "Resin Prices Are Rising. Here's What You Need to Know.",
+  "publication_date": "2026-03",
+  "summary": "Resin prices are rising in early 2026 due to geopolitical tensions disrupting petrochemical feedstock supply chains and maintenance shutdowns at major producers, causing spot price increases and market corrections.",
+  "source": "Americover",
+  "url": "https://www.americover.com/blog/resin-prices-are-rising-heres-what-you-need-to-know/"
+}
+--------------------------------------------------------------------------------
+[21:05:02] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Resin Prices Surge Across All Categories",
+  "publication_date": "2026-04",
+  "summary": "In April 2026, all major resin categories including PE are experiencing simultaneous price increases driven by different feedstock inputs and supply dynamics, with producers like Dow targeting significant price hikes.",
+  "source": "PlasticsToday",
+  "url": "https://www.plasticstoday.com/resin-pricing/resin-prices-surge-across-all-categories-as-buyers-face-compounding-challenges-in-april-negotiations"
+}
+--------------------------------------------------------------------------------
+[21:05:02] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026-03'
+Data: {
+  "headline": "Recycled Plastic Markets Shift Amid Closures",
+  "publication_date": "2026-03",
+  "summary": "Major US PET recyclers like Alpek SAB and Evergreen Recycling are shutting down facilities, impacting recycled resin markets; rPP demand is expected to grow modestly with a price premium over virgin resin.",
+  "source": "PlasticsToday",
+  "url": "https://www.plasticstoday.com/resin-pricing/recycled-resin-markets-pet-bale-prices-decline-as-major-us-recyclers-shutter-plants"
+}
+--------------------------------------------------------------------------------
+[21:05:02] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Polyethylene and Polypropylene Resin Prices: 2026 Market Trends and What You Need to Know",
+  "publication_date": "2026",
+  "summary": "The PE and PP resin markets in 2026 are currently favorable to buyers due to supply-demand imbalances; spot prices are below contract prices, and price increases are unlikely before mid-year unless supply tightens or demand surges.",
+  "source": "CBRHK",
+  "url": "https://cbrhkglobal.com/polyethylene-and-polypropylene-resin-prices-2026-market-trends-and-what-you-need-to-know/"
+}
+--------------------------------------------------------------------------------
+[21:05:02] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "U.S. Plastic Resin Market Predicted to Reach US$ 125.7 Billion by 2033",
+  "publication_date": "2026",
+  "summary": "The US plastic resin market is growing steadily, driven by expanding applications in packaging, automotive, construction, and healthcare, with a projected CAGR of 3.7% from 2026 to 2033.",
+  "source": "Persistence Market Research",
+  "url": "https://www.openpr.com/news/4455646/u-s-plastic-resin-market-predicted-to-reach-us-125-7-billion"
+}
+--------------------------------------------------------------------------------
+[21:05:02] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "U.S.'s Plastics Materials and Resins Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "The US plastics materials and resin market is a key industrial sector with steady demand growth in packaging, construction, and automotive; price normalization is ongoing after 2022 peaks, supported by shale gas feedstock advantages.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/us-plastics-materials-and-resin-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:05:02] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Advanced-Recycled Polyolefin Resins for Consumer and Industrial Applications Market Size, Share & Forecast to 2036",
+  "publication_date": "2026",
+  "summary": "The advanced-recycled polyolefin resins market is valued at USD 4.7 billion in 2026 and expected to grow at 8.1% CAGR to 2036, driven by demand for high-purity recycled PE and PP in packaging and industrial applications.",
+  "source": "Future Market Insights",
+  "url": "https://www.futuremarketinsights.com/reports/advanced-recycled-polyolefin-resins-for-consumer-and-industrial-applications-market"
+}
+--------------------------------------------------------------------------------
+[21:05:02] PARSE_ARTICLE - industry=PE Resins, location=US
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Plastic Resins Market Size, Scope, Trends And Forecast",
+  "publication_date": "2026",
+  "summary": "The global plastic resins market is projected to grow at a CAGR of 4.4% from 2026 to 2032, driven by demand from end-use industries, technological developments, and environmental regulations focusing on sustainability.",
+  "source": "Verified Market Research",
+  "url": "https://www.verifiedmarketresearch.com/product/plastic-resins-market/"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Film Distribution Market Size Accelerating at 8.7% CAGR | By Key Players: Warner Bros., Sony Pictures Motion Picture Group",
+  "publication_date": "2026",
+  "summary": "Geopolitical tensions, such as the US-Iran conflict, have disrupted cross-border content flows and tightened regulatory oversight, accelerating regional content self-sufficiency in film distribution. Sanctions and currency volatility impact market dynamics.",
+  "source": "Verified Market Report via openPR.com",
+  "url": "https://www.openpr.com/news/4468764/film-distribution-market-size-accelerating-at-8-7-cagr-by-key"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "What's Behind All These New Film Distribution Companies?",
+  "publication_date": "2026",
+  "summary": "More than half a dozen new film distribution companies have launched recently, driven by industry veterans and artists seeking to capitalize on Hollywood's current crisis and disruption, aiming to revolutionize the market.",
+  "source": "Variety",
+  "url": "https://variety.com/2026/film/news/movie-business-new-distribution-companies-row-k-black-bear-watermelon-pictures-1236690976/"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top Indie Power Players 2026: The Leaders Shaping Independent Film Distribution",
+  "publication_date": "2026",
+  "summary": "Cineverse, through its Matchpoint platform, distributes over 66,000 titles and engages 50 million viewers, with recent acquisitions enhancing digital efficiency and innovative solutions for advertisers and filmmakers, highlighting key independent distribution leaders.",
+  "source": "Media Play News",
+  "url": "https://www.mediaplaynews.com/top-indie-power-players-2026/"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "AMC Stock Eyes Best Month Since 2021 Meme Mania \u2014 CEO Backs Paramount-Warner Deal To Boost Theatrical Releases",
+  "publication_date": "2026-04",
+  "summary": "AMC CEO supports the Paramount-Warner Bros merger, promising to increase theatrical releases to at least 30 films annually post-merger, emphasizing theatrical distribution's role in sustaining cinema ecosystems amid industry recovery.",
+  "source": "StockTwits",
+  "url": "https://stocktwits.com/news-articles/markets/equity/amc-stock-best-month-since-2021-paramount-warner-acquisition/cZJUJMARIx4"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Film Industry Trends 2026: What's Next?",
+  "publication_date": "2026",
+  "summary": "The film industry is recovering robustly with theatrical revenues rising, significant AI-driven technological disruption, and shifts in production and distribution models, including Amazon MGM's premium windowing strategy to blend theatrical and licensing releases.",
+  "source": "Accio",
+  "url": "https://www.accio.com/business/film-industry-trends-2026"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Market Trend Analysis: The Impact of Emerging Developments on the Film Distribution Market",
+  "publication_date": "2026",
+  "summary": "Film distribution is evolving with streaming growth and global content demand. Technological advances like AI and 5G are driving market expansion and transformation, reshaping how films reach audiences worldwide.",
+  "source": "The Business Research Company via openPR.com",
+  "url": "https://www.openpr.com/news/4437396/market-trend-analysis-the-impact-of-emerging-developments"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Movie Production Market Growth Analysis - Size and Forecast 2026-2030 | Technavio",
+  "publication_date": "2026",
+  "summary": "Strategic M&A is accelerating to maximize franchise profitability. Regulatory divergence and compliance burdens, especially with new technologies, challenge growth. Strict media chronology laws disrupt global content distribution and increase compliance costs.",
+  "source": "Technavio",
+  "url": "https://www.technavio.com/report/movie-production-market-industry-analysis"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Movie Industry Changes in 2026: Who Survives the New Rules?",
+  "publication_date": "2026",
+  "summary": "The movie industry faces rapid disruption with micro-distributors using targeted marketing and data analytics. Streaming and AI are reshaping power dynamics, while theaters are reinventing themselves as community hubs amid evolving audience engagement.",
+  "source": "tasteray.com",
+  "url": "https://www.tasteray.com/articles/movie-industry-changes"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Film, Motion Picture Breaking News and Press Releases",
+  "publication_date": "2026",
+  "summary": "The Independent Cinema Alliance partnered with Screendollars to leverage data and analytics for theatrical exhibition, film distribution, and marketing, reflecting industry focus on data-driven strategies and collaboration among independent exhibitors.",
+  "source": "Business Wire",
+  "url": "https://www.businesswire.com/newsroom/industry/entertainment/films"
+}
+--------------------------------------------------------------------------------
+[21:05:38] PARSE_ARTICLE - industry=Film Distribution, location=Midwest
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "9 Major Trends Shaping the Entertainment, Movie, Publishing and Media Industry: Insights for Investors, Consultants and Marketing Professionals in 2026",
+  "publication_date": "2026",
+  "summary": "Consumer control dominates the industry with subscription fatigue and platform competition driving constant innovation. Legal and ethical debates around copyright and AI impact growth, while major media companies compete directly via streaming platforms.",
+  "source": "Plunkett Research, Ltd.",
+  "url": "https://www.plunkettresearch.com/9-major-trends-shaping-the-entertainment-movie-publishing-and-media-industry-insights-for-investors-consultants-and-marketing-professionals-in-2026/"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: 'April 2026'
+Data: {
+  "headline": "Weekly Packaging News: 13 Essential Industry, M&A & Regulation Updates (April 2026)",
+  "publication_date": "April 2026",
+  "summary": "ProAmpac completed a $1.5B acquisition of TC Transcontinental. The EU Packaging and Packaging Waste Regulation (PPWR) will enforce PFAS limits starting August 12, 2026, prohibiting 'forever chemicals' in food-contact packaging. Innovations include bio-based polymers and smart packaging with QR codes and sensors to improve recycling transparency.",
+  "source": "Packaura",
+  "url": "https://packaura.com/weekly-packaging-update-sustainability-industry-regulations-april-6-12-2026/"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "2026 Packaging Trends: Navigating Change Across Shelf and Digital - Printpack",
+  "publication_date": "2026",
+  "summary": "Extended Producer Responsibility (EPR) is moving from planning to execution with multiple state programs rolling out. California\u2019s SB 343 introduces stricter recyclability claim requirements effective October 4, 2026. Brands are urged to innovate packaging formats to meet new regulatory realities and consumer expectations.",
+  "source": "Printpack",
+  "url": "https://www.printpack.com/2026-packaging-trends/"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: 'January 30, 2026'
+Data: {
+  "headline": "The packaging industry outlook for 2026 | Packaging Dive",
+  "publication_date": "January 30, 2026",
+  "summary": "Industry leaders expect rising imports, pricing competition, and tariff confusion to impact commodity markets. Many domestic PET reclaimers closed in 2025, leading to more focus on policy solutions and local supply chains in 2026.",
+  "source": "Packaging Dive",
+  "url": "https://www.packagingdive.com/news/packaging-trends-outlook-2026/810443/"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "High End Performance Packaging Market Forecast Points Higher Toward 2035, Driven by Premiumization",
+  "publication_date": "2026",
+  "summary": "Market trends include blurring lines between primary and secondary packaging, use of innovative sustainable materials, and incorporation of AR and NFC for customer engagement. The market is forecasted to grow at a 6.8% CAGR from 2026 to 2035, driven by premiumization and regulatory pressures.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/blog/high-end-performance-packaging-market-forecast-points-higher-toward-2035-driven-by-premiumization/"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Latest Trends in Packaging Solutions 2026",
+  "publication_date": "2026",
+  "summary": "Key trends include sustainable materials, smart technology, automation, lightweight fabrics, and design innovations. Regulatory compliance and circular economy principles are shaping bulk packaging, with digital transformation enhancing data transparency and production efficiency.",
+  "source": "Kanplas",
+  "url": "https://kanplas.com/latest-trends-in-packaging-solutions"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: 'March 2026'
+Data: {
+  "headline": "Packaging industry adapts to prolonged disruption",
+  "publication_date": "March 2026",
+  "summary": "Packaging raw materials face pressure from rising energy costs, inflation, and trade disruptions. Industry efforts focus on strengthening supply chain resilience and prioritizing regional production to mitigate risks.",
+  "source": "Packaging Gateway",
+  "url": "https://www.packaging-gateway.com/news/packaging-industry-adapts-to-prolonged-disruption/"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Packing Box Market Outlook 2026-2034",
+  "publication_date": "2026",
+  "summary": "E-commerce expansion and sustainable packaging mandates drive innovations in corrugated and recycled materials. The market shows moderate consolidation with top players holding over 35% revenue share. India\u2019s e-commerce growth fuels demand for durable, smart packaging solutions.",
+  "source": "Intel Market Research",
+  "url": "https://www.intelmarketresearch.com/packing-box-market-35108"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top Trends in Packaging 2026: Industry Insights - GlobalData",
+  "publication_date": "2026",
+  "summary": "Provides ongoing insights into consumer trends, market drivers, and innovation success factors shaping the packaging industry in 2026.",
+  "source": "GlobalData",
+  "url": "https://www.globaldata.com/store/report/packaging-trend-analysis/"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top 10 Packaging Industry Trends [2026] | StartUs Insights",
+  "publication_date": "2026",
+  "summary": "Active and intelligent packaging market projected to reach USD 16.2 billion in 2026, driven by technologies like oxygen scavengers, freshness indicators, and RFID labels. Sustainability, lightweight designs, and reusable packaging models are key structural drivers.",
+  "source": "StartUs Insights",
+  "url": "https://www.startus-insights.com/innovators-guide/packaging-industry-trends/"
+}
+--------------------------------------------------------------------------------
+[21:06:40] PARSE_ARTICLE - industry=Packaging Boxes, location=IN
+Error: Invalid isoformat string: 'April 08, 2026'
+Data: {
+  "headline": "Sustainability receding as packaging priority, says McKinsey - Recycling Today",
+  "publication_date": "April 08, 2026",
+  "summary": "Despite increased regulatory pressure around sustainability, the packaging industry faces challenges balancing sustainability with other priorities, according to McKinsey analysis.",
+  "source": "Recycling Today",
+  "url": "https://www.recyclingtoday.com/news/sustainability-recycling-paper-board-packaging-mckinsey-2026/"
+}
+--------------------------------------------------------------------------------
+[21:07:09] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Europe Road Freight Transportation Market Size & Share, 2033",
+  "publication_date": "2024",
+  "summary": "Diesel prices, a major cost factor, have fluctuated over 20% annually due to geopolitical tensions and supply chain disruptions. The EU Green Deal's stringent regulations pose challenges, while manufacturing demand drives growth. The industry faces rising fuel costs, regulatory compliance, and driver shortages, with slow adoption of alternative fuels impacting financial stability.",
+  "source": "Market Data Forecast",
+  "url": "https://www.marketdataforecast.com/market-reports/Europe-road-freight-transportation-market"
+}
+--------------------------------------------------------------------------------
+[21:07:09] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2025-12'
+Data: {
+  "headline": "European road freight rates Q4 2025: Contract rates up, spot rates steady",
+  "publication_date": "2025-12",
+  "summary": "Contract freight rates in Europe increased significantly in Q4 2025, while spot rates remained steady but slightly declined year-on-year. Operators face uncertainty due to global economic turmoil and disruptive regulations like new tolling schemes and potential fossil fuel tax hikes.",
+  "source": "IRU | World Road Transport Organisation",
+  "url": "https://www.iru.org/news-resources/newsroom/european-road-freight-rates-q4-2025-contract-rates-spot-rates-steady"
+}
+--------------------------------------------------------------------------------
+[21:07:09] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Europe Road Freight Transport Market Forecasts 2031",
+  "publication_date": "2024",
+  "summary": "The market is projected to grow at a CAGR of 3.07% to reach USD 633.73 billion by 2031. Key players include DHL Group, DSV A/S, Kuehne + Nagel, Dachser, and Girteka. Trends include technological innovations such as electric vehicles, digitalization, and autonomous trucks, alongside regulatory and infrastructure impacts.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/europe-road-freight-transport-market"
+}
+--------------------------------------------------------------------------------
+[21:07:09] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Ever more uncertainty: European road freight dynamics 2024 to 2026 and beyond",
+  "publication_date": "2024",
+  "summary": "The report contextualizes current disruptions in European road freight with lessons from past crises, highlighting ongoing challenges and the impact of geopolitical events like the war in Iran on freight dynamics.",
+  "source": "IRU | World Road Transport Organisation",
+  "url": "https://www.iru.org/news-resources/newsroom/ever-more-uncertainty-european-road-freight-dynamics-2024-2026-and-beyond"
+}
+--------------------------------------------------------------------------------
+[21:07:09] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Road Freight Transport Market Growth Analysis - Size and Forecast 2026-2030",
+  "publication_date": "2024",
+  "summary": "Growth driven by rising e-commerce and retail demand, with increasing regulatory complexity and environmental mandates. Major players include ArcBest Corp., C H Robinson, CMA CGM Group, FedEx, and others. Challenges include driver shortages, fuel cost volatility, and regulatory pressures promoting green logistics and alternative fuels.",
+  "source": "Technavio",
+  "url": "https://www.technavio.com/report/road-freight-transport-market-analysis"
+}
+--------------------------------------------------------------------------------
+[21:07:09] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Europe\u2019s Electric Truck Market Needs Faster Policy Action to Scale",
+  "publication_date": "2026-04",
+  "summary": "A white paper highlights the need for faster policy support to scale electric road freight in Europe. Key factors include competitive electricity pricing, CO\u2082-based tolling, subsidies, financing access, and truck-friendly public charging infrastructure to avoid fragmented adoption and support decarbonization.",
+  "source": "Electric Cars Report",
+  "url": "https://electriccarsreport.com/2026/04/report-europes-electric-truck-market-needs-faster-policy-action-to-scale/"
+}
+--------------------------------------------------------------------------------
+[21:07:09] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Europe Cross Border Road Freight Transport Market Report 2031",
+  "publication_date": "2024",
+  "summary": "The cross-border road freight market is growing at a CAGR of 3.49%, with major companies like DHL Group, DSV A/S, Kuehne + Nagel, GEODIS, and Rhenus Group. Market trends include trade value analysis, infrastructure investments, regulatory environment, and technological innovations such as electric and autonomous trucks.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/europe-cross-border-road-freight-transport-market"
+}
+--------------------------------------------------------------------------------
+[21:07:09] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Europe Freight Logistics Market Outlook 2025-2032",
+  "publication_date": "2024",
+  "summary": "Sustainability drives innovation with demand for low-carbon transport solutions including electric and hydrogen vehicles and intermodal transport. Regulatory fragmentation and infrastructure bottlenecks challenge the market, while nearshoring trends and multimodal solutions enhance supply chain resilience.",
+  "source": "Intel Market Research",
+  "url": "https://www.intelmarketresearch.com/europe-freightlogistics-market-20953"
+}
+--------------------------------------------------------------------------------
+[21:07:09] PARSE_ARTICLE - industry=Road Freight, location=Europe
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "Will new regulations have road freight rates soaring in 2026?",
+  "publication_date": "2026-01",
+  "summary": "2026 will bring significant regulatory changes including stricter dangerous goods enforcement, tachograph rules for vans, new safety tech standards, and rising costs from wages, tolls, and access restrictions. Environmental zones are expanding with bans on older diesel vehicles in parts of Italy and nationwide exemptions in the Netherlands.",
+  "source": "CargoON",
+  "url": "https://cargoon.eu/en/digitalisation/new-regulations-in-2026/"
+}
+--------------------------------------------------------------------------------
+[21:07:44] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'January 2026'
+Data: {
+  "headline": "GracoRoberts Expands Reach into Latin American MRO Market with Sky Mart Acquisition",
+  "publication_date": "January 2026",
+  "summary": "GracoRoberts acquired Sky Mart, a Miami-based aerospace chemical distributor, to expand its presence in the Latin American MRO market and enhance aircraft-on-ground capabilities with new fulfillment centers.",
+  "source": "Aviation Week Network",
+  "url": "https://aviationweek.com/mro/mro-industry-rolling-daily-updates-january-2026"
+}
+--------------------------------------------------------------------------------
+[21:07:44] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'April 2, 2026'
+Data: {
+  "headline": "Precision Aviation Group Expands Safran Electrical & Power Repair Network to Brazil",
+  "publication_date": "April 2, 2026",
+  "summary": "Precision Aviation Group announced expansion of its Safran Electrical & Power Authorized Repair Center network with the addition of EFIX in Brazil, aiming to reduce turnaround times and improve service reliability in South America.",
+  "source": "ePlane AI",
+  "url": "https://www.eplaneai.com/news/mro-outlook-a-quick-turn-perspective"
+}
+--------------------------------------------------------------------------------
+[21:07:44] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'March 2026'
+Data: {
+  "headline": "Latin America Ship Repair Capacity Concentrated in Brazil, Panama, and Chile",
+  "publication_date": "March 2026",
+  "summary": "Latin America's marine vessel MRO services are focused in Brazil (offshore oil and gas), Panama (canal transit), and Chile, with the market fragmented among regional shipyards and global players.",
+  "source": "Cryptocurrency Press Release Distribution",
+  "url": "https://crypto.newswireservice.net/press-releases/marine-vessel-mro-maintenance-repair-and-overhaul-services-market-trends-and-developments-assessment-report-2026-to-2035/"
+}
+--------------------------------------------------------------------------------
+[21:07:44] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'March 2026'
+Data: {
+  "headline": "Latin America Air Transport MRO Market Developing with Selective Investment in Domestic Facilities",
+  "publication_date": "March 2026",
+  "summary": "Latin America is maintaining a developing yet expanding presence in the air transport MRO market, supported by selective investments in domestic maintenance facilities amid rising aircraft utilization.",
+  "source": "Verified Market Research",
+  "url": "https://www.verifiedmarketresearch.com/product/air-transport-mro-market/"
+}
+--------------------------------------------------------------------------------
+[21:07:44] PARSE_ARTICLE - industry=MRO, location=South America
+Error: Invalid isoformat string: 'January 2026'
+Data: {
+  "headline": "Embraer Services & Support Reports 7% Backlog Growth Driven by Contracts with Regional Carriers",
+  "publication_date": "January 2026",
+  "summary": "Embraer Services & Support's backlog increased 7% year-on-year to $4.9 billion in Q4 2025, driven by contracts with carriers like Republic Airways and Airlink, with a new MRO facility in Texas expected to open in 2027.",
+  "source": "Aviation Week Network",
+  "url": "https://aviationweek.com/mro/mro-industry-rolling-daily-updates-january-2026"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Sustainable Plastic Films: BOPET, BOPP, CPP, Blown, and Holographic Films",
+  "publication_date": "2026-04",
+  "summary": "Plastic films like BOPET, BOPP, and CPP are gaining traction for their recyclability, lightweight, and durability, supporting sustainability goals. India is a key market with initiatives promoting bio-based and recyclable films, though challenges remain in microplastic pollution and recycling infrastructure.",
+  "source": "Textile School",
+  "url": "https://www.textileschool.com/30129/sustainable-plastic-films-bopet-bopp-cpp-blown-and-holographic-films/"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "BOPP Film Manufacturers in China",
+  "publication_date": "2026-04",
+  "summary": "Leading Chinese BOPP film manufacturers like CloudFilm and Anhui Guofeng New Materials are known for advanced technology, high-quality products, and certifications. CloudFilm partners with major companies like Hisense and Haier, while Guofengfilms focuses on R&D and innovation with multiple production lines and awards.",
+  "source": "CloudFilm",
+  "url": "https://www.cloudflexfilm.com/manufacturers/bopp-film-manufacturers-in-china/"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "BOPET Films Market (2026-2029): Industry Insights, SWOT Analysis, Market Size, Share, and Key Growth Factors",
+  "publication_date": "2026-04",
+  "summary": "The global BOPET films market is projected to grow to USD 13.22 billion by 2029 at a CAGR of 4.7%, driven by demand in packaging, electronics, and pharmaceuticals. Europe holds the third largest market share with strong sustainability mandates. Key players include Jiangsu Shuangxing Color Plastic New Material Co. (China) among others.",
+  "source": "NEWSnet Fresno",
+  "url": "https://fresno.newsnetmedia.com/story/32000/bopet-films-market-2026-2029-industry-insights-swot-analysis-market-size-share-and-key-growth-factors/"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "BOPP Gloss Film Market 2026 Forecast to 2033",
+  "publication_date": "2026-04",
+  "summary": "Asia-Pacific, especially China, is a key growth region for BOPP gloss films, driven by packaged food and beverage demand and sustainability trends. Key players include Qingdao Cloud film Packaging materials Co., Ltd. and Qingdao Kingchuan Packaging. Innovations focus on thinner, stronger, and more recyclable films.",
+  "source": "24 Chemical Research",
+  "url": "https://www.24chemicalresearch.com/reports/304156/bopp-gloss-film-market"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "China High-Performance Packaging Films Market Size & Trends 2026-2035",
+  "publication_date": "2026-04",
+  "summary": "China's high-performance packaging films market is expected to grow from USD 13.78 billion in 2026 to USD 25.02 billion by 2035 at a CAGR of 6.85%. The market emphasizes recyclable, biodegradable, and bio-based films like BOPP and BOPET, with technological advances including nanotechnology and smart packaging for freshness and supply chain monitoring.",
+  "source": "Towards Packaging",
+  "url": "https://www.towardspackaging.com/insights/china-high-performance-packaging-films-market-sizing"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "BOPET Film Supplier in China | Polyester Film for Packaging",
+  "publication_date": "2026-04",
+  "summary": "CloudFilm supplies a wide range of BOPET films in China with advanced grades for packaging, printing, and industrial uses. Innovations include high-barrier, matte, heat-sealable, and specialty films. BOPET films are 100% recyclable and used extensively in food packaging, electronics, and sustainable applications.",
+  "source": "CloudFilm",
+  "url": "https://www.cloudflexfilm.com/product_category/bopet-film/"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "BOPET Heat Sealable Film Market Size, Future Growth and Forecast 2033",
+  "publication_date": "2026-04",
+  "summary": "The BOPET heat sealable film market is growing with demand from food, pharmaceutical, and electronics sectors. China is a major market with an 8% CAGR. Innovations focus on enhanced barrier properties and heat sealability. Challenges include raw material price fluctuations and regulatory compliance.",
+  "source": "Strategic Packaging Insights",
+  "url": "https://strategicpackaginginsights.com/report/bopet-heat-sealable-film-market"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "BOPP films Market Size And Share | Industry Report, 2033",
+  "publication_date": "2026-04",
+  "summary": "The Asia-Pacific region, led by China and India, is the largest and fastest-growing market for BOPP films, driven by urbanization and packaged goods demand. Sustainability and recyclability are key trends, with manufacturers investing in downgauging and specialty coatings. The US market is mature with strong sustainability focus.",
+  "source": "Grand View Research",
+  "url": "https://www.grandviewresearch.com/industry-analysis/bopp-films-market-report"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "BOPET Films Market (2026-2029): Industry Insights, SWOT Analysis, Market Size, Share, and Key Growth Factors",
+  "publication_date": "2026-04",
+  "summary": "Multiple reports confirm the BOPET films market growth to USD 13.22 billion by 2029, driven by packaging and specialty applications. Chinese company Jiangsu Shuangxing Color Plastic New Material Co. is a key player. The market is propelled by demand for recyclable, high-performance films with innovations in coatings and bio-based materials.",
+  "source": "NEWSnet Norfolk",
+  "url": "https://norfolk.newsnetmedia.com/story/24320/bopet-films-market-2026-2029-industry-insights-swot-analysis-market-size-share-and-key-growth-factors/"
+}
+--------------------------------------------------------------------------------
+[21:08:11] PARSE_ARTICLE - industry=Film (BOPP Film, BOPET, PE Film), location=CN
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "BOPET Anti Static Film Market Size, Future Growth and Forecast 2033",
+  "publication_date": "2026-04",
+  "summary": "China's BOPET anti-static film market is growing rapidly with a 9% CAGR, driven by electronics and e-commerce sectors. Government initiatives support sustainable packaging. Challenges include competition from local manufacturers and regulatory compliance. Other key markets include the US, Germany, Japan, and India.",
+  "source": "Strategic Packaging Insights",
+  "url": "https://strategicpackaginginsights.com/report/bopet-anti-static-film-market"
+}
+--------------------------------------------------------------------------------
+[21:08:33] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "China High-Performance Packaging Films Market Size & Trends 2026-2035",
+  "publication_date": "2026",
+  "summary": "China's high-performance packaging films market is projected to grow at a CAGR of 6.85% from 2026 to 2035, driven by demand in food, pharmaceuticals, and e-commerce. The market emphasizes sustainable, recyclable, and bio-based films like BOPP, BOPET, BOPA, and CPP, with technological advances including nanotechnology and smart packaging.",
+  "source": "Towards Packaging",
+  "url": "https://www.towardspackaging.com/insights/china-high-performance-packaging-films-market-sizing"
+}
+--------------------------------------------------------------------------------
+[21:08:33] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPP Film Manufacturers in China - CloudFilm",
+  "publication_date": "2026",
+  "summary": "CloudFilm, based in Qingdao, China, is a leading manufacturer of flexible packaging films including BOPP, BOPET, and PE films. The company focuses on quality, innovation, and sustainability, supplying specialty films and maintaining partnerships with major brands like Hisense and Haier.",
+  "source": "CloudFilm",
+  "url": "https://www.cloudflexfilm.com/manufacturers/bopp-film-manufacturers-in-china/"
+}
+--------------------------------------------------------------------------------
+[21:08:33] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPET Film Supplier in China | Polyester Film for Packaging",
+  "publication_date": "2026",
+  "summary": "CloudFilm supplies a wide range of BOPET films in China, including high-barrier, matte, heat-sealable, metallizable, and specialty polyester films. BOPET films are used extensively in packaging for food, electronics, and other industries, offering recyclability and advanced functional properties.",
+  "source": "CloudFilm",
+  "url": "https://www.cloudflexfilm.com/product_category/bopet-film/"
+}
+--------------------------------------------------------------------------------
+[21:08:33] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPET Films Market (2026-2029): Industry Insights, SWOT Analysis, Market Size, Share, and Key Growth Factors",
+  "publication_date": "2026",
+  "summary": "The global BOPET films market is expected to grow at a CAGR of 4.7% to reach USD 13.22 billion by 2029. Demand is driven by packaging, electronics, and pharmaceutical sectors. Innovations include high-barrier coatings and recyclable films. Key players with presence in China include Jiangsu Shuangxing Color Plastic New Material Co.",
+  "source": "NEWSnet Fresno",
+  "url": "https://fresno.newsnetmedia.com/story/32000/bopet-films-market-2026-2029-industry-insights-swot-analysis-market-size-share-and-key-growth-factors/"
+}
+--------------------------------------------------------------------------------
+[21:08:33] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPET Anti Static Film Market Size, Future Growth and Forecast 2033",
+  "publication_date": "2026",
+  "summary": "The BOPET anti-static film market in China is growing with a CAGR of 9%, driven by the electronics and e-commerce sectors. The market focuses on eco-friendly packaging solutions and technological advancements. Regulatory support for sustainable packaging is also a factor.",
+  "source": "Strategic Packaging Insights",
+  "url": "https://strategicpackaginginsights.com/report/bopet-anti-static-film-market"
+}
+--------------------------------------------------------------------------------
+[21:08:33] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPP Films Market Size & Forecast, 2033 - Regional Insights",
+  "publication_date": "2026",
+  "summary": "China's BOPP films market is growing due to rapid urbanization and expanding middle-class populations driving packaged food consumption. Manufacturers focus on specialty grades like anti-fog and high-barrier metallized films. Capacity expansions and investments characterize the regional market dynamics.",
+  "source": "Persistence Market Research",
+  "url": "https://www.persistencemarketresearch.com/market-research/bopp-films-packaging-market.asp"
+}
+--------------------------------------------------------------------------------
+[21:08:33] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPP Gloss Film Market 2026 Forecast to 2033",
+  "publication_date": "2026",
+  "summary": "The BOPP gloss film market in China is expanding, driven by packaged food and beverage industry growth and sustainability trends. Key players like Qingdao Cloud Film Packaging materials Co., Ltd. are investing in capacity expansions and product innovations to meet demand.",
+  "source": "24 Chemical Research",
+  "url": "https://www.24chemicalresearch.com/reports/304156/bopp-gloss-film-market"
+}
+--------------------------------------------------------------------------------
+[21:08:33] PARSE_ARTICLE - industry=Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc), location=CN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "BOPET Film Manufacturers in China - GuoFeng Films",
+  "publication_date": "2026",
+  "summary": "Anhui Guofeng New Materials Co., Ltd. is a state-owned leading producer of BOPP and BOPET films in China with advanced German production lines and strong R&D capabilities. The company focuses on customized film solutions and innovation in the BOPP industry.",
+  "source": "GuoFeng Films",
+  "url": "https://www.guofengfilms.com/"
+}
+--------------------------------------------------------------------------------
+[21:09:00] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "Industrial Distribution Market Size & Industry Report [2031]",
+  "publication_date": "2023",
+  "summary": "North America holds 32.15% of the global industrial distribution market with USD 2624.35 billion valuation, driven by a strong industrial base, advanced infrastructure, and technology adoption. Innovations include AI for demand forecasting and autonomous vehicles in warehouses.",
+  "source": "Kings Research",
+  "url": "https://www.kingsresearch.com/industrial-distribution-market-522"
+}
+--------------------------------------------------------------------------------
+[21:09:00] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "Industrial Distribution Market Size, Growth & Industry Trends, 2031",
+  "publication_date": "2023",
+  "summary": "North America is a mature, innovation-driven market with growing supply-chain diversification into Southeast Asia. Healthcare and pharmaceuticals are expanding, pushing demand for specialized consumables and regulatory compliance.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/industrial-distribution-market"
+}
+--------------------------------------------------------------------------------
+[21:09:00] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "Distribution Industry News Archives",
+  "publication_date": "2023",
+  "summary": "NEFCO focuses on customer growth and technology investments. Amazon Business expands beyond product fulfillment. Bain Capital invests in Service Logic for acquisition-driven growth. Trend towards customization and services in electrical and industrial distribution.",
+  "source": "Distribution Strategy Group",
+  "url": "https://distributionstrategy.com/category/distribution-industry-news/"
+}
+--------------------------------------------------------------------------------
+[21:09:00] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "USA Industrial Distribution Market Trends, Growth Outlook, and Forecast Report 2030",
+  "publication_date": "2023",
+  "summary": "Over 60% of logistics firms engage in strategic partnerships to expand services. AI-driven inventory management and blockchain for supply chain tracking are accelerating innovation. Challenges include high operational costs, supply chain disruptions, and skilled workforce shortages.",
+  "source": "Ken Research",
+  "url": "https://www.kenresearch.com/industry-reports/usa-industrial-distribution-market"
+}
+--------------------------------------------------------------------------------
+[21:09:00] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "Industrial Distribution Market Size, Growth and Forecast 2032",
+  "publication_date": "2023",
+  "summary": "Market growth driven by sustainability initiatives, regulatory compliance complexity, and shift to just-in-time delivery models. Asia-Pacific leads growth, but North America faces challenges from rising operational costs and supply chain disruptions.",
+  "source": "Credence Research",
+  "url": "https://www.credenceresearch.com/report/industrial-distribution-market"
+}
+--------------------------------------------------------------------------------
+[21:09:00] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Industrial Distribution Market Size to Hit USD 12.95 Trillion by 2034",
+  "publication_date": "2024",
+  "summary": "North America market estimated at USD 0.53 trillion in 2024, growing at 4.11% CAGR. Industry invests in technological innovations and green logistics to meet consumer demand and regulatory policies focused on carbon emission reduction.",
+  "source": "Precedence Research",
+  "url": "https://www.precedenceresearch.com/industrial-distribution-market"
+}
+--------------------------------------------------------------------------------
+[21:09:00] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "Distribution Planning Software Market Size, Trends | 2035",
+  "publication_date": "2023",
+  "summary": "North America holds 45% of the global distribution planning software market, driven by technological advancements and regulatory pressures to reduce carbon footprints. Major players include SAP, Oracle, and IBM.",
+  "source": "Market Research Future",
+  "url": "https://www.marketresearchfuture.com/reports/distribution-planning-software-market-26721"
+}
+--------------------------------------------------------------------------------
+[21:09:00] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "North America MRO Distribution Market Is Going to Boom | Grainger | Fastenal",
+  "publication_date": "2023",
+  "summary": "The North America MRO distribution market is expanding with strategic initiatives by key players like Grainger and Fastenal. Market growth driven by investment in operational execution, technology, and customer growth strategies.",
+  "source": "openPR",
+  "url": "https://www.openpr.com/news/4448215/north-america-mro-distribution-market-is-going-to-boom"
+}
+--------------------------------------------------------------------------------
+[21:09:00] PARSE_ARTICLE - industry=Distribution Services (Distribution, Mastering, Localization etc), location=Northern America
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Industrial Distribution Market Trends and Forecast",
+  "publication_date": "2025",
+  "summary": "MRO segment expected to have largest growth due to critical need to avoid equipment downtime. Offline distribution holds largest share, but e-commerce grows faster. North America dominates the market with steady CAGR around 4.37%.",
+  "source": "Precedence Research",
+  "url": "https://www.precedenceresearch.com/press-release/industrial-distribution-market"
+}
+--------------------------------------------------------------------------------
+[21:10:01] PARSE_ARTICLE - industry=ALUMINIUM, location=Northern America
+Error: Invalid isoformat string: 'March 2026'
+Data: {
+  "headline": "Hydro Extrusions expands extrusion capacity in North America for automotive and construction sectors",
+  "publication_date": "March 2026",
+  "summary": "Hydro Extrusions increased its extrusion capacity in North America to support growth in automotive and construction sectors, focusing on lightweight vehicle solutions.",
+  "source": "DataM intelligence 4 Market Research LLP via openPR.com",
+  "url": "https://www.openpr.com/news/4476957/how-is-the-aluminium-extrusion-market-driving-growth"
+}
+--------------------------------------------------------------------------------
+[21:10:01] PARSE_ARTICLE - industry=ALUMINIUM, location=Northern America
+Error: Invalid isoformat string: 'February 3, 2026'
+Data: {
+  "headline": "US aluminum sector sees mixed demand signals after volatile 2025",
+  "publication_date": "February 3, 2026",
+  "summary": "US aluminum demand is mixed with growth in packaging, electrical applications, and data centers, while construction and automotive sectors show weakness. Industry leaders note no major demand destruction despite price surges.",
+  "source": "S&P Global",
+  "url": "https://www.spglobal.com/energy/en/news-research/latest-news/metals/020326-us-aluminum-sector-seeing-mixed-demand-signals-after-volatile-2025"
+}
+--------------------------------------------------------------------------------
+[21:10:01] PARSE_ARTICLE - industry=ALUMINIUM, location=Northern America
+Error: Invalid isoformat string: 'April 9, 2026'
+Data: {
+  "headline": "Aluminum Association CEO: Gulf disruptions lift aluminium prices; industry adapts",
+  "publication_date": "April 9, 2026",
+  "summary": "Geopolitical tensions in the Middle East have caused volatility and price increases in aluminium markets. The industry is adapting through supply chain adjustments, increased recycling, and policy support, though some extrusion billets remain hard to source.",
+  "source": "AL Circle",
+  "url": "https://www.alcircle.com/news/aluminum-association-ceo-gulf-disruptions-lift-aluminium-prices-industry-adapts-117979"
+}
+--------------------------------------------------------------------------------
+[21:10:01] PARSE_ARTICLE - industry=ALUMINIUM, location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Novelis and Infinitum renew aluminium recycling tie-up, focus shifts to scale and stability",
+  "publication_date": "2026",
+  "summary": "Novelis and Infinitum extended their aluminium recycling partnership to enhance scale, stability, and circular supply chains, reinforcing Novelis' position as a leading recycler in North America and globally.",
+  "source": "AL Circle",
+  "url": "https://www.alcircle.com/news/novelis-and-infinitum-renew-aluminium-recycling-tie-up-focus-shifts-to-scale-and-stability-118048"
+}
+--------------------------------------------------------------------------------
+[21:10:01] PARSE_ARTICLE - industry=ALUMINIUM, location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "US Aluminium Tariff Impact on Manufacturing Costs 2026",
+  "publication_date": "2026",
+  "summary": "US aluminium tariffs have caused structural adjustments in North American manufacturing, affecting sourcing, inventory, and operational planning. The USMCA agreement offers regional supply chain integration benefits, while tariffs create procurement uncertainties.",
+  "source": "Discovery Alert",
+  "url": "https://discoveryalert.com.au/us-aluminium-tariff-impact-2026-north-american-industry/"
+}
+--------------------------------------------------------------------------------
+[21:10:01] PARSE_ARTICLE - industry=ALUMINIUM, location=Northern America
+Error: Invalid isoformat string: 'March 2026'
+Data: {
+  "headline": "United States Primary Aluminum Market (2026-2033) | Smelting Expansion, Low-Carbon Production & Supply Chain Growth",
+  "publication_date": "March 2026",
+  "summary": "Emirates Global Aluminium and Century Aluminum advanced joint venture talks for a large-scale primary aluminum smelter in Oklahoma, supporting low-carbon production and supply chain growth in the US market.",
+  "source": "DataM intelligence 4 Market Research LLP via openPR.com",
+  "url": "https://www.openpr.com/news/4455822/united-states-primary-aluminum-market-2026-2033-smelting"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "South-Eastern Asia's Paper and Paperboard Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "The South-Eastern Asia paper and paperboard market is a dynamic landscape with a significant regional production surplus and evolving demand patterns. Indonesia leads production with 14 million tons. Import prices peaked in 2022 but stabilized afterward. Sustainability is a key strategic focus for future growth.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/south-eastern-asia-paper-and-paperboard-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Asia-Pacific Printed Circuit Board Market Size, Share & 2031 Growth Trends Report",
+  "publication_date": "2026",
+  "summary": "The Asia-Pacific printed circuit board market is valued at USD 93.58 billion in 2026, growing at a CAGR of 4.93% to reach USD 119.06 billion by 2031. Key players include Zhen Ding Technology, Shennan Circuits, and Unimicron. Growth is driven by consumer electronics, telecommunications, and automotive sectors, with innovations in high-density interconnect and flexible circuits.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/asia-pacific-printed-circuit-board-market"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Industrial Board-to-Board Connector Market Trends and Insights",
+  "publication_date": "2026",
+  "summary": "The industrial board-to-board connector market in Asia Pacific, especially China and Japan, is dominant due to strong manufacturing and rapid industrialization. Key players like Molex, TE Connectivity, and Amphenol focus on product innovation and strategic collaborations. Emerging trends include smart connectors with embedded sensors and widespread adoption of SMT connectors for cost-effectiveness and miniaturization.",
+  "source": "Data Insights Market",
+  "url": "https://www.datainsightsmarket.com/reports/industrial-board-to-board-connector-1631964"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "White Board Market Growth Analysis - Size and Forecast 2026-2035",
+  "publication_date": "2026",
+  "summary": "The global whiteboard market is valued at USD 0.39 billion in 2026, expected to grow at 5.1% CAGR to USD 0.61 billion by 2035. Asia-Pacific leads with 38% global share, driven by classroom expansion. Innovations include AR integration and growth in glass whiteboards. Key players include SMART Technologies and Promethean Limited. Sustainability trends are influencing market dynamics.",
+  "source": "Business Research Insights",
+  "url": "https://www.businessresearchinsights.com/market-reports/white-board-market-109811"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Asia Oriented Strand Board (OSB) Market Report 2026",
+  "publication_date": "2026",
+  "summary": "The Asia OSB market is growing, supported by construction demand and urbanization. The market features a mix of large international conglomerates and regional specialists. Sustainable fiber resources and infrastructure development plans are key drivers. Competitive environment is evolving with strategic challenges and opportunities.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/asia-oriented-strand-board-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Gypsum Boards Market in Asia-Pacific 2026 Analysis",
+  "publication_date": "2026",
+  "summary": "Asia-Pacific gypsum boards market is the largest globally, driven by urbanization and infrastructure modernization. The product mix is diversifying with specialized boards gaining share. The market faces rising input costs and stricter environmental compliance. Large multinationals and regional manufacturers compete in a multi-tiered environment.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/asia-pacific-gypsum-boards-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Southeast Asia Printed Circuit Board Market Size, Share & 2031 Growth Trends Report",
+  "publication_date": "2026",
+  "summary": "The Southeast Asia PCB market is valued at USD 8.15 billion in 2026, growing at 4.41% CAGR to USD 10.12 billion by 2031. Major companies include Unimicron Technology, Zhen Ding Technology, and TTM Technologies. Growth is driven by consumer electronics, telecommunications, and automotive sectors with increasing demand for high-density and flexible circuits.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/southeast-asia-printed-circuit-board-market"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Asia Wood Plastic Composite Board Market Report 2026",
+  "publication_date": "2026",
+  "summary": "The Asia Wood Plastic Composite Board market is the global leader in production and consumption, driven by urbanization and environmental regulations. The market is evolving with technological refinements, supply chain consolidation, and sustainability mandates influencing procurement decisions.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/asia-wood-plastic-composite-board-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Asia Ivory MDF Board Market Report 2026",
+  "publication_date": "2026",
+  "summary": "The Asia Ivory MDF Board market is navigating post-pandemic recovery, environmental regulations, and shifting trade patterns. The market is characterized by premium aesthetic and functional applications with sustained growth expected through 2035, shaped by sustainability and regional integration.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/asia-ivory-mdf-board-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:30] PARSE_ARTICLE - industry=BOARD, location=Eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Eastern Asia Road Base Materials Market Report 2026",
+  "publication_date": "2026",
+  "summary": "The Eastern Asia road base materials market is driven by state-led infrastructure initiatives, rapid urbanization, and intra-regional trade. The market dynamics are complex with demand drivers, supply constraints, and pricing mechanisms shaping the sector through 2035.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/eastern-asia-road-base-materials-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:51] PARSE_ARTICLE - industry=CONSTRUCTION, location=Central Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Construction Mortars Market in Central Asia | Report - IndexBox - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "Kazakhstan and Uzbekistan are deepening local production capabilities in construction mortars, including backward integration for key additives, to enhance value capture and supply chain resilience through 2035. The market is growing with significant variance across countries, driven by public infrastructure and private sector development.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/central-asia-construction-mortars-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:51] PARSE_ARTICLE - industry=CONSTRUCTION, location=Central Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Ultra-High Performance Concrete Market in Central Asia | Report - IndexBox - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "The Central Asian UHPC market is emerging with modest volume but growing applications, driven by infrastructure modernization and urbanization. Forecasts to 2035 show sustained growth, with major flagship projects expected to build local expertise and confidence.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/central-asia-ultra-high-performance-concrete-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:51] PARSE_ARTICLE - industry=CONSTRUCTION, location=Central Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Construction Minerals Market in Central Asia | Report - IndexBox - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "The Central Asian construction minerals market is transitioning from post-pandemic recovery to strategic national investments, with solid but decelerating growth expected through 2035. Demand is driven by public policy, demographics, and economic needs.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/central-asia-construction-minerals-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:51] PARSE_ARTICLE - industry=CONSTRUCTION, location=Central Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Asphalt Concrete Market in Central Asia | Report - IndexBox - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "The Central Asian asphalt concrete market is influenced by state-led investments and modernization needs. A key trend is the growing price premium for advanced asphalt mixes due to lifecycle cost analysis. The market outlook to 2035 is broadly positive, supported by infrastructure modernization and regional connectivity.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/central-asia-asphalt-concrete-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:10:51] PARSE_ARTICLE - industry=CONSTRUCTION, location=Central Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Construction Site Toilets Market in Central Asia | Report - IndexBox - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "The market for construction site toilets in Central Asia is in transition, driven by infrastructure development and regulatory changes. Formalization is accelerating due to stricter OHS regulations and international project financing requirements, benefiting compliant rental companies.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/central-asia-construction-site-toilets-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:11:17] PARSE_ARTICLE - industry=ENERGY & UTILITY, location=South-eastern Asia
+Error: Invalid isoformat string: '2026-03'
+Data: {
+  "headline": "Geoeconomic risks cloud Southeast Asia\u2019s energy future \u2013 GIS Reports",
+  "publication_date": "2026-03",
+  "summary": "Southeast Asia faces rising energy demand, climate risks, and protectionism threatening clean-tech supply chains and affordable energy transitions. ASEAN\u2019s Plan of Action for Energy Cooperation 2026-2030 addresses these challenges amid geopolitical tensions and regulatory barriers.",
+  "source": "GIS Reports",
+  "url": "https://www.gisreportsonline.com/r/southeast-asia-energy-future/"
+}
+--------------------------------------------------------------------------------
+[21:11:17] PARSE_ARTICLE - industry=ENERGY & UTILITY, location=South-eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Electricity Prices in Southeast Asia in 2026: A Complete Study",
+  "publication_date": "2026",
+  "summary": "Electricity prices in Southeast Asia are influenced by global energy markets and domestic policies. Thailand introduced a Utility Green Tariff program to support decarbonization and attract energy-intensive industries.",
+  "source": "Invest Vietnam",
+  "url": "https://blog.investvietnam.co/electricity-prices-in-southeast-asia-in-2026-a-complete-study/"
+}
+--------------------------------------------------------------------------------
+[21:11:17] PARSE_ARTICLE - industry=ENERGY & UTILITY, location=South-eastern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Global M&A trends in energy, utilities and resources: 2026 outlook | PwC",
+  "publication_date": "2026",
+  "summary": "M&A activity in Asia Pacific energy and utilities sectors decreased by 3% in 2026. Private credit remains key for investments. Major projects like QatarEnergy\u2013ExxonMobil\u2019s $10bn LNG export hub highlight ongoing strategic deals.",
+  "source": "PwC",
+  "url": "https://www.pwc.com/gx/en/services/deals/trends/energy-utilities-resources.html"
+}
+--------------------------------------------------------------------------------
+[21:11:17] PARSE_ARTICLE - industry=ENERGY & UTILITY, location=South-eastern Asia
+Error: Invalid isoformat string: '2026-03'
+Data: {
+  "headline": "In Southeast Asia, the Scramble for Energy Is On \u2013 The Diplomat",
+  "publication_date": "2026-03",
+  "summary": "Middle East conflict disrupts Southeast Asia\u2019s energy supply chains, raising costs and inflation. Malaysia\u2019s fertilizer industry faces raw material shortages; Indonesia and Brunei have differing exposure to fuel supply risks.",
+  "source": "The Diplomat",
+  "url": "https://thediplomat.com/2026/03/in-southeast-asia-the-scramble-for-energy-is-on/"
+}
+--------------------------------------------------------------------------------
+[21:11:17] PARSE_ARTICLE - industry=ENERGY & UTILITY, location=South-eastern Asia
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "South Korea\u2019s renewable energy pivot can mitigate fossil fuel dependency risks | IEEFA",
+  "publication_date": "2026-02",
+  "summary": "South Korea is accelerating renewable energy deployment to reduce fossil fuel dependency amid global energy shocks, with regulatory reforms and emergency measures including nuclear reactor restarts and fuel price caps.",
+  "source": "IEEFA",
+  "url": "https://ieefa.org/resources/south-koreas-renewable-energy-pivot-can-mitigate-fossil-fuel-dependency-risks"
+}
+--------------------------------------------------------------------------------
+[21:11:44] PARSE_ARTICLE - industry=EQUIPMENT & MACHINERY, location=Southern Asia
+Error: Invalid isoformat string: '2025-04'
+Data: {
+  "headline": "ASEAN Construction Machinery Market Report | Industry Growth, Size & Outlook Analysis",
+  "publication_date": "2025-04",
+  "summary": "The ASEAN construction machinery market is expected to reach USD 10.31 billion by 2030 with a CAGR of 4.88%. Innovations include Volvo CE's electric excavators operating in Bangkok, hybrid and hydrogen prototypes. Regulatory updates include Thailand's Euro 5 diesel standard and Vietnam's new industrial emissions code, pushing OEMs toward cleaner technologies. Major players include Hitachi, Caterpillar, Mitsubishi, Komatsu, and Xuzhou Construction Machinery.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/asean-construction-machinery-market"
+}
+--------------------------------------------------------------------------------
+[21:11:44] PARSE_ARTICLE - industry=EQUIPMENT & MACHINERY, location=Southern Asia
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Southeast Asia Used Construction Equipment Market to Reach USD 2.39B by 2030: Indonesia, Vietnam & Philippines Lead Expansion Fueled by 4.5-5% GDP Growth",
+  "publication_date": "2026-02",
+  "summary": "The used construction equipment market in Southeast Asia is growing strongly, driven by construction and mining activities. Indonesia, Vietnam, and the Philippines are leading the expansion, supported by GDP growth of 4.5-5%. Demand for affordable, high-performance used machinery is rising.",
+  "source": "Arizton Advisory & Intelligence via openPR",
+  "url": "https://www.openpr.com/news/4403243/southeast-asia-used-construction-equipment-market-to-reach-usd"
+}
+--------------------------------------------------------------------------------
+[21:11:44] PARSE_ARTICLE - industry=EQUIPMENT & MACHINERY, location=Southern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Industrial Automation Asia - Industrial Automation Magazine",
+  "publication_date": "2026",
+  "summary": "Industrial Automation Asia highlights innovations such as Beijer Electronics' new Human-Machine Interface products designed for tough industrial environments. The region is a hub for manufacturing innovation and growth, with trends in predictive maintenance and AI transforming manufacturing processes.",
+  "source": "Industrial Automation Asia",
+  "url": "https://www.iaasiaonline.com/"
+}
+--------------------------------------------------------------------------------
+[21:11:44] PARSE_ARTICLE - industry=EQUIPMENT & MACHINERY, location=Southern Asia
+Error: Invalid isoformat string: '2026-03'
+Data: {
+  "headline": "Southeast Asia quickly becoming global hub for advanced manufacturing",
+  "publication_date": "2026-03",
+  "summary": "Vietnam is emerging as a preferred destination for electronics assembly, with Singapore leading in innovation and research. The region is benefiting from supply chain diversification and aims to increase manufacturing value-add through initiatives like Singapore's Manufacturing 2030 plan.",
+  "source": "Consultancy Asia",
+  "url": "https://www.consultancy.asia/news/6525/southeast-asia-quickly-becoming-global-hub-for-advanced-manufacturing"
+}
+--------------------------------------------------------------------------------
+[21:11:44] PARSE_ARTICLE - industry=EQUIPMENT & MACHINERY, location=Southern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Industrial Machinery Market Size, Share Analysis & Growth Forecasts Report, 2031",
+  "publication_date": "2026",
+  "summary": "Chinese manufacturers such as SANY, XCMG, and Zoomlion are expanding in Southeast Asia by integrating financing and local parts hubs to reduce ownership costs. The market is shifting towards software, analytics, and predictive maintenance technologies. Asia-Pacific holds over 40% of the industrial machinery market share, growing rapidly.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/industrial-machinery-market"
+}
+--------------------------------------------------------------------------------
+[21:11:44] PARSE_ARTICLE - industry=EQUIPMENT & MACHINERY, location=Southern Asia
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Construction Equipment Market Size & Industry Trends, 2031",
+  "publication_date": "2026",
+  "summary": "The construction equipment market is growing at a CAGR of 6.64%, driven by government spending on infrastructure and semiconductor fabs. Asia Pacific leads with 45.8% market share, supported by China's Belt and Road Initiative and India's infrastructure projects. Key players include Caterpillar, Komatsu, Volvo, Deere, and Hitachi.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/construction-equipment-market"
+}
+--------------------------------------------------------------------------------
+[21:12:10] PARSE_ARTICLE - industry=EXTERNAL MANUFACTURING / TOLLING, location=Northern America
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "The Top 11 Manufacturing Trends for 2026",
+  "publication_date": "2026-02",
+  "summary": "Industry 4.0 advancements like enhanced machine learning and integrated real-time data analytics are becoming standard for predictive maintenance and process optimization in manufacturing. Sensors, IoT, and AI-enabled wearable devices are increasingly used to improve safety and meet regulatory demands.",
+  "source": "Advanced Technology Systems",
+  "url": "https://www.advancedtech.com/blog/manufacturing-trends/"
+}
+--------------------------------------------------------------------------------
+[21:12:10] PARSE_ARTICLE - industry=EXTERNAL MANUFACTURING / TOLLING, location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "18 Challenges the Manufacturing Industry Faces in 2026",
+  "publication_date": "2026",
+  "summary": "Manufacturers face internal challenges such as staffing and management inefficiencies, and external pressures including shifting market trends, evolving customer preferences, supply chain disruptions, and regulatory changes. Strategic planning and data analytics are key to navigating these challenges.",
+  "source": "NetSuite",
+  "url": "https://www.netsuite.com/portal/resource/articles/erp/manufacturing-industry-challenges.shtml"
+}
+--------------------------------------------------------------------------------
+[21:12:10] PARSE_ARTICLE - industry=EXTERNAL MANUFACTURING / TOLLING, location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Electronic Toll Collection Market Report | Size, Share 2035",
+  "publication_date": "2026",
+  "summary": "Cubic Corporation (US) is integrating smart city solutions into tolling systems to enhance user experience and operational efficiency. The market is driven by technological innovation, localization of manufacturing, and supply chain optimization. Contactless payment and automated systems are key trends.",
+  "source": "Market Research Future",
+  "url": "https://www.marketresearchfuture.com/reports/electronic-toll-collection-market-4971"
+}
+--------------------------------------------------------------------------------
+[21:12:10] PARSE_ARTICLE - industry=EXTERNAL MANUFACTURING / TOLLING, location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "North America Electronic Toll Collection Market Growth, Trends & Future Outlook To 2030",
+  "publication_date": "2026",
+  "summary": "The shift to fully electronic and cashless tolling is transforming mobility in North America. AI, cloud computing, and real-time analytics improve billing and violation detection. Challenges include high costs and interoperability issues. RFID technology dominates the market.",
+  "source": "Industry Today",
+  "url": "https://industrytoday.co.uk/market-research-industry-today/north-america-electronic-toll-collection-market-growth-trends-future-outlook-to-2030"
+}
+--------------------------------------------------------------------------------
+[21:12:10] PARSE_ARTICLE - industry=EXTERNAL MANUFACTURING / TOLLING, location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "How New Trade Policies and Tariff Shifts Are Influencing Cross-Border Manufacturing Decisions",
+  "publication_date": "2026",
+  "summary": "Trade policies and tariffs are driving firms to regionalize manufacturing closer to key markets, especially in North America under USMCA. Environmental regulations and tariff exemptions for eco-friendly products are influencing manufacturing competitiveness and supply chain redesign.",
+  "source": "Global Trade Magazine",
+  "url": "https://www.globaltrademag.com/how-new-trade-policies-and-tariff-shifts-are-influencing-cross-border-manufacturing-decisions/"
+}
+--------------------------------------------------------------------------------
+[21:12:10] PARSE_ARTICLE - industry=EXTERNAL MANUFACTURING / TOLLING, location=Northern America
+Error: Invalid isoformat string: '2026-02'
+Data: {
+  "headline": "Manufacturing Modernization: Four Trends to Watch in 2026",
+  "publication_date": "2026-02",
+  "summary": "Manufacturers are investing heavily in digital transformation, projected to reach $1 trillion by 2031. Key trends include connected data, predictive analytics, workforce development, cybersecurity, and supply chain resilience to support growth and innovation.",
+  "source": "Forvis Mazars US",
+  "url": "https://www.forvismazars.us/forsights/2026/02/manufacturing-modernization-four-trends-to-watch-in-2026"
+}
+--------------------------------------------------------------------------------
+[21:12:10] PARSE_ARTICLE - industry=EXTERNAL MANUFACTURING / TOLLING, location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Global M&A trends in industrials and services: 2026 outlook",
+  "publication_date": "2026",
+  "summary": "M&A activity in manufacturing focuses on electrification, software-defined and autonomous technologies, with strategic consolidation and supply chain reconfiguration. Private equity supports growth in specialty manufacturing and asset-light software, balancing macro caution with innovation.",
+  "source": "PwC",
+  "url": "https://www.pwc.com/gx/en/services/deals/trends/industrials-services.html"
+}
+--------------------------------------------------------------------------------
+[21:12:10] PARSE_ARTICLE - industry=EXTERNAL MANUFACTURING / TOLLING, location=Northern America
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "A year into tariffs, US businesses see declining sales, plan price increases: KPMG survey",
+  "publication_date": "2026",
+  "summary": "34% of US companies pass more than half of tariff costs to customers; 82% report declining foreign sales. Many are actively reshoring manufacturing to the US to mitigate supply chain risks. Skilled labor shortages remain a challenge, especially in advanced manufacturing and logistics.",
+  "source": "Manufacturing Dive",
+  "url": "https://www.manufacturingdive.com/news/tariffs-us-businesses-declining-sales-price-increases/816136/"
+}
+--------------------------------------------------------------------------------
+[21:12:35] PARSE_ARTICLE - industry=FACILITIES MANAGEMENT, location=New England
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Top 9 Facilities Management Trends That Defined 2025 \u2014 And What\u2019s Next",
+  "publication_date": "2025",
+  "summary": "Facilities management is evolving with new technology, stricter regulations, and changing workforce expectations. Real-time data analytics are increasingly used to prevent disruptions, while regulatory compliance scope is widening.",
+  "source": "ServiceChannel",
+  "url": "https://servicechannel.com/blog/facility-management-trends/"
+}
+--------------------------------------------------------------------------------
+[21:12:35] PARSE_ARTICLE - industry=FACILITIES MANAGEMENT, location=New England
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Facility Management Market Size, Trends, Global Report - 2035",
+  "publication_date": "2024",
+  "summary": "Key players like CBRE Group, Jones Lang LaSalle, and Cushman & Wakefield dominate the market. The hard service category led in 2024. The market is growing with investments in AI-driven analytics and sustainable solutions to meet regulatory demands.",
+  "source": "Market Research Future",
+  "url": "https://www.marketresearchfuture.com/reports/facility-management-market-2274"
+}
+--------------------------------------------------------------------------------
+[21:12:35] PARSE_ARTICLE - industry=FACILITIES MANAGEMENT, location=New England
+Error: Invalid isoformat string: 'April 2025'
+Data: {
+  "headline": "United States Facility Management Market - Share, Companies & Trends",
+  "publication_date": "April 2025",
+  "summary": "CBRE reported a 16% net-revenue jump in Q1 2025 driven by tech and life-sciences clients. ABM Industries raised FY 2025 EPS guidance after winning $1 billion in contracts. The West, especially California, leads innovation with AI-driven energy dashboards and seismic-resilient designs.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/united-states-facility-management-market"
+}
+--------------------------------------------------------------------------------
+[21:12:35] PARSE_ARTICLE - industry=FACILITIES MANAGEMENT, location=New England
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Facility Management Market Size, Trends & Forecast | 2025-2030",
+  "publication_date": "2024",
+  "summary": "The market is fragmented but consolidating with global leaders like CBRE and JLL expanding through acquisitions. Healthcare facilities are the fastest-growing segment due to smart hospital investments and regulatory compliance.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/facility-management-market"
+}
+--------------------------------------------------------------------------------
+[21:12:35] PARSE_ARTICLE - industry=FACILITIES MANAGEMENT, location=New England
+Error: Invalid isoformat string: '2023-2024'
+Data: {
+  "headline": "Facilities Management (FM) Market Size, Growth Report, 2033",
+  "publication_date": "2023-2024",
+  "summary": "FM firms innovate with smart sensors, AI diagnostics, and sustainability tools. CBRE expanded smart FM services globally; ISS launched AI-driven energy savings platforms. Labor shortages and rising costs challenge margins, especially for smaller providers.",
+  "source": "Market Reports World",
+  "url": "https://www.marketreportsworld.com/market-reports/facilities-management-fm-market-14721003"
+}
+--------------------------------------------------------------------------------
+[21:12:35] PARSE_ARTICLE - industry=FACILITIES MANAGEMENT, location=New England
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Facilities Management Services Market Projected to Reach USD 226.3 Billion by 2032",
+  "publication_date": "2024",
+  "summary": "North America, led by the US, holds a significant market share due to early adoption of outsourced services and advanced building technologies. Regulatory compliance, workplace safety, and energy efficiency drive service contracts.",
+  "source": "Credence Research",
+  "url": "https://www.prnewswire.com/news-releases/facility-management-services-market-projected-to-reach-usd-226-3-billion-by-2032--credence-research-302678477.html"
+}
+--------------------------------------------------------------------------------
+[21:12:35] PARSE_ARTICLE - industry=FACILITIES MANAGEMENT, location=New England
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Facilities Management Services Market Outlook 2026-2034",
+  "publication_date": "2026",
+  "summary": "Industry consolidation is ongoing with major players acquiring niche specialists. CBRE and Sodexo invest in digital twin technology and AI-powered predictive maintenance. Rising labor costs and technician shortages accelerate contract consolidation.",
+  "source": "Intel Market Research",
+  "url": "https://www.intelmarketresearch.com/facilities-management-services-market-35715"
+}
+--------------------------------------------------------------------------------
+[21:12:35] PARSE_ARTICLE - industry=FACILITIES MANAGEMENT, location=New England
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "US Soft Facility Management Market Size, Share & 2034 Growth Trends Report",
+  "publication_date": "2024",
+  "summary": "Key players include CBRE, ISS, Aramark, and Sodexo. The market grows at 6.1% CAGR driven by integrated FM solutions and operational efficiency. Challenges include supply chain disruptions and labor shortages impacting service delivery.",
+  "source": "Emergen Research",
+  "url": "https://www.emergenresearch.com/industry-report/us-soft-facility-management-market"
+}
+--------------------------------------------------------------------------------
+[21:12:35] PARSE_ARTICLE - industry=FACILITIES MANAGEMENT, location=New England
+Error: Invalid isoformat string: '2025-2026'
+Data: {
+  "headline": "Facility Management Technology Trends to Follow in 2026",
+  "publication_date": "2025-2026",
+  "summary": "Regulatory pressure is increasing with over 50 US cities enforcing building performance standards. Integrated workplace management systems are growing rapidly, improving workspace management and reducing maintenance costs.",
+  "source": "Joan Workplace",
+  "url": "https://getjoan.com/facilities-management-technology/"
+}
+--------------------------------------------------------------------------------
+[21:13:00] PARSE_ARTICLE - industry=HR SERVICES, location=Mid Atlantic
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Leading PEO INFINITI HR Announces Industry Veteran, Javier Ramirez, as New COO",
+  "publication_date": "2026-04",
+  "summary": "INFINITI HR, a leading professional employer organization in the Mid-Atlantic, appointed Javier Ramirez as COO. The company offers state-specific HR services, full federal and state regulatory compliance management, and comprehensive insurance policies for franchises across all 50 states.",
+  "source": "InfinitiHR",
+  "url": "https://www.infinitihr.com/media/hp-featured/leading-peo-infiniti-hr-announces-industry-veteran-javier-ramirez-as-new-coo/"
+}
+--------------------------------------------------------------------------------
+[21:13:00] PARSE_ARTICLE - industry=HR SERVICES, location=Mid Atlantic
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Human Resource Outsourcing Service Market Outlook 2026-2034",
+  "publication_date": "2026",
+  "summary": "The HR outsourcing market is growing with consolidation trends and acquisitions by major players like Accenture. Regional specialists maintain strong local positions, while tech-driven firms disrupt with cloud-based platforms. Regulatory complexity drives demand for specialized compliance management, especially in mid-sized companies.",
+  "source": "Intel Market Research",
+  "url": "https://www.intelmarketresearch.com/human-resource-outsourcing-service-market-35861"
+}
+--------------------------------------------------------------------------------
+[21:13:00] PARSE_ARTICLE - industry=HR SERVICES, location=Mid Atlantic
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Global HR outsourcing market to hit $88Bn by 2030: TBRC",
+  "publication_date": "2026",
+  "summary": "The HR outsourcing industry is being transformed by innovative payroll solutions and AI-driven platforms. Key trends include digital HR adoption, end-to-end outsourcing demand, data-driven analytics, and compliance-focused consulting. Industry giants like Accenture, IBM, and ADP lead innovations in recruitment, benefits, and performance management.",
+  "source": "Outsource Accelerator",
+  "url": "https://news.outsourceaccelerator.com/?p=82650"
+}
+--------------------------------------------------------------------------------
+[21:13:00] PARSE_ARTICLE - industry=HR SERVICES, location=Mid Atlantic
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Payroll & HR Solutions & Services Market Size & Demand Analysis by 2035",
+  "publication_date": "2026",
+  "summary": "The global payroll and HR solutions market is projected to grow significantly, driven by regulatory complexity, workforce expansion, and technology adoption. North America holds 35% market share. Innovations focus on real-time compliance updates, employee self-service tools, and AI-driven payroll analytics improving accuracy and efficiency.",
+  "source": "Global Growth Insights",
+  "url": "https://www.globalgrowthinsights.com/market-reports/payroll-hr-solutions-services-market-124464"
+}
+--------------------------------------------------------------------------------
+[21:13:00] PARSE_ARTICLE - industry=HR SERVICES, location=Mid Atlantic
+Error: Invalid isoformat string: '2026-01'
+Data: {
+  "headline": "The Great Reinvention of Human Resources Has Begun \u2013 JOSH BERSIN",
+  "publication_date": "2026-01",
+  "summary": "Starting in 2026, HR is undergoing an AI-driven transformation shifting from administrative tasks to strategic roles including talent acquisition, internal mobility, and culture building. Larger organizations use federated HR models with local teams adapting policies to regional needs, reflecting evolving regulatory and business demands.",
+  "source": "Josh Bersin",
+  "url": "https://joshbersin.com/2026/01/the-great-reinvention-of-human-resources-has-begun/"
+}
+--------------------------------------------------------------------------------
+[21:13:00] PARSE_ARTICLE - industry=HR SERVICES, location=Mid Atlantic
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "HR trends 2025: Key insights & strategies for the future | Oyster\u00ae",
+  "publication_date": "2026",
+  "summary": "Investors increasingly prioritize ESG, making it a key business focus. AI disruption affects HR broadly, distinguishing management from leadership roles. Companies emphasize environmental, community, transparency, and regulatory compliance priorities in HR strategies.",
+  "source": "Oyster\u00ae",
+  "url": "https://www.oysterhr.com/library/hr-trends"
+}
+--------------------------------------------------------------------------------
+[21:13:00] PARSE_ARTICLE - industry=HR SERVICES, location=Mid Atlantic
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "HR and Talent Trends Shaping 2026: AI, Leadership, and the Risks of Standing Still",
+  "publication_date": "2026",
+  "summary": "Leadership development remains the top HR priority in 2026, closely linked to innovation enablement. Organizations with strong leadership capabilities are more likely to excel in innovation, highlighting the strategic role of HR in driving business transformation.",
+  "source": "Houston.org",
+  "url": "https://www.houston.org/news/hr-and-talent-trends-shaping-2026/"
+}
+--------------------------------------------------------------------------------
+[21:13:00] PARSE_ARTICLE - industry=HR SERVICES, location=Mid Atlantic
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "US Job Growth Rose Unexpectedly in March",
+  "publication_date": "2026-04",
+  "summary": "The US labor market showed stronger-than-expected job growth in March 2026, signaling a rebound despite recent volatility. However, challenges remain including a shrinking labor force and regulatory impacts on workforce participation.",
+  "source": "SHRM",
+  "url": "https://www.shrm.org/topics-tools/news/talent-acquisition/bls-hr-jobs-unemployment-apr-2026"
+}
+--------------------------------------------------------------------------------
+[21:13:54] PARSE_ARTICLE - industry=LIQUIDS, location=Southern Africa
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "South Africa Beverages Market 2026-2034 Analysis: Trends, Competitor Dynamics, and Growth Opportunities",
+  "publication_date": "2024",
+  "summary": "The South African beverages market is marked by innovation with trends toward healthier beverages like sugar-free and low-calorie drinks, and rising popularity of craft beers and spirits. Key players include The Coca-Cola Company, PepsiCo, Vital Pharmaceuticals, Kingsley Beverages, and Red Bull GmbH, focusing on product innovation and strategic alliances.",
+  "source": "Data Insights Market",
+  "url": "https://www.datainsightsmarket.com/reports/south-africa-beverages-market-6419"
+}
+--------------------------------------------------------------------------------
+[21:13:54] PARSE_ARTICLE - industry=LIQUIDS, location=Southern Africa
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "South Africa Beverages Market | 2019 \u2013 2030 | Ken Research",
+  "publication_date": "2024",
+  "summary": "Market dynamics are shaped by sustainability and digitalization, with investments in eco-friendly packaging and advanced production technologies. Regulatory compliance costs are significant. Leading companies include Coca-Cola, AB InBev, Distell, PepsiCo, Heineken, Diageo, Red Bull, and others. Health consciousness is rising, with 60% of consumers seeking healthier options.",
+  "source": "Ken Research",
+  "url": "https://www.kenresearch.com/south-africa-beverages-market"
+}
+--------------------------------------------------------------------------------
+[21:13:54] PARSE_ARTICLE - industry=LIQUIDS, location=Southern Africa
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Africa Dairy Based Beverages Industry Charting Growth Trajectories 2024-2032: Strategic Insights and Forecasts",
+  "publication_date": "2024",
+  "summary": "The dairy-based beverages industry in Africa is growing with innovation in flavored drinks and functional dairy beverages like probiotics. Challenges include rising production costs, competition from non-dairy alternatives, and climate change. The market is regulated by government agencies with standards for production and sale.",
+  "source": "Data Insights Market",
+  "url": "https://www.datainsightsmarket.com/reports/africa-dairy-based-beverages-industry-6239"
+}
+--------------------------------------------------------------------------------
+[21:13:54] PARSE_ARTICLE - industry=LIQUIDS, location=Southern Africa
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "MEA Alcoholic Beverages Market - Size, Share & Industry Analysis",
+  "publication_date": "2024",
+  "summary": "South Africa is a principal growth territory in the Middle East and Africa alcoholic beverages market, supported by manufacturing infrastructure and tourism. Market evolution is driven by product innovations including flavored and ready-to-consume variants. Major companies include AB InBev, Heineken, Diageo, Pernod Ricard, and Molson Coors.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/middle-east-and-africa-alcoholic-beverages-market"
+}
+--------------------------------------------------------------------------------
+[21:13:54] PARSE_ARTICLE - industry=LIQUIDS, location=Southern Africa
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "South Africa's Spirits and Liqueurs Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2024",
+  "summary": "The spirits and liqueurs market in South Africa shows significant import reliance on European suppliers and exports to neighboring African countries. Price trends are rising due to freight, exchange rates, and regulatory shifts. The market is expected to sustain value growth through 2035.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/south-africa-spirits-liqueurs-and-other-spirituous-beverages-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:13:54] PARSE_ARTICLE - industry=LIQUIDS, location=Southern Africa
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "South Africa Desalination Market Size & Summary",
+  "publication_date": "2024",
+  "summary": "Desalination is becoming key in South Africa's water management with technological innovations improving efficiency and cost-effectiveness. Government policies support growth, focusing on membrane technology, energy efficiency, and hybrid systems.",
+  "source": "Vocal Media",
+  "url": "https://vocal.media/trader/south-africa-desalination-market-size-and-summary"
+}
+--------------------------------------------------------------------------------
+[21:13:54] PARSE_ARTICLE - industry=LIQUIDS, location=Southern Africa
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "South Africa Caustic Soda Market Overview, 2030",
+  "publication_date": "2024",
+  "summary": "Demand for liquid caustic soda dominates due to ease of handling and automation compatibility. Investments in cGMP-compliant facilities and pharmaceutical innovation drive demand for ultra-pure products. Government policies support local manufacturing and import substitution, fostering growth opportunities.",
+  "source": "Bonafide Research",
+  "url": "https://www.bonafideresearch.com/product/6504995317/south-africa-caustic-soda-market"
+}
+--------------------------------------------------------------------------------
+[21:13:54] PARSE_ARTICLE - industry=LIQUIDS, location=Southern Africa
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Africa's Liquid Measurement Instrument Market Poised for Steady Growth With 1.1% CAGR Through 2035",
+  "publication_date": "2024",
+  "summary": "The market for instruments measuring liquid flow or level in Africa is forecast to grow steadily, reaching 27 million units and $1.6 billion by 2035. Demand is driven by household and industrial usage, with key players including South Africa, Tunisia, and Kenya. Regulatory compliance is a significant factor.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/blog/instruments-for-measuring-or-checking-the-flow-or-level-of-liquids-africa-market-overview-2024-6/"
+}
+--------------------------------------------------------------------------------
+[21:14:20] PARSE_ARTICLE - industry=LOGISTICS, location=Western Africa
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "South Africa Logistics Industry - Ken Research Stated the Industry is Valued at USD xx Billion with Strong Long-Term Growth Potential",
+  "publication_date": "2026-04",
+  "summary": "Ken Research reports strong long-term growth potential in South Africa's logistics industry, with detailed market segmentation and forecasts through 2026, highlighting investment opportunities in warehousing, e-commerce logistics, cold chain, and cross-border trade.",
+  "source": "Ken Research via openPR",
+  "url": "https://www.openpr.com/news/4474251/south-africa-logistics-industry-ken-research-stated"
+}
+--------------------------------------------------------------------------------
+[21:14:20] PARSE_ARTICLE - industry=LOGISTICS, location=Western Africa
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Africa logistics sector 2026 outlook bullish - CNBC Africa",
+  "publication_date": "2026-04",
+  "summary": "A $15 million investment approved for African warehouse development via an industrial REIT marks a significant boost for Africa's logistics infrastructure, with East Africa's first industrial REIT to be listed on the Nairobi Securities Exchange.",
+  "source": "CNBC Africa",
+  "url": "https://www.cnbcafrica.com/media/7770191923293/africa-logistics-sector-2026-outlook-bullish"
+}
+--------------------------------------------------------------------------------
+[21:14:20] PARSE_ARTICLE - industry=LOGISTICS, location=Western Africa
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Africa\u2019s five largest ports by cargo volume in 2026",
+  "publication_date": "2026-04",
+  "summary": "Nigeria's Lekki Deep Sea Port, fully operational since 2023, is one of West Africa's most advanced ports, supporting containerized trade and anchoring a wider industrial and logistics ecosystem despite structural constraints limiting maritime capacity.",
+  "source": "Businessday NG",
+  "url": "https://businessday.ng/news/article/africas-five-largest-ports-by-cargo-volume-in-2026/"
+}
+--------------------------------------------------------------------------------
+[21:14:20] PARSE_ARTICLE - industry=LOGISTICS, location=Western Africa
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "Chief of Staff tells West Africa chambers: logistics gaps still block regional trade",
+  "publication_date": "2026-04",
+  "summary": "Ghana's Chief of Staff highlighted that inadequate logistics infrastructure, fragmented standards, and limited finance access remain major obstacles to intra-African trade despite AfCFTA's promise.",
+  "source": "NewsGhana",
+  "url": "https://www.newsghana.com.gh/chief-of-staff-tells-west-africa-chambers-logistics-gaps-still-block-regional-trade/"
+}
+--------------------------------------------------------------------------------
+[21:14:20] PARSE_ARTICLE - industry=LOGISTICS, location=Western Africa
+Error: Invalid isoformat string: '2026-04'
+Data: {
+  "headline": "As the Strait of Hormuz sparks a global crisis, a small West African country offers a way out",
+  "publication_date": "2026-04",
+  "summary": "Togo is positioning the Port of Lome as a secure and dependable logistics hub offering an alternative to risky routes through the Strait of Hormuz and Suez Canal, aiming to become a logistics powerhouse in West Africa.",
+  "source": "Business Insider Africa",
+  "url": "https://africa.businessinsider.com/local/lifestyle/as-the-strait-of-hormuz-sparks-a-global-crisis-a-small-west-african-country-offers-a/g5xqfef"
+}
+--------------------------------------------------------------------------------
+[21:14:20] PARSE_ARTICLE - industry=LOGISTICS, location=Western Africa
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "West Africa Logistics Market: Infrastructure Development, Trade Expansion & Growth Outlook",
+  "publication_date": "2026",
+  "summary": "The West Africa logistics market reached USD 48 billion in 2025 and is projected to grow at a CAGR of 4.85% through 2034, driven by infrastructure investments, trade expansion, and adoption of modern logistics technologies.",
+  "source": "Futurism via Vocal Media",
+  "url": "https://vocal.media/futurism/west-africa-logistics-market-infrastructure-development-trade-expansion-and-growth-outlook"
+}
+--------------------------------------------------------------------------------
+[21:14:54] PARSE_ARTICLE - industry=MRO, location=Eastern Africa
+Error: Invalid isoformat string: '2025-2034'
+Data: {
+  "headline": "Middle-East & Africa Aircraft MRO Market - Size, Share & Analysis",
+  "publication_date": "2025-2034",
+  "summary": "The market is evolving with real-time engine-health feeds predicting unscheduled removals 30 to 60 days ahead, reducing disruptions. OEM-affiliated providers embed analytics into long-term service agreements, while independent MROs compete with flexible capacity and multi-platform authorizations. Blockchain parts tracking is piloted but commercial uptake is tentative. Regulatory approvals impact cross-border opportunities.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/middle-east-and-africa-aircraft-mro-market"
+}
+--------------------------------------------------------------------------------
+[21:14:54] PARSE_ARTICLE - industry=MRO, location=Eastern Africa
+Error: Invalid isoformat string: '2025-2034'
+Data: {
+  "headline": "Africa Aviation MRO Market \u2013 Size, Share, Trends, Analysis & Forecast 2026\u20132035",
+  "publication_date": "2025-2034",
+  "summary": "Technological advancements like predictive maintenance and data-driven analytics are revolutionizing the MRO industry in Africa. The market faces challenges such as skilled labor shortages and infrastructure constraints. Sustainable practices and collaborative partnerships are emerging trends. Regulatory compliance remains stringent, and competition among providers is intense.",
+  "source": "MarkWide Research",
+  "url": "https://markwideresearch.com/africa-aviation-mro-market/"
+}
+--------------------------------------------------------------------------------
+[21:14:54] PARSE_ARTICLE - industry=MRO, location=Eastern Africa
+Error: Invalid isoformat string: '2025-2030'
+Data: {
+  "headline": "Nigeria Aircraft Maintenance, Repair, and Overhaul Market - Companies & Size",
+  "publication_date": "2025-2030",
+  "summary": "Nigeria's MRO market is projected to grow to USD 386.48 million by 2030 at a CAGR of 2.66%. Air Peace, in partnership with Embraer, is establishing a cutting-edge MRO facility to serve Nigerian and international fleets. Regulatory bodies like the Nigerian Civil Aviation Authority are increasing licenses to boost MRO services. Major companies include ExecuJet Aviation Group AG and Arik Air Limited.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/nigeria-maintenance-repair-and-overhaul-market"
+}
+--------------------------------------------------------------------------------
+[21:14:54] PARSE_ARTICLE - industry=MRO, location=Eastern Africa
+Error: Invalid isoformat string: '2025-2033'
+Data: {
+  "headline": "Africa Aviation MRO Market Analysis Report 2025",
+  "publication_date": "2025-2033",
+  "summary": "The African aviation MRO market is moderately concentrated with major players like Ethiopian Airlines and South African Airways Technical. Innovation is driven by digital twins, predictive maintenance, and AI diagnostics, though adoption varies due to infrastructure limits. The market growth is linked to macroeconomic conditions and increasing international MRO providers fostering competition and technology transfer.",
+  "source": "Data Insights Market",
+  "url": "https://www.datainsightsmarket.com/reports/africa-aviation-mro-market-18118"
+}
+--------------------------------------------------------------------------------
+[21:14:54] PARSE_ARTICLE - industry=MRO, location=Eastern Africa
+Error: Invalid isoformat string: '2026-03'
+Data: {
+  "headline": "African MRO Summit Advances Goal of Self-Reliant Aviation Ecosystem",
+  "publication_date": "2026-03",
+  "summary": "The summit addresses challenges like limited hangar space, certification complexities, and supply chain disruptions that drive African aircraft maintenance offshore. It aims to stimulate regulatory reforms and private investment to reduce dependence on foreign MRO services. Airline-affiliated MROs in Ethiopia, Kenya, Egypt, and South Africa are marketing services regionally, demonstrating competitive quality and pricing.",
+  "source": "Eplane AI",
+  "url": "https://www.eplaneai.com/news/african-mro-summit-advances-goal-of-self-reliant-aviation-ecosystem"
+}
+--------------------------------------------------------------------------------
+[21:14:54] PARSE_ARTICLE - industry=MRO, location=Eastern Africa
+Error: Invalid isoformat string: '2026-03'
+Data: {
+  "headline": "AFRAA and the 4 Founding African MROs Launch Landmark African MRO Conference in Addis Ababa",
+  "publication_date": "2026-03",
+  "summary": "The conference gathered over 450 delegates from 50+ countries to address Africa's MRO challenges including supply chain constraints, high dependence on off-continent services, skills shortages, and regulatory fragmentation. It aims to build a sustainable MRO ecosystem through collaboration among airlines, MRO leaders, OEMs, and regulators.",
+  "source": "African Airlines Association (AFRAA)",
+  "url": "https://www.afraa.org/afraa-and-the-4-founding-african-mros-launch-landmark-african-mro-conference-in-addis-ababa-to-drive-sustainability-in-aircraft-maintenance/"
+}
+--------------------------------------------------------------------------------
+[21:14:54] PARSE_ARTICLE - industry=MRO, location=Eastern Africa
+Error: Invalid isoformat string: '2025-2030'
+Data: {
+  "headline": "Nigeria Africa Aviation MRO Market, Size, Revenue, Share, Growth, Airframe MRO, Engine MRO, Component MRO, Line Maintenance, key Players",
+  "publication_date": "2025-2030",
+  "summary": "Nigeria's aviation MRO market faces challenges like high costs, lack of local facilities, skilled labor shortages, and regulatory hurdles. Opportunities include expansion of local MRO services, technological advancements, and growth in business jet markets. Trends include digitalization and sustainability in maintenance, with increasing collaborations between local and international providers.",
+  "source": "Nexdigm",
+  "url": "https://www.nexdigm.com/market-research/report-store/nigeria-africa-aviation-mro-market/"
+}
+--------------------------------------------------------------------------------
+[21:15:17] PARSE_ARTICLE - industry=PACKAGING, location=Oceania
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Five key trends reshaping Australia\u2019s packaging sector",
+  "publication_date": "2024",
+  "summary": "Jet Technologies identifies five packaging trends shaping the Australian market through 2026, driven by regulatory change, soft plastics recycling return, cost pressures, and faster product cycles. Innovation in recyclable materials and alignment with regulatory changes are key for growth.",
+  "source": "ecommercenews.com.au",
+  "url": "https://ecommercenews.com.au/story/five-key-trends-reshaping-australia-s-packaging-sector"
+}
+--------------------------------------------------------------------------------
+[21:15:17] PARSE_ARTICLE - industry=PACKAGING, location=Oceania
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Investor outlook: packaging in a high-cost era",
+  "publication_date": "2024",
+  "summary": "The packaging sector faces long-term cost inflation, supply chain volatility, and regulatory pressures. Focus is shifting to margins, efficiency, automation, recycled packaging, and supply chain resilience, with growth in flexible packaging, healthcare, food, and transit packaging segments.",
+  "source": "packaging-gateway.com",
+  "url": "https://www.packaging-gateway.com/news/investor-outlook-packaging-in-a-high-cost-era/"
+}
+--------------------------------------------------------------------------------
+[21:15:17] PARSE_ARTICLE - industry=PACKAGING, location=Oceania
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Sustainable Packaging Market Size, Share & Industry Report 2035",
+  "publication_date": "2024",
+  "summary": "Major players like Amcor (AU) are innovating and partnering to enhance sustainable packaging. Regulatory frameworks drive faster adoption of sustainable solutions. Technological advances in biodegradable plastics and smart packaging support environmental goals.",
+  "source": "marketresearchfuture.com",
+  "url": "https://www.marketresearchfuture.com/reports/sustainable-packaging-market-5247"
+}
+--------------------------------------------------------------------------------
+[21:15:17] PARSE_ARTICLE - industry=PACKAGING, location=Oceania
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Packaging industry adapts to prolonged disruption",
+  "publication_date": "2024",
+  "summary": "IFCO\u2019s 2026 packaging trends review highlights increased exposure to supply chain disruption, regulatory risk, and higher operating costs due to poor packaging choices, emphasizing the need for strategic packaging decisions.",
+  "source": "packaging-gateway.com",
+  "url": "https://www.packaging-gateway.com/news/packaging-industry-adapts-to-prolonged-disruption/"
+}
+--------------------------------------------------------------------------------
+[21:15:17] PARSE_ARTICLE - industry=PACKAGING, location=Oceania
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Changing trends in paper and packaging demand",
+  "publication_date": "2024",
+  "summary": "McKinsey & Company reports that high demand alone no longer sustains packaging industry performance. Companies must focus on execution, innovation, and navigating consumer expectations, regulatory pressure, and material substitution in a complex, lower-growth environment.",
+  "source": "recyclingproductnews.com",
+  "url": "https://www.recyclingproductnews.com/article/44481/headwinds-facing-the-packaging-industry-and-best-practices-for-overcoming-them"
+}
+--------------------------------------------------------------------------------
+[21:15:17] PARSE_ARTICLE - industry=PACKAGING, location=Oceania
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Packaging Robots Market Set to Reach US$ 14.6 Billion by 2030, Driven by Automation and AI-Powered Packaging Solutions, with Asia-Pacific Leading at 35% Market Share",
+  "publication_date": "2024",
+  "summary": "The packaging robots market is growing rapidly with automation and AI integration, led by companies like ABB Robotics and FANUC. Asia-Pacific holds a 35% market share, driven by innovation in collaborative robots improving packaging efficiency.",
+  "source": "openPR.com",
+  "url": "https://www.openpr.com/news/4477841/packaging-robots-market-set-to-reach-us-14-6-billion-by-2030"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe Paper and Pulp Market Share Growth & Analysis, 2034",
+  "publication_date": "2026",
+  "summary": "The Europe paper and pulp market is projected to grow steadily at a CAGR of 0.98% from 2026 to 2034, driven by demand from packaging, sustainable materials adoption, and circular economy transition. Key players include Stora Enso, Mets\u00e4 Group, UPM, and others.",
+  "source": "Market Data Forecast",
+  "url": "https://www.marketdataforecast.com/market-reports/europe-paper-and-pulp-market"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe Barrier Packaging Paper Market Outlook 2026-2034",
+  "publication_date": "2026",
+  "summary": "Northern Europe leads in circular economy models with integrated recycling for barrier paper products. Key players like Mondi Group, Stora Enso, and UPM invest in R&D for high-performance barrier solutions amid stringent EU environmental regulations.",
+  "source": "Intel Market Research",
+  "url": "https://www.intelmarketresearch.com/europe-barrier-packaging-paper-market-market-market-40052"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: '15 April 2026'
+Data: {
+  "headline": "Pulp & Beyond 2026: Featuring pulp and paper industry trends and challenges",
+  "publication_date": "15 April 2026",
+  "summary": "The Northern European pulp and paper industry faces challenges from energy costs, global trade politics, and geopolitical crises. The event highlights AI in process industries, innovation, and bioeconomy future. Major companies like Mondi and Domtar announce strategic moves.",
+  "source": "PULPAPERnews.com",
+  "url": "https://www.pulpapernews.com/20260330/17633/pulp-beyond-2026-featuring-pulp-and-paper-industry-trends-and-challenges"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: '17 April 2026'
+Data: {
+  "headline": "Europe\u2019s Pulp and Paper Market Outlook: Fiber Supply, Energy Costs, and Strategic Implications",
+  "publication_date": "17 April 2026",
+  "summary": "The European pulp and paper sector is challenged by constrained fiber supply, energy volatility, and shifting trade dynamics. Sustainability trends and cost structure evaluations are critical for navigating market uncertainty.",
+  "source": "ResourceWise",
+  "url": "https://www.resourcewise.com/blog/europes-pulp-and-paper-market-outlook-fiber-supply-energy-costs-and-strategic-implications"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: 'April 2026'
+Data: {
+  "headline": "Latest Paper News \u2022 Trends \u2022 Market Reports - EUWID Pulp and Paper",
+  "publication_date": "April 2026",
+  "summary": "Recent developments include new tissue paper production in the UK, pulp price increases by SCA, and consolidation in envelope manufacturing in Germany due to declining demand. The German recovered paper market remains balanced amid modest demand.",
+  "source": "EUWID Pulp and Paper",
+  "url": "https://www.euwid-paper.com/news/"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: 'January/February 2026'
+Data: {
+  "headline": "A recap of global paper industry trends",
+  "publication_date": "January/February 2026",
+  "summary": "Europe faces structural overcapacity in graphic papers amid declining demand and rising energy and compliance costs. EU Deforestation Regulation increases compliance workload. Investment focuses on packaging grades, specialty papers, and recycling capacity.",
+  "source": "Recycling Product News",
+  "url": "https://www.recyclingproductnews.com/article/44233/a-recap-of-global-paper-industry-trends"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Thermal Paper Market in Western and Northern Europe | Report - IndexBox",
+  "publication_date": "2026",
+  "summary": "The thermal paper market in Northern Europe is stable but faces environmental and regulatory pressures. Key applications include POS receipts, logistics labeling, and healthcare documentation, with sustainability mandates and digitalization influencing trends.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/western-and-northern-europe-thermal-paper-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Global Development Trends of the Paper Industry and Corporate M&A Investment Strategies",
+  "publication_date": "2026",
+  "summary": "Europe's paper industry shows stable growth focusing on efficiency optimization over capacity expansion, driven by packaging and tissue demand. Mergers and acquisitions are strategic tools for scale and market access amid regulatory constraints.",
+  "source": "ResourceWise",
+  "url": "https://www.resourcewise.com/blog/global-development-trends-of-the-paper-industry-and-corporate-ma-investment-strategies"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: '2025-2030'
+Data: {
+  "headline": "Europe Paper Market Size & Share Analysis - Industry Research Report - Growth Trends",
+  "publication_date": "2025-2030",
+  "summary": "Europe's paper market is expected to grow at a CAGR of 4.31% to 2030, with major players like Stora Enso, UPM, and Mondi. Legislative initiatives digitizing public communication impact paper usage trends.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/europe-paper-market"
+}
+--------------------------------------------------------------------------------
+[21:15:47] PARSE_ARTICLE - industry=PAPER, location=Northern Europe
+Error: Invalid isoformat string: '2025-2030'
+Data: {
+  "headline": "Paper Industry Machinery Market Size & Share Analysis - Industry Research Report - Growth Trends",
+  "publication_date": "2025-2030",
+  "summary": "The paper industry machinery market is projected to grow at a CAGR of 4.9%, driven by demand in packaging, pulp & paper, and print media industries globally, including Europe, with focus on automation and efficiency.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/global-paper-industry-machinery-market"
+}
+--------------------------------------------------------------------------------
+[21:16:08] PARSE_ARTICLE - industry=PROFESSIONAL SERVICES, location=Southern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe Consulting Services Market Growth Report 2031",
+  "publication_date": "2026",
+  "summary": "Southern European markets like Spain and Italy are accelerating digital transition efforts supported by significant EU Recovery and Resilience Facility (RRF) allocations. Programs such as Spain\u2019s Digitalization Kit and Italy\u2019s Transizione 4.0 tax credits are driving advisory service uptake. Major players include Deloitte, EY, KPMG, PwC, and McKinsey. The market is growing with a focus on strategy consulting and sustainability services.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/europe-consulting-services-market"
+}
+--------------------------------------------------------------------------------
+[21:16:08] PARSE_ARTICLE - industry=PROFESSIONAL SERVICES, location=Southern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe Professional Services Market Size & Share Report 2034",
+  "publication_date": "2026",
+  "summary": "The European professional services market is highly competitive with global consulting giants and regional providers focusing on innovation, digital capabilities, and client-centric solutions. Regulatory fragmentation across Europe creates a complex environment favoring local expertise. EY is noted for strategic partnerships and innovation leadership. Key players include Accenture and AECOM.",
+  "source": "Market Data Forecast",
+  "url": "https://www.marketdataforecast.com/market-reports/europe-professional-services-market"
+}
+--------------------------------------------------------------------------------
+[21:16:08] PARSE_ARTICLE - industry=PROFESSIONAL SERVICES, location=Southern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Professional Services Industry Outlook 2026",
+  "publication_date": "2026",
+  "summary": "AI adoption is transforming professional services with a projected 32.4% CAGR growth through 2030. Regulatory scrutiny on AI use is increasing, with expected ethical standards and certification programs by 2026. Firms are shifting towards outcome-based pricing models and investing in cyber resilience and governance to maintain trust.",
+  "source": "BPM",
+  "url": "https://www.bpm.com/insights/professional-services-industry-outlook-2026/"
+}
+--------------------------------------------------------------------------------
+[21:16:08] PARSE_ARTICLE - industry=PROFESSIONAL SERVICES, location=Southern Europe
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "European M&A report 2025: Industry trends and growth drivers",
+  "publication_date": "2025",
+  "summary": "M&A activity in professional services remains concentrated in the mid-market, driven by private equity focusing on scalable models and recurring revenue. Technology adoption, AI integration, and agile client responses are key innovation drivers. Despite macroeconomic challenges, the sector shows adaptability and strategic growth potential.",
+  "source": "RSM Global",
+  "url": "https://www.rsm.global/insights/special-reports/european-ma-deals/2025"
+}
+--------------------------------------------------------------------------------
+[21:16:08] PARSE_ARTICLE - industry=PROFESSIONAL SERVICES, location=Southern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe Testing, Inspection, and Certification TIC Market 2032",
+  "publication_date": "2026",
+  "summary": "Technological disruptions like AI and automation are reshaping TIC services, requiring companies to integrate new technologies to stay competitive. Southern Europe, including Italy, Spain, and Greece, has diverse industries driving demand for TIC services amid robust regulatory frameworks ensuring compliance and quality assurance.",
+  "source": "Custom Market Insights",
+  "url": "https://www.custommarketinsights.com/report/europe-testing-inspection-and-certification-tic-market/"
+}
+--------------------------------------------------------------------------------
+[21:16:08] PARSE_ARTICLE - industry=PROFESSIONAL SERVICES, location=Southern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe Customer Relationship Management Market Share, 2034",
+  "publication_date": "2026",
+  "summary": "Digitalization and AI integration are key trends in European CRM, enabling smaller firms to compete with larger ones. Regulatory frameworks like GDPR drive innovation in data handling and localization. Key players focus on localized infrastructure and strategic partnerships to navigate complex regulations effectively.",
+  "source": "Market Data Forecast",
+  "url": "https://www.marketdataforecast.com/market-reports/europe-customer-relationship-management-market"
+}
+--------------------------------------------------------------------------------
+[21:16:08] PARSE_ARTICLE - industry=PROFESSIONAL SERVICES, location=Southern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe Cloud Services Market Size, Share and Analysis, 2034",
+  "publication_date": "2026",
+  "summary": "Demand for hybrid and sovereign cloud solutions is rising in Southern Europe due to sovereignty and regulatory compliance concerns. Paris is emerging as a key data center hub. Regulatory frameworks like GDPR act as both barriers and catalysts for innovation in cloud services.",
+  "source": "Market Data Forecast",
+  "url": "https://www.marketdataforecast.com/market-reports/europe-cloud-services-market"
+}
+--------------------------------------------------------------------------------
+[21:16:08] PARSE_ARTICLE - industry=PROFESSIONAL SERVICES, location=Southern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Professional Service Automation Software Market Size, Industry Share | Forecast 2034",
+  "publication_date": "2026",
+  "summary": "Regulatory compliance influences software adoption in Europe, with Germany as a key market favoring robust platforms. AI-enabled analytics and workforce planning tools are accelerating adoption. Subscription models support scalability, and vendor competition drives continuous innovation.",
+  "source": "Fortune Business Insights",
+  "url": "https://www.fortunebusinessinsights.com/industry-reports/professional-service-automation-software-market-101785"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: 'January 2026'
+Data: {
+  "headline": "Cocoa and Chocolate Market Size, Share & 2031 Trends Report",
+  "publication_date": "January 2026",
+  "summary": "Dark chocolate is driving health-conscious growth with a 7.74% CAGR forecast from 2026-2031. Consumer preferences are shifting toward premium, artisanal, and specialty chocolates with ethical sourcing and transparency becoming regulatory priorities globally. The Asia-Pacific region is expanding cocoa processing to reduce dependence on Western facilities and adapt to regional preferences.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/cocoa-and-chocolate-market"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "United States Chocolate Market Size & Forecast 2026\u20132034",
+  "publication_date": "2026",
+  "summary": "The U.S. chocolate market is expected to grow from $35.25 billion in 2025 to $49.48 billion by 2034 at a CAGR of 3.84%. Key trends include rising demand for organic, vegan, sugar-free, and ethically sourced chocolates, with artisanal brands gaining momentum. Innovation in flavors and plant-based products is accelerating market development despite challenges like fluctuating cocoa prices.",
+  "source": "Trader via Vocal Media",
+  "url": "https://vocal.media/trader/united-states-chocolate-market-size-and-forecast-2026-2034"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: 'January 19, 2026'
+Data: {
+  "headline": "Future of chocolate: Cocoa shortages reshape industry",
+  "publication_date": "January 19, 2026",
+  "summary": "Due to cocoa supply strains from climate and disease, manufacturers are innovating with low-cocoa and cocoa-free products, including using fillers like nuts or vegetable oils. Companies like Cargill and Nestl\u00e9 are developing cocoa-free chocolate alternatives to protect margins and future-proof portfolios.",
+  "source": "FoodNavigator-USA",
+  "url": "https://www.foodnavigator-usa.com/Article/2026/01/19/future-of-chocolate-cocoa-shortages-reshape-industry/"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: '2025-2026'
+Data: {
+  "headline": "Cocoa Market Size, Share and Industry Statistics - 2035",
+  "publication_date": "2025-2026",
+  "summary": "The cocoa market is growing with increased demand for indulgent and functional ingredients. Ethical sourcing, traceability, and climate-smart agriculture are key trends. North America shows resilience with growing demand for clean-label, ethically produced chocolate and functional cocoa foods, supported by investments in traceability and flavor innovation.",
+  "source": "Fact.MR",
+  "url": "https://www.factmr.com/report/44/cocoa-market"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: 'March 3, 2026'
+Data: {
+  "headline": "Cocoa prices crash after 2024 record highs as demand slump hits global chocolate market",
+  "publication_date": "March 3, 2026",
+  "summary": "Cocoa prices have sharply declined after 2024 highs due to demand slumps. Major chocolate makers collaborate to futureproof cocoa supply amid climate and regulatory pressures. The EU deforestation regulation will impose compliance costs from December 2026. US chocolate prices rose 14% in early 2026 due to hedging and margin repair.",
+  "source": "FoodNavigator",
+  "url": "https://www.foodnavigator.com/Article/2026/03/03/cocoa-prices-crash-after-2024-record-highs-as-demand-slump-hits-global-chocolate-market/"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "2026 Cocoa Report: Global Market Trends, Pricing, and Strategic Outlook",
+  "publication_date": "2026",
+  "summary": "Global cocoa production declined from 4.1 MMT in 2021 to 3.5 MMT in 2024, with prices falling from $10,932/MT in May 2025 to $2,888/MT in February 2026. The report highlights price trends, regulatory developments, and innovations including agronomy services to optimize production and sustainability.",
+  "source": "Farrelly Mitchell",
+  "url": "https://farrellymitchell.com/crops/cocoa_report/"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Cocoa and Chocolate Market (2026-2033) | Top Companies and Trends",
+  "publication_date": "2026",
+  "summary": "North America shows strong consumer demand driven by premium chocolate trends and flavor innovation. Recent M&A includes Hartree Partners acquiring Touton SA to strengthen cocoa trading. The market faces evolving regulations, competitive intensity, and technological advancements shaping growth opportunities.",
+  "source": "DataM Intelligence via OpenPR",
+  "url": "https://www.openpr.com/news/4457997/cocoa-and-chocolate-market-2026-2033-cocoa-organic-cocoa"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: 'Late 2025/Early 2026'
+Data: {
+  "headline": "Cocoa Market (2026-2033) | Chocolate Production and Investment Opportunities",
+  "publication_date": "Late 2025/Early 2026",
+  "summary": "Barry Callebaut AG is considering strategic divestment of its global cocoa division to reduce exposure to price volatility. Small and mid-tier firms and private equity are actively acquiring niche cocoa-processing and artisanal chocolate brands amid ongoing market consolidation. Specialty and functional cocoa products are growing in demand.",
+  "source": "DataM Intelligence via OpenPR",
+  "url": "https://www.openpr.com/news/4425553/cocoa-market-2026-2033-chocolate-production-premium"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Cocoa Ingredients Market Size to Capture USD 14.59 Billion in 2026",
+  "publication_date": "2026",
+  "summary": "Innovations in processing, precision fermentation, and AI-powered supply chain monitoring are improving nutritional value and flavor while addressing supply chain issues like deforestation. North America\u2019s cocoa ingredients market is growing due to demand for sustainably sourced, organic, and premium products, with increasing applications in food and beverages.",
+  "source": "Towards FNB",
+  "url": "https://www.towardsfnb.com/insights/cocoa-ingredients-market"
+}
+--------------------------------------------------------------------------------
+[21:16:37] PARSE_ARTICLE - industry=Cocoa, Nuts & Seeds, location=US
+Error: Invalid isoformat string: 'February 9, 2026'
+Data: {
+  "headline": "Chocolate at a Crossroads: Inside the industry\u2019s response to supply shocks",
+  "publication_date": "February 9, 2026",
+  "summary": "Industry leaders discuss how AI is used to create cocoa alternatives and extend cocoa usage amid supply challenges. Consumer trends show a shift from fear-based food decisions to benefits-driven choices, with innovation balancing supply chain needs, sustainability, and consumer expectations.",
+  "source": "FoodNavigator-USA",
+  "url": "https://www.foodnavigator-usa.com/Article/2026/02/09/soup-to-nuts-podcast-navigating-chocolate-supply-chain-shocks"
+}
+--------------------------------------------------------------------------------
+[21:17:06] PARSE_ARTICLE - industry=Cheese, Cultures, Milk Powders, location=Western Europe
+Error: Invalid isoformat string: 'January 2026'
+Data: {
+  "headline": "Europe Dominates Microbial Food Cultures Market with 45% Revenue Share, Driving Growth to US$ 191.8 Million by 2033",
+  "publication_date": "January 2026",
+  "summary": "Europe leads the microbial food cultures market with 45% revenue share, expected to grow to US$ 191.8 million by 2033. Key innovations include Hansen's advanced microbial culture blend for dairy fermentation and DuPont's next-gen microbial culture for plant-based cheese analogs focusing on texture and clean-label credentials.",
+  "source": "openPR.com",
+  "url": "https://www.openpr.com/news/4476926/europe-dominates-microbial-food-cultures-market-with-45"
+}
+--------------------------------------------------------------------------------
+[21:17:06] PARSE_ARTICLE - industry=Cheese, Cultures, Milk Powders, location=Western Europe
+Error: Invalid isoformat string: 'March 31, 2026'
+Data: {
+  "headline": "Whey\u2019s boom is flipping dairy economics on their head",
+  "publication_date": "March 31, 2026",
+  "summary": "Whey protein demand is reshaping dairy economics with expanded processing capacity potentially leading to temporary oversupply and lower cheese prices. Major players like Ireland\u2019s Tirl\u00e1n and India\u2019s Amul are expanding whey protein production to meet rising global demand, especially for high-protein products.",
+  "source": "FoodNavigator and DairyReporter",
+  "url": "https://www.foodnavigator.com/Article/2026/03/31/how-whey-protein-is-reshaping-the-global-dairy-economy/"
+}
+--------------------------------------------------------------------------------
+[21:17:06] PARSE_ARTICLE - industry=Cheese, Cultures, Milk Powders, location=Western Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "EU's Processed Cheese (excluding Grated or Powdered) Market Report 2026 - Prices, Size, Forecast, and Companies",
+  "publication_date": "2026",
+  "summary": "The EU processed cheese market is mature but evolving, with core consumption in Western Europe (Germany, France, Spain). Market trends include consolidation, consumer health focus, sustainability mandates, and technological innovation, with production concentrated in member states with strong dairy heritage.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/eu-processed-cheese-excluding-grated-or-powdered-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[21:17:06] PARSE_ARTICLE - industry=Cheese, Cultures, Milk Powders, location=Western Europe
+Error: Invalid isoformat string: 'January 22, 2026'
+Data: {
+  "headline": "Global Milk Oversupply Pressures Dairy Prices in 2026",
+  "publication_date": "January 22, 2026",
+  "summary": "Global milk oversupply continues, pressuring dairy commodity prices despite increased buying activity. Processors are shifting milk into higher-margin products like cheese and whey protein ingredients. Butter and skim milk powder offer the lowest margins currently.",
+  "source": "DairyReporter",
+  "url": "https://www.dairyreporter.com/Article/2026/01/22/global-milk-oversupply-persists-despite-demand-uptick/"
+}
+--------------------------------------------------------------------------------
+[21:17:06] PARSE_ARTICLE - industry=Cheese, Cultures, Milk Powders, location=Western Europe
+Error: Invalid isoformat string: 'April 11, 2026'
+Data: {
+  "headline": "EU dairy market Q4 2025 reported rising milk deliveries & shifting powder stocks",
+  "publication_date": "April 11, 2026",
+  "summary": "EU milk deliveries increased 5.5% year-on-year in Q4 2025, boosting dairy product production. Cheese stocks stabilized after previous increases. Milk powder supplies declined due to lower production and imports but higher exports. Germany, France, and the Netherlands remain key producers and exporters.",
+  "source": "Dairy Business Middle East & Africa",
+  "url": "https://dairybusinessmea.com/2026/04/11/eu-dairy-market-q4-2025-reported-rising-milk-deliveries-shifting-powder-stocks/"
+}
+--------------------------------------------------------------------------------
+[21:17:06] PARSE_ARTICLE - industry=Cheese, Cultures, Milk Powders, location=Western Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "European milk volumes continue to pressurise markets",
+  "publication_date": "2026",
+  "summary": "EU\u2013Mercosur trade deal effective May 2026 improves market access for EU dairy exporters. However, China\u2019s tariffs on EU cream and cheese add pressure. Milk production continues to rise despite falling prices and rising input costs, squeezing margins. Geopolitical tensions add volatility to dairy commodity markets.",
+  "source": "AHDB",
+  "url": "https://ahdb.org.uk/news/european-milk-volumes-continue-to-pressurise-markets"
+}
+--------------------------------------------------------------------------------
+[21:17:06] PARSE_ARTICLE - industry=Cheese, Cultures, Milk Powders, location=Western Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Cheese Ingredients Market Size, Share & Growth Report | 2031",
+  "publication_date": "2026",
+  "summary": "The global cheese ingredients market is projected to grow at a CAGR of 6.8% from 2026 to 2031, driven by rising cheese consumption and processed food industry expansion. Innovations in enzyme systems and starter cultures improve production efficiency and product quality. Milk price fluctuations impact production costs significantly.",
+  "source": "Deep Market Insights",
+  "url": "https://deepmarketinsights.com/report/cheese-ingredients-market-research-report"
+}
+--------------------------------------------------------------------------------
+[21:17:06] PARSE_ARTICLE - industry=Cheese, Cultures, Milk Powders, location=Western Europe
+Error: Invalid isoformat string: 'March 26, 2026'
+Data: {
+  "headline": "Can dairy beat the 2026 glut with protein and gut health focus?",
+  "publication_date": "March 26, 2026",
+  "summary": "Global dairy faces oversupply and price pressure in 2026 but growth opportunities exist in natural dairy proteins and gut-health products like kefir and cultured yogurts. Key players like Arla Foods and innovative products such as A2 probiotic sour cream are targeting premium health-focused segments.",
+  "source": "FoodNavigator-USA",
+  "url": "https://www.foodnavigator-usa.com/Article/2026/03/26/global-dairy-outlook-2026-glut-prices-and-growth-bets"
+}
+--------------------------------------------------------------------------------
+[21:17:06] PARSE_ARTICLE - industry=Cheese, Cultures, Milk Powders, location=Western Europe
+Error: Invalid isoformat string: 'January 26, 2026'
+Data: {
+  "headline": "Milk Powder Market Report 2026: Industry Forecast to Reach $6.19 Billion by 2030",
+  "publication_date": "January 26, 2026",
+  "summary": "The global milk powder market is projected to grow from $42.16 billion in 2025 to $61.92 billion by 2030, driven by demand for shelf-stable dairy products and infant formula. Europe accounts for nearly 28% of global demand, with Germany, France, and the Netherlands as leading producers and exporters.",
+  "source": "GlobeNewswire",
+  "url": "https://www.globenewswire.com/news-release/2026/01/26/3225772/28124/en/Milk-Powder-Market-Report-2026-Industry-Forecast-to-Reach-6-19-Billion-by-2030-Driven-Rising-Demand-for-Shelf-Stable-Dairy-Products-in-Regions-with-Limited-Cold-Chain-Infrastructur.html"
+}
+--------------------------------------------------------------------------------
+[21:17:33] PARSE_ARTICLE - industry=Whey Ingredients, location=Northern Europe
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Europe Whey Protein Ingredients Market Size & Growth to 2030",
+  "publication_date": "2025",
+  "summary": "The European whey protein ingredients market is projected to grow at a CAGR of 5.32% to reach USD 554.29 million by 2030. Major players include Agrial Enterprise, Arla Foods amba, Glanbia PLC, Groupe Lactalis, and Koninklijke FrieslandCampina N.V. Market growth is driven by health trends, fitness culture, and innovation in processing and formulations, with regulatory compliance being critical.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/europe-whey-protein-ingredients-market"
+}
+--------------------------------------------------------------------------------
+[21:17:33] PARSE_ARTICLE - industry=Whey Ingredients, location=Northern Europe
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Whey Protein Market Size & Share Outlook to 2031",
+  "publication_date": "2024",
+  "summary": "The European Food Safety Authority updated lactose-labeling criteria in 2024, consolidating supply among major players like Arla Foods Ingredients, FrieslandCampina, and Lactalis Ingredients. Innovations include Arla Foods' patented hydrolyzed whey protein hydrolysates enabling new beverage applications. Market trends show broadening consumer appeal beyond bodybuilders to mainstream wellness.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/global-whey-protein-market"
+}
+--------------------------------------------------------------------------------
+[21:17:33] PARSE_ARTICLE - industry=Whey Ingredients, location=Northern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Europe Whey Protein Ingredients Market To Reach $604.9M By 2033 Amid Rising Health And Fitness Trends",
+  "publication_date": "2026",
+  "summary": "The European whey protein ingredients market is growing dynamically due to rising health awareness and fitness culture. Leading companies like Agrial Enterprise, Arla Foods, Carbery Food Ingredients, Groupe Lactalis, FrieslandCampina, and MEGGLE drive innovation and sustainability. The market is evolving with hybrid products, lactose-free options, and environmentally conscious production.",
+  "source": "Gtehy.com",
+  "url": "https://www.gtehy.com/archives/66082"
+}
+--------------------------------------------------------------------------------
+[21:17:33] PARSE_ARTICLE - industry=Whey Ingredients, location=Northern Europe
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Whey Protein Ingredients Market Size,Trends |Report [2034]",
+  "publication_date": "2024",
+  "summary": "Europe holds 39% of global whey protein ingredient production. The market is innovating with plant-blended protein formulations and advanced microfiltration and enzymatic hydrolysis processes. Regulatory complexity and sustainability initiatives are key factors influencing market dynamics. Major players control 56% of market volume, with fluctuations in raw milk prices impacting manufacturers.",
+  "source": "IndustryResearch.biz",
+  "url": "https://www.industryresearch.biz/market-reports/whey-protein-ingredients-market-110636"
+}
+--------------------------------------------------------------------------------
+[21:17:33] PARSE_ARTICLE - industry=Whey Ingredients, location=Northern Europe
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Whey Protein Concentrate (WPC) Market Overview, Key Trends, and Major Player Analysis",
+  "publication_date": "2026",
+  "summary": "Major players in the whey protein concentrate market include Groupe Lactalis, Arla Foods amba, Fonterra, and Royal FrieslandCampina. Innovations focus on whey protein isolate formats to improve taste and convenience. The market is competitive with ongoing product innovation and strategic moves to capitalize on growth opportunities.",
+  "source": "OpenPR",
+  "url": "https://www.openpr.com/news/4397276/whey-protein-concentrate-wpc-market-overview-key-trends"
+}
+--------------------------------------------------------------------------------
+[21:17:33] PARSE_ARTICLE - industry=Whey Ingredients, location=Northern Europe
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Europe Protein Market Size & Share Outlook to 2031",
+  "publication_date": "2024",
+  "summary": "The European protein market is fragmented with no dominant player holding more than 8% market share. Dairy cooperatives like Arla Foods and FrieslandCampina expand whey and casein capacity while precision-fermentation specialists pursue EFSA approvals. Regulatory timelines and capital investments shape competitive behavior, with microbial proteins emerging as potential disruptors.",
+  "source": "Mordor Intelligence",
+  "url": "https://www.mordorintelligence.com/industry-reports/europe-protein-market"
+}
+--------------------------------------------------------------------------------
+[21:18:00] PARSE_ARTICLE - industry=Fruits & Vegetables, location=Oceania
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Eating Out Trends in Australia 2026 | Ready\u2011to\u2011Eat Meal Rise",
+  "publication_date": "2026",
+  "summary": "Eating out is surging in Australia as consumers prioritize convenience, driving demand for ready-to-eat meals and reshaping retail in the fruits and vegetables sector.",
+  "source": "Freshlogic",
+  "url": "https://freshlogic.com.au/articles/freshincite/eating-out-trends-in-australia-2026/"
+}
+--------------------------------------------------------------------------------
+[21:18:00] PARSE_ARTICLE - industry=Fruits & Vegetables, location=Oceania
+Error: Invalid isoformat string: '2025-09'
+Data: {
+  "headline": "Retail Vegetable Market Performance Australia: Sept' 2025",
+  "publication_date": "2025-09",
+  "summary": "Analysis of Australian retail vegetable market performance with value and volume trends by category, providing insights into demand shaping factors and category opportunities.",
+  "source": "Freshlogic",
+  "url": "https://freshlogic.com.au/articles/retail-vegetable-market-performance-australia/"
+}
+--------------------------------------------------------------------------------

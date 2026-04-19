@@ -22,7 +22,7 @@ import random
 import string
 import time
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 import anthropic
 from dotenv import load_dotenv
@@ -32,6 +32,41 @@ load_dotenv()
 DEFAULT_MODEL = "claude-opus-4-6"
 DEFAULT_MAX_ARTICLES = 15   # per company/topic per provider
 MAX_SUMMARY_CHARS = 200     # truncate summaries to keep prompt manageable
+STALE_DAYS = 90             # articles older than this are flagged as stale
+
+
+def _parse_clean_date(raw: str) -> datetime | None:
+    raw = (raw or "").strip()
+    if not raw:
+        return None
+    try:
+        return datetime.fromisoformat(raw)
+    except ValueError:
+        return None
+
+
+def classify_date(art: dict, reference: datetime) -> str:
+    """Return "no_date", "stale", or "recent" for an article."""
+    dt = _parse_clean_date(art.get("published_date_clean", ""))
+    if dt is None:
+        return "no_date"
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    age = reference - dt
+    if age > timedelta(days=STALE_DAYS):
+        return "stale"
+    return "recent"
+
+
+def reference_date_from_results_dir(results_dir: str) -> datetime:
+    """Use the results folder name (e.g. 2026-04-20) as the reference date;
+    fall back to now. Anchoring to the run date means re-analysing old folders
+    doesn't falsely flag everything as stale."""
+    name = os.path.basename(os.path.normpath(results_dir))
+    try:
+        return datetime.strptime(name, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return datetime.now(timezone.utc)
 
 
 # ---------------------------------------------------------------------------
@@ -77,7 +112,7 @@ WHAT COUNTS AS GOOD
   moves, expansion)
 - The company is mentioned significantly — it does not have to be the sole
   subject, but the mention must be informative, not just a name-drop
-- Date is present and accurate
+- Date is present and within the last 90 days (the query window)
 - Summary is informative enough to understand the story without clicking through
 - URL is accessible without a paywall
 - No hallucinated content (fabricated URLs, invented facts)
@@ -90,13 +125,20 @@ WHAT COUNTS AS BAD
   is communicated about it (e.g., a macro market roundup that lists the company
   alongside fifty others with no specific information)
 - "About Us" pages, product catalogues, consumer how-to guides — not news
-- Missing or inaccurate dates
+- **Missing dates** — flagged inline as `[NO DATE ⚠]`. Serious failure: the user
+  cannot judge whether the news is current.
+- **Stale dates** — flagged inline as `STALE>90d ⚠`. The query window is the
+  last 90 days; anything older is off-scope by construction and equivalent to
+  a wrong-topic result.
 - Raw scraped page boilerplate as a "summary" (navigation menus, cookie banners,
   subscription prompts)
 - No coverage of obscure or small companies
 - Hallucinated articles (URLs that follow suspiciously neat patterns or
   do not correspond to real published content)
 - Paywalled articles with no usable content
+
+Each provider block's header lists exact counts: `no-date: N | stale (>90d): N`.
+Use those numbers — do not estimate.
 
 ---
 
@@ -113,7 +155,9 @@ For each provider A through E:
   Cite specific false-positive examples.
 - **Coverage**: Does it find results for obscure companies (small, non-English,
   low digital profile)? Which companies were missed entirely?
-- **Date quality**: What percentage have dates? Are they accurate?
+- **Date presence & recency**: Quote the no-date count and the stale (>90d)
+  count from the provider header. A provider with many no-date or stale results
+  is failing at a basic level — treat it as a major failure, not a minor gripe.
 - **Summary usability**: Can the user understand the story without clicking?
   Give a concrete example of a good and bad summary if both exist.
 - **Source quality**: Real journalism and press releases are both acceptable.
@@ -123,7 +167,9 @@ For each provider A through E:
 
 ## 2. Ranking (1st to 5th)
 
-Rank all five. For each position give a one-sentence justification.
+Rank all five. For each position give a one-sentence justification. A provider
+with a large share of no-date or stale results cannot rank 1st regardless of
+other strengths.
 
 ## 3. What Each Provider Needs to Fix
 
@@ -152,7 +198,7 @@ WHAT COUNTS AS GOOD
   industry, but the content must be meaningfully informative about it
 - Strategic content: pricing trends, M&A, expansion, regulatory shifts, company
   performance within the sector
-- Date is present and accurate
+- Date is present and within the last 90 days (the query window)
 - Summary is informative without clicking through
 - URL is accessible without a paywall
 - No hallucinated content
@@ -169,10 +215,17 @@ WHAT COUNTS AS BAD
 - "About Us" pages, product catalogues, consumer guides — not news
 - Market research report landing pages (pages that sell reports rather than
   containing news)
-- Missing dates
+- **Missing dates** — flagged inline as `[NO DATE ⚠]`. Serious failure: the user
+  cannot judge whether the news is current.
+- **Stale dates** — flagged inline as `STALE>90d ⚠`. The query window is the
+  last 90 days; anything older is off-scope by construction and equivalent to
+  a wrong-topic result.
 - Raw boilerplate as a summary
 - Error rows (failed API calls logged as articles)
 - Hallucinated articles
+
+Each provider block's header lists exact counts: `no-date: N | stale (>90d): N`.
+Use those numbers — do not estimate.
 
 ---
 
@@ -189,7 +242,9 @@ For each provider A through E:
   Cite specific false-positive examples (wrong industry, wrong geography).
 - **Error rate**: How many results are errors (failed calls)?
 - **Coverage breadth**: How many of the 12 topic combinations get real results?
-- **Date quality**: What percentage have dates? Are they accurate?
+- **Date presence & recency**: Quote the no-date count and the stale (>90d)
+  count from the provider header. A provider with many no-date or stale results
+  is failing at a basic level — treat it as a major failure, not a minor gripe.
 - **Summary usability**: Can the user understand the story without clicking?
 - **Source quality**: Real journalism and press releases are both acceptable.
   Flag aggregators that add no value, report landing pages, and product pages.
@@ -198,7 +253,9 @@ For each provider A through E:
 
 ## 2. Ranking (1st to 5th)
 
-Rank all five. For each position give a one-sentence justification.
+Rank all five. For each position give a one-sentence justification. A provider
+with a large share of no-date or stale results cannot rank 1st regardless of
+other strengths.
 
 ## 3. What Each Provider Needs to Fix
 
@@ -272,9 +329,14 @@ def make_anonymization(providers: list[str]) -> tuple[dict, dict]:
     return label_to_provider, provider_to_label
 
 
-def _format_article(index: int, art: dict) -> list[str]:
+def _format_article(index: int, art: dict, reference_date: datetime) -> list[str]:
     lines = []
-    date = art.get("published_date_clean") or art.get("published_date") or "NO DATE"
+    bucket = classify_date(art, reference_date)
+    if bucket == "no_date":
+        date = "NO DATE ⚠"
+    else:
+        raw = art.get("published_date_clean") or art.get("published_date") or ""
+        date = f"{raw} STALE>{STALE_DAYS}d ⚠" if bucket == "stale" else raw
     headline = art.get("headline", "").strip()
     source = art.get("published_by", "").strip()
     url = art.get("document_url", "").strip()
@@ -293,7 +355,41 @@ def _format_article(index: int, art: dict) -> list[str]:
     return lines
 
 
-def format_companies_data(rows: list[dict], provider_to_label: dict, max_articles: int) -> str:
+def _date_counts(arts: list[dict], reference_date: datetime) -> tuple[int, int]:
+    no_date = sum(1 for a in arts if classify_date(a, reference_date) == "no_date")
+    stale = sum(1 for a in arts if classify_date(a, reference_date) == "stale")
+    return no_date, stale
+
+
+def _group_summary(
+    label: str, all_real: list[dict], total_errors: int, reference_date: datetime
+) -> list[str]:
+    no_date, stale = _date_counts(all_real, reference_date)
+    return [
+        f"\n{'=' * 60}",
+        (
+            f"PROVIDER {label}  |  total articles: {len(all_real)}  |  errors: {total_errors}  "
+            f"|  no-date: {no_date}  |  stale (>{STALE_DAYS}d): {stale}"
+        ),
+        "=" * 60,
+    ]
+
+
+def _item_header(kind: str, name: str, real: list[dict], errors: list, reference_date: datetime) -> str:
+    no_date, stale = _date_counts(real, reference_date)
+    parts = [f"{len(real)} articles"]
+    if errors:
+        parts.append(f"{len(errors)} errors")
+    if no_date:
+        parts.append(f"{no_date} no-date")
+    if stale:
+        parts.append(f"{stale} stale")
+    return f"\n  {kind}: {name}  ({', '.join(parts)})"
+
+
+def format_companies_data(
+    rows: list[dict], provider_to_label: dict, max_articles: int, reference_date: datetime
+) -> str:
     # Group: label → company → articles
     data: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
     for row in rows:
@@ -303,17 +399,12 @@ def format_companies_data(rows: list[dict], provider_to_label: dict, max_article
     lines = []
     for label in sorted(data):
         companies = data[label]
-        total_articles = sum(
-            len([a for a in arts if a.get("headline") != "*** ERROR ***"])
-            for arts in companies.values()
-        )
+        all_real = [a for arts in companies.values() for a in arts if a.get("headline") != "*** ERROR ***"]
         total_errors = sum(
             len([a for a in arts if a.get("headline") == "*** ERROR ***"])
             for arts in companies.values()
         )
-        lines.append(f"\n{'=' * 60}")
-        lines.append(f"PROVIDER {label}  |  total articles: {total_articles}  |  errors: {total_errors}")
-        lines.append("=" * 60)
+        lines.extend(_group_summary(label, all_real, total_errors, reference_date))
 
         for company in sorted(companies):
             all_arts = companies[company]
@@ -325,17 +416,13 @@ def format_companies_data(rows: list[dict], provider_to_label: dict, max_article
             )
             shown = real[:max_articles]
 
-            lines.append(
-                f"\n  Company: {company}  ({len(real)} articles"
-                + (f", {len(errors)} errors" if errors else "")
-                + ")"
-            )
+            lines.append(_item_header("Company", company, real, errors, reference_date))
             if not real:
                 lines.append("    [No articles]")
                 continue
 
             for i, art in enumerate(shown, 1):
-                lines.extend(_format_article(i, art))
+                lines.extend(_format_article(i, art, reference_date))
 
             if len(real) > max_articles:
                 lines.append(f"    … {len(real) - max_articles} more articles not shown")
@@ -343,7 +430,9 @@ def format_companies_data(rows: list[dict], provider_to_label: dict, max_article
     return "\n".join(lines)
 
 
-def format_industries_data(rows: list[dict], provider_to_label: dict, max_articles: int) -> str:
+def format_industries_data(
+    rows: list[dict], provider_to_label: dict, max_articles: int, reference_date: datetime
+) -> str:
     # Group: label → topic → articles
     data: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
     for row in rows:
@@ -354,17 +443,12 @@ def format_industries_data(rows: list[dict], provider_to_label: dict, max_articl
     lines = []
     for label in sorted(data):
         topics = data[label]
-        total_articles = sum(
-            len([a for a in arts if a.get("headline") != "*** ERROR ***"])
-            for arts in topics.values()
-        )
+        all_real = [a for arts in topics.values() for a in arts if a.get("headline") != "*** ERROR ***"]
         total_errors = sum(
             len([a for a in arts if a.get("headline") == "*** ERROR ***"])
             for arts in topics.values()
         )
-        lines.append(f"\n{'=' * 60}")
-        lines.append(f"PROVIDER {label}  |  total articles: {total_articles}  |  errors: {total_errors}")
-        lines.append("=" * 60)
+        lines.extend(_group_summary(label, all_real, total_errors, reference_date))
 
         for topic in sorted(topics):
             all_arts = topics[topic]
@@ -376,17 +460,13 @@ def format_industries_data(rows: list[dict], provider_to_label: dict, max_articl
             )
             shown = real[:max_articles]
 
-            lines.append(
-                f"\n  Topic: {topic}  ({len(real)} articles"
-                + (f", {len(errors)} errors" if errors else "")
-                + ")"
-            )
+            lines.append(_item_header("Topic", topic, real, errors, reference_date))
             if not real:
                 lines.append("    [No articles]")
                 continue
 
             for i, art in enumerate(shown, 1):
-                lines.extend(_format_article(i, art))
+                lines.extend(_format_article(i, art, reference_date))
 
             if len(real) > max_articles:
                 lines.append(f"    … {len(real) - max_articles} more articles not shown")
@@ -493,9 +573,13 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
 
     client = anthropic.Anthropic(api_key=api_key)
 
+    reference_date = reference_date_from_results_dir(results_dir)
+    print(f"Recency reference date (from results dir): {reference_date.date()}  "
+          f"| stale threshold: >{STALE_DAYS} days")
+
     # Companies analysis
     print("Formatting companies data…")
-    companies_data = format_companies_data(companies_rows, provider_to_label, max_articles)
+    companies_data = format_companies_data(companies_rows, provider_to_label, max_articles, reference_date)
 
     print("Calling Claude for companies analysis…")
     companies_analysis = call_claude(client, model, companies_data, COMPANIES_PROMPT)
@@ -506,7 +590,7 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
 
     # Industries analysis
     print("\nFormatting industries data…")
-    industries_data = format_industries_data(industries_rows, provider_to_label, max_articles)
+    industries_data = format_industries_data(industries_rows, provider_to_label, max_articles, reference_date)
 
     print("Calling Claude for industries analysis…")
     industries_analysis = call_claude(client, model, industries_data, INDUSTRIES_PROMPT)

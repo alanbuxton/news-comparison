@@ -110,18 +110,33 @@ Note: the mapping is re-randomised on every run of `analyse.py`, so Provider A i
 
 ## What is evaluated
 
+Queries ask each provider for news from the last 90 days. The AI judge scores
+results against these criteria:
+
 | Criterion | What counts as failure |
 |---|---|
 | Precision | Article is about a completely different company/industry that merely shares a name fragment (false positive) |
 | Significance | Company/industry is mentioned but nothing useful is communicated — trivial name-drops in unrelated roundups |
 | Coverage | No results at all for obscure or small companies |
-| Date accuracy | Dates missing, or article assigned a date that differs from its actual publication date |
+| Date presence | Article has no publication date — the user cannot tell whether the news is current. Treated as a major failure. |
+| Recency | Article is dated more than 90 days before the run date. The query window is 90 days; older results are off-scope by construction and equivalent to a wrong-topic result. |
 | Summary usability | Raw scraped boilerplate (nav menus, cookie banners) instead of a distilled summary |
 | Source quality | Aggregators that add no value, product pages, "About Us" content, market research landing pages. Press releases are fine. |
 | Paywall | Source is subscriber-only with no usable preview |
 | Hallucination | URLs that do not correspond to real published articles; invented facts in summaries |
 
+A provider with a large share of no-date or stale (>90d) results cannot rank
+1st regardless of other strengths: the data is non-actionable without a
+trustworthy date.
+
 ## Results history
+
+### 2026-04-20
+
+No single winner across both query types:
+
+- **Companies:** Syracuse 1st (zero false positives across all covered companies — Borouge, Commerzbank, Husky Technologies results 100% on-target — with perfect date hygiene and concise summaries, though zero results for Braroll, Fritz Foss, Dine Cartonnages, KRC Custom Manufacturing, L M Goes Embalagens, Little Island Productions, Sigma Chemtrade, and Universal McCann), Linkup 2nd (best summary quality of all providers and good precision for covered companies like Linklaters and Klöckner Pentaplast, but 42% error rate with zero results for CBS News, HPCL Mittal Energy, and International Paper, plus entity disambiguation failures returning Dine Brands Global for Dine Cartonnages and Kilroy Realty for KRC Custom Manufacturing), Exa 3rd (excellent date hygiene with only 1 stale article across 1,170 results and strong coverage of household-name companies, but catastrophically poor precision for obscure firms — zero relevant results out of ~50 returned for each of Braroll, Fritz Foss, Dine Cartonnages, and KRC Custom Manufacturing — plus summaries consisting of scraped boilerplate like "Bloomberg - Are you a robot?" and cookie banners), Perplexity 4th (strong results for well-known companies like Linklaters and Commerzbank but likely hallucinated articles for obscure companies — Braroll results included fabricated stories about R$50M Banco do Brasil financing and IoT partnerships with "TechStart" via suspiciously well-formed valor.globo.com and industriahoje.com.br URLs, and Dine Cartonnages results included five fabricated articles about antimicrobial coatings and €50M financing with constructed foodpackagingforum.org and lesechos.fr URLs), Tavily last (best source mix for major companies drawing from Reuters, Bloomberg, and WSJ, but every single one of 1,977 articles lacked a publication date — a catastrophic infrastructure failure — combined with zero relevant results for obscure companies like Braroll, Fritz Foss, and Dine Cartonnages despite returning 88–100 articles each, padded with unusable TradingView feed entries containing only "Image 17 Image 18 Image 19").
+- **Industries:** Exa 1st (highest volume of genuinely relevant dated articles across all topic combinations with zero errors — ALUMINIUM | Northern America returned tariff and Century Aluminum coverage, CONSTRUCTION | Central Asia returned Kazakhstan highway and Kyrgyzstan HPP projects — though polluted by generic IMF/OECD/Brookings Facebook filler appearing across 9+ topics, term-ambiguity false positives like BOARD | Eastern Asia returning ChiNext stock exchange reform instead of paperboard and LIQUIDS | Southern Africa returning Liquid Intelligent Technologies telecom instead of liquid packaging, and summaries consisting of raw HTML scrapes with navigation menus and language selectors), Linkup 2nd (best summary quality and strongest source selection with Reuters, Variety, Screen Daily, and Aviation Week, plus strong relevance where results existed such as NEON Korean film distribution and FrieslandCampina Borculo expansion for Whey Ingredients | Northern Europe, but an 80% error rate — 199 errors out of 249 rows — with complete failures returning zero articles for 15 of ~25 topics including ALUMINIUM | Northern America, CONSTRUCTION | Central Asia, Cheese/Milk Powders | Western Europe, and PAPER | Northern Europe), Perplexity 3rd (dated articles with clear procurement-oriented summaries across all topics, but critically low volume of 2–6 articles per topic, pervasive false positives from keyword matching without industry context — Film Distribution | Midwest returned Franchise FastLane consulting and NFP insurance broker acquisitions, HR SERVICES | Mid Atlantic returned CACI army modernization contracts — plus company homepages and directory listings like Roberts Camera, Clutch.co rankings, and Randstad office pages returned as news, and suspiciously uniform 2026-04-19 timestamps suggesting retrieval dates rather than publication dates), Syracuse 4th (clean dates and concise summaries with strong PE Resins | US coverage of LyondellBasell and Dow price hikes across 18 articles, but zero articles for 15+ topics including BOARD
 
 ### 2026-04-13
 

@@ -3,11 +3,9 @@ industry_location_examples = [
     {"industry": "Film Distribution", "location": "Midwest" },
     {"industry": "Film Entertainment: Film Distribution", "location": "Midwest" },
     {"industry": "Packaging Boxes", "location": "IN" },
-    {"industry": "Packaging: Packaging Boxes", "location": "IN" },
-    {"industry": "Packaging: Packaging Boxes", "location": "india" },
     {"industry": "Road Freight", "location": "Europe"},
     {"industry": "MRO", "location": "South America"},
-    {"industry": "Film (BOPP Film, BOPET, PE Film etc)", "location": "CN" },
+    {"industry": "Film (BOPP Film, BOPET, PE Film)", "location": "CN" },
     {"industry": "Flexible Packaging: Film (BOPP Film, BOPET, PE Film etc)", "location": "CN" },
     {"industry": "Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"},
     {"industry": "Film Entertainment: Distribution Services (Distribution, Mastering, Localization etc)", "location": "Northern America"},
@@ -26,7 +24,10 @@ industry_location_examples = [
     {"industry": "PACKAGING", "location": "Oceania" },
     {"industry": "PAPER", "location": "Northern Europe" },
     {"industry": "PROFESSIONAL SERVICES", "location": "Southern Europe" },
-    {"industry": "RESINS", "location": "Western Europe" },
+    {"industry": "Cocoa, Nuts & Seeds", "location": "US"},
+    {"industry": "Cheese, Cultures, Milk Powders", "location": "Western Europe"},
+    {"industry": "Whey Ingredients", "location": "Northern Europe"},
+    {"industry": "Fruits & Vegetables", "location": "Oceania"},
 ]
 
 company_name_examples = [
