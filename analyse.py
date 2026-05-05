@@ -19,10 +19,12 @@ import csv
 import json
 import os
 import random
+import re
 import string
 import time
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
+from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 
 import anthropic
 from dotenv import load_dotenv
@@ -33,6 +35,29 @@ DEFAULT_MODEL = "claude-opus-4-6"
 DEFAULT_MAX_ARTICLES = 15   # per company/topic per provider
 MAX_SUMMARY_CHARS = 200     # truncate summaries to keep prompt manageable
 STALE_DAYS = 90             # articles older than this are flagged as stale
+
+# Rubric: six axes summing to 1.0. Tuneable in one place.
+RUBRIC_WEIGHTS = {
+    "precision":         0.30,
+    "recency_integrity": 0.20,
+    "recall":            0.15,
+    "uniqueness":        0.10,
+    "summary":           0.15,
+    "trust":             0.10,
+}
+RUBRIC_AXES = list(RUBRIC_WEIGHTS.keys())
+
+# Hard caps on the final score. Encode the user's stated priorities directly:
+# false positives, missing dates, and hallucinations cannot be outweighed by
+# strength on other axes.
+CAP_RECENCY_HARD_THRESHOLD = 3   # recency_integrity ≤ 3
+CAP_RECENCY_HARD_LIMIT     = 5.0
+CAP_RECENCY_SOFT_THRESHOLD = 5   # recency_integrity ≤ 5
+CAP_RECENCY_SOFT_LIMIT     = 7.0
+CAP_TRUST_THRESHOLD        = 4   # trust ≤ 4
+CAP_TRUST_LIMIT            = 4.0
+CAP_PRECISION_THRESHOLD    = 3   # precision ≤ 3
+CAP_PRECISION_LIMIT        = 5.0
 
 
 def _parse_clean_date(raw: str) -> datetime | None:
@@ -58,6 +83,71 @@ def classify_date(art: dict, reference: datetime) -> str:
     return "recent"
 
 
+_HEADLINE_STEM_RE = re.compile(r"[^a-z0-9]+")
+
+
+def _normalise_url(url: str) -> str:
+    """Canonical URL key: lowercase host, drop fragment and tracking params."""
+    if not url:
+        return ""
+    try:
+        parts = urlsplit(url.strip())
+    except ValueError:
+        return url.strip().lower()
+    host = parts.netloc.lower()
+    if host.startswith("www."):
+        host = host[4:]
+    query = [
+        (k, v)
+        for k, v in parse_qsl(parts.query, keep_blank_values=True)
+        if not k.lower().startswith("utm_")
+    ]
+    return urlunsplit((parts.scheme.lower(), host, parts.path.rstrip("/"), urlencode(query), ""))
+
+
+def _headline_stem(headline: str) -> str:
+    """First 60 chars of lowercased, alphanumerics-only headline."""
+    return _HEADLINE_STEM_RE.sub("", (headline or "").lower())[:60]
+
+
+def _compute_dup_groups(articles: list[dict]) -> list[int]:
+    """Assign a 1-based group id per article. Articles in the same group are
+    duplicates: same canonical URL, or (failing that) same source+headline-stem.
+    Returns a list parallel to ``articles``."""
+    url_to_group: dict[str, int] = {}
+    pair_to_group: dict[tuple[str, str], int] = {}
+    groups: list[int] = []
+    next_id = 1
+    for art in articles:
+        url_key = _normalise_url(art.get("document_url", ""))
+        if url_key and url_key in url_to_group:
+            groups.append(url_to_group[url_key])
+            continue
+        stem_key = (
+            (art.get("published_by") or "").strip().lower(),
+            _headline_stem(art.get("headline", "")),
+        )
+        if stem_key[1] and stem_key in pair_to_group:
+            gid = pair_to_group[stem_key]
+            groups.append(gid)
+            if url_key:
+                url_to_group[url_key] = gid
+            continue
+        gid = next_id
+        next_id += 1
+        groups.append(gid)
+        if url_key:
+            url_to_group[url_key] = gid
+        if stem_key[1]:
+            pair_to_group[stem_key] = gid
+    return groups
+
+
+def _dup_count(groups: list[int]) -> int:
+    """Number of duplicate articles (i.e. excess rows beyond one canonical per group)."""
+    return len(groups) - len(set(groups))
+
+
 def reference_date_from_results_dir(results_dir: str) -> datetime:
     """Use the results folder name (e.g. 2026-04-20) as the reference date;
     fall back to now. Anchoring to the run date means re-analysing old folders
@@ -74,239 +164,272 @@ def reference_date_from_results_dir(results_dir: str) -> datetime:
 # ---------------------------------------------------------------------------
 
 SYSTEM_PROMPT = """\
-You are a ruthlessly objective product quality analyst. Your only job is to tell
-the truth about what the data shows, clearly and without softening.
+You are a ruthlessly objective product quality analyst evaluating news search
+providers against a fixed rubric. Your output drives a numeric scorecard, not
+a prose review.
 
 Non-negotiable rules:
-1. No hedging. If a provider's output is bad, say it is bad. If it is mediocre,
-   say it is mediocre. Qualifiers like "while it has room for improvement" are
-   forbidden when the data clearly shows failure.
-2. Every claim must be backed by a specific example from the data — name the
-   company or topic and the article headline. General statements without evidence
-   are not acceptable.
-3. You must produce a strict rank order, 1st through 5th. Do not conclude that
-   "different providers suit different needs" as a way to avoid ranking. One is
-   best overall and one is worst overall — identify them.
-4. For every provider not ranked 1st, state specifically what it would need to
-   fix to become the best. "Better quality" is not acceptable — name the concrete
-   change (e.g., "eliminate hallucinated URLs", "add date extraction", "fix
-   entity disambiguation so 'Sigma Lithium' is not returned for 'Sigma Chemtrade'").
-5. You do not know who built any of these providers. Treat Provider A, B, C, D,
-   and E as completely interchangeable labels. Your score must be based solely on
-   the data.
-6. Even the top-ranked provider has flaws. List them.
+1. Score every provider on every axis (precision, recency_integrity, recall,
+   uniqueness, summary, trust). Use the full 0–10 range. A 7 across the board
+   is a refusal to judge — if the data shows a 3, write 3. Refusing to
+   differentiate is itself a failure mode.
+2. Every axis score must be backed by concrete evidence as an array of short
+   strings. Each evidence string must name a queried entity (company name, or
+   industry+location) and quote a headline, source, or pattern. Generic claims
+   like "many results were off-topic" without examples are malformed and will
+   be rejected.
+3. Pre-computed flags in the data are ground truth — use them directly:
+     - `[NO DATE ⚠]` and `STALE>90d ⚠` drive recency_integrity.
+     - `[DUP of #N ⚠]` flags and the `dup: N` count in each provider header
+       drive uniqueness.
+     - `*** ERROR ***` rows and the `errors: N` header count drive trust.
+   Do not re-judge dates or re-detect duplicates. Quote the header counts.
+4. The rubric prioritises avoiding false positives over finding every story.
+   A provider that returns 5 clean on-topic articles beats one that returns
+   30 articles half of which are wrong-entity, About Us pages, or social
+   posts. Reflect this in precision.
+5. You do not know who built any of these providers. Treat A, B, C, D, E as
+   interchangeable labels. Score on the data alone.
+6. Output exactly the JSON scorecard schema given, inside a single ```json
+   fenced block, followed by a short ## Notes prose section. Do not add
+   fields, do not omit fields, do not put commentary inside the JSON block.
+"""
+
+_RUBRIC_BLOCK = """\
+RUBRIC
+
+Score each provider on these six 0–10 axes. Weights are fixed (sum to 1.0):
+
+| Axis              | Weight | What 10 looks like                               | What 0 looks like                                  |
+|-------------------|--------|--------------------------------------------------|----------------------------------------------------|
+| precision         | 0.30   | ≥90% of returned articles are on-topic          | <30% on-topic; flooded with FPs                    |
+| recency_integrity | 0.20   | 0 no-date, 0 stale (header counts)              | Large no-date or stale share                       |
+| recall            | 0.15   | Multiple real hits per queried entity           | Few entities get any real hits; mostly empty       |
+| uniqueness        | 0.10   | dup: 0 in header; each story counted once       | Same syndicated story repeated several times       |
+| summary           | 0.15   | Summaries let user decide without clicking      | Boilerplate, cookie banners, "subscribe to read"   |
+| trust             | 0.10   | 0 errors, no suspicious URLs                    | Hallucinated URLs/facts; high error rate           |
+
+For each axis, output a 0–10 score and an `evidence` array of 1–4 short strings.
+Each evidence string MUST name a queried entity (or industry+location) and quote
+a specific headline, source, or counted pattern. Anonymous claims are malformed.
+
+WEIGHTED SCORE
+weighted = 0.30·precision + 0.20·recency_integrity + 0.15·recall
+         + 0.10·uniqueness + 0.15·summary + 0.10·trust
+
+HARD CAPS (record applicable caps as label strings in caps_applied)
+- recency_integrity ≤ 3       → cap "recency_hard" → final ≤ 5.0
+- recency_integrity ≤ 5       → cap "recency_soft" → final ≤ 7.0
+- trust ≤ 4                   → cap "trust"        → final ≤ 4.0
+- precision ≤ 3               → cap "precision"    → final ≤ 5.0
+
+final = min(weighted, every applicable cap limit). Round weighted and final to
+2 decimal places. ranking is the providers' labels sorted by final descending,
+ties broken first by precision then by recency_integrity.
+
+OUTPUT SCHEMA — emit exactly one ```json fenced block, then a `## Notes`
+section. No prose inside the JSON block.
+
+```json
+{
+  "query_type": "__QUERY_TYPE__",
+  "providers": [
+    {
+      "label": "A",
+      "axes": {
+        "precision":         {"score": 0, "evidence": ["..."]},
+        "recency_integrity": {"score": 0, "evidence": ["..."]},
+        "recall":            {"score": 0, "evidence": ["..."]},
+        "uniqueness":        {"score": 0, "evidence": ["..."]},
+        "summary":           {"score": 0, "evidence": ["..."]},
+        "trust":             {"score": 0, "evidence": ["..."]}
+      },
+      "weighted": 0.0,
+      "caps_applied": [],
+      "final": 0.0,
+      "verdict": "one frank sentence"
+    }
+  ],
+  "ranking": ["A", "B", "C", "D", "E"],
+  "ranking_rationale": {
+    "1st": "...", "2nd": "...", "3rd": "...", "4th": "...", "5th": "..."
+  }
+}
+```
+
+After the JSON block, write a `## Notes` heading and 1–2 short paragraphs:
+surprising patterns across the run, and the honest weaknesses of the
+top-ranked provider.
 """
 
 COMPANIES_PROMPT = """\
 Five news search providers (labelled A–E, real names hidden) were each asked to
-return news articles about specific companies over the past 3 months.
+return news articles about specific companies over the past 90 days.
 
 USER CONTEXT
-The user is a business professional preparing for meetings. They need strategic
-developments: M&A, financial results, product launches, regulatory issues,
-executive changes, market expansion. They do not want noise.
+The consumer is either a human business professional or an AI agent that just
+needs recent (last 90 days) news about the queried company. They already have
+other data sources for company registration, statutory filings, and profile
+data. This tool only needs to surface recent news. False positives mislead an
+AI agent and waste a human's time, so they are the top concern. False negatives
+matter less.
 
-WHAT COUNTS AS GOOD
-- Real article or press release containing substantive information about the
+WHAT COUNTS AS GOOD (TP)
+- Real article or press release with substantive information about the queried
   company (M&A, financials, product launches, regulatory matters, executive
-  moves, expansion)
-- The company is mentioned significantly — it does not have to be the sole
-  subject, but the mention must be informative, not just a name-drop
-- Date is present and within the last 90 days (the query window)
-- Summary is informative enough to understand the story without clicking through
-- URL is accessible without a paywall
-- No hallucinated content (fabricated URLs, invented facts)
+  moves, expansion). The company need not be the sole subject, but the mention
+  must be informative, not a name-drop.
+- Date present and within the last 90 days.
+- Summary informative enough to decide whether to click through.
+- URL accessible.
+- English language (non-English content for a non-local company is a wrong-
+  region signal — count as FP-entity).
 
-WHAT COUNTS AS BAD
-- Articles about a completely different company that merely shares part of a name
-  (e.g., returning "Sigma Lithium" results for a search on "Sigma Chemtrade" —
-  this is a false positive and wastes the user's time)
-- Trivial or insignificant mentions: the company name appears but nothing useful
-  is communicated about it (e.g., a macro market roundup that lists the company
-  alongside fifty others with no specific information)
-- "About Us" pages, product catalogues, consumer how-to guides — not news
-- **Missing dates** — flagged inline as `[NO DATE ⚠]`. Serious failure: the user
-  cannot judge whether the news is current.
-- **Stale dates** — flagged inline as `STALE>90d ⚠`. The query window is the
-  last 90 days; anything older is off-scope by construction and equivalent to
-  a wrong-topic result.
-- Raw scraped page boilerplate as a "summary" (navigation menus, cookie banners,
-  subscription prompts)
-- No coverage of obscure or small companies
-- Hallucinated articles (URLs that follow suspiciously neat patterns or
-  do not correspond to real published content)
-- Paywalled articles with no usable content
+WHAT COUNTS AS BAD (FP)
+- FP-entity: wrong company that merely shares part of a name (e.g. "Sigma
+  Lithium" returned for "Sigma Chemtrade"); macro market roundups that
+  name-drop the company alongside dozens of others with no specific information
+  about it; broader-than-asked content (industry-level when a company was
+  asked).
+- FP-not-news: About Us pages, product catalogues, consumer how-to guides,
+  company registration / registry / directory listings, social media posts
+  (Facebook, X/Twitter, LinkedIn, Reddit, YouTube, TikTok), forum threads,
+  personal blogs.
+- FP-stale / FP-no-date: flagged inline as `STALE>90d ⚠` and `[NO DATE ⚠]`.
+  Treat as off-scope (header counts are ground truth — quote them).
+- FP-dup: flagged inline as `[DUP of #N ⚠]`; header `dup: N` is ground truth.
+- FP-halluc: suspiciously neat URL patterns that don't correspond to real
+  published content; invented facts.
+- Raw scraped boilerplate as a "summary" (cookie banners, "Are you a robot",
+  navigation menus).
 
-Each provider block's header lists exact counts: `no-date: N | stale (>90d): N`.
-Use those numbers — do not estimate.
+NOTE on market-report landing pages: for a company query they are typically
+off-topic noise — count as FP-not-news.
 
----
-
-{data}
+__RUBRIC__
 
 ---
 
-Provide your analysis in this exact structure:
+__DATA__
 
-## 1. Provider-by-Provider Assessment
-
-For each provider A through E:
-- **Precision**: What fraction of results are genuinely about the queried company?
-  Cite specific false-positive examples.
-- **Coverage**: Does it find results for obscure companies (small, non-English,
-  low digital profile)? Which companies were missed entirely?
-- **Date presence & recency**: Quote the no-date count and the stale (>90d)
-  count from the provider header. A provider with many no-date or stale results
-  is failing at a basic level — treat it as a major failure, not a minor gripe.
-- **Summary usability**: Can the user understand the story without clicking?
-  Give a concrete example of a good and bad summary if both exist.
-- **Source quality**: Real journalism and press releases are both acceptable.
-  Flag aggregators that add no value, product pages, and "About Us" content.
-- **Hallucination risk**: Any suspicious URLs or invented facts?
-- **Overall verdict**: One frank sentence.
-
-## 2. Ranking (1st to 5th)
-
-Rank all five. For each position give a one-sentence justification. A provider
-with a large share of no-date or stale results cannot rank 1st regardless of
-other strengths.
-
-## 3. What Each Provider Needs to Fix
-
-For providers ranked 2nd through 5th, list the specific changes needed to
-reach 1st place. Distinguish between fixable issues and fundamental problems.
-
-## 4. Top Provider's Weaknesses
-
-List the honest weaknesses of the 1st-ranked provider.
+---
 """
 
 INDUSTRIES_PROMPT = """\
 Five news search providers (labelled A–E, real names hidden) were each asked to
-return news articles about specific industry/location combinations over the past
-3 months.
+return news articles about specific industry/location combinations over the
+past 90 days.
 
 USER CONTEXT
-The user is reviewing industry exposure for internal strategy, supply chain
-planning, or sales targeting. They need real strategic developments: pricing
-trends, M&A, regulatory shifts, expansion, financial performance for companies
-in that industry and geography. They do not want noise.
+The consumer is either a human business professional or an AI agent reviewing
+industry exposure (strategy, supply chain, sales targeting). They need real
+strategic developments — pricing trends, M&A, regulatory shifts, expansion,
+financial performance — for the queried industry in the queried geography.
+False positives are the top concern; false negatives matter less.
 
-WHAT COUNTS AS GOOD
-- Article or press release containing substantive information relevant to the
-  queried industry and geography — it does not have to be exclusively about that
-  industry, but the content must be meaningfully informative about it
-- Strategic content: pricing trends, M&A, expansion, regulatory shifts, company
-  performance within the sector
-- Date is present and within the last 90 days (the query window)
-- Summary is informative without clicking through
-- URL is accessible without a paywall
-- No hallucinated content
+WHAT COUNTS AS GOOD (TP)
+- Article or press release with substantive information about the queried
+  industry in the queried geography. Not exclusively about that industry, but
+  meaningfully informative.
+- Date present and within the last 90 days.
+- Summary informative enough to decide whether to click through.
+- URL accessible.
+- English language.
 
-WHAT COUNTS AS BAD
-- Wrong industry: "Film" matched as cinema when searching for packaging film;
-  "Distribution" matched as power distribution when searching for media
-  distribution services — these are false positives and waste the user's time
-- Wrong geography: article is about the industry but in a completely different
-  region
-- Trivial mentions: the industry or geography appears but nothing useful is
-  communicated (e.g., a global market wrap that mentions the region in passing
-  with no specific insight)
-- "About Us" pages, product catalogues, consumer guides — not news
-- Market research report landing pages (pages that sell reports rather than
-  containing news)
-- **Missing dates** — flagged inline as `[NO DATE ⚠]`. Serious failure: the user
-  cannot judge whether the news is current.
-- **Stale dates** — flagged inline as `STALE>90d ⚠`. The query window is the
-  last 90 days; anything older is off-scope by construction and equivalent to
-  a wrong-topic result.
-- Raw boilerplate as a summary
-- Error rows (failed API calls logged as articles)
-- Hallucinated articles
+WHAT COUNTS AS BAD (FP)
+- FP-entity (wrong topic / region): "Film" matched as cinema when packaging
+  film was asked; "Distribution" matched as power distribution when media
+  distribution was asked; right industry but completely different region;
+  global market wraps that mention the region in passing with no specific
+  insight; broader-than-asked content (different industry segment, or
+  worldwide when a region was asked).
+- FP-not-news: About Us pages, product catalogues, consumer guides, company
+  registration / registry / directory listings, social media posts, forum
+  threads, personal blogs.
+- FP-stale / FP-no-date / FP-dup: see header counts (ground truth).
+- FP-halluc: suspicious URL patterns; invented facts.
+- Errors: `*** ERROR ***` rows — header `errors: N` is ground truth.
 
-Each provider block's header lists exact counts: `no-date: N | stale (>90d): N`.
-Use those numbers — do not estimate.
+NOTE on market-report landing pages: a small number (≤2 per topic) provides
+useful state-of-market context — count those as on-topic (TP / TP-thin). Beyond
+that, surplus copies are noise — count the excess as FP-not-news. Do not
+blanket-penalise.
+
+__RUBRIC__
 
 ---
 
-{data}
+__DATA__
 
 ---
-
-Provide your analysis in this exact structure:
-
-## 1. Provider-by-Provider Assessment
-
-For each provider A through E:
-- **Topic relevance**: Are results genuinely about the right industry + location?
-  Cite specific false-positive examples (wrong industry, wrong geography).
-- **Error rate**: How many results are errors (failed calls)?
-- **Coverage breadth**: How many of the 12 topic combinations get real results?
-- **Date presence & recency**: Quote the no-date count and the stale (>90d)
-  count from the provider header. A provider with many no-date or stale results
-  is failing at a basic level — treat it as a major failure, not a minor gripe.
-- **Summary usability**: Can the user understand the story without clicking?
-- **Source quality**: Real journalism and press releases are both acceptable.
-  Flag aggregators that add no value, report landing pages, and product pages.
-- **Hallucination risk**: Any suspicious URLs or invented facts?
-- **Overall verdict**: One frank sentence.
-
-## 2. Ranking (1st to 5th)
-
-Rank all five. For each position give a one-sentence justification. A provider
-with a large share of no-date or stale results cannot rank 1st regardless of
-other strengths.
-
-## 3. What Each Provider Needs to Fix
-
-For providers ranked 2nd through 5th, list the specific changes needed to
-reach 1st place. Distinguish between fixable issues and fundamental problems.
-
-## 4. Top Provider's Weaknesses
-
-List the honest weaknesses of the 1st-ranked provider.
 """
 
-README_SUMMARY_PROMPT = """\
-Two analyses of news search providers are below — one for company queries, one for \
-industry/location queries. Providers are coded A–E.
 
-Decode key: {decode_key}
+def _build_prompt(template: str, query_type: str) -> str:
+    return template.replace("__RUBRIC__", _RUBRIC_BLOCK).replace("__QUERY_TYPE__", query_type)
+
+
+COMPANIES_PROMPT = _build_prompt(COMPANIES_PROMPT, "companies")
+INDUSTRIES_PROMPT = _build_prompt(INDUSTRIES_PROMPT, "industries")
+
+README_SUMMARY_PROMPT = """\
+Two scorecards are below — one for company queries, one for industry/location
+queries. Providers are coded A–E.
+
+Decode key: __DECODE_KEY__
 
 Use real provider names (not coded labels) throughout your response.
 
-Write a short "Results history" entry for a README.md. Output ONLY the entry — no \
-preamble, no commentary after. Follow this format exactly:
+Write a short "Results history" entry for a README.md. Output ONLY the entry —
+no preamble, no commentary after. Follow this format exactly:
 
-### {date}
+### __DATE__
 
-[One sentence: e.g. "Syracuse 1st in both query types:" or \
-"No single winner across both query types:"]
+[One sentence: e.g. "Syracuse 1st in both query types." or "No single winner
+across both query types."]
 
-- **Companies:** [Provider] 1st (specific reason with concrete examples), \
-[Provider] 2nd (reason), [Provider] 3rd (reason), [Provider] 4th (reason), \
-[Provider] last (specific failures with examples).
-- **Industries:** [Provider] 1st (specific reason), ..., \
-[Provider] last (specific failures with examples).
+- **Companies:** [Provider] 1st (final/10 — one-clause reason with a concrete
+  example), [Provider] 2nd (final/10 — reason), [Provider] 3rd (final/10 — reason),
+  [Provider] 4th (final/10 — reason), [Provider] last (final/10 — specific failure).
+- **Industries:** [Provider] 1st (final/10 — reason), …, [Provider] last
+  (final/10 — specific failure).
 
 Rules:
-- Be specific — name companies that were missed, quote error rates, describe \
-hallucination patterns (e.g. "fabricated Reuters/Bloomberg URLs"), note zero-date issues.
-- Each bullet is a single sentence covering all five providers in rank order.
+- Quote each provider's `final` score (one decimal place, out of 10) in parens.
+- If a provider has any entries in `caps_applied`, mention the engaged cap
+  (e.g. "recency cap" or "trust cap") and the underlying reason (e.g. "12 no-date
+  results", "fabricated Reuters URLs").
+- Be specific — name a queried entity from `evidence` to back the reason.
+- Each bullet is a single sentence covering all five providers in rank order
+  (use the `ranking` array).
 - No [Details](...) links.
 
 ---
-COMPANIES ANALYSIS
+COMPANIES SCORECARD (JSON)
 
-{companies_analysis}
+```json
+__COMPANIES_SCORECARD__
+```
 
 ---
-INDUSTRIES ANALYSIS
+INDUSTRIES SCORECARD (JSON)
 
-{industries_analysis}
+```json
+__INDUSTRIES_SCORECARD__
+```
+
+---
+COMPANIES NOTES (prose excerpt for color)
+
+__COMPANIES_NOTES__
+
+---
+INDUSTRIES NOTES (prose excerpt for color)
+
+__INDUSTRIES_NOTES__
 """
 
-
+   
 # ---------------------------------------------------------------------------
 # Data loading and formatting
 # ---------------------------------------------------------------------------
@@ -329,7 +452,9 @@ def make_anonymization(providers: list[str]) -> tuple[dict, dict]:
     return label_to_provider, provider_to_label
 
 
-def _format_article(index: int, art: dict, reference_date: datetime) -> list[str]:
+def _format_article(
+    index: int, art: dict, reference_date: datetime, dup_marker: str = ""
+) -> list[str]:
     lines = []
     bucket = classify_date(art, reference_date)
     if bucket == "no_date":
@@ -344,7 +469,10 @@ def _format_article(index: int, art: dict, reference_date: datetime) -> list[str
     if len(summary) > MAX_SUMMARY_CHARS:
         summary = summary[:MAX_SUMMARY_CHARS] + "…"
 
-    label_parts = [f"[{date}]", headline]
+    label_parts = [f"[{date}]"]
+    if dup_marker:
+        label_parts.append(f"[{dup_marker} ⚠]")
+    label_parts.append(headline)
     if source:
         label_parts.append(f"| {source}")
     lines.append(f"    {index}. {' '.join(label_parts)}")
@@ -362,20 +490,31 @@ def _date_counts(arts: list[dict], reference_date: datetime) -> tuple[int, int]:
 
 
 def _group_summary(
-    label: str, all_real: list[dict], total_errors: int, reference_date: datetime
+    label: str,
+    all_real: list[dict],
+    total_errors: int,
+    reference_date: datetime,
+    total_dups: int,
 ) -> list[str]:
     no_date, stale = _date_counts(all_real, reference_date)
     return [
         f"\n{'=' * 60}",
         (
             f"PROVIDER {label}  |  total articles: {len(all_real)}  |  errors: {total_errors}  "
-            f"|  no-date: {no_date}  |  stale (>{STALE_DAYS}d): {stale}"
+            f"|  no-date: {no_date}  |  stale (>{STALE_DAYS}d): {stale}  |  dup: {total_dups}"
         ),
         "=" * 60,
     ]
 
 
-def _item_header(kind: str, name: str, real: list[dict], errors: list, reference_date: datetime) -> str:
+def _item_header(
+    kind: str,
+    name: str,
+    real: list[dict],
+    errors: list,
+    reference_date: datetime,
+    dup: int,
+) -> str:
     no_date, stale = _date_counts(real, reference_date)
     parts = [f"{len(real)} articles"]
     if errors:
@@ -384,7 +523,48 @@ def _item_header(kind: str, name: str, real: list[dict], errors: list, reference
         parts.append(f"{no_date} no-date")
     if stale:
         parts.append(f"{stale} stale")
+    if dup:
+        parts.append(f"{dup} dup")
     return f"\n  {kind}: {name}  ({', '.join(parts)})"
+
+
+def _render_item(
+    kind: str,
+    name: str,
+    real: list[dict],
+    errors: list,
+    reference_date: datetime,
+    max_articles: int,
+) -> tuple[list[str], int]:
+    """Render one item (company or topic). Returns (lines, dup_count_for_this_item)."""
+    real_sorted = sorted(
+        real,
+        key=lambda x: x.get("published_date_clean") or x.get("published_date") or "",
+        reverse=True,
+    )
+    groups = _compute_dup_groups(real_sorted)
+    item_dup = _dup_count(groups)
+
+    shown = real_sorted[:max_articles]
+    shown_groups = groups[: len(shown)]
+    canonical_pos: dict[int, int] = {}
+    for i, gid in enumerate(shown_groups, 1):
+        canonical_pos.setdefault(gid, i)
+
+    lines = [_item_header(kind, name, real_sorted, errors, reference_date, item_dup)]
+    if not real_sorted:
+        lines.append("    [No articles]")
+        return lines, item_dup
+
+    for i, (art, gid) in enumerate(zip(shown, shown_groups), 1):
+        canon = canonical_pos[gid]
+        marker = f"DUP of #{canon}" if canon != i else ""
+        lines.extend(_format_article(i, art, reference_date, marker))
+
+    if len(real_sorted) > max_articles:
+        lines.append(f"    … {len(real_sorted) - max_articles} more articles not shown")
+
+    return lines, item_dup
 
 
 def format_companies_data(
@@ -396,38 +576,7 @@ def format_companies_data(
         label = provider_to_label.get(row.get("provider", ""), row.get("provider", ""))
         data[label][row.get("company", "")].append(row)
 
-    lines = []
-    for label in sorted(data):
-        companies = data[label]
-        all_real = [a for arts in companies.values() for a in arts if a.get("headline") != "*** ERROR ***"]
-        total_errors = sum(
-            len([a for a in arts if a.get("headline") == "*** ERROR ***"])
-            for arts in companies.values()
-        )
-        lines.extend(_group_summary(label, all_real, total_errors, reference_date))
-
-        for company in sorted(companies):
-            all_arts = companies[company]
-            errors = [a for a in all_arts if a.get("headline") == "*** ERROR ***"]
-            real = [a for a in all_arts if a.get("headline") != "*** ERROR ***"]
-            real.sort(
-                key=lambda x: x.get("published_date_clean") or x.get("published_date") or "",
-                reverse=True,
-            )
-            shown = real[:max_articles]
-
-            lines.append(_item_header("Company", company, real, errors, reference_date))
-            if not real:
-                lines.append("    [No articles]")
-                continue
-
-            for i, art in enumerate(shown, 1):
-                lines.extend(_format_article(i, art, reference_date))
-
-            if len(real) > max_articles:
-                lines.append(f"    … {len(real) - max_articles} more articles not shown")
-
-    return "\n".join(lines)
+    return _format_grouped("Company", data, reference_date, max_articles)
 
 
 def format_industries_data(
@@ -440,36 +589,46 @@ def format_industries_data(
         topic = f"{row.get('industry', '')} | {row.get('location', '')}"
         data[label][topic].append(row)
 
-    lines = []
+    return _format_grouped("Topic", data, reference_date, max_articles)
+
+
+def _format_grouped(
+    kind: str,
+    data: dict[str, dict[str, list[dict]]],
+    reference_date: datetime,
+    max_articles: int,
+) -> str:
+    lines: list[str] = []
     for label in sorted(data):
-        topics = data[label]
-        all_real = [a for arts in topics.values() for a in arts if a.get("headline") != "*** ERROR ***"]
+        items = data[label]
+        all_real = [
+            a
+            for arts in items.values()
+            for a in arts
+            if a.get("headline") != "*** ERROR ***"
+        ]
         total_errors = sum(
             len([a for a in arts if a.get("headline") == "*** ERROR ***"])
-            for arts in topics.values()
+            for arts in items.values()
         )
-        lines.extend(_group_summary(label, all_real, total_errors, reference_date))
 
-        for topic in sorted(topics):
-            all_arts = topics[topic]
+        # First render each item to get per-item dup counts; then prepend the
+        # provider header with the aggregate dup total.
+        item_blocks: list[list[str]] = []
+        total_dups = 0
+        for name in sorted(items):
+            all_arts = items[name]
             errors = [a for a in all_arts if a.get("headline") == "*** ERROR ***"]
             real = [a for a in all_arts if a.get("headline") != "*** ERROR ***"]
-            real.sort(
-                key=lambda x: x.get("published_date_clean") or x.get("published_date") or "",
-                reverse=True,
+            block, item_dup = _render_item(
+                kind, name, real, errors, reference_date, max_articles
             )
-            shown = real[:max_articles]
+            total_dups += item_dup
+            item_blocks.append(block)
 
-            lines.append(_item_header("Topic", topic, real, errors, reference_date))
-            if not real:
-                lines.append("    [No articles]")
-                continue
-
-            for i, art in enumerate(shown, 1):
-                lines.extend(_format_article(i, art, reference_date))
-
-            if len(real) > max_articles:
-                lines.append(f"    … {len(real) - max_articles} more articles not shown")
+        lines.extend(_group_summary(label, all_real, total_errors, reference_date, total_dups))
+        for block in item_blocks:
+            lines.extend(block)
 
     return "\n".join(lines)
 
@@ -483,12 +642,12 @@ def call_claude(client: anthropic.Anthropic, model: str, data_text: str, prompt_
     token_estimate = char_count // 4
     print(f"  Data size: ~{char_count:,} chars / ~{token_estimate:,} tokens")
 
-    user_message = prompt_template.format(data=data_text)
+    user_message = prompt_template.replace("__DATA__", data_text)
     for attempt in range(4):
         try:
             response = client.messages.create(
                 model=model,
-                max_tokens=8192,
+                max_tokens=12288,
                 system=SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": user_message}],
             )
@@ -504,23 +663,119 @@ def call_claude(client: anthropic.Anthropic, model: str, data_text: str, prompt_
 
 
 # ---------------------------------------------------------------------------
+# Scorecard parsing
+# ---------------------------------------------------------------------------
+
+_JSON_BLOCK_RE = re.compile(r"```json\s*\n(.*?)\n```", re.S)
+_NOTES_RE = re.compile(r"##\s*Notes\s*\n(.*?)\Z", re.S)
+
+
+def _apply_caps(axes: dict, weighted: float) -> tuple[float, list[str]]:
+    """Recompute final score and engaged caps from axis scores."""
+    caps: list[str] = []
+    final = weighted
+    rec = axes["recency_integrity"]["score"]
+    trust = axes["trust"]["score"]
+    prec = axes["precision"]["score"]
+    if rec <= CAP_RECENCY_HARD_THRESHOLD:
+        caps.append("recency_hard")
+        final = min(final, CAP_RECENCY_HARD_LIMIT)
+    elif rec <= CAP_RECENCY_SOFT_THRESHOLD:
+        caps.append("recency_soft")
+        final = min(final, CAP_RECENCY_SOFT_LIMIT)
+    if trust <= CAP_TRUST_THRESHOLD:
+        caps.append("trust")
+        final = min(final, CAP_TRUST_LIMIT)
+    if prec <= CAP_PRECISION_THRESHOLD:
+        caps.append("precision")
+        final = min(final, CAP_PRECISION_LIMIT)
+    return round(final, 2), caps
+
+
+def _recompute_provider(provider: dict) -> dict:
+    """Recompute weighted, final, caps_applied from axis scores. Mutates and returns."""
+    axes = provider["axes"]
+    missing = [a for a in RUBRIC_AXES if a not in axes]
+    if missing:
+        raise ValueError(f"Provider {provider.get('label', '?')} missing axes: {missing}")
+    weighted = sum(RUBRIC_WEIGHTS[a] * axes[a]["score"] for a in RUBRIC_AXES)
+    weighted = round(weighted, 2)
+    final, caps = _apply_caps(axes, weighted)
+
+    model_weighted = provider.get("weighted")
+    model_final = provider.get("final")
+    if model_weighted is not None and abs(model_weighted - weighted) > 0.05:
+        print(f"  ⚠ Provider {provider.get('label')}: weighted recomputed "
+              f"{weighted} vs model {model_weighted}; using recomputed.")
+    if model_final is not None and abs(model_final - final) > 0.05:
+        print(f"  ⚠ Provider {provider.get('label')}: final recomputed "
+              f"{final} vs model {model_final}; using recomputed.")
+
+    provider["weighted"] = weighted
+    provider["final"] = final
+    provider["caps_applied"] = caps
+    return provider
+
+
+def parse_scorecard(analysis_text: str) -> dict:
+    """Extract the fenced JSON scorecard, validate axes, recompute scores
+    server-side, and re-derive the ranking from the recomputed final scores."""
+    match = _JSON_BLOCK_RE.search(analysis_text)
+    if not match:
+        raise ValueError("No ```json fenced block found in analysis output")
+    data = json.loads(match.group(1))
+    if "providers" not in data:
+        raise ValueError("Scorecard JSON missing 'providers' key")
+    for prov in data["providers"]:
+        for axis in RUBRIC_AXES:
+            score = prov.get("axes", {}).get(axis, {}).get("score")
+            if not isinstance(score, (int, float)) or not 0 <= score <= 10:
+                raise ValueError(
+                    f"Provider {prov.get('label')} axis {axis} has invalid score: {score!r}"
+                )
+        _recompute_provider(prov)
+
+    data["providers"].sort(
+        key=lambda p: (
+            -p["final"],
+            -p["axes"]["precision"]["score"],
+            -p["axes"]["recency_integrity"]["score"],
+        )
+    )
+    data["ranking"] = [p["label"] for p in data["providers"]]
+    return data
+
+
+def extract_notes(analysis_text: str) -> str:
+    match = _NOTES_RE.search(analysis_text)
+    return match.group(1).strip() if match else ""
+
+
+# ---------------------------------------------------------------------------
 # README summary
 # ---------------------------------------------------------------------------
 
 def generate_readme_summary(
     client: anthropic.Anthropic,
     model: str,
-    companies_analysis: str,
-    industries_analysis: str,
+    companies_scorecard: dict,
+    industries_scorecard: dict,
+    companies_notes: str,
+    industries_notes: str,
     label_to_provider: dict,
     run_date: str,
 ) -> str:
-    decode_key = ", ".join(f"{label}={provider}" for label, provider in sorted(label_to_provider.items()))
-    prompt = README_SUMMARY_PROMPT.format(
-        decode_key=decode_key,
-        date=run_date,
-        companies_analysis=companies_analysis,
-        industries_analysis=industries_analysis,
+    decode_key = ", ".join(
+        f"{label}={provider}" for label, provider in sorted(label_to_provider.items())
+    )
+    prompt = (
+        README_SUMMARY_PROMPT
+        .replace("__DECODE_KEY__", decode_key)
+        .replace("__DATE__", run_date)
+        .replace("__COMPANIES_SCORECARD__", json.dumps(companies_scorecard, indent=2))
+        .replace("__INDUSTRIES_SCORECARD__", json.dumps(industries_scorecard, indent=2))
+        .replace("__COMPANIES_NOTES__", companies_notes or "(none)")
+        .replace("__INDUSTRIES_NOTES__", industries_notes or "(none)")
     )
     for attempt in range(4):
         try:
@@ -595,6 +850,13 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     print("Calling Claude for industries analysis…")
     industries_analysis = call_claude(client, model, industries_data, INDUSTRIES_PROMPT)
 
+    # Parse and recompute server-side
+    print("\nParsing scorecards…")
+    companies_scorecard = parse_scorecard(companies_analysis)
+    industries_scorecard = parse_scorecard(industries_analysis)
+    companies_notes = extract_notes(companies_analysis)
+    industries_notes = extract_notes(industries_analysis)
+
     # Save
     ai_dir = os.path.join(output_dir, "AI-analysis")
     os.makedirs(ai_dir, exist_ok=True)
@@ -631,9 +893,19 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         f.write("---\n\n")
         f.write(industries_analysis)
 
+    companies_json_path = os.path.join(ai_dir, f"claude-companies-{timestamp}.json")
+    with open(companies_json_path, "w") as f:
+        json.dump(companies_scorecard, f, indent=2)
+
+    industries_json_path = os.path.join(ai_dir, f"claude-industries-{timestamp}.json")
+    with open(industries_json_path, "w") as f:
+        json.dump(industries_scorecard, f, indent=2)
+
     print(f"\nResults saved to:")
     print(f"  {companies_path}")
     print(f"  {industries_path}")
+    print(f"  {companies_json_path}")
+    print(f"  {industries_json_path}")
     print(f"  {key_path}")
     print(f"\nDecode key:")
     for label, provider in sorted(label_to_provider.items()):
@@ -645,7 +917,14 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     print("Generating README summary…")
     run_date = os.path.basename(os.path.normpath(results_dir))
     readme_summary = generate_readme_summary(
-        client, model, companies_analysis, industries_analysis, label_to_provider, run_date
+        client,
+        model,
+        companies_scorecard,
+        industries_scorecard,
+        companies_notes,
+        industries_notes,
+        label_to_provider,
+        run_date,
     )
     print("\n" + "=" * 60)
     print("README SNIPPET — paste into Results history in README.md")
@@ -672,16 +951,34 @@ def run_readme_only(results_dir: str, model: str = DEFAULT_MODEL):
     label_to_provider = key_data["label_to_provider"]
     timestamp = key_data["generated_at"]
 
-    companies_path = os.path.join(ai_dir, f"claude-companies-{timestamp}.md")
-    industries_path = os.path.join(ai_dir, f"claude-industries-{timestamp}.md")
-    for p in (companies_path, industries_path):
+    companies_md_path = os.path.join(ai_dir, f"claude-companies-{timestamp}.md")
+    industries_md_path = os.path.join(ai_dir, f"claude-industries-{timestamp}.md")
+    companies_json_path = os.path.join(ai_dir, f"claude-companies-{timestamp}.json")
+    industries_json_path = os.path.join(ai_dir, f"claude-industries-{timestamp}.json")
+    for p in (companies_md_path, industries_md_path):
         if not os.path.exists(p):
             raise FileNotFoundError(f"Expected analysis file not found: {p}")
 
-    with open(companies_path) as f:
-        companies_analysis = f.read()
-    with open(industries_path) as f:
-        industries_analysis = f.read()
+    with open(companies_md_path) as f:
+        companies_md = f.read()
+    with open(industries_md_path) as f:
+        industries_md = f.read()
+
+    # Prefer pre-parsed JSON sidecars; fall back to extracting from markdown
+    # for older runs that pre-date the JSON output.
+    if os.path.exists(companies_json_path):
+        with open(companies_json_path) as f:
+            companies_scorecard = json.load(f)
+    else:
+        companies_scorecard = parse_scorecard(companies_md)
+    if os.path.exists(industries_json_path):
+        with open(industries_json_path) as f:
+            industries_scorecard = json.load(f)
+    else:
+        industries_scorecard = parse_scorecard(industries_md)
+
+    companies_notes = extract_notes(companies_md)
+    industries_notes = extract_notes(industries_md)
 
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
@@ -692,7 +989,14 @@ def run_readme_only(results_dir: str, model: str = DEFAULT_MODEL):
 
     print("Generating README summary…")
     readme_summary = generate_readme_summary(
-        client, model, companies_analysis, industries_analysis, label_to_provider, run_date
+        client,
+        model,
+        companies_scorecard,
+        industries_scorecard,
+        companies_notes,
+        industries_notes,
+        label_to_provider,
+        run_date,
     )
     print("\n" + "=" * 60)
     print("README SNIPPET — paste into Results history in README.md")
