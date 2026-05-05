@@ -40,7 +40,7 @@ def compare_company_results(company: str, csv_writer=None):
     
     # Write results to CSV
     if csv_writer:
-        write_articles_to_csv(csv_writer, company, None, None, results_details)
+        write_articles_to_csv(csv_writer, company, None, None, None, results_details)
     
     return results_summary, results_details
 
@@ -62,14 +62,14 @@ def print_comparison(results_summary, results_details):
     comparison_output = format_comparison(results_summary, results_details)
     print('\n'.join(comparison_output))
 
-def compare_industry_location_results(industry: str, location: str, csv_writer=None):
+def compare_industry_location_results(industry: str, industry_context: str, location: str, csv_writer=None):
     """Compare industry/location results across providers and write to CSV"""
     results_summary = []
     results_details = {}
     
     for provider, client in CLIENTS.items():
         start_time = datetime.now(tz=timezone.utc)
-        arts = client.get_industry_articles_for(industry, location)
+        arts = client.get_industry_articles_for(industry, industry_context, location)
         end_time = datetime.now(tz=timezone.utc)
         duration = end_time - start_time
         arts = filter_recent_real_articles(arts)
@@ -82,12 +82,16 @@ def compare_industry_location_results(industry: str, location: str, csv_writer=N
     
     # Write results to CSV
     if csv_writer:
-        write_articles_to_csv(csv_writer, None, industry, location, results_details)
+        write_articles_to_csv(csv_writer, None, industry, industry_context, location, results_details)
     
     return results_summary, results_details
 
-def write_articles_to_csv(csv_writer, company=None, industry=None, location=None, results_details=None):
+def write_articles_to_csv(csv_writer, company=None, industry=None, industry_context=None, 
+                          location=None, results_details=None):
     """Write article results to CSV file"""
+    if results_details is None:
+        raise ValueError(f"No results for company={company}, industry={industry}, industry_context={industry_context}, location={location}")
+
     for provider, articles in results_details.items():
         for article in articles:
             # Clean all text fields to remove line breaks and normalize whitespace
@@ -99,6 +103,7 @@ def write_articles_to_csv(csv_writer, company=None, industry=None, location=None
             row = {
                 'company': company or '',
                 'industry': industry or '',
+                'industry_context': industry_context or '',
                 'location': location or '',
                 'provider': provider,
                 'headline': clean_text(article.get('headline', '')),
@@ -168,7 +173,7 @@ def run_comparison(prefix: str, output_dir: str = 'results'):
     
     # Define CSV headers
     csv_headers = [
-        'company', 'industry', 'location', 'provider', 'headline', 
+        'company', 'industry', 'industry_context', 'location', 'provider', 'headline', 
         'published_by', 'published_date', 'published_date_clean', 
         'activity_type', 'document_url', 'summary_text'
     ]
@@ -194,8 +199,9 @@ def run_comparison(prefix: str, output_dir: str = 'results'):
         
         for industry_location in industry_location_examples:
             industry = industry_location['industry']
+            industry_context = industry_location['industry_context']
             location = industry_location['location']
-            print(f"  - {industry} - {location}")
+            print(f"  - {industry} - {industry_context} - {location}")
             summary, details = compare_industry_location_results(**industry_location, csv_writer=csv_writer)
             # Print summary to console
             summary_str = '; '.join([f"{s['provider']} got {s['count']} in {s['duration']:.2f}s" for s in summary])

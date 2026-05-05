@@ -6,10 +6,10 @@ import json
 PROVIDER_NAME = "Perplexity"
 PERPLEXITY_ENDPOINT = "https://api.perplexity.ai/chat/completions"
 
-def get_industry_articles_for(industry: str, location: str):
-    query_context = f"industry={industry}, location={location}"
-    user_command = build_industry_user_command(industry, location)
-    system_command = build_industry_system_command(industry)
+def get_industry_articles_for(industry: str, industry_context: str, location: str):
+    query_context = f"industry={industry}, industry_context={industry_context} location={location}"
+    user_command = build_industry_user_command(industry, industry_context, location)
+    system_command = build_industry_system_command(industry, industry_context)
     payload = build_payload(user_command, system_command)
     response = get_news(payload, query_context)
     if response:
@@ -76,12 +76,20 @@ def build_company_user_command(company: str):
     )
     return user_command
 
-def build_industry_system_command(industry: str):
-    return f"You are a market research analyst with deep knowledge of what a procurement category manager in the {industry} industry needs."
+def build_industry_str(industry: str, industry_context: str):
+    industry_str = industry.strip()
+    if industry_context:
+        industry_str = f"{industry.strip()} ({industry_context.strip()})".strip()
+    return industry_str    
 
-def build_industry_user_command(industry: str, location: str):
+def build_industry_system_command(industry: str, industry_context: str):
+    industry_str = build_industry_str(industry, industry_context)
+    return f"You are a market research analyst with deep knowledge of what a procurement category manager in the {industry_str} industry needs."
+
+def build_industry_user_command(industry: str, industry_context: str, location: str):
+    industry_str = build_industry_str(industry, industry_context)
     user_command = (
-        f"I need you to produce a list of suppliers for industry: {industry} in location: {location}. Then find recent news articles for these suppliers. "
+        f"I need you to produce a list of suppliers for industry: {industry_str} in location: {location}. Then find recent news articles for these suppliers. "
         "Focus on topics like corporate finance, partnerships, product innovations, supplier risk and regulatory changes "
         "that I can use in preparing my procurement strategy, risk management and supplier negotiations. "
         "For each source cited in your response, provide a separate summary of that source's content. "

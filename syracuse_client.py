@@ -28,9 +28,11 @@ def get_company_articles_for(company: str):
     articles = parse_response(resp, query_context)
     return articles
 
-def get_industry_articles_for(industry: str, location: str):
-    query_context = f"industry={industry}, location={location}"
-    resp = call_syracuse_activities("industry-location", {"industry": industry, "location": location}, query_context)
+def get_industry_articles_for(industry: str, industry_context: str, location: str):
+    query_context = f"industry={industry}, industry_context={industry_context}, location={location}"
+    resp = call_syracuse_activities("industry-location", {"industry": industry, 
+                                                          "industry_context": industry_context, 
+                                                          "location": location}, query_context)
     articles = parse_response(resp, query_context)
     return articles
 

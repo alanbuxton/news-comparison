@@ -5,9 +5,9 @@ from datetime import datetime, timezone
 
 PROVIDER_NAME = "Tavily"
 
-def get_industry_articles_for(industry: str, location: str):
-    query = industry_query(industry, location)
-    query_context = f"industry={industry}, location={location}"
+def get_industry_articles_for(industry: str, industry_context: str, location: str):
+    query = industry_query(industry, industry_context, location)
+    query_context = f"industry={industry}, industry_context={industry_context}, location={location}"
     results = do_query(query, query_context)
     articles = []
     for item in results['results']:
@@ -25,8 +25,11 @@ def get_company_articles_for(company: str):
         articles.append(article)
     return sorted(articles, key=lambda x: x.get("published_date", ""), reverse=True)
 
-def industry_query(industry, location):
-    prompt = (f"Fetch recent news related to the {industry} industry in {location}.\n"
+def industry_query(industry, industry_context, location):
+    industry_str = industry.strip()
+    if industry_context:
+        industry_str = f"{industry.strip()} ({industry_context.strip()})".strip()      
+    prompt = (f"Fetch recent news related to the {industry_str} industry in {location}.\n"
     "Focus on:\n"
     "- Market trends and macroeconomic developments\n"
     "- Regulatory or policy updates\n"

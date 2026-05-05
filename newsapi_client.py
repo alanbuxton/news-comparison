@@ -31,9 +31,12 @@ def get_company_articles_for(company: str):
     articles = parse_response(resp, query_context)
     return articles
 
-def get_industry_articles_for(industry: str, location: str):
-    query_context = f"industry={industry}, location={location}"
-    resp = call_newsapi_stories(f"{industry} in {location}", query_context)
+def get_industry_articles_for(industry: str, industry_context: str, location: str):
+    query_context = f"industry={industry}, industry_context={industry_context}, location={location}"
+    industry_str = industry.strip()
+    if industry_context:
+        industry_str = f"{industry.strip()} ({industry_context.strip()})".strip()   
+    resp = call_newsapi_stories(f"{industry_str} in {location}", query_context)
     articles = parse_response(resp, query_context)
     return articles
 

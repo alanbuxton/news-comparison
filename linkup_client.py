@@ -5,9 +5,9 @@ from datetime import datetime, timezone
 
 PROVIDER_NAME = "Linkup"
 
-def get_industry_articles_for(industry: str, location: str):
-    query = industry_query(industry, location)
-    query_context = f"industry={industry}, location={location}"
+def get_industry_articles_for(industry: str, industry_str: str, location: str):
+    query = industry_query(industry, industry_str, location)
+    query_context = f"industry={industry}, industry_str={industry_str}, location={location}"
     results = do_query(query, query_context)
     articles = []
     for item in results['articles']:
@@ -65,8 +65,11 @@ def output_schema():
     }
     return json.dumps(schema)
 
-def industry_query(industry, location):
-    prompt = (f"Fetch recent news related to the {industry} industry in {location}.\n"
+def industry_query(industry, industry_context, location):
+    industry_str = industry.strip()
+    if industry_context:
+        industry_str = f"{industry.strip()} ({industry_context.strip()})".strip()
+    prompt = (f"Fetch recent news related to the {industry_str} industry in {location}.\n"
     "Focus on:\n"
     "- Market trends and macroeconomic developments\n"
     "- Regulatory or policy updates\n"
