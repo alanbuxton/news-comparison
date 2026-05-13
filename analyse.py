@@ -31,19 +31,18 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DEFAULT_MODEL = "claude-opus-4-6"
+DEFAULT_MODEL = "claude-opus-4-7"
 DEFAULT_MAX_ARTICLES = 15   # per company/topic per provider
 MAX_SUMMARY_CHARS = 200     # truncate summaries to keep prompt manageable
 STALE_DAYS = 90             # articles older than this are flagged as stale
 
-# Rubric: six axes summing to 1.0. Tuneable in one place.
+# Rubric: five axes summing to 1.0. Tuneable in one place.
 RUBRIC_WEIGHTS = {
-    "precision":         0.30,
-    "recency_integrity": 0.20,
-    "recall":            0.15,
-    "uniqueness":        0.10,
-    "summary":           0.15,
-    "trust":             0.10,
+    "precision":         0.35,
+    "coverage":          0.20,
+    "recency_integrity": 0.15,
+    "story_quality":     0.15,
+    "trust":             0.15,
 }
 RUBRIC_AXES = list(RUBRIC_WEIGHTS.keys())
 
@@ -169,8 +168,8 @@ providers against a fixed rubric. Your output drives a numeric scorecard, not
 a prose review.
 
 Non-negotiable rules:
-1. Score every provider on every axis (precision, recency_integrity, recall,
-   uniqueness, summary, trust). Use the full 0–10 range. A 7 across the board
+1. Score every provider on every axis (precision, coverage, recency_integrity,
+   story_quality, trust). Use the full 0–10 range. A 7 across the board
    is a refusal to judge — if the data shows a 3, write 3. Refusing to
    differentiate is itself a failure mode.
 2. Every axis score must be backed by concrete evidence as an array of short
@@ -198,24 +197,23 @@ Non-negotiable rules:
 _RUBRIC_BLOCK = """\
 RUBRIC
 
-Score each provider on these six 0–10 axes. Weights are fixed (sum to 1.0):
+Score each provider on these five 0–10 axes. Weights are fixed (sum to 1.0):
 
-| Axis              | Weight | What 10 looks like                               | What 0 looks like                                  |
-|-------------------|--------|--------------------------------------------------|----------------------------------------------------|
-| precision         | 0.30   | ≥90% of returned articles are on-topic          | <30% on-topic; flooded with FPs                    |
-| recency_integrity | 0.20   | 0 no-date, 0 stale (header counts)              | Large no-date or stale share                       |
-| recall            | 0.15   | Multiple real hits per queried entity           | Few entities get any real hits; mostly empty       |
-| uniqueness        | 0.10   | dup: 0 in header; each story counted once       | Same syndicated story repeated several times       |
-| summary           | 0.15   | Summaries let user decide without clicking      | Boilerplate, cookie banners, "subscribe to read"   |
-| trust             | 0.10   | 0 errors, no suspicious URLs                    | Hallucinated URLs/facts; high error rate           |
+| Axis              | Weight | What 10 looks like                                      | What 0 looks like                                               |
+|-------------------|--------|---------------------------------------------------------|-----------------------------------------------------------------|
+| precision         | 0.35   | 100% of returned articles are relevant and on-topic. **No results → score 0** | Any off-topic, wrong-entity, not-news, or stale content; or no results returned |
+| coverage          | 0.20   | At least one real, relevant article for nearly every queried entity | Multiple queried entities return no results at all      |
+| recency_integrity | 0.15   | 0 no-date, 0 stale (header counts)                     | Large no-date or stale share                                    |
+| story_quality     | 0.15   | Summaries let user decide without clicking              | Boilerplate, cookie banners, "subscribe to read"                |
+| trust             | 0.15   | 0 errors, no suspicious URLs                            | Hallucinated URLs/facts; high error rate                        |
 
 For each axis, output a 0–10 score and an `evidence` array of 1–4 short strings.
 Each evidence string MUST name a queried entity (or industry+location) and quote
 a specific headline, source, or counted pattern. Anonymous claims are malformed.
 
 WEIGHTED SCORE
-weighted = 0.30·precision + 0.20·recency_integrity + 0.15·recall
-         + 0.10·uniqueness + 0.15·summary + 0.10·trust
+weighted = 0.35·precision + 0.20·coverage + 0.15·recency_integrity
+         + 0.15·story_quality + 0.15·trust
 
 HARD CAPS (record applicable caps as label strings in caps_applied)
 - recency_integrity ≤ 3       → cap "recency_hard" → final ≤ 5.0
@@ -238,10 +236,9 @@ section. No prose inside the JSON block.
       "label": "A",
       "axes": {
         "precision":         {"score": 0, "evidence": ["..."]},
+        "coverage":          {"score": 0, "evidence": ["..."]},
         "recency_integrity": {"score": 0, "evidence": ["..."]},
-        "recall":            {"score": 0, "evidence": ["..."]},
-        "uniqueness":        {"score": 0, "evidence": ["..."]},
-        "summary":           {"score": 0, "evidence": ["..."]},
+        "story_quality":     {"score": 0, "evidence": ["..."]},
         "trust":             {"score": 0, "evidence": ["..."]}
       },
       "weighted": 0.0,
@@ -385,8 +382,8 @@ no preamble, no commentary after. Follow this format exactly:
 
 ### __DATE__
 
-[One sentence: e.g. "Syracuse 1st in both query types." or "No single winner
-across both query types."]
+[One sentence summarising the headline result, e.g. "Perplexity 1st in both query
+types." or "No single winner across both query types."]
 
 - **Companies:** [Provider] 1st (final/10 — one-clause reason with a concrete
   example), [Provider] 2nd (final/10 — reason), [Provider] 3rd (final/10 — reason),
@@ -394,13 +391,29 @@ across both query types."]
 - **Industries:** [Provider] 1st (final/10 — reason), …, [Provider] last
   (final/10 — specific failure).
 
+**Recommendation for autonomous use** (agent or human acting without manual filtering):
+
+- **Companies:** [one of the three verdicts below — use real provider names]
+- **Industries:** [one of the three verdicts below — use real provider names]
+
+Verdict options (pick exactly one per use case):
+1. **Use [Provider]** — top provider's final ≥ 6.0 AND precision ≥ 6 AND no trust
+   or precision cap engaged. One clause explaining why it clears the bar.
+2. **Use [Provider] + [Provider]** — no single provider clears the bar alone, but
+   combining the top-precision provider (for signal quality) with the top-coverage
+   provider (for breadth) is net-positive. Only recommend this if both have
+   precision ≥ 5 and neither has a trust cap. One clause on what each contributes.
+3. **None suitable for autonomous use** — no provider clears the precision ≥ 5 and
+   final ≥ 5 threshold needed for unfiltered agent use. One clause naming the
+   dominant failure mode (e.g. "high false-positive rate across all providers").
+
 Rules:
 - Quote each provider's `final` score (one decimal place, out of 10) in parens.
 - If a provider has any entries in `caps_applied`, mention the engaged cap
   (e.g. "recency cap" or "trust cap") and the underlying reason (e.g. "12 no-date
   results", "fabricated Reuters URLs").
 - Be specific — name a queried entity from `evidence` to back the reason.
-- Each bullet is a single sentence covering all five providers in rank order
+- Each ranking bullet is a single sentence covering all five providers in rank order
   (use the `ranking` array).
 - No [Details](...) links.
 

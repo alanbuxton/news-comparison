@@ -1,0 +1,10 @@
+[18:26:28] API_QUERY - industry=PAPER, industry_context=, location=Northern Europe
+Error: 400 Client Error: Bad Request for url: https://syracuse.1145.am/api/v1/stories/industry-location/?industry=PAPER&industry_context=&location=Northern+Europe
+Data: {
+  "params": {
+    "industry": "PAPER",
+    "industry_context": "",
+    "location": "Northern Europe"
+  }
+}
+--------------------------------------------------------------------------------

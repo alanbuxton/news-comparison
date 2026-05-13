@@ -130,6 +130,19 @@ A provider with a large share of no-date or stale (>90d) results cannot rank
 trustworthy date.
 
 ## Results history
+### 2026-05-09
+
+No single winner across both query types — Syracuse leads on companies, Exa leads on industries.
+
+- **Companies:** Syracuse 1st (9.3/10 — clean dates and decision-ready summaries across 137 articles, e.g. Borouge Q1 "$1,175 million, down 17% YoY"), Exa 2nd (7.65/10 — full coverage but wrong-entity bleed on obscure firms like Braroll and Fritz Foss), Linkup 3rd (4.0/10 — trust cap engaged from 25 errors with HPCL Mittal Energy and Klöckner Pentaplast returning zero results), Perplexity 4th (4.0/10 — trust cap engaged from fabricated-looking Reuters/Bloomberg URLs like commerzbank-fintech-partnership-ai-procurement-2026-05-07), Tavily last (3.0/10 — recency and precision caps engaged from 1931 undated articles and scraped Bloomberg Terminal boilerplate).
+- **Industries:** Exa 1st (8.2/10 — full coverage of all 25 topics with clean dates, e.g. FrieslandCampina €90M whey expansion), Perplexity 2nd (7.95/10 — zero errors and full coverage but About Us pages and "analogous to BOARD" stretches), Syracuse 3rd (4.55/10 — precision cap engaged from 18 empty topics and Bitget crypto spam in LATAM professional services), Linkup 4th (4.0/10 — trust cap engaged from 102 errors with 11 topics empty including Whey Ingredients|Northern Europe), Tavily last (2.8/10 — recency, trust, and precision caps engaged from 100% undated 2025 articles and homonym matches like "Board" as corporate governance).
+
+**Recommendation for autonomous use** (agent or human acting without manual filtering):
+
+- **Companies:** **Use Syracuse** (9.3/10) — clears the bar with high precision, full coverage, zero errors, and real resolvable URLs suitable for unfiltered agent consumption.
+- **Industries:** **Use Exa + Perplexity** — Exa (8.2/10) contributes precision and complete topic coverage across all 25 queries, while Perplexity (7.95/10) contributes flawless date integrity and zero errors as a cross-check against Exa's recurring Nigeria CBN leakage.
+
+
 
 ### 2026-04-20
 
