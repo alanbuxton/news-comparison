@@ -1,0 +1,10 @@
+[23:50:11] PARSE_DATE - industry=HR SERVICES, industry_context=CORPORATE SOCIAL RESPONSIBILITY (CSR), EMPLOYEE HEALTH INSURANCE, FLEET MANAGEMENT location=Mid Atlantic
+Error: day is out of range for month
+Data: {
+  "headline": "House Education and Workforce Committee advances ERISA Litigation Reform Act, reshaping employee benefits legal risk",
+  "summary_text": "The ESOP Association reported that the U.S. House Education and Workforce Committee passed the **ERISA Litigation Reform Act (H.R. 6084)** out of committee after a markup, moving it forward in the legislative process.[10] The bill aims to change how lawsuits under the Employee Retirement Income Security Act (ERISA) are handled, with the stated goal of reducing frivolous litigation and associated costs for employers and plan fiduciaries.[10] For procurement of **employee health insurance and retirement\u2011related benefits**, this legislative development is a key **regulatory change**: if enacted, it could alter the litigation exposure of insurers, TPAs, and employers, potentially influencing pricing, plan design flexibility, and indemnity/hold\u2011harmless provisions in supplier contracts.[10] Category managers can leverage this in risk assessments and negotiations by asking benefits suppliers to explain their interpretation of the bill\u2019s impact on fiduciary risk, how they will reflect any cost savings, and how they will adjust their compliance and dispute\u2011resolution processes.[10] The development also underlines the need for close monitoring of federal benefits legislation because it can materially change the risk\u2011sharing balance between employers and benefits suppliers over the life of multi\u2011year contracts.[10]",
+  "published_date": "2026-02-29T00:00:00Z",
+  "published_by": "The ESOP Association",
+  "document_url": "https://www.esopassociation.org/articles/house-education-and-workforce-committee-passes-erisa-litigation-reform-legislation"
+}
+--------------------------------------------------------------------------------

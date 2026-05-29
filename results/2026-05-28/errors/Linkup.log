@@ -1,0 +1,209 @@
+[22:09:58] PARSE_ARTICLE - company=HPCL Mittal Energy
+Error: month must be in 1..12
+Data: {
+  "headline": "HPCL-Mittal Energy Limited (HMEL) launched a new generation of AI-enabled energy stations in Noida",
+  "publication_date": "2023-00-00T00:00:00Z",
+  "summary": "HMEL launched a new generation of AI-enabled energy stations in Noida, showcasing its commitment to technological advancement in energy operations.",
+  "source": "Wikipedia",
+  "url": "https://en.wikipedia.org/wiki/HPCL-Mittal_Energy_Limited"
+}
+--------------------------------------------------------------------------------
+[22:12:19] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: 'March 3, 2026'
+Data: {
+  "headline": "GPGI Appoints 30-Year Veteran Robert Domodossola as President and CEO of Husky",
+  "publication_date": "March 3, 2026",
+  "summary": "GPGI, Inc. announced the appointment of Robert Domodossola, a 30-year company veteran, as President and CEO of Husky Technologies, signaling leadership continuity and strategic focus under new ownership.",
+  "source": "Husky Technologies News",
+  "url": "https://www.husky.co/en/about-us/news/gpgi-appoints-30-year-veteran-robert-domodossola-as-president-and-ceo-of-husky/"
+}
+--------------------------------------------------------------------------------
+[22:12:19] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: 'January 12, 2026'
+Data: {
+  "headline": "CompoSecure Completes Business Combination with Husky Technologies and Rebrands Corporate Entity to GPGI, Inc.",
+  "publication_date": "January 12, 2026",
+  "summary": "CompoSecure completed a business combination with Husky Technologies, forming GPGI, Inc., reinforcing commitment to innovation, operational strength, and customer partnership. Husky continues as a standalone business under current management.",
+  "source": "Husky Technologies News",
+  "url": "https://www.husky.co/en/about-us/news/composecure-completes-business-combination-with-husky-technologies/"
+}
+--------------------------------------------------------------------------------
+[22:12:19] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: 'April 2026'
+Data: {
+  "headline": "Three leaders departing Husky Technologies in wake of acquisition",
+  "publication_date": "April 2026",
+  "summary": "Following Husky's acquisition by GPGI, CEO Bradley Selleck and CFO John Linker announced departures, with Tracy Cordes appointed President of Service. Searches for new CEO and CFO are underway, with assurances of no disruption to operations or strategy.",
+  "source": "Plastics Machinery Manufacturing",
+  "url": "https://www.plasticsmachinerymanufacturing.com/injection-molding/news/55358624/three-leaders-departing-husky-technologies-in-wake-of-acquisition"
+}
+--------------------------------------------------------------------------------
+[22:12:19] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: 'February 5, 2026'
+Data: {
+  "headline": "Husky highlights local commitment and innovations to enable safety, affordability, and sustainability at Plastindia 2026",
+  "publication_date": "February 5, 2026",
+  "summary": "Husky Technologies showcased 25 years of investment in India at Plastindia 2026, emphasizing innovations that support safety, affordability, and sustainability in the local market, reinforcing its regional expansion and commitment.",
+  "source": "Husky Technologies News",
+  "url": "https://www.husky.co/en/about-us/news/plastindia-2026/"
+}
+--------------------------------------------------------------------------------
+[22:12:19] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: 'April 2026'
+Data: {
+  "headline": "Husky Technologies\u2122 expands global training footprint with Husky Learning Academy in Chennai",
+  "publication_date": "April 2026",
+  "summary": "Husky launched a dedicated technical training center in Chennai, India, as part of its Husky Learning Academy, offering comprehensive training programs to enhance customer skills in PET processing and injection molding, supporting workforce development in key regions.",
+  "source": "Husky Technologies LinkedIn",
+  "url": "https://www.linkedin.com/company/husky-technologies"
+}
+--------------------------------------------------------------------------------
+[22:12:19] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: 'April 21, 2026'
+Data: {
+  "headline": "Husky showcases innovations that deliver sustainability, performance, value, and safety at Chinaplas 2026",
+  "publication_date": "April 21, 2026",
+  "summary": "At Chinaplas 2026, Husky highlighted over 30 years of investment in China and Asia Pacific, presenting innovations focused on sustainability, performance, value, and safety, reinforcing its market positioning and regional relevance.",
+  "source": "Husky Technologies News",
+  "url": "https://www.husky.co/en/about-us/news/husky-showcases-innovations-that-deliver-sustainability-performance-value-and-safety-at-chinaplas-2026/"
+}
+--------------------------------------------------------------------------------
+[22:12:19] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: 'May 12, 2023'
+Data: {
+  "headline": "Husky marks expansion in India with ceremonies at Chennai facilities",
+  "publication_date": "May 12, 2023",
+  "summary": "Husky Technologies celebrated expansion in India with new offices and enhanced manufacturing capacity in Chennai, including hot runner production and local medical injection molding systems, strengthening its regional manufacturing footprint and service capabilities.",
+  "source": "Canadian Plastics",
+  "url": "https://www.canplastics.com/canplastics/husky-commemorates-expansion-in-india-with-ceremonies-at-chennai-facilities/1003461065/"
+}
+--------------------------------------------------------------------------------
+[22:12:19] PARSE_ARTICLE - company=Husky Technologies
+Error: Invalid isoformat string: 'November 2, 2021'
+Data: {
+  "headline": "Husky making Advantage+EliteTM monitoring technology standard on all PET and closure systems",
+  "publication_date": "November 2, 2021",
+  "summary": "Husky integrated its Advantage+EliteTM predictive monitoring technology as a standard feature on all PET and closure systems, enhancing real-time system monitoring and supporting sustainability through increased use of recycled materials, backed by global monitoring centers.",
+  "source": "Canadian Plastics",
+  "url": "https://www.canplastics.com/canplastics/husky-making-advantageelitetm-monitoring-technology-standard-on-all-pet-and-closure-systems/1003457603/"
+}
+--------------------------------------------------------------------------------
+[22:20:57] PARSE_ARTICLE - company=HAIER
+Error: month must be in 1..12
+Data: {
+  "headline": "Haier India deepens commitment to inclusive sport with Para Athletics deal",
+  "publication_date": "2026-00-00T00:00:00Z",
+  "source": "Sportsmint Media",
+  "url": "https://sportsmintmedia.com/haier-india-deepens-commitment-to-inclusive-sport-with-para-athletics-deal/"
+}
+--------------------------------------------------------------------------------
+[22:26:54] PARSE_ARTICLE - company=DOMINION ENERGY
+Error: day is out of range for month
+Data: {
+  "headline": "Dominion Energy Declares Quarterly Dividend of 66.75 Cents",
+  "publication_date": "2026-05-00T00:00:00Z",
+  "summary": "Dominion Energy declared a quarterly dividend of 66.75 cents per share, payable on June 20, 2026, marking the 393rd consecutive dividend payment to shareholders.",
+  "source": "Dominion Energy Newsroom",
+  "url": "https://news.dominionenergy.com/press-releases/press-releases/2026/Dominion-Energy-Declares-Quarterly-Dividend-of-66-75-Cents-a0ac41e44/default.aspx"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPP & BOPET Films Market Size & Share 2026-2032",
+  "publication_date": "2024",
+  "summary": "Regulatory momentum toward circular economy principles and high recycled content thresholds is driving sustainable innovation in BOPP and BOPET films. Manufacturers are scaling up mono-polymer variants to streamline recycling while maintaining mechanical properties. Industry leaders engage in policy advocacy to influence regulations and secure market resilience.",
+  "source": "360iResearch",
+  "url": "https://www.360iresearch.com/library/intelligence/bopp-bopet-films"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPP Film Market Outlook to 2035: Growth Fueled by Flexible Packaging Substitution and Brand Differentiation",
+  "publication_date": "2024",
+  "summary": "The BOPP film market is transitioning to value-driven growth with innovation in recyclable film structures. Regulatory scrutiny against single-use plastics is prompting material substitution. The North American market focuses on premiumization and sustainability, while global demand is driven by FMCG and e-commerce packaging needs.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/blog/bopp-film-market-to-2035-driven-by-e-commerce-demand-for-durable-graphic-intensive-packaging/"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPP Label Films Market Outlook 2026-2034",
+  "publication_date": "2024",
+  "summary": "Key players like Cosmo Films, Jindal Poly Films, and Innovia Films are investing in advanced manufacturing and sustainability. Innovations in coated BOPP label films with enhanced barrier properties are growing rapidly, especially in pharmaceutical and personal care sectors. Mondi expanded production capacity in Europe to meet eco-friendly packaging demand.",
+  "source": "Intel Market Research",
+  "url": "https://www.intelmarketresearch.com/bopp-label-films-market-37355"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPP Films Market: Packaging Innovation, Sustainability Trends & Growth Outlook",
+  "publication_date": "2024",
+  "summary": "AI-driven technologies are enhancing BOPP film production quality and packaging design. The market growth is driven by demand in food, pharmaceuticals, and consumer goods, with Asia Pacific leading due to urbanization and sustainability focus. Technological advancements improve product performance and sustainability.",
+  "source": "Futurism",
+  "url": "https://vocal.media/futurism/bopp-films-market-packaging-innovation-sustainability-trends-and-growth-outlook"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPP Cigarette Pack Film Market Report: the global market size is projected to reach USD 2.73 billion by 2032",
+  "publication_date": "2024",
+  "summary": "The BOPP cigarette pack film industry is innovating towards high-performance monomaterials to meet regulatory and sustainability demands. Key players include Innovia Films, Taghleef Industries, Jindal Films, Cosmo Films, and Uflex. The shift from multi-material laminates to recyclable monomaterial solutions is a major trend.",
+  "source": "QY Research Inc.",
+  "url": "https://www.openpr.com/news/4430590/bopp-cigarette-pack-film-market-report-the-global-market-size"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Biaxially Oriented Polypropylene (BOPP) Release Film Market Insights 2026: Market Share, Innovation Trends & Strategic Opportunities",
+  "publication_date": "2024",
+  "summary": "Leading companies such as Taghleef Industries, Jindal Poly Films, Cosmo Films, and Uflex are innovating in BOPP release films with new heat sealable products. The market faces challenges from regulatory and sustainability pressures but opportunities arise from advanced manufacturing and strategic collaborations.",
+  "source": "QYResearch Inc.",
+  "url": "https://www.openpr.com/news/4457688/biaxially-oriented-polypropylene-bopp-release-film-market"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPET Films Market Analysis 2026-2035: Growth Trajectory and Key Demand Drivers",
+  "publication_date": "2024",
+  "summary": "The BOPET films market is expected to grow moderately with a focus on sustainable packaging and high-barrier specialty films. Asia-Pacific remains the dominant hub for production and consumption. The market faces overcapacity and price competition but benefits from regulatory push for recyclability and innovation in advanced applications.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/blog/bopet-films-market-forecast-points-higher-toward-2035-driven-by-sustainable-packaging-shift/"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Biaxially Oriented Polypropylene (BOPP) Films Market Size, Share | Industry Forecast, 2033",
+  "publication_date": "2024",
+  "summary": "BOPP films are seeing accelerated innovation to meet regulatory and sustainability demands, with growth in personal care and cosmetics packaging. Over 60 new production lines were installed recently, with digital printing and recyclable mono-material solutions as key investment areas. Southeast Asia and Eastern Europe are emerging production hubs.",
+  "source": "Market Reports World",
+  "url": "https://www.marketreportsworld.com/market-reports/biaxially-oriented-polypropylene-bopp-films-market-14716288"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPET Films Market in the World | Report - IndexBox - Prices, Size, Forecast, and Companies",
+  "publication_date": "2024",
+  "summary": "The global BOPET films market is shaped by regulatory risks, sustainability innovation, and competitive pricing. Companies with strong balance sheets are investing in capacity restructuring and advanced recycling technologies. The market demands dual-facing innovation that benefits both converters and brand owners, with a focus on premium product tiers.",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/store/world-bopet-films-market-analysis-forecast-size-trends-and-insights/"
+}
+--------------------------------------------------------------------------------
+[23:40:29] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPP Holographic Film Market Set for Strong Growth At a CAGR of 5.2% | Key Trends & Opportunities 2032",
+  "publication_date": "2024",
+  "summary": "New regulations on product safety and environmental standards are influencing the BOPP holographic film market. Regulatory clarity supports efficient operations and compliance, while approvals of new materials and technologies open growth avenues. The market is expected to grow steadily with innovation in manufacturing practices.",
+  "source": "QYResearch Inc.",
+  "url": "https://www.openpr.com/news/4493545/bopp-holographic-film-market-set-for-strong-growth-at-a-cagr"
+}
+--------------------------------------------------------------------------------

@@ -7,7 +7,7 @@ import os
 PROVIDER_NAME = "Syracuse"
 SYRACUSE_ENDPOINT_BASE = os.environ.get("SYRACUSE_ENDPOINT", "https://syracuse.1145.am/api/v1/stories")
 
-def call_syracuse_activities(endpoint: str, params: Union[dict, None], query_context: str):
+def call_syracuse_activities(endpoint: str, params: Union[dict, list, None], query_context: str):
     if SYRACUSE_API_KEY is None or SYRACUSE_API_KEY.strip() == '' or SYRACUSE_API_KEY == 'my_syracuse_key':
         return {'results': []}
     
@@ -30,9 +30,12 @@ def get_company_articles_for(company: str):
 
 def get_industry_articles_for(industry: str, industry_context: str, location: str):
     query_context = f"industry={industry}, industry_context={industry_context}, location={location}"
-    resp = call_syracuse_activities("industry-location", {"industry": industry, 
-                                                          "industry_context": industry_context, 
-                                                          "location": location}, query_context)
+    industry_context_items = [s.strip() for s in industry_context.split(",")]
+    params = [("industry", industry)]
+    if location:
+        params.append(("location", location))
+    params += [("industry_context", ctx) for ctx in industry_context_items]
+    resp = call_syracuse_activities("industry-location", params, query_context)
     articles = parse_response(resp, query_context)
     return articles
 

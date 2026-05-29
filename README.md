@@ -130,6 +130,19 @@ A provider with a large share of no-date or stale (>90d) results cannot rank
 trustworthy date.
 
 ## Results history
+
+### 2026-05-28
+
+No single winner across both query types — Syracuse leads companies, Exa leads industries.
+
+- **Companies:** Syracuse 1st (8.6/10 — tight on-topic clusters like Borouge's BlueAlp/AD Ports coverage with zero no-dates), Perplexity 2nd (8.0/10 — analytical summaries on the Dominion–NextEra merger but only 98 total articles), Linkup 3rd (7.8/10 — clean Commerzbank/UniCredit cluster undermined by 11 errors and Husky Technologies returning zero results), Exa 4th (5.0/10 — precision cap engaged after the same wrong-entity articles like "Tata 1mg Achieves Profit Milestone" recycled across 25+ queries), Tavily last (2.0/10 — recency, trust, and precision caps all engaged with 4221/4221 no-date articles and Bloomberg queries returning "Apple iOS 27 Photos").
+- **Industries:** Exa 1st (7.9/10 — broad dated coverage like Holmen containerboard and BP chairman removal despite Molasses Oceania drift into Westpac/Unitree), Syracuse 2nd (6.7/10 — perfect recency but thin sets like a single Marcus Theatres item for Film Distribution Midwest and BP-chairman drift into SOLVENTS Northern Europe), Perplexity 3rd (6.6/10 — clean metadata undermined by reliance on supplier "About" pages like AGT Food and Anton Paar instead of news), Linkup 4th (5.7/10 — 14 errors with Film CN returning zero and BOPET CN dominated by IndexBox/Towardspackaging forecast pages), Tavily last (3.8/10 — recency and precision caps engaged with 1876/1876 no-date and Film CN returning "China Original Pickle" IndexBox pages).
+
+**Recommendation for autonomous use** (agent or human acting without manual filtering):
+
+- **Companies:** **Use Syracuse** — final 8.6/10 with precision 9 and no caps engaged, delivering clean entity-targeted clusters (e.g., Borouge, Commerzbank) suitable for unfiltered agent consumption.
+- **Industries:** **Use Exa + Perplexity** — neither clears the bar alone, but Exa (7.9/10, precision 6) supplies the dated breadth across topics like Construction Europe while Perplexity (6.6/10, precision 6) contributes higher-signal curated items, and neither has a trust cap.
+
 ### 2026-05-09
 
 No single winner across both query types — Syracuse leads on companies, Exa leads on industries.

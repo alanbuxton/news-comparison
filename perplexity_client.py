@@ -54,7 +54,7 @@ def parse_perplexity_responses(perplexity_content: dict, query_context: str) -> 
 def perplexity_response_to_articles(response, query_context: str):
     try:
         content = response['choices'][0]['message']['content']
-        perplexity_content = json.loads(content)
+        perplexity_content = json.loads(content)["items"]
         articles = parse_perplexity_responses(perplexity_content, query_context)
         return articles
     except Exception as e:
@@ -123,19 +123,26 @@ def build_payload(user_command: str, system_command: str):
         "response_format": {
             "type": "json_schema",
             "json_schema": {
+                "name": "articles",
                 "schema": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "headline": {"type": "string"},
-                            "summary_text": {"type": "string"},
-                            "published_date": {"type": "string", "format": "date-time"},
-                            "published_by": {"type": "string"},
-                            "document_url": {"type": "string"}
-                        },
-                        "required": ["headline", "summary_text", "published_date", "published_by", "document_url"]
-                    }
+                    "type": "object",
+                    "properties": {
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "headline": {"type": "string"},
+                                    "summary_text": {"type": "string"},
+                                    "published_date": {"type": "string", "format": "date-time"},
+                                    "published_by": {"type": "string"},
+                                    "document_url": {"type": "string"}
+                                },
+                                "required": ["headline", "summary_text", "published_date", "published_by", "document_url"]
+                            }
+                        }
+                    },
+                    "required": ["items"]
                 }
             }
         },
