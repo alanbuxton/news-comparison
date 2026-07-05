@@ -1,0 +1,260 @@
+{
+  "query_type": "industries",
+  "providers": [
+    {
+      "label": "D",
+      "axes": {
+        "precision": {
+          "score": 6,
+          "evidence": [
+            "Converter Foil topics returned strong on-topic hits: Hindalco Q4 earnings, Novelis Oswego USD 84M loss, GIADEC-Danieli \u20ac300m foil plant",
+            "Whey Ingredients/Northern Europe on-target with Arla-DMK merger S&P rating, FrieslandCampina UK \u00a310m revenue jump",
+            "But CLEANING SUPPLIES/New England padded with Terex, Standex, Thermo Fisher dividends \u2014 wrong industry; 'Providence sues fire truck makers' is off-topic",
+            "CONSTRUCTION/Europe includes TikTok Singapore layoffs and T\u00fcrk Telekom smartphones \u2014 FP-entity",
+            "Heavy EIN Presswire/openPR market-report SEO padding across Packaging Boxes, Cheese, Cocoa"
+          ]
+        },
+        "coverage": {
+          "score": 8,
+          "evidence": [
+            "All 28 topics returned articles including harder ones like BOPET/CN, HR SERVICES/Mid Atlantic (19), IT & TELECOM/Northern Africa (19)",
+            "Only Molasses/Oceania was thin (1 article)"
+          ]
+        },
+        "recency_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header no-date: 0, stale: 0; e.g., PROFESSIONAL SERVICES/LATAM entries dated 2026-07-04, 2026-07-03"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "Converter Foil Hindalco summary contains concrete numbers: 'Rs 1,000 crore Eternia revenue by FY29... Rs 40,000 crore aluminium windows market'",
+            "Business Wire press-release summaries are clean and actionable (e.g., APS Cholla natural gas conversion)",
+            "EIN Presswire market-size boilerplates less useful"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "Header errors: 0, dup: 2 (very low across 426 articles)",
+            "URLs from mainstream sources: reuters, businesswire, prnewswire, economictimes"
+          ]
+        }
+      },
+      "weighted": 7.6,
+      "caps_applied": [],
+      "final": 7.6,
+      "verdict": "Broad coverage with fresh dates and mostly real sources, but polluted by PR-newswire market-report filler and occasional wrong-entity matches."
+    },
+    {
+      "label": "E",
+      "axes": {
+        "precision": {
+          "score": 6,
+          "evidence": [
+            "Molasses/Oceania precisely on target: FSC harvest delays cost $3.5M weekly, MOGA cane price dispute, Westpac warning on Fiji sugar viability",
+            "Converter Foil topics hit Vedanta Q1 632,000 tonnes output, Japan Q3 aluminium premium $395/t, Alcoa-Hillside deal",
+            "But Film/CN includes 'PE\u5851\u6599\u5468\u8bc4' (polyethylene weekly), '\u82ef\u4e59\u70ef' (styrene) reports \u2014 FP-entity, wrong meaning of 'film'",
+            "BOPET/CN includes broad PET\u7522\u696d\u93c8 daily quote lists and Available CRAN Packages by Date of Publication \u2014 FP-not-news"
+          ]
+        },
+        "coverage": {
+          "score": 9,
+          "evidence": [
+            "All 28 topics returned 40+ articles each; total 1337 articles",
+            "Even niche topics (Cocoa/Asia Pacific 44, Whey/Northern Europe 46) fully populated"
+          ]
+        },
+        "recency_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header no-date: 0, stale: 0; dates cluster around 2026-07-01 to 2026-07-05 across topics"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "Molasses/Oceania summaries include actionable data ('$3.5 million weekly' harvest delay costs)",
+            "OIL/FUEL/South-eastern Asia B50 rollout summary specifies '29 fuel terminals', 'B50 by 2028'",
+            "Some Chinese-language entries left untranslated (BOPET/CN 'PET\u5546\u54c1\u62a5\u4ef7\u52a8\u6001'), reducing English usability"
+          ]
+        },
+        "trust": {
+          "score": 7,
+          "evidence": [
+            "Header errors: 0, dup: 19 (highest dup count of the run)",
+            "e.g., BOPET/CN 4 dups, PAPER/Northern Europe 7 dups, PE Resins/US 4 dups",
+            "URLs appear valid across sina, mysteel, reuters, agfundernews"
+          ]
+        }
+      },
+      "weighted": 7.5,
+      "caps_applied": [],
+      "final": 7.5,
+      "verdict": "Widest, freshest catch of the run, but the Chinese-language leakage and 'film=plastics film' confusion create noticeable false-positive noise."
+    },
+    {
+      "label": "B",
+      "axes": {
+        "precision": {
+          "score": 7,
+          "evidence": [
+            "Whey Ingredients/Northern Europe returned tight on-topic items: Ingredion-Tate & Lyle acquisition, IFF Food Ingredients sale to CVC, DCA whey benchmark launch",
+            "LOGISTICS/Western Africa hit target with CEVA 'Scaling Logistics in West Africa' and Business Insider Africa Hormuz rerouting article",
+            "Some FP-not-news: CLEANING SUPPLIES/New England includes Fortune Brands, Unilever, Nyco, ISSA homepages tagged '2026-07-05' with generic corporate blurbs",
+            "PE Resins/US mixed \u2014 Syntex America blockade piece is on-topic; Suke Plastics and gulei-petrochemical.com product pages are catalogue FPs"
+          ]
+        },
+        "coverage": {
+          "score": 3,
+          "evidence": [
+            "Only 15 of 28 topics have any articles; BOPET/CN, CONSTRUCTION/Europe, Film/CN, HR SERVICES/Mid Atlantic, Molasses/Oceania, PACKAGING/Oceania, PAPER/Northern Europe, Packaging Boxes/IN, SOLVENTS|Northern Europe, IT & TELECOM/Northern Africa etc. returned 0 items",
+            "Total 47 articles across all topics \u2014 very thin (e.g., BOARD/Eastern Asia = 1, Converter Foil = 1)"
+          ]
+        },
+        "recency_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header: no-date: 0, stale: 0 across all 47 articles",
+            "Dates cleanly present, e.g. Ingredion-Tate & Lyle 2026-06-10, IFF-CVC 2026-05-29"
+          ]
+        },
+        "story_quality": {
+          "score": 8,
+          "evidence": [
+            "Whey Ingredients items provide deal size, structure, and equity stake (e.g., 'US$4.3 billion... 10% minority stake' in IFF-CVC)",
+            "LOGISTICS/Western Africa CEVA entry summarises inland depots, barge solutions, free zone infrastructure clearly",
+            "A few thin supplier-catalogue entries (Nyco, ISSA) admit they are 'not news'"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "Header errors: 0, dup: 0",
+            "URLs check out (ft.com, reuters.com, cvc.com, ingredionincorporated.com)",
+            "Self-flags marginal entries as non-news rather than pretending"
+          ]
+        }
+      },
+      "weighted": 7.1,
+      "caps_applied": [],
+      "final": 7.1,
+      "verdict": "Cleanest dataset in the run but severely narrow \u2014 great when it fires, silent on more than half the topic list."
+    },
+    {
+      "label": "C",
+      "axes": {
+        "precision": {
+          "score": 5,
+          "evidence": [
+            "OIL/FUEL/South-eastern Asia hits on-topic: 'Indonesia begins B50 biodiesel rollout at 29 fuel terminals' (ANTARA), 'Asia battles rising uneven toll of energy crisis' (Reuters)",
+            "EXTERNAL MANUFACTURING/Northern America mostly market-report landing pages (Techaeris, Saddle Creek, Business Research Company) \u2014 thin",
+            "PACKAGING/Oceania and LIQUIDS/Southern Africa returned single generic market-size reports (Leeline Package, Chemical Research Insight) \u2014 FP-not-news"
+          ]
+        },
+        "coverage": {
+          "score": 2,
+          "evidence": [
+            "14 of 28 topics returned 0 articles including BOARD/Eastern Asia, BOPET/CN, CLEANING SUPPLIES/New England, Whey Ingredients returned 3",
+            "189 errors across queries \u2014 errors dominate the response"
+          ]
+        },
+        "recency_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header: no-date: 0, stale: 0 \u2014 all 28 articles have valid recent dates like 2026-06-08 White House tariff action"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "Whey Ingredients Guardian piece includes concrete data: '\u20ac1,700 per tonne... 50% rise since start of 2026'",
+            "Converter Foil/Northern America summary of White House tariff action names Section 232 specifics",
+            "Some entries are one-line market-report abstracts (Leeline Package: 'Australia accounts for nearly 100% of corrugated box production')"
+          ]
+        },
+        "trust": {
+          "score": 3,
+          "evidence": [
+            "Header errors: 189 \u2014 vast majority of queries failed",
+            "e.g., BOARD/Eastern Asia 10 errors/0 articles, Cheese/US 7 errors/0 articles, LABORATORY/Africa 10 errors/0 articles",
+            "0 duplicates, URLs look valid"
+          ]
+        }
+      },
+      "weighted": 5.15,
+      "caps_applied": [
+        "trust"
+      ],
+      "final": 4.0,
+      "verdict": "When it actually returns something it's clean and dated, but 189 errors gut trust and coverage \u2014 service reliability is broken."
+    },
+    {
+      "label": "A",
+      "axes": {
+        "precision": {
+          "score": 2,
+          "evidence": [
+            "BOARD/Eastern Asia dominated by TradingView Reuters newswire pages like 'Exosens Secures \u20ac140 Million In EIB Financing' and 'KPMG's self-destruction' \u2014 wrong entity/region",
+            "CLEANING SUPPLIES/New England returned Mexico Cleansers IndexBox and China Disinfecting Wipes \u2014 wrong region entirely",
+            "Film Distribution/Midwest returned generic Hollywood/CinemaCon coverage like 'Motion Picture Association Boss Says AI Can Bolster Storytelling' with no Midwest angle",
+            "Molasses/Oceania returned 'W.Africa Crude-Exxon offers Hungo again' and TABLE-Serendip Holdings \u2014 completely unrelated"
+          ]
+        },
+        "coverage": {
+          "score": 7,
+          "evidence": [
+            "All 28 queried topics returned articles, e.g. 92 for BOARD/Eastern Asia, 100 for PROFESSIONAL SERVICES/LATAM",
+            "Even niche topics like Converter Foil and Whey Ingredients returned 60+ items"
+          ]
+        },
+        "recency_integrity": {
+          "score": 0,
+          "evidence": [
+            "Header states no-date: 2142 of 2142 articles \u2014 100% no-date across all topics",
+            "Every article across BOARD, BOPET, CLEANING SUPPLIES etc. carries [NO DATE \u26a0] flag"
+          ]
+        },
+        "story_quality": {
+          "score": 3,
+          "evidence": [
+            "Cleaning Supplies/New England summaries are navigation boilerplate: 'Featured Industry News CleanLink Minute CleanTips Buyer's Guide'",
+            "PAPER/Northern Europe TradingView entries show only 'Image 22 Image 23 Image 24 Dec 22, 2025 Reuters' fragments",
+            "Some ICIS and Reuters items (e.g., 'Syngenta sees strong growth in China as Q1 sales rise') do have usable summaries"
+          ]
+        },
+        "trust": {
+          "score": 6,
+          "evidence": [
+            "Header errors: 0",
+            "35 duplicates flagged across topics (e.g., CONSTRUCTION/Europe 4 dups, PAPER/Northern Europe 5 dups)",
+            "URLs appear real (tradingview.com, reuters.com, icis.com)"
+          ]
+        }
+      },
+      "weighted": 3.45,
+      "caps_applied": [
+        "recency_hard",
+        "precision"
+      ],
+      "final": 3.45,
+      "verdict": "Massive volume undone by 100% missing dates and heavy off-topic contamination \u2014 unusable for time-sensitive strategy work."
+    }
+  ],
+  "ranking": [
+    "D",
+    "E",
+    "B",
+    "C",
+    "A"
+  ],
+  "ranking_rationale": {
+    "1st": "E: broadest coverage with clean dates and strong story specifics; wins on precision-adjusted volume despite semantic slips on 'Film|CN' and 19 dups.",
+    "2nd": "D: near-universal coverage and clean recency, edged out only by E's higher precision on niche topics \u2014 dragged down by PR-newswire market-report filler.",
+    "3rd": "B: highest precision and cleanest trust profile of the run, but only 15/28 topics answered and just 47 total articles caps its usefulness.",
+    "4th": "A: enormous volume but every article is undated and off-topic contamination is pervasive, triggering recency and precision caps.",
+    "5th": "C: 189 errors mean half the queries never returned; what it does return is clean, but reliability collapse forces the trust cap and last place."
+  }
+}

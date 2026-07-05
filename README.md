@@ -131,6 +131,21 @@ trustworthy date.
 
 ## Results history
 
+(In reverse order) 
+
+### 2026-07-05
+
+No single winner across both query types.
+
+- **Companies:** Syracuse 1st (8.1/10 — cleanest headers with real Bloomberg/WSJ/Reuters URLs and quantitative summaries like Commerzbank's "€40 billion voluntary bid"), Perplexity 2nd (7.0/10 — perfect dates and crisp Dominion/NextEra $67B deal summaries but only 69 articles total and a uniform Bloomberg cluster that smells of hallucination), Linkup 3rd (4.0/10 — trust cap engaged from 62 errors with Deloitte and CBS News returning zero articles), Exa 4th (4.0/10 — trust and precision caps engaged from content-farm domains recycling the same "Adidas PRO WORK" filler across dozens of unrelated companies), Tavily last (3.0/10 — recency hard cap from 4406/4406 no-date articles plus wrong-entity contamination like Berkshire Hathaway news for Berkshire Labels).
+- **Industries:** Exa 1st (7.5/10 — 1337 dated articles with strong Molasses/Oceania specifics like "$3.5M weekly harvest delay" though 19 dups and Chinese-language leakage on Film/CN), Syracuse 2nd (7.6/10 — all 28 topics covered with Hindalco/Novelis Converter Foil hits, dragged by EIN Presswire market-report filler), Perplexity 3rd (7.1/10 — cleanest trust profile with tight Ingredion-Tate & Lyle coverage but silent on 13 of 28 topics), Linkup 4th (4.0/10 — trust cap from 189 errors leaving BOARD/Eastern Asia and Cheese/US empty), Tavily last (3.5/10 — recency hard and precision caps from 2142/2142 undated articles and Mexico/China results for New England cleaning supplies).
+
+**Recommendation for autonomous use** (agent or human acting without manual filtering):
+
+- **Companies:** **Use Syracuse** — final 8.1/10 with precision 7 and no caps engaged, delivering verifiable mainstream URLs and clean dates on entities like Commerzbank and Dominion.
+- **Industries:** **Use Exa + Perplexity** — Exa (7.5) supplies breadth across all 28 topics while Perplexity (7.1) contributes high-precision signal like the Ingredion-Tate & Lyle deal specifics, and neither carries a trust cap.
+
+
 ### 2026-05-28
 
 No single winner across both query types — Syracuse leads companies, Exa leads industries.

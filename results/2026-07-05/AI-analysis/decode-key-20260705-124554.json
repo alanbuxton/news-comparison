@@ -1,0 +1,19 @@
+{
+  "label_to_provider": {
+    "A": "Tavily",
+    "B": "Perplexity",
+    "C": "Linkup",
+    "D": "Syracuse",
+    "E": "Exa"
+  },
+  "provider_to_label": {
+    "Tavily": "A",
+    "Perplexity": "B",
+    "Linkup": "C",
+    "Syracuse": "D",
+    "Exa": "E"
+  },
+  "model": "claude-opus-4-7",
+  "max_articles_per_item": 15,
+  "generated_at": "20260705-124554"
+}
