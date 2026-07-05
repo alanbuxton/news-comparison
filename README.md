@@ -135,15 +135,15 @@ trustworthy date.
 
 ### 2026-07-05
 
-No single winner across both query types.
+Syracuse 1st in both query types.
 
-- **Companies:** Syracuse 1st (8.1/10 — cleanest headers with real Bloomberg/WSJ/Reuters URLs and quantitative summaries like Commerzbank's "€40 billion voluntary bid"), Perplexity 2nd (7.0/10 — perfect dates and crisp Dominion/NextEra $67B deal summaries but only 69 articles total and a uniform Bloomberg cluster that smells of hallucination), Linkup 3rd (4.0/10 — trust cap engaged from 62 errors with Deloitte and CBS News returning zero articles), Exa 4th (4.0/10 — trust and precision caps engaged from content-farm domains recycling the same "Adidas PRO WORK" filler across dozens of unrelated companies), Tavily last (3.0/10 — recency hard cap from 4406/4406 no-date articles plus wrong-entity contamination like Berkshire Hathaway news for Berkshire Labels).
-- **Industries:** Exa 1st (7.5/10 — 1337 dated articles with strong Molasses/Oceania specifics like "$3.5M weekly harvest delay" though 19 dups and Chinese-language leakage on Film/CN), Syracuse 2nd (7.6/10 — all 28 topics covered with Hindalco/Novelis Converter Foil hits, dragged by EIN Presswire market-report filler), Perplexity 3rd (7.1/10 — cleanest trust profile with tight Ingredion-Tate & Lyle coverage but silent on 13 of 28 topics), Linkup 4th (4.0/10 — trust cap from 189 errors leaving BOARD/Eastern Asia and Cheese/US empty), Tavily last (3.5/10 — recency hard and precision caps from 2142/2142 undated articles and Mexico/China results for New England cleaning supplies).
+- **Companies:** Syracuse 1st (8.1/10 — clean dates and real URLs with sharp Commerzbank UniCredit-takeover coverage naming the €40B bid and 12.51% tendered), Perplexity 2nd (7.0/10 — highest per-article quality with quantified Dominion/NextEra $67B deal specifics but only 69 total articles), Linkup 3rd (4.0/10 — trust cap engaged for 62 header errors leaving Deloitte and CBS News with zero results), Exa 4th (4.0/10 — trust and precision caps engaged for recycled "Adidas PRO WORK" filler crossbleeding across dozens of unrelated companies from content-farm domains like memesita.com), Tavily last (3.0/10 — recency-hard and precision caps engaged for 4406/4406 no-date articles and wrong-entity contamination like Berkshire Hathaway news returned for Berkshire Labels).
+- **Industries:** Syracuse 1st (7.6/10 — broad dated coverage of Converter Foil with concrete Hindalco Rs 1,000 crore Eternia numbers, marred only by EIN Presswire market-report padding), Exa 2nd (7.5/10 — widest freshest catch including Molasses/Oceania FSC $3.5M weekly harvest delay but 19 duplicates and Chinese-language "film=plastics film" leakage on Film/CN), Perplexity 3rd (7.1/10 — cleanest dataset with crisp Ingredion-Tate & Lyle and IFF-CVC $4.3B deal detail but silent on 13 of 28 topics), Linkup 4th (4.0/10 — trust cap engaged for 189 errors gutting reliability with BOARD/Eastern Asia and Cheese/US returning zero), Tavily last (3.5/10 — recency-hard and precision caps engaged for 2142/2142 no-date articles and off-topic drift like "W.Africa Crude-Exxon offers Hungo" surfacing under Molasses/Oceania).
 
 **Recommendation for autonomous use** (agent or human acting without manual filtering):
 
-- **Companies:** **Use Syracuse** — final 8.1/10 with precision 7 and no caps engaged, delivering verifiable mainstream URLs and clean dates on entities like Commerzbank and Dominion.
-- **Industries:** **Use Exa + Perplexity** — Exa (7.5) supplies breadth across all 28 topics while Perplexity (7.1) contributes high-precision signal like the Ingredion-Tate & Lyle deal specifics, and neither carries a trust cap.
+- **Companies:** **Use Syracuse** — final 8.1 and precision 7 with no caps engaged, clearing the bar on the strength of verifiable Bloomberg/WSJ/Reuters URLs and clean date integrity.
+- **Industries:** **Use Syracuse** — final 7.6 and precision 6 with no caps engaged, delivering all 28 topics with fresh dates from mainstream wires despite some PR-newswire filler.
 
 
 ### 2026-05-28

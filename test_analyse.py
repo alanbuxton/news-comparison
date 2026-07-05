@@ -19,6 +19,7 @@ from analyse import (
     _compute_dup_groups,
     _dup_count,
     _format_article,
+    _headline_sentence,
     _headline_stem,
     _normalise_url,
     _recompute_provider,
@@ -36,21 +37,23 @@ from analyse import (
 REF = datetime(2026, 4, 20, tzinfo=timezone.utc)
 
 
-def _prov(precision=8, recency=9, recall=7, uniqueness=8, summary=7, trust=9, label="A"):
-    """Minimal valid provider dict for testing."""
+def _prov(precision=8, coverage=7, recency=9, story_quality=7, trust=9, label="A"):
+    """Minimal valid provider dict for testing (matches the current 5-axis rubric).
+
+    Positional order matches RUBRIC_AXES: precision, coverage, recency_integrity,
+    story_quality, trust. Does not include weighted/final/caps_applied — the
+    model no longer emits those; parse_scorecard/_recompute_provider compute
+    them from the axis scores.
+    """
     return {
         "label": label,
         "axes": {
-            "precision":         {"score": precision, "evidence": ["x"]},
-            "recency_integrity": {"score": recency,   "evidence": ["x"]},
-            "recall":            {"score": recall,     "evidence": ["x"]},
-            "uniqueness":        {"score": uniqueness, "evidence": ["x"]},
-            "summary":           {"score": summary,    "evidence": ["x"]},
-            "trust":             {"score": trust,      "evidence": ["x"]},
+            "precision":         {"score": precision,      "evidence": ["x"]},
+            "coverage":          {"score": coverage,        "evidence": ["x"]},
+            "recency_integrity": {"score": recency,         "evidence": ["x"]},
+            "story_quality":     {"score": story_quality,   "evidence": ["x"]},
+            "trust":             {"score": trust,           "evidence": ["x"]},
         },
-        "weighted": 0.0,
-        "caps_applied": [],
-        "final": 0.0,
         "verdict": "ok",
     }
 
@@ -251,13 +254,13 @@ class TestApplyCaps:
 
 class TestRecomputeProvider:
     def test_correct_weighted_calculation(self):
-        # precision=10, all others=0 → weighted = 0.30*10 = 3.0
-        p = _prov(precision=10, recency=0, recall=0, uniqueness=0, summary=0, trust=0)
+        # precision=10, all others=0 → weighted = 0.35*10 = 3.5
+        p = _prov(precision=10, coverage=0, recency=0, story_quality=0, trust=0)
         _recompute_provider(p)
-        assert abs(p["weighted"] - 3.0) < 0.01
+        assert abs(p["weighted"] - 3.5) < 0.01
 
     def test_all_tens_gives_10(self):
-        p = _prov(10, 10, 10, 10, 10, 10)
+        p = _prov(10, 10, 10, 10, 10)
         _recompute_provider(p)
         assert p["weighted"] == 10.0
         assert p["final"] == 10.0
@@ -318,6 +321,36 @@ class TestParseScorecard:
         text = '```json\n{"query_type": "companies"}\n```'
         with pytest.raises(ValueError, match="missing 'providers'"):
             parse_scorecard(text)
+
+    def test_strips_ranking_rationale(self):
+        # A model-authored ranking_rationale reflects the model's own
+        # (unreliable) arithmetic and can contradict the recomputed ranking —
+        # parse_scorecard must discard it even if the model still emits one.
+        providers = [_prov(label="A"), _prov(precision=2, label="B")]
+        result = parse_scorecard(_scorecard_text(providers))
+        assert "ranking_rationale" not in result
+
+
+# ---------------------------------------------------------------------------
+# _headline_sentence
+# ---------------------------------------------------------------------------
+
+class TestHeadlineSentence:
+    def test_same_winner_both_query_types(self):
+        companies = {"ranking": ["A", "B"]}
+        industries = {"ranking": ["A", "C"]}
+        label_to_provider = {"A": "Syracuse", "B": "Perplexity", "C": "Exa"}
+        result = _headline_sentence(companies, industries, label_to_provider)
+        assert result == "Syracuse 1st in both query types."
+
+    def test_different_winners(self):
+        companies = {"ranking": ["A", "B"]}
+        industries = {"ranking": ["C", "A"]}
+        label_to_provider = {"A": "Syracuse", "B": "Perplexity", "C": "Exa"}
+        result = _headline_sentence(companies, industries, label_to_provider)
+        assert result == (
+            "No single winner: Syracuse 1st for companies, Exa 1st for industries."
+        )
 
 
 # ---------------------------------------------------------------------------

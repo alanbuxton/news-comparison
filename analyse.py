@@ -211,19 +211,18 @@ For each axis, output a 0–10 score and an `evidence` array of 1–4 short stri
 Each evidence string MUST name a queried entity (or industry+location) and quote
 a specific headline, source, or counted pattern. Anonymous claims are malformed.
 
-WEIGHTED SCORE
-weighted = 0.35·precision + 0.20·coverage + 0.15·recency_integrity
-         + 0.15·story_quality + 0.15·trust
-
-HARD CAPS (record applicable caps as label strings in caps_applied)
-- recency_integrity ≤ 3       → cap "recency_hard" → final ≤ 5.0
-- recency_integrity ≤ 5       → cap "recency_soft" → final ≤ 7.0
-- trust ≤ 4                   → cap "trust"        → final ≤ 4.0
-- precision ≤ 3               → cap "precision"    → final ≤ 5.0
-
-final = min(weighted, every applicable cap limit). Round weighted and final to
-2 decimal places. ranking is the providers' labels sorted by final descending,
-ties broken first by precision then by recency_integrity.
+SCORING — COMPUTED BY THE HARNESS, NOT BY YOU
+Your axis scores are the only scoring input. After you respond, the harness
+computes, for each provider:
+  weighted = 0.35·precision + 0.20·coverage + 0.15·recency_integrity
+           + 0.15·story_quality + 0.15·trust
+  hard caps: recency_integrity ≤ 3 → final ≤ 5.0; recency_integrity ≤ 5 →
+  final ≤ 7.0; trust ≤ 4 → final ≤ 4.0; precision ≤ 3 → final ≤ 5.0
+  final = min(weighted, applicable caps); ranking = final descending, ties
+  broken by precision then recency_integrity.
+Do NOT compute or output weighted, final, caps, a ranking, or any claim about
+which provider is best overall — LLM arithmetic is unreliable and any ordering
+you state will be discarded. Score each axis on its own merits.
 
 OUTPUT SCHEMA — emit exactly one ```json fenced block, then a `## Notes`
 section. No prose inside the JSON block.
@@ -241,22 +240,16 @@ section. No prose inside the JSON block.
         "story_quality":     {"score": 0, "evidence": ["..."]},
         "trust":             {"score": 0, "evidence": ["..."]}
       },
-      "weighted": 0.0,
-      "caps_applied": [],
-      "final": 0.0,
-      "verdict": "one frank sentence"
+      "verdict": "one frank sentence about this provider's own strengths and weaknesses — no rank claims"
     }
-  ],
-  "ranking": ["A", "B", "C", "D", "E"],
-  "ranking_rationale": {
-    "1st": "...", "2nd": "...", "3rd": "...", "4th": "...", "5th": "..."
-  }
+  ]
 }
 ```
 
 After the JSON block, write a `## Notes` heading and 1–2 short paragraphs:
-surprising patterns across the run, and the honest weaknesses of the
-top-ranked provider.
+surprising patterns across the run, and the honest weaknesses of whichever
+provider(s) look strongest on the axes. Do not declare a winner or an
+ordering — the harness computes the official ranking from your axis scores.
 """
 
 COMPANIES_PROMPT = """\
@@ -382,8 +375,7 @@ no preamble, no commentary after. Follow this format exactly:
 
 ### __DATE__
 
-[One sentence summarising the headline result, e.g. "Perplexity 1st in both query
-types." or "No single winner across both query types."]
+__HEADLINE__
 
 - **Companies:** [Provider] 1st (final/10 — one-clause reason with a concrete
   example), [Provider] 2nd (final/10 — reason), [Provider] 3rd (final/10 — reason),
@@ -408,6 +400,14 @@ Verdict options (pick exactly one per use case):
    dominant failure mode (e.g. "high false-positive rate across all providers").
 
 Rules:
+- The headline sentence under the date was computed programmatically from the
+  rankings — reproduce it verbatim as the first line of the entry. Do not
+  reword it, embellish it, or contradict it.
+- The `final`, `weighted`, `caps_applied`, and `ranking` fields were computed
+  programmatically from the axis scores and are ground truth. List providers in
+  each bullet strictly in `ranking` array order, quoting the `final` values as
+  given. If verdicts or notes prose imply a different order, the prose is stale
+  — the JSON numbers win.
 - Quote each provider's `final` score (one decimal place, out of 10) in parens.
 - If a provider has any entries in `caps_applied`, mention the engaged cap
   (e.g. "recency cap" or "trust cap") and the underlying reason (e.g. "12 no-date
@@ -756,6 +756,9 @@ def parse_scorecard(analysis_text: str) -> dict:
         )
     )
     data["ranking"] = [p["label"] for p in data["providers"]]
+    # Any model-authored ranking or rationale reflects its own (unreliable)
+    # arithmetic and may contradict the recomputed ranking — discard it.
+    data.pop("ranking_rationale", None)
     return data
 
 
@@ -767,6 +770,21 @@ def extract_notes(analysis_text: str) -> str:
 # ---------------------------------------------------------------------------
 # README summary
 # ---------------------------------------------------------------------------
+
+def _headline_sentence(
+    companies_scorecard: dict, industries_scorecard: dict, label_to_provider: dict
+) -> str:
+    """Derive the headline result from the recomputed rankings — never from
+    the model, whose prose has previously contradicted the ranking arrays."""
+    companies_winner = label_to_provider[companies_scorecard["ranking"][0]]
+    industries_winner = label_to_provider[industries_scorecard["ranking"][0]]
+    if companies_winner == industries_winner:
+        return f"{companies_winner} 1st in both query types."
+    return (
+        f"No single winner: {companies_winner} 1st for companies, "
+        f"{industries_winner} 1st for industries."
+    )
+
 
 def generate_readme_summary(
     client: anthropic.Anthropic,
@@ -781,10 +799,16 @@ def generate_readme_summary(
     decode_key = ", ".join(
         f"{label}={provider}" for label, provider in sorted(label_to_provider.items())
     )
+    # Older scorecards carry a model-authored ranking_rationale keyed by
+    # position; it can contradict the recomputed ranking — never show it.
+    companies_scorecard = {k: v for k, v in companies_scorecard.items() if k != "ranking_rationale"}
+    industries_scorecard = {k: v for k, v in industries_scorecard.items() if k != "ranking_rationale"}
+    headline = _headline_sentence(companies_scorecard, industries_scorecard, label_to_provider)
     prompt = (
         README_SUMMARY_PROMPT
         .replace("__DECODE_KEY__", decode_key)
         .replace("__DATE__", run_date)
+        .replace("__HEADLINE__", headline)
         .replace("__COMPANIES_SCORECARD__", json.dumps(companies_scorecard, indent=2))
         .replace("__INDUSTRIES_SCORECARD__", json.dumps(industries_scorecard, indent=2))
         .replace("__COMPANIES_NOTES__", companies_notes or "(none)")
