@@ -101,7 +101,7 @@ def build_industry_user_command(industry: str, industry_context: str, location: 
 
 def get_news(payload: dict, query_context: str):
     if PERPLEXITY_API_KEY is None or PERPLEXITY_API_KEY.strip() == '' or PERPLEXITY_API_KEY == 'my_perplexity_key':
-        return {'choices': [{"message": {"content": "[]"}}]}
+        return {'choices': [{"message": {"content": '{"items": []}'}}]}
     
     try:
         headers = {"Authorization": f"Bearer {PERPLEXITY_API_KEY}"}
