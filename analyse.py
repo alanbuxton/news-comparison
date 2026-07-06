@@ -109,6 +109,39 @@ def _headline_stem(headline: str) -> str:
     return _HEADLINE_STEM_RE.sub("", (headline or "").lower())[:60]
 
 
+# Market-research-report landing pages / SEO announcements ("X Market to Reach
+# USD Y Billion by 2034 at Z% CAGR"). Flagged so the judge gets ground-truth
+# counts instead of re-detecting them inconsistently each run.
+_MARKET_REPORT_RE = re.compile(
+    r"\bCAGR\b"
+    r"|\bmarkets?\b[^.]{0,60}?\b(size|share|growth|forecast\w*|outlook|report\w*|"
+    r"analysis|trends?|opportunit\w*|to reach|reach(es|ing)?|projected|poised|"
+    r"expected|expand\w*|surge\w*|worth|revenue)\b",
+    re.I,
+)
+
+# Report mills / press-release SEO aggregators: everything they publish under
+# an industry query is a market-report announcement, headline pattern or not.
+_MARKET_REPORT_SOURCES = {
+    "exclusive press",
+    "ein presswire",
+    "openpr",
+    "openpr.com",
+    "imarc group",
+    "mordor intelligence",
+    "express press release distribution",
+    "the business research company",
+    "researchandmarkets.com",
+    "globenewswire market research",
+}
+
+
+def _is_market_report(art: dict) -> bool:
+    if (art.get("published_by") or "").strip().lower() in _MARKET_REPORT_SOURCES:
+        return True
+    return bool(_MARKET_REPORT_RE.search(art.get("headline") or ""))
+
+
 def _compute_dup_groups(articles: list[dict]) -> list[int]:
     """Assign a 1-based group id per article. Articles in the same group are
     duplicates: same canonical URL, or (failing that) same source+headline-stem.
@@ -181,6 +214,10 @@ Non-negotiable rules:
      - `[NO DATE ⚠]` and `STALE>90d ⚠` drive recency_integrity.
      - `[DUP of #N ⚠]` flags and the `dup: N` count in each provider header
        drive uniqueness.
+     - `[MKT-REPORT ⚠]` flags and the `mkt-report: N` header count identify
+       market-research-report landing pages / SEO announcements.
+     - `[NO RESULTS RETURNED ⚠]` items and the `answered: X/Y` count in each
+       provider header drive coverage.
      - `*** ERROR ***` rows and the `errors: N` header count drive trust.
    Do not re-judge dates or re-detect duplicates. Quote the header counts.
 4. The rubric prioritises avoiding false positives over finding every story.
@@ -202,7 +239,7 @@ Score each provider on these five 0–10 axes. Weights are fixed (sum to 1.0):
 | Axis              | Weight | What 10 looks like                                      | What 0 looks like                                               |
 |-------------------|--------|---------------------------------------------------------|-----------------------------------------------------------------|
 | precision         | 0.35   | 100% of returned articles are relevant and on-topic. **No results → score 0** | Any off-topic, wrong-entity, not-news, or stale content; or no results returned |
-| coverage          | 0.20   | At least one real, relevant article for nearly every queried entity | Multiple queried entities return no results at all      |
+| coverage          | 0.20   | At least one real, relevant article for nearly every queried entity (`answered: X/Y` header is ground truth) | Multiple queried entities return no results at all      |
 | recency_integrity | 0.15   | 0 no-date, 0 stale (header counts)                     | Large no-date or stale share                                    |
 | story_quality     | 0.15   | Summaries let user decide without clicking              | Boilerplate, cookie banners, "subscribe to read"                |
 | trust             | 0.15   | 0 errors, no suspicious URLs                            | Hallucinated URLs/facts; high error rate                        |
@@ -293,7 +330,8 @@ WHAT COUNTS AS BAD (FP)
 - Raw scraped boilerplate as a "summary" (cookie banners, "Are you a robot",
   navigation menus).
 
-NOTE on market-report landing pages: for a company query they are typically
+NOTE on market-report landing pages: flagged inline as `[MKT-REPORT ⚠]`; the
+header `mkt-report: N` count is ground truth. For a company query they are
 off-topic noise — count as FP-not-news.
 
 __RUBRIC__
@@ -316,6 +354,13 @@ industry exposure (strategy, supply chain, sales targeting). They need real
 strategic developments — pricing trends, M&A, regulatory shifts, expansion,
 financial performance — for the queried industry in the queried geography.
 False positives are the top concern; false negatives matter less.
+
+INTENT CLAUSES
+Some topic headers carry an `(intent: …)` clause listing the sub-segments the
+query meant. Judge relevance against that sense of the industry term. E.g. for
+"Film | CN (intent: BOPP Film, BOPET, PE Film)", plastic/packaging film
+coverage is on-topic and cinema coverage is FP-entity — even though "film"
+could plausibly mean either without the intent clause.
 
 WHAT COUNTS AS GOOD (TP)
 - Article or press release with substantive information about the queried
@@ -340,10 +385,12 @@ WHAT COUNTS AS BAD (FP)
 - FP-halluc: suspicious URL patterns; invented facts.
 - Errors: `*** ERROR ***` rows — header `errors: N` is ground truth.
 
-NOTE on market-report landing pages: a small number (≤2 per topic) provides
-useful state-of-market context — count those as on-topic (TP / TP-thin). Beyond
-that, surplus copies are noise — count the excess as FP-not-news. Do not
-blanket-penalise.
+NOTE on market-report landing pages: flagged inline as `[MKT-REPORT ⚠]`; the
+header `mkt-report: N` count is ground truth. A small number (≤2 per topic)
+provides useful state-of-market context — count those as on-topic (TP /
+TP-thin). Beyond that, surplus copies are noise — count the excess as
+FP-not-news, and treat a provider whose results are dominated by them as a
+precision failure. Do not blanket-penalise.
 
 __RUBRIC__
 
@@ -466,7 +513,7 @@ def make_anonymization(providers: list[str]) -> tuple[dict, dict]:
 
 
 def _format_article(
-    index: int, art: dict, reference_date: datetime, dup_marker: str = ""
+    index: int, art: dict, reference_date: datetime, markers: list[str] | None = None
 ) -> list[str]:
     lines = []
     bucket = classify_date(art, reference_date)
@@ -483,8 +530,8 @@ def _format_article(
         summary = summary[:MAX_SUMMARY_CHARS] + "…"
 
     label_parts = [f"[{date}]"]
-    if dup_marker:
-        label_parts.append(f"[{dup_marker} ⚠]")
+    for marker in markers or []:
+        label_parts.append(f"[{marker} ⚠]")
     label_parts.append(headline)
     if source:
         label_parts.append(f"| {source}")
@@ -508,13 +555,25 @@ def _group_summary(
     total_errors: int,
     reference_date: datetime,
     total_dups: int,
+    total_mkt: int,
+    answered: int,
+    universe: int,
+    kind: str,
 ) -> list[str]:
     no_date, stale = _date_counts(all_real, reference_date)
+    total = len(all_real)
+
+    def with_pct(n: int) -> str:
+        return f"{n} ({100 * n / total:.0f}%)" if total else str(n)
+
+    kind_plural = "companies" if kind == "Company" else "topics"
     return [
         f"\n{'=' * 60}",
         (
-            f"PROVIDER {label}  |  total articles: {len(all_real)}  |  errors: {total_errors}  "
-            f"|  no-date: {no_date}  |  stale (>{STALE_DAYS}d): {stale}  |  dup: {total_dups}"
+            f"PROVIDER {label}  |  answered: {answered}/{universe} {kind_plural}  "
+            f"|  total articles: {total}  |  errors: {total_errors}  "
+            f"|  no-date: {with_pct(no_date)}  |  stale (>{STALE_DAYS}d): {with_pct(stale)}  "
+            f"|  dup: {with_pct(total_dups)}  |  mkt-report: {with_pct(total_mkt)}"
         ),
         "=" * 60,
     ]
@@ -527,6 +586,7 @@ def _item_header(
     errors: list,
     reference_date: datetime,
     dup: int,
+    mkt: int,
 ) -> str:
     no_date, stale = _date_counts(real, reference_date)
     parts = [f"{len(real)} articles"]
@@ -538,6 +598,8 @@ def _item_header(
         parts.append(f"{stale} stale")
     if dup:
         parts.append(f"{dup} dup")
+    if mkt:
+        parts.append(f"{mkt} mkt-report")
     return f"\n  {kind}: {name}  ({', '.join(parts)})"
 
 
@@ -548,36 +610,40 @@ def _render_item(
     errors: list,
     reference_date: datetime,
     max_articles: int,
-) -> tuple[list[str], int]:
-    """Render one item (company or topic). Returns (lines, dup_count_for_this_item)."""
-    real_sorted = sorted(
-        real,
-        key=lambda x: x.get("published_date_clean") or x.get("published_date") or "",
-        reverse=True,
-    )
-    groups = _compute_dup_groups(real_sorted)
+) -> tuple[list[str], int, int]:
+    """Render one item (company or topic) in the provider's own result order —
+    that is what a real consumer sees, and re-sorting by recency would bias the
+    shown sample toward date-clustered newswire spam.
+    Returns (lines, dup_count, mkt_report_count) for this item."""
+    groups = _compute_dup_groups(real)
     item_dup = _dup_count(groups)
+    mkt_flags = [_is_market_report(a) for a in real]
+    item_mkt = sum(mkt_flags)
 
-    shown = real_sorted[:max_articles]
+    lines = [_item_header(kind, name, real, errors, reference_date, item_dup, item_mkt)]
+    if not real:
+        lines.append("    [NO RESULTS RETURNED ⚠]")
+        return lines, item_dup, item_mkt
+
+    shown = real[:max_articles]
     shown_groups = groups[: len(shown)]
     canonical_pos: dict[int, int] = {}
     for i, gid in enumerate(shown_groups, 1):
         canonical_pos.setdefault(gid, i)
 
-    lines = [_item_header(kind, name, real_sorted, errors, reference_date, item_dup)]
-    if not real_sorted:
-        lines.append("    [No articles]")
-        return lines, item_dup
-
     for i, (art, gid) in enumerate(zip(shown, shown_groups), 1):
         canon = canonical_pos[gid]
-        marker = f"DUP of #{canon}" if canon != i else ""
-        lines.extend(_format_article(i, art, reference_date, marker))
+        markers = []
+        if canon != i:
+            markers.append(f"DUP of #{canon}")
+        if mkt_flags[i - 1]:
+            markers.append("MKT-REPORT")
+        lines.extend(_format_article(i, art, reference_date, markers))
 
-    if len(real_sorted) > max_articles:
-        lines.append(f"    … {len(real_sorted) - max_articles} more articles not shown")
+    if len(real) > max_articles:
+        lines.append(f"    … {len(real) - max_articles} more articles not shown")
 
-    return lines, item_dup
+    return lines, item_dup, item_mkt
 
 
 def format_companies_data(
@@ -600,6 +666,11 @@ def format_industries_data(
     for row in rows:
         label = provider_to_label.get(row.get("provider", ""), row.get("provider", ""))
         topic = f"{row.get('industry', '')} | {row.get('location', '')}"
+        # Surface the query's intended sense of the industry term (e.g. "Film"
+        # meaning plastic film, not cinema) so the judge scores against it.
+        context = (row.get("industry_context") or "").strip()
+        if context:
+            topic = f"{topic} (intent: {context})"
         data[label][topic].append(row)
 
     return _format_grouped("Topic", data, reference_date, max_articles)
@@ -611,6 +682,11 @@ def _format_grouped(
     reference_date: datetime,
     max_articles: int,
 ) -> str:
+    # Universe of queried items across all providers. A provider with no rows
+    # for an item returned nothing for it — that gap must be rendered, or the
+    # judge cannot see (and has previously hallucinated) coverage.
+    all_names = sorted({name for items in data.values() for name in items})
+
     lines: list[str] = []
     for label in sorted(data):
         items = data[label]
@@ -625,21 +701,31 @@ def _format_grouped(
             for arts in items.values()
         )
 
-        # First render each item to get per-item dup counts; then prepend the
-        # provider header with the aggregate dup total.
+        # First render each item to get per-item dup/mkt counts; then prepend
+        # the provider header with the aggregate totals.
         item_blocks: list[list[str]] = []
         total_dups = 0
-        for name in sorted(items):
-            all_arts = items[name]
+        total_mkt = 0
+        answered = 0
+        for name in all_names:
+            all_arts = items.get(name, [])
             errors = [a for a in all_arts if a.get("headline") == "*** ERROR ***"]
             real = [a for a in all_arts if a.get("headline") != "*** ERROR ***"]
-            block, item_dup = _render_item(
+            if real:
+                answered += 1
+            block, item_dup, item_mkt = _render_item(
                 kind, name, real, errors, reference_date, max_articles
             )
             total_dups += item_dup
+            total_mkt += item_mkt
             item_blocks.append(block)
 
-        lines.extend(_group_summary(label, all_real, total_errors, reference_date, total_dups))
+        lines.extend(
+            _group_summary(
+                label, all_real, total_errors, reference_date,
+                total_dups, total_mkt, answered, len(all_names), kind,
+            )
+        )
         for block in item_blocks:
             lines.extend(block)
 
@@ -658,6 +744,8 @@ def call_claude(client: anthropic.Anthropic, model: str, data_text: str, prompt_
     user_message = prompt_template.replace("__DATA__", data_text)
     for attempt in range(4):
         try:
+            # claude-opus-4-7 rejects the temperature param as deprecated, so
+            # run-to-run judging variance cannot be pinned down that way.
             response = client.messages.create(
                 model=model,
                 max_tokens=12288,
@@ -765,6 +853,104 @@ def parse_scorecard(analysis_text: str) -> dict:
 def extract_notes(analysis_text: str) -> str:
     match = _NOTES_RE.search(analysis_text)
     return match.group(1).strip() if match else ""
+
+
+def scorecard_table_md(scorecard: dict) -> str:
+    """Markdown table of the harness-recomputed scores, appended to the saved
+    .md so a human reader never trusts model-authored arithmetic that may
+    survive in the raw output above it."""
+    lines = [
+        "## Recomputed scorecard (harness — authoritative)",
+        "",
+        "Axis scores are the model's; `weighted`, `final`, caps and the ranking",
+        "are recomputed by the harness. If numbers in the raw output above",
+        "disagree, this table wins.",
+        "",
+        "| Rank | Provider | " + " | ".join(RUBRIC_AXES) + " | weighted | final | caps |",
+        "|---|---|" + "---|" * (len(RUBRIC_AXES) + 3),
+    ]
+    for rank, prov in enumerate(scorecard["providers"], 1):
+        axes = prov["axes"]
+        scores = " | ".join(str(axes[a]["score"]) for a in RUBRIC_AXES)
+        caps = ", ".join(prov.get("caps_applied", [])) or "—"
+        lines.append(
+            f"| {rank} | {prov['label']} | {scores} "
+            f"| {prov['weighted']} | {prov['final']} | {caps} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
+# ---------------------------------------------------------------------------
+# Evidence verification
+# ---------------------------------------------------------------------------
+
+def build_evidence_index(
+    rows: list[dict], provider_to_label: dict, query_type: str
+) -> tuple[dict[str, set], dict[str, set]]:
+    """Build (alias→entity-keys, label→answered-entity-keys) from the raw rows.
+
+    Aliases are lowercase strings the model plausibly uses to name a queried
+    entity in evidence ("BOPET/CN", "BOARD | Eastern Asia", a company name).
+    """
+    alias_map: dict[str, set] = defaultdict(set)
+    answered: dict[str, set] = defaultdict(set)
+    for row in rows:
+        if row.get("headline") == "*** ERROR ***":
+            continue
+        label = provider_to_label.get(row.get("provider", ""), row.get("provider", ""))
+        if query_type == "companies":
+            name = (row.get("company") or "").strip()
+            if not name:
+                continue
+            key = name.lower()
+            # Very short names substring-match too freely to be useful.
+            aliases = {key} if len(key) >= 4 else set()
+        else:
+            industry = (row.get("industry") or "").strip()
+            location = (row.get("location") or "").strip()
+            key = f"{industry}|{location}".lower()
+            aliases = set()
+            if location:
+                for sep in ("/", " | ", "|", ", "):
+                    aliases.add(f"{industry}{sep}{location}".lower())
+            elif len(industry) >= 4:
+                aliases.add(industry.lower())
+        answered[label].add(key)
+        for alias in aliases:
+            alias_map[alias].add(key)
+    return alias_map, answered
+
+
+# Evidence that legitimately names an entity as EMPTY or FAILED must not be
+# flagged as a hallucination — only positive claims about absent data are.
+_NEGATIVE_EVIDENCE_RE = re.compile(
+    r"zero|no results|no articles|0 articles|returned no|empty|error|answered \d+/\d+",
+    re.I,
+)
+
+
+def verify_evidence(
+    scorecard: dict, alias_map: dict[str, set], answered: dict[str, set]
+) -> int:
+    """Warn when an evidence string cites a queried entity the provider has no
+    results for — the tell-tale of a hallucinated example. Returns warning count."""
+    warnings = 0
+    for prov in scorecard.get("providers", []):
+        label = prov.get("label", "?")
+        have = answered.get(label, set())
+        for axis, ax in prov.get("axes", {}).items():
+            for ev in ax.get("evidence", []):
+                if _NEGATIVE_EVIDENCE_RE.search(ev):
+                    continue
+                ev_lower = ev.lower()
+                for alias, keys in alias_map.items():
+                    if alias in ev_lower and not (keys & have):
+                        warnings += 1
+                        print(
+                            f"  ⚠ Evidence check: provider {label} / {axis} cites "
+                            f"'{alias}' but has no results for it: \"{ev[:90]}\""
+                        )
+    return warnings
 
 
 # ---------------------------------------------------------------------------
@@ -894,6 +1080,13 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     companies_notes = extract_notes(companies_analysis)
     industries_notes = extract_notes(industries_analysis)
 
+    print("Verifying evidence strings against the data…")
+    alias_map, answered = build_evidence_index(companies_rows, provider_to_label, "companies")
+    n_warn = verify_evidence(companies_scorecard, alias_map, answered)
+    alias_map, answered = build_evidence_index(industries_rows, provider_to_label, "industries")
+    n_warn += verify_evidence(industries_scorecard, alias_map, answered)
+    print(f"  Evidence check complete: {n_warn} warning(s).")
+
     # Save
     ai_dir = os.path.join(output_dir, "AI-analysis")
     os.makedirs(ai_dir, exist_ok=True)
@@ -921,6 +1114,8 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         f.write(f"*Provider labels were anonymised. See `decode-key-{timestamp}.json` to decode.*\n\n")
         f.write("---\n\n")
         f.write(companies_analysis)
+        f.write("\n\n---\n\n")
+        f.write(scorecard_table_md(companies_scorecard))
 
     industries_path = os.path.join(ai_dir, f"claude-industries-{timestamp}.md")
     with open(industries_path, "w") as f:
@@ -929,6 +1124,8 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         f.write(f"*Provider labels were anonymised. See `decode-key-{timestamp}.json` to decode.*\n\n")
         f.write("---\n\n")
         f.write(industries_analysis)
+        f.write("\n\n---\n\n")
+        f.write(scorecard_table_md(industries_scorecard))
 
     companies_json_path = os.path.join(ai_dir, f"claude-companies-{timestamp}.json")
     with open(companies_json_path, "w") as f:
