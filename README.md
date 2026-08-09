@@ -133,6 +133,19 @@ trustworthy date.
 
 (In reverse order) 
 
+### 2026-08-09
+
+No single winner: Syracuse 1st for companies, Exa 1st for industries.
+
+- **Companies:** Syracuse 1st (8.2/10 — high precision with pristine dates, e.g. 20 on-topic Commerzbank/UniCredit articles), Perplexity 2nd (7.8/10 — best coverage at 51/52 but substitutes Berkshire Hathaway for BERKSHIRE LABELS and Aura Minerals for AURIGA POLYMERS), Exa 3rd (7.7/10 — full 52/52 coverage but 50-article padding floods Sigma Chemtrade with Sigma Healthcare/Lithium hits), Linkup 4th (7.3/10 — decent precision but 6 fetch errors including 4 on FLINT GROUP and 0 results for CBS News), Tavily last (1.9/10 — recency and trust caps engaged for 100% no-date articles and heavy Facebook/Instagram/YouTube reliance on queries like Bloomberg and Coles).
+- **Industries:** Exa 1st (8.9/10 — deepest clean coverage across all 29 topics including niche Fiji FSC privatisation for Molasses|Oceania), Syracuse 2nd (7.1/10 — flawless dates but 30% market-report noise dominates PACKAGING|Oceania and Film|CN), Perplexity 3rd (6.4/10 — 28/29 topics but supplier directory pages fill CLEANING SUPPLIES|New England and crawl-date timestamps replace publication dates), Linkup 4th (4.0/10 — trust cap engaged for 7 errors, and 18 topics unanswered including CONSTRUCTION|Europe and PROFESSIONAL SERVICES|LATAM), Tavily last (3.0/10 — recency, trust, and precision caps engaged for 100% no-date articles and Instagram/Facebook fragments in BOPET|CN).
+
+**Recommendation for autonomous use** (agent or human acting without manual filtering):
+
+- **Companies:** **Use Syracuse** — final 8.2 with precision 8, no caps engaged, and clean sources on entities like Commerzbank and ExxonMobil make it safe for unfiltered agent use despite coverage gaps.
+- **Industries:** **Use Exa** — final 8.9 with precision 8, no caps engaged, and genuine on-topic news across all 29 topics including hard-to-find Molasses|Oceania coverage.
+
+
 ### 2026-07-05
 
 No single winner: Syracuse 1st for companies, Exa 1st for industries.

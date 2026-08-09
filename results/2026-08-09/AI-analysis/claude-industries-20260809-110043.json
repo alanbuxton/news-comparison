@@ -1,0 +1,266 @@
+{
+  "query_type": "industries",
+  "providers": [
+    {
+      "label": "D",
+      "axes": {
+        "precision": {
+          "score": 8,
+          "evidence": [
+            "CONSTRUCTION | Europe: on-topic coverage (UK Persimmon, Ibstock H1 loss, Dutch housing permits 10-yr high, EPBD implementation)",
+            "PROFESSIONAL SERVICES | LATAM: Ita\u00fa, Nubank, Credicorp, MercadoLibre \u2014 all directly relevant, largely in Portuguese/Spanish",
+            "Header: mkt-report 44/1450 (3%) \u2014 low SEO contamination",
+            "Some off-topic edge cases (BOPET|CN includes \u6691\u671f\u6863\u7968\u623f movie box-office and general PP notes)"
+          ]
+        },
+        "coverage": {
+          "score": 10,
+          "evidence": [
+            "answered: 29/29 topics per header",
+            "Each topic has ~50 articles \u2014 deepest coverage of any provider",
+            "Molasses | Oceania delivered Fiji FSC privatisation, sugar cane farmer march to Treasury \u2014 hard-to-find niche"
+          ]
+        },
+        "recency_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header: no-date 0, stale 0",
+            "Dates present with recent timestamps (2026-08-08, 2026-08-07 across topics)"
+          ]
+        },
+        "story_quality": {
+          "score": 8,
+          "evidence": [
+            "BOARD|E.Asia: AF&PA Q2 2026 Boxboard report, PCA $140/ton price hike coverage rich in industry context",
+            "Cheese|US: '50% Tariffs On Some Dairy Imports From Canada' with substantive policy detail",
+            "Some non-English entries (Chinese, Portuguese) may reduce accessibility but content is substantive"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "Header: errors 0, dup 15/1450 (~1%)",
+            "Wide range of credible outlets (Reuters, Bloomberg, Business Standard, ET, mysteel, ChemOrbis)",
+            "No suspicious URL patterns"
+          ]
+        }
+      },
+      "verdict": "Deepest and cleanest coverage with real news across all 29 topics; minor non-English/edge-case entries but consistently on-topic and well-dated.",
+      "weighted": 8.85,
+      "final": 8.85,
+      "caps_applied": []
+    },
+    {
+      "label": "A",
+      "axes": {
+        "precision": {
+          "score": 5,
+          "evidence": [
+            "PACKAGING | Oceania: 17 of 20 articles flagged [MKT-REPORT \u26a0] (e.g., 'Paper Bottle Packaging Market Projected to Grow at 9.6% CAGR', 'Ludyway Packaging Machinery's Global Expansion') \u2014 dominated by SEO market-report noise",
+            "Provider header: mkt-report 88/289 (30%) \u2014 surplus market-report noise across many topics",
+            "Cocoa, Nuts & Seeds | Asia Pacific: all 3 results [MKT-REPORT \u26a0] (Parsley Seeds, Sesame Seeds, Nuts Market) with no APAC-specific news",
+            "Film | CN: all 4 results [MKT-REPORT \u26a0] (MDO-PE Films, BOPP Films) \u2014 no genuine CN film industry news"
+          ]
+        },
+        "coverage": {
+          "score": 7,
+          "evidence": [
+            "answered: 26/29 topics per header",
+            "Missed: BOPET | CN, Converter Foil | Northern America, Film Distribution | Midwest \u2014 [NO RESULTS RETURNED \u26a0]",
+            "Strong coverage on PROFESSIONAL SERVICES | LATAM (20 articles incl. Ita\u00fa, Nubank, Credicorp)",
+            "OIL/FUEL | South-eastern Asia: 20 articles with genuine regional stories (Vietnam July trade deficit, Philippines P7.30 diesel hike)"
+          ]
+        },
+        "recency_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header: no-date 0 (0%), stale 0 (0%) across 289 articles",
+            "CONSTRUCTION | Europe articles carry precise timestamps (2026-08-07 UK PMI)",
+            "Road Freight | Europe items dated 2026-08-07 (Nordic earnings diary)"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "Converter Foil: rich summaries on 'Hindalco Q1 net profit jumps 75% to \u20b97,013 cr' with financial detail",
+            "PROFESSIONAL SERVICES | LATAM: Nubank Banco Porto Real acquisition summary is decision-useful",
+            "PACKAGING | Oceania market-report summaries are boilerplate ('projected to grow at 9.6% CAGR')"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "Header: errors 0, dup 0",
+            "URLs from reputable outlets (Reuters, Bloomberg, Cision PR Newswire, Economic Times) \u2014 no hallucinated patterns",
+            "Some EIN Presswire / openPR SEO releases lower trust slightly"
+          ]
+        }
+      },
+      "verdict": "Strong recency and no errors, but market-report SEO releases (30% of articles) dilute precision especially on PACKAGING | Oceania, Cocoa APAC, and Film | CN.",
+      "weighted": 7.05,
+      "final": 7.05,
+      "caps_applied": []
+    },
+    {
+      "label": "C",
+      "axes": {
+        "precision": {
+          "score": 5,
+          "evidence": [
+            "CLEANING SUPPLIES | New England: all 10 results are supplier homepages/directories (Grainger, WCP Solutions, Simoniz USA) \u2014 FP-not-news",
+            "Film | CN: 15+ results are supplier catalog pages (Kingchuan Packaging, Made-in-China listings) not news",
+            "EXTERNAL MANUFACTURING | N.America: majority are supplier profile pages (Assemblies Unlimited, Teamwork Packaging) rather than news",
+            "Genuine news present in Cheese|US (Ingredion-Tate & Lyle $3.6B deal, IFF sale to CVC) and Distribution Services|N.America (LKCM Headwater DSG take-private)"
+          ]
+        },
+        "coverage": {
+          "score": 8,
+          "evidence": [
+            "answered: 28/29 topics per header",
+            "Only BOARD | Eastern Asia [NO RESULTS RETURNED \u26a0]",
+            "PROFESSIONAL SERVICES | LATAM: 25 articles including Norton Rose LATAM Airlines $200M PDP financing"
+          ]
+        },
+        "recency_integrity": {
+          "score": 6,
+          "evidence": [
+            "Header: no-date 0, stale 0",
+            "Many articles carry generic 2026-08-09 crawl-date timestamps (all CLEANING SUPPLIES items same 09:33:07 date) rather than publication dates",
+            "Genuine dated news mixed in (Reuters 2026-07-09 aluminium supply shock, Bloomberg 2026-07-08 MTN Telecel Ghana 5G)"
+          ]
+        },
+        "story_quality": {
+          "score": 6,
+          "evidence": [
+            "Cheese|US: 'Ingredion strikes deal to buy Tate & Lyle for $3.6B' with substantive M&A context",
+            "Converter Foil: Alcoa $900M NPV AliGroup synergies summary useful",
+            "Many supplier-profile summaries state 'source does not include news' \u2014 low decision utility"
+          ]
+        },
+        "trust": {
+          "score": 8,
+          "evidence": [
+            "Header: errors 0, dup 1",
+            "Mix of trusted sources (Reuters, Bloomberg, WSJ, Mayer Brown) with directory pages (TradeIndia, Made-in-China.com, JCtrans)",
+            "No hallucinated URLs detected"
+          ]
+        }
+      },
+      "verdict": "Broad topic coverage but heavy reliance on supplier directory/homepage results dilutes precision; genuine M&A and deal coverage is present but interspersed with non-news landing pages.",
+      "weighted": 6.35,
+      "final": 6.35,
+      "caps_applied": []
+    },
+    {
+      "label": "B",
+      "axes": {
+        "precision": {
+          "score": 6,
+          "evidence": [
+            "Film Distribution | Midwest: 2 articles genuinely on-topic (Netflix La Bola Negra theatrical window, FilmTake Hollywood market notes)",
+            "HR SERVICES | Mid Atlantic: fleet management articles (USPS/Zipcar Optimizers Awards, Mid-Atlantic Advanced Transportation Summit) align with intent",
+            "Molasses | Oceania: OECD-FAO Agricultural Outlook Oceania sugar section is on-topic; Tridge AU molasses overview is a market page",
+            "Small volume so few obvious FPs, but Packaging Boxes | IN returned only [MKT-REPORT \u26a0] items"
+          ]
+        },
+        "coverage": {
+          "score": 2,
+          "evidence": [
+            "answered: 11/29 topics per header \u2014 18 topics [NO RESULTS RETURNED \u26a0] including BOPET|CN, CONSTRUCTION|Europe (only 1), CONVERTING|Southern Asia, Film|CN, IT & TELECOM|Northern Africa, LOGISTICS|Western Africa, OIL/FUEL|SEA, PAPER|N.Europe, PROFESSIONAL SERVICES|LATAM, Road Freight|Europe, SOLVENTS both variants",
+            "Total 20 articles across 29 topics \u2014 very sparse",
+            "Packaging Boxes | IN: only 2 market-report results despite active India IPO news"
+          ]
+        },
+        "recency_integrity": {
+          "score": 9,
+          "evidence": [
+            "Header: no-date 0, stale 0",
+            "Dates present (e.g., Linesight Europe construction 2026-06-15, Netflix La Bola Negra 2026-08-05)"
+          ]
+        },
+        "story_quality": {
+          "score": 6,
+          "evidence": [
+            "Whey Ingredients | N.Europe: Arla-DMK merger summary is informative",
+            "Cheese|US: Big 7 pivot to protein and cheese summary usable",
+            "Some entries thin (Chuk Bagpackaging etc.)"
+          ]
+        },
+        "trust": {
+          "score": 3,
+          "evidence": [
+            "Header: errors 7 \u2014 flagged on Packaging Boxes | IN",
+            "Some sources are substacks/blog-style (furtherandbetter.substack.com for Netflix piece)",
+            "Otherwise credible outlets (Food Navigator, OECD, Dairy Reporter)"
+          ]
+        }
+      },
+      "verdict": "Curated selection with usable summaries, but 7 errors and 18 unanswered topics make it broadly incomplete and unreliable for procurement coverage.",
+      "weighted": 5.2,
+      "final": 4.0,
+      "caps_applied": [
+        "trust"
+      ]
+    },
+    {
+      "label": "E",
+      "axes": {
+        "precision": {
+          "score": 2,
+          "evidence": [
+            "Header: mkt-report 69/422 (16%) \u2014 high SEO contamination",
+            "BOARD|E.Asia: LinkedIn pulse market reports (Bleached Chemi-ThermoMechanical Pulp) and off-topic Facebook posts",
+            "SOLVENTS|N.Europe: 99 articles but heavy fluff \u2014 includes 'Tellusgruppen Municipal Staffing Contracts' and 'DPM Metals Bulgarian mineralisation' \u2014 unrelated to solvents",
+            "BOPET|CN: Instagram reels, Facebook posts (Reuters Big Tech AI spending), Live Cattle CME \u2014 completely off-topic"
+          ]
+        },
+        "coverage": {
+          "score": 6,
+          "evidence": [
+            "answered: 29/29 topics per header",
+            "But depth varies (CONSTRUCTION|Europe only 1 article; IT & TELECOM|N.Africa only 5)",
+            "Genuine industry-relevant items exist (Kaiser Aluminum Q2 record sales, Mordor Intelligence reports)"
+          ]
+        },
+        "recency_integrity": {
+          "score": 0,
+          "evidence": [
+            "Header: no-date 422 (100%) \u2014 every single article has [NO DATE \u26a0]",
+            "Ground truth: cannot verify any recency across the entire dataset"
+          ]
+        },
+        "story_quality": {
+          "score": 3,
+          "evidence": [
+            "Many entries are extracted boilerplate/tag clouds (SVG path fragments in Facebook post text)",
+            "PACKAGING|Oceania IBISWorld and Australian Labels items usable but rare",
+            "Instagram/Facebook items provide no decision-useful summary"
+          ]
+        },
+        "trust": {
+          "score": 4,
+          "evidence": [
+            "Header: errors 0, dup 5",
+            "Heavy reliance on Instagram, Facebook, TikTok, LinkedIn pulse pages \u2014 low-authority for industry news",
+            "Some hallucination-adjacent extraction (Persian text fragments in Cheese|US result #9, unrelated CUET PG 2027 article in BOARD topic)"
+          ]
+        }
+      },
+      "verdict": "100% undated articles is disqualifying; content is dominated by market-report SEO pages and social media posts with little procurement value.",
+      "weighted": 2.95,
+      "final": 2.95,
+      "caps_applied": [
+        "recency_hard",
+        "trust",
+        "precision"
+      ]
+    }
+  ],
+  "ranking": [
+    "D",
+    "A",
+    "C",
+    "B",
+    "E"
+  ]
+}

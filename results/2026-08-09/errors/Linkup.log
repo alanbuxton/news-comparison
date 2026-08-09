@@ -1,0 +1,130 @@
+[09:10:13] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "ESMA Withdraws Registration of Bloomberg Trade Repository",
+  "publication_date": null,
+  "summary": "The European Securities and Markets Authority (ESMA) has withdrawn the registration of Bloomberg Trade Repository, impacting Bloomberg's regulatory positioning in the European market.",
+  "source": "RegTech Analyst",
+  "url": "https://regtechanalyst.com/esma-withdraws-registration-of-bloomberg-trade-repository/"
+}
+--------------------------------------------------------------------------------
+[09:10:13] PARSE_ARTICLE - company=Bloomberg
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "Rheos Selects Bloomberg to Bolster Compliance Management",
+  "publication_date": null,
+  "summary": "Rheos Capital Works, a Tokyo-based investment manager, has chosen Bloomberg\u2019s buy-side solutions to enhance its compliance management capabilities, reflecting Bloomberg's strategic moves in financial services technology.",
+  "source": "RegTech Analyst",
+  "url": "https://regtechanalyst.com/rheos-selects-bloomberg-to-bolster-compliance-management/"
+}
+--------------------------------------------------------------------------------
+[09:13:33] PARSE_ARTICLE - company=FLINT GROUP
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "Flint Group Digital Xeikon focusing on North American growth",
+  "publication_date": null,
+  "summary": "Flint Group Digital Xeikon is expanding its presence in North America by promoting dry toner and inkjet solutions and launching the Ecolyne digital press with a subscription model. The rebranding to Flint Group Packaging Solutions aims to strengthen its position in the global packaging sector.",
+  "source": "Label and Narrow Web",
+  "url": "https://www.labelandnarrowweb.com/exclusives/flint-group-digital-xeikon-focusing-on-north-american-growth/"
+}
+--------------------------------------------------------------------------------
+[09:13:33] PARSE_ARTICLE - company=FLINT GROUP
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "Flint Group Addresses Supply Chain Disruptions in the Red Sea",
+  "publication_date": null,
+  "summary": "Flint Group reported significant supply chain disruptions due to hostile actions in the Red Sea, causing shipping delays and increased costs. The company is monitoring freight surcharges and adjusting logistics to minimize impact on customers amid extended delivery times and port congestion.",
+  "source": "ME Printer",
+  "url": "https://meprinter.com/flint-group-addresses-supply-chain-disruptions-in-the-red-sea/"
+}
+--------------------------------------------------------------------------------
+[09:13:33] PARSE_ARTICLE - company=FLINT GROUP
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "Flint Group Packaging Solutions Will Present at LOUPE Americas - Ink World magazine",
+  "publication_date": null,
+  "summary": "Flint Group Packaging Solutions will showcase its largest-ever presence at LOUPE Americas 2026, featuring innovations in inks, coatings, and digital print technologies. The company will demonstrate products like EkoCure Dual Cure inks designed for both conventional UV and UV LED systems.",
+  "source": "Ink World magazine",
+  "url": "https://www.inkworldmagazine.com/breaking-news/flint-group-packaging-solutions-will-present-at-loupe-americas/"
+}
+--------------------------------------------------------------------------------
+[09:13:33] PARSE_ARTICLE - company=FLINT GROUP
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "Flint Group gold partner at Flexo Summit Asia 2026",
+  "publication_date": null,
+  "summary": "Flint Group announced its role as a gold partner at Flexo Summit Asia 2026 in Bengaluru, highlighting its sustainable manufacturing approach and product range for flexible packaging, paper, board, and narrow web applications. The company aims to meet evolving regulatory and sustainability demands in solvent-based chemistries.",
+  "source": "Packaging South Asia",
+  "url": "https://packagingsouthasia.com/events/flexo-summit-asia/flint-group-flexo-summit/"
+}
+--------------------------------------------------------------------------------
+[09:24:55] PARSE_ARTICLE - industry=Packaging Boxes, industry_str=Carton Boxes, Metal Boxes, Plastic Boxes, location=IN
+Error: Invalid isoformat string: '2026-06'
+Data: {
+  "headline": "Containerboard Prices Rise as Corrugated Packaging Demand Strengthens in 2026",
+  "publication_date": "2026-06",
+  "summary": "Major containerboard producers increased prices in June 2026 due to rising manufacturing costs and tighter supply, impacting corrugated box manufacturers in India and globally. The packaging sector shows recovery with stronger demand from e-commerce and FMCG industries.",
+  "source": "CORRUGMAN",
+  "url": "https://www.corrugman.com/containerboard-prices-rise-as-corrugated-packaging-demand-strengthens-in-2026/"
+}
+--------------------------------------------------------------------------------
+[09:24:55] PARSE_ARTICLE - industry=Packaging Boxes, industry_str=Carton Boxes, Metal Boxes, Plastic Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India Packaging Market in North America: Market Dynamics and Forecasts 2026-2034",
+  "publication_date": "2026",
+  "summary": "Comprehensive analysis of India's packaging market covering plastic, paper, glass, and metal packaging. Key players include Uflex Limited, TCPL Packaging Limited, Emami Paper Mills, and others. The report highlights market size, growth trends, and emerging opportunities in India.",
+  "source": "Nexa Reports",
+  "url": "https://www.nexareports.com/reports/india-packaging-market-16999"
+}
+--------------------------------------------------------------------------------
+[09:24:55] PARSE_ARTICLE - industry=Packaging Boxes, industry_str=Carton Boxes, Metal Boxes, Plastic Boxes, location=IN
+Error: Invalid isoformat string: '2026-08'
+Data: {
+  "headline": "ProPak India 2026 to Accelerate Sustainable Packaging",
+  "publication_date": "2026-08",
+  "summary": "ProPak India 2026 expo will be held August 26\u201328 in Mumbai, focusing on sustainable packaging, smart manufacturing, and industry innovation. The event will feature 200+ exhibitors and 15,000+ trade visitors, emphasizing automation, circular packaging, and regulatory challenges in India.",
+  "source": "FoodInfoTech",
+  "url": "https://www.foodinfotech.com/propak-india-2026-to-accelerate-sustainable-packaging-and-smart-manufacturing-transformation/"
+}
+--------------------------------------------------------------------------------
+[09:24:55] PARSE_ARTICLE - industry=Packaging Boxes, industry_str=Carton Boxes, Metal Boxes, Plastic Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Best Custom Packaging for Small Business: Types, Costs & Top Manufacturer in India 2026",
+  "publication_date": "2026",
+  "summary": "Custom packaging is vital for small businesses in India for branding and customer experience. Moglix Packaging is a leading provider offering cost-effective, customizable, and sustainable packaging solutions with pan-India reach, serving over 25,000 pin codes.",
+  "source": "Moglix Packaging Blog",
+  "url": "https://packaging.moglix.com/blogs/best-custom-packaging-for-small-business-types-costs-top-manufacturer-in-india-2026"
+}
+--------------------------------------------------------------------------------
+[09:24:55] PARSE_ARTICLE - industry=Packaging Boxes, industry_str=Carton Boxes, Metal Boxes, Plastic Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India Corrugated Boxes Market Growth & Revenue Drivers Report - Strategic Outlook 2026-2034",
+  "publication_date": "2026",
+  "summary": "India's corrugated boxes market valued at USD 8.6 billion in 2025 is projected to reach USD 19.4 billion by 2034 with a CAGR of 9.21%. Growth is fueled by e-commerce expansion, organized retail, and demand from food and beverage sectors, with recycled corrugates leading material usage.",
+  "source": "IMARC Group via openPR",
+  "url": "https://www.openpr.com/news/4584822/india-corrugated-boxes-market-growth-revenue-drivers-report"
+}
+--------------------------------------------------------------------------------
+[09:24:55] PARSE_ARTICLE - industry=Packaging Boxes, industry_str=Carton Boxes, Metal Boxes, Plastic Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Top 12 Packaging Design Trends for 2026: What Indian Brands Need to Know!",
+  "publication_date": "2026",
+  "summary": "Key packaging design trends in India for 2026 include hyper-sustainable packaging, unboxing experiences, hyper-localization, and cultural authenticity. These trends align with sustainability mandates, technology integration, and consumer demand for genuine brand stories.",
+  "source": "PrintStop",
+  "url": "https://www.printstop.co.in/blog/packaging-design-trends"
+}
+--------------------------------------------------------------------------------
+[09:24:55] PARSE_ARTICLE - industry=Packaging Boxes, industry_str=Carton Boxes, Metal Boxes, Plastic Boxes, location=IN
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "India Paper Packaging Industry Strategic Insights for 2025 and Forecasts to 2033: Market Trends",
+  "publication_date": "2026",
+  "summary": "India's paper packaging industry is growing with a CAGR of 6.63%, driven by e-commerce, food & beverage, and pharmaceutical sectors. Key companies include TCPL Packaging Ltd, KCL Limited, and Westrock India. Sustainability and customized packaging are key market drivers.",
+  "source": "Market Report Analytics",
+  "url": "https://www.marketreportanalytics.com/reports/flexible-packaging-paper-368302"
+}
+--------------------------------------------------------------------------------
