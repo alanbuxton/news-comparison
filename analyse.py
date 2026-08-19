@@ -20,6 +20,7 @@ import json
 import os
 import random
 import re
+import statistics
 import string
 import time
 import unicodedata
@@ -365,6 +366,158 @@ def variant_table_md(groups: list[dict], label_to_provider: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
+# --- Provider self-reported relevance --------------------------------------
+# Some providers return a relevance score with each result. This section reports
+# what they said about their own answers. It NEVER filters on that score, and
+# nothing downstream may start doing so: a provider that returns 79 results it
+# scored below 0.12 has made a precision error, and silently dropping those rows
+# would launder exactly the defect this benchmark exists to detect — the same
+# reasoning that keeps perplexity_agent_client.py off the `search_results`
+# blocks. The score is evidence, not a filter.
+
+# Empirically derived from a 12-company probe of Tavily (2026-08-19): of 414
+# results scoring below 0.1 not one was on-target, the 0.1–0.2 band was 7%
+# on-target, and above 0.3 it was ~72%. Scores are not calibrated between
+# providers, so this is a reading aid, not a universal constant — the band
+# distribution is reported alongside so the threshold is not the whole story.
+WEAK_SCORE = 0.2
+
+SCORE_BANDS = [(0.0, 0.1), (0.1, 0.2), (0.2, 0.3), (0.3, 0.5), (0.5, 1.01)]
+
+
+def _score_of(art: dict) -> float | None:
+    """Provider-supplied relevance score, or None where it supplied none."""
+    raw = art.get("relevance_score")
+    if raw is None or raw == "":
+        return None
+    try:
+        return float(raw)
+    except (TypeError, ValueError):
+        return None
+
+
+def score_diagnostics(data: dict[str, dict[str, list[dict]]]) -> dict[str, dict]:
+    """Per provider: whether it returns a relevance score, how those scores are
+    distributed, and — the part a caller cannot see from one query — how many
+    items it answered at length while scoring everything it returned as weak.
+
+    ``data`` is the label → item-name → articles mapping the formatters build.
+    Providers that supply no score are reported as such rather than omitted:
+    shipping no usable score is itself a difference between providers.
+    """
+    out: dict[str, dict] = {}
+    for label in sorted(data):
+        scores: list[float] = []
+        total = 0
+        weak_items: list[tuple[str, int, float]] = []
+        for name, arts in data[label].items():
+            real = [a for a in arts if a.get("headline") != "*** ERROR ***"]
+            total += len(real)
+            item_scores = [s for s in (_score_of(a) for a in real) if s is not None]
+            scores.extend(item_scores)
+            # The provider's own best result for this item. A low best score is
+            # the provider saying it found nothing — while still returning rows.
+            if item_scores and max(item_scores) < WEAK_SCORE:
+                weak_items.append((name, len(real), max(item_scores)))
+        bands = [
+            sum(1 for s in scores if lo <= s < hi) for lo, hi in SCORE_BANDS
+        ]
+        out[label] = {
+            "total": total,
+            "scored": len(scores),
+            "median": statistics.median(scores) if scores else None,
+            "bands": bands,
+            "weak": sum(1 for s in scores if s < WEAK_SCORE),
+            "weak_items": sorted(weak_items, key=lambda x: -x[1]),
+        }
+    return out
+
+
+def _score_verdict(stats: dict) -> str:
+    """One-phrase read on a provider's self-reported scores."""
+    if not stats["scored"]:
+        return "returns no relevance score — caller cannot triage its results"
+    weak_pct = 100 * stats["weak"] / stats["scored"]
+    n_weak_items = len(stats["weak_items"])
+    if not n_weak_items and weak_pct < 25:
+        return "scores its own results as mostly strong"
+    parts = [f"{weak_pct:.0f}% of its results scored below {WEAK_SCORE}"]
+    if n_weak_items:
+        rows = sum(n for _, n, _ in stats["weak_items"])
+        parts.append(
+            f"{n_weak_items} items answered with {rows} articles it scored "
+            f"entirely below {WEAK_SCORE} ⚠"
+        )
+    return "; ".join(parts)
+
+
+def _band_str(bands: list[int]) -> str:
+    return "  ".join(
+        f"{lo:.1f}-{min(hi, 1.0):.1f}: {n}" for (lo, hi), n in zip(SCORE_BANDS, bands)
+    )
+
+
+def score_block(diag: dict[str, dict], kind: str) -> str:
+    """Render the self-reported-score diagnostic for the prompt. Empty string
+    when no provider in the run returned any score at all."""
+    if not any(v["scored"] for v in diag.values()):
+        return ""
+    lines = [
+        f"\n{'=' * 60}",
+        "PROVIDER SELF-REPORTED RELEVANCE  (harness-computed — ground truth)",
+        "=" * 60,
+        "What each provider said about the quality of its own results. These",
+        "scores are NOT used to filter anything — every article the provider",
+        "returned is shown above regardless of what it scored. A provider that",
+        f"answers a {kind.lower()} with articles it itself scored below "
+        f"{WEAK_SCORE} is returning results it knew were weak — a precision",
+        "failure the article list alone does not reveal.",
+        "Scores are not comparable between providers; compare a provider only",
+        "against its own results.",
+    ]
+    for label, stats in diag.items():
+        lines.append(f"\n  PROVIDER {label}: {_score_verdict(stats)}")
+        if not stats["scored"]:
+            continue
+        lines.append(
+            f"    scored {stats['scored']}/{stats['total']} articles  |  "
+            f"median {stats['median']:.3f}  |  bands  {_band_str(stats['bands'])}"
+        )
+        for name, n, best in stats["weak_items"][:10]:
+            lines.append(
+                f"    - \"{name}\": returned {n} articles, best score only {best:.3f}"
+            )
+        if len(stats["weak_items"]) > 10:
+            lines.append(f"    … {len(stats['weak_items']) - 10} more such items")
+    return "\n".join(lines) + "\n"
+
+
+def score_table_md(diag: dict[str, dict], label_to_provider: dict) -> str:
+    """Markdown table of the same diagnostic, appended to the saved .md with
+    providers decoded. Written by the harness so the finding reaches the report
+    whether or not the model chose to cite it."""
+    if not any(v["scored"] for v in diag.values()):
+        return ""
+    lines = [
+        "## Provider self-reported relevance (harness — authoritative)",
+        "",
+        f"What each provider said about its own results. Never used to filter "
+        f"them. \"Weak items\" are queries the provider answered while scoring "
+        f"every article it returned below {WEAK_SCORE}.",
+        "",
+        "| Provider | scored | median | weak items | read |",
+        "|---|---|---|---|---|",
+    ]
+    for label, stats in diag.items():
+        provider = label_to_provider.get(label, label)
+        median = f"{stats['median']:.3f}" if stats["median"] is not None else "—"
+        lines.append(
+            f"| {provider} | {stats['scored']}/{stats['total']} | {median} "
+            f"| {len(stats['weak_items'])} | {_score_verdict(stats)} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def reference_date_from_results_dir(results_dir: str) -> datetime:
     """Use the results folder name (e.g. 2026-04-20) as the reference date;
     fall back to now. Anchoring to the run date means re-analysing old folders
@@ -417,6 +570,13 @@ Non-negotiable rules:
      - `[NO RESULTS RETURNED ⚠]` items and the `answered: X/Y` count in each
        provider header drive coverage.
      - `*** ERROR ***` rows and the `errors: N` header count drive trust.
+     - The `PROVIDER SELF-REPORTED RELEVANCE` section, when present, reports
+       what each provider said about the quality of its own results. Nothing was
+       filtered on it. A provider that answered an item with many articles while
+       scoring every one of them as weak returned results it knew were poor —
+       score that as precision, and quote the item names and counts. A provider
+       returning no score at all is a usability limitation worth stating, not a
+       precision failure. Never compare raw scores between providers.
      - The `SPELLING-VARIANT CONSISTENCY` section, when present, pairs queried
        names that are the same real entity spelled two ways (accent, case or
        punctuation). Answering one spelling and not the other is a coverage
@@ -446,6 +606,15 @@ Score each provider on these five 0–10 axes. Weights are fixed (sum to 1.0):
 | metadata_integrity | 0.15  | 0 no-date, 0 stale, publisher named on nearly every row | Large no-date or stale share (severe); large no-publisher share (about half as severe) |
 | story_quality     | 0.15   | Summaries let user decide without clicking              | Boilerplate, cookie banners, "subscribe to read"                |
 | trust             | 0.15   | 0 errors, no suspicious URLs                            | Hallucinated URLs/facts; high error rate                        |
+
+PROVIDER SELF-REPORTED RELEVANCE
+If the data carries a `PROVIDER SELF-REPORTED RELEVANCE` section, an item a
+provider answered with many articles while scoring every one of them as weak is
+a `precision` failure of the clearest kind: it returned results it had already
+judged poor, and the caller has no way to know that from the article list alone.
+Returning no score at all is not a precision failure — note it under
+`story_quality` as a usability limitation and move on. Never rank providers by
+raw score; the scores are not calibrated against each other.
 
 SPELLING-VARIANT PAIRS
 If the data carries a `SPELLING-VARIANT CONSISTENCY` section, the two spellings
@@ -962,6 +1131,9 @@ def _format_grouped(
     # blocks above cannot show that two of them are the same entity. Append the
     # cross-item comparison so the judge can score robustness to spelling.
     lines.append(variant_block(variant_consistency(data), kind))
+    # Providers that return a relevance score have told us what they made of
+    # their own answers. Reported, never acted on — see score_diagnostics.
+    lines.append(score_block(score_diagnostics(data), kind))
 
     return "\n".join(lines)
 
@@ -1337,6 +1509,18 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         f"{len(companies_variants)} companies, {len(industries_variants)} topics"
     )
 
+    companies_scores = score_diagnostics(
+        group_rows(companies_rows, provider_to_label, "companies")
+    )
+    industries_scores = score_diagnostics(
+        group_rows(industries_rows, provider_to_label, "industries")
+    )
+    scored_providers = sum(1 for v in companies_scores.values() if v["scored"])
+    print(
+        f"Providers returning a relevance score: {scored_providers}"
+        f"/{len(companies_scores)}"
+    )
+
     print("Verifying evidence strings against the data…")
     alias_map, answered = build_evidence_index(companies_rows, provider_to_label, "companies")
     n_warn = verify_evidence(companies_scorecard, alias_map, answered)
@@ -1376,6 +1560,10 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         if companies_variants:
             f.write("\n---\n\n")
             f.write(variant_table_md(companies_variants, label_to_provider))
+        score_md = score_table_md(companies_scores, label_to_provider)
+        if score_md:
+            f.write("\n---\n\n")
+            f.write(score_md)
 
     industries_path = os.path.join(ai_dir, f"claude-industries-{timestamp}.md")
     with open(industries_path, "w") as f:
@@ -1389,11 +1577,17 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         if industries_variants:
             f.write("\n---\n\n")
             f.write(variant_table_md(industries_variants, label_to_provider))
+        score_md = score_table_md(industries_scores, label_to_provider)
+        if score_md:
+            f.write("\n---\n\n")
+            f.write(score_md)
 
     # Keep the comparison in the machine-readable scorecards too, so a later run
     # can diff spelling robustness without re-parsing the markdown.
     companies_scorecard["spelling_variants"] = companies_variants
     industries_scorecard["spelling_variants"] = industries_variants
+    companies_scorecard["self_reported_scores"] = companies_scores
+    industries_scorecard["self_reported_scores"] = industries_scores
 
     companies_json_path = os.path.join(ai_dir, f"claude-companies-{timestamp}.json")
     with open(companies_json_path, "w") as f:

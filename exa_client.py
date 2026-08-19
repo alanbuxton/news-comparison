@@ -71,6 +71,11 @@ def item_to_article(item, query_context: str):
             # used here. The domain is derived centrally in main.py instead.
             "published_by": "",
             "document_url": item.url,
+            # Recorded as supplied, like published_by. Exa returns None under
+            # type="auto"; under type="neural" it returns 1 - i/(n-1), a rank
+            # ramp identical for every query, so it carries no quality signal.
+            # That absence is reported by analyse.py rather than papered over.
+            "relevance_score": getattr(item, "score", None),
         }
     except Exception as e:
         log_error(PROVIDER_NAME, "PARSE_ARTICLE", query_context, str(e), {

@@ -24,6 +24,8 @@ from analyse import (
     _normalise_url,
     _recompute_provider,
     _render_item,
+    WEAK_SCORE,
+    _score_of,
     _variant_groups,
     _variant_key,
     build_evidence_index,
@@ -33,6 +35,9 @@ from analyse import (
     group_rows,
     make_anonymization,
     parse_scorecard,
+    score_block,
+    score_diagnostics,
+    score_table_md,
     variant_block,
     variant_consistency,
     variant_table_md,
@@ -763,3 +768,117 @@ class TestVariantEvidenceIndex:
             "axes": {"precision": {"score": 5, "evidence": ["Borouge: invented example"]}},
         }]}
         assert verify_evidence(scorecard, alias_map, answered) == 1
+
+
+# --- Provider self-reported relevance --------------------------------------
+
+
+def _srow(company, url, score, provider="Tavily", headline=None):
+    row = _crow(company, url, provider=provider, headline=headline)
+    row["relevance_score"] = "" if score is None else str(score)
+    return row
+
+
+def _diag(rows):
+    data = group_rows(rows, {"Tavily": "A", "Exa": "B"}, "companies")
+    return score_diagnostics(data)
+
+
+class TestScoreOf:
+    def test_parses_a_string_score(self):
+        assert _score_of({"relevance_score": "0.42"}) == 0.42
+
+    def test_blank_and_missing_are_none(self):
+        assert _score_of({"relevance_score": ""}) is None
+        assert _score_of({}) is None
+
+    def test_unparseable_is_none_not_an_error(self):
+        assert _score_of({"relevance_score": "n/a"}) is None
+
+    def test_zero_is_a_score_not_a_missing_value(self):
+        # 0.0 is falsy; a provider scoring a result 0 has still scored it.
+        assert _score_of({"relevance_score": "0.0"}) == 0.0
+
+
+class TestScoreDiagnostics:
+    def test_provider_with_no_scores_is_reported_not_omitted(self):
+        diag = _diag([_srow("Acme", "https://a.com/1", None, provider="Exa")])
+        assert diag["B"]["scored"] == 0
+        assert diag["B"]["total"] == 1
+        assert diag["B"]["median"] is None
+
+    def test_counts_and_median(self):
+        diag = _diag([
+            _srow("Acme", "https://a.com/1", 0.1),
+            _srow("Acme", "https://a.com/2", 0.3),
+            _srow("Acme", "https://a.com/3", 0.5),
+        ])
+        assert diag["A"]["scored"] == 3
+        assert diag["A"]["median"] == 0.3
+
+    def test_item_whose_best_score_is_weak_is_flagged(self):
+        diag = _diag([
+            _srow("Acme", "https://a.com/1", 0.05),
+            _srow("Acme", "https://a.com/2", 0.11),
+        ])
+        assert [n for n, _, _ in diag["A"]["weak_items"]] == ["Acme"]
+        assert diag["A"]["weak_items"][0][1] == 2      # articles returned
+        assert diag["A"]["weak_items"][0][2] == 0.11   # best score
+
+    def test_item_with_one_strong_result_is_not_weak(self):
+        diag = _diag([
+            _srow("Acme", "https://a.com/1", 0.05),
+            _srow("Acme", "https://a.com/2", 0.9),
+        ])
+        assert diag["A"]["weak_items"] == []
+        assert diag["A"]["weak"] == 1  # the individual weak article still counts
+
+    def test_error_rows_are_excluded(self):
+        err = _srow("Acme", "https://a.com/1", None, headline="*** ERROR ***")
+        diag = _diag([err, _srow("Acme", "https://a.com/2", 0.4)])
+        assert diag["A"]["total"] == 1
+        assert diag["A"]["scored"] == 1
+
+    def test_unscored_provider_never_produces_weak_items(self):
+        # A provider that returns no score must not be accused of returning
+        # results it knew were weak - it made no claim either way.
+        diag = _diag([_srow("Acme", f"https://a.com/{i}", None, provider="Exa")
+                      for i in range(5)])
+        assert diag["B"]["weak_items"] == []
+
+
+class TestScoreRendering:
+    def test_block_is_empty_when_nobody_scores(self):
+        diag = _diag([_srow("Acme", "https://a.com/1", None, provider="Exa")])
+        assert score_block(diag, "Company") == ""
+        assert score_table_md(diag, {"B": "Exa"}) == ""
+
+    def test_block_names_weak_items_and_says_it_does_not_filter(self):
+        diag = _diag([
+            _srow("Acme", "https://a.com/1", 0.02),
+            _srow("Acme", "https://a.com/2", 0.03),
+        ])
+        out = score_block(diag, "Company")
+        assert "PROVIDER SELF-REPORTED RELEVANCE" in out
+        assert "NOT used to filter" in out
+        assert "Acme" in out
+        assert "best score only 0.030" in out
+
+    def test_unscored_provider_reported_as_a_limitation(self):
+        diag = _diag([
+            _srow("Acme", "https://a.com/1", 0.4),
+            _srow("Acme", "https://b.com/1", None, provider="Exa"),
+        ])
+        out = score_block(diag, "Company")
+        assert "PROVIDER B: returns no relevance score" in out
+
+    def test_table_decodes_provider_names(self):
+        diag = _diag([_srow("Acme", "https://a.com/1", 0.02)])
+        md = score_table_md(diag, {"A": "Tavily", "B": "Exa"})
+        assert "| Tavily |" in md
+        assert "A" not in md.split("|")[1]
+
+    def test_weak_threshold_is_the_documented_one(self):
+        # The prompt text quotes WEAK_SCORE; they must not drift apart.
+        diag = _diag([_srow("Acme", "https://a.com/1", 0.02)])
+        assert f"below {WEAK_SCORE}" in score_block(diag, "Company")

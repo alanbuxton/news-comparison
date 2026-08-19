@@ -149,6 +149,38 @@ partly reflect that.
 days" rather than explicit bounds, so the 90-day window is left to
 `filter_recent_real_articles` in `main.py`.
 
+**Why Exa and Tavily are capped at 20 results:** `num_results` / `max_results`
+is the caller's request, not a measure of the provider, and asking Exa for 50
+and Tavily for 100 while others are structurally limited to provide only 
+relevant results without padding with lower-value results didn't make for a fair
+like-for-like comparison. It also interacted badly with `DEFAULT_MAX_ARTICLES`:
+every client sorts by date, so the 15 articles the judge sees were the 15 most
+*recent* of the 50, which for a relevance-ranked list is close to a random
+sample. Measured on 12 companies, that put Exa's shown articles at 34%
+on-target; asking for 20 instead raises it to 47% and asking for 10 to 61%,
+while the number of genuinely on-target articles reaching the judge goes *up*.
+20 is the settled figure because it keeps Exa above the 15-article display cap
+so it is not handicapped on `coverage`. Exa's own ranking is worth respecting —
+70% on-target at ranks 1-5 decaying to 23% at 41-50 — and at 50 you also pay
+Exa for every result past the tenth.
+
+**Why `relevance_score` is recorded but never filtered on:** Tavily returns a
+real relevance score and sorts by it, and it separates cleanly — in a
+12-company probe, none of the 414 results scoring below 0.1 were on-target,
+against ~72% above 0.3. Dropping those rows would raise Tavily's measured
+precision from 8% to 72%, which is exactly why the harness must not do it:
+returning 79 articles for "Klöckner Pentaplast" whose best score was 0.115 is a
+precision failure, and filtering it out would perform the quality work the
+provider declined to do and then hide that it was needed. Same reasoning as the
+Perplexity Agent client ignoring `search_results`. The score is instead reported
+as ground truth by `score_diagnostics` / `score_block` / `score_table_md`, which
+flag items a provider answered while scoring *every* returned article below
+`WEAK_SCORE` (0.2, empirically derived from Tavily and not calibrated across
+providers). Exa is the other half of the finding: it returns no score under
+`type="auto"` and, under `type="neural"`, `1 - i/(n-1)` — a rank ramp identical
+for a company with 45 good hits and one with none. That absence is reported as a
+usability limitation, not scored as a precision failure.
+
 **Why `DEFAULT_MAX_ARTICLES` = 15:** This caps the number of articles shown per company/topic per provider to keep the prompt within Claude's context window while still giving enough data to spot patterns (false positives, duplicate articles, missing dates). Increase if the model misses patterns; decrease if costs are a concern.
 
 **Why the system prompt forbids hedging:** The point of this tool is to get honest competitive intelligence about where Syracuse falls short. A model that hedges or refuses to rank defeats the purpose.
@@ -171,6 +203,7 @@ Both CSVs share the same columns:
 | `activity_type` | Optional classification from provider (e.g. M&A, Earnings) |
 | `document_url` | URL of the article |
 | `summary_text` | Provider-supplied summary or scraped text |
+| `relevance_score` | Provider's own relevance score; blank where it supplies none (only Tavily's is meaningful). Reported, never used to filter |
 
 Error rows have `headline = "*** ERROR ***"` and are counted separately in the analysis — they are a signal of provider reliability.
 

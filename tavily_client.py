@@ -82,6 +82,10 @@ def item_to_article(item: dict, query_context: str):
             "summary_text": item['content'].replace("\n"," ")[:1000],
             "published_by": "",
             "document_url": item['url'],
+            # Tavily returns a real relevance score and sorts by it. Recorded so
+            # the analysis can report what Tavily itself made of the results it
+            # chose to return. Never used to filter them -- see CLAUDE.md.
+            "relevance_score": item.get("score"),
         }
     except Exception as e:
         log_error(PROVIDER_NAME, "PARSE_ARTICLE", query_context, str(e), item)

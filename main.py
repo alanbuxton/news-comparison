@@ -122,7 +122,13 @@ def write_articles_to_csv(csv_writer, company=None, industry=None, industry_cont
                 'published_date_clean': article.get('published_date_clean', ''),
                 'activity_type': clean_text(article.get('activity_type', '')),
                 'document_url': article.get('document_url', ''),
-                'summary_text': clean_text(article.get('summary_text', ''))
+                'summary_text': clean_text(article.get('summary_text', '')),
+                # Only Exa and Tavily expose one, and only Tavily's means
+                # anything. Blank where the provider supplies none; never used
+                # to drop rows, so the analysis can report what a provider
+                # thought of results it returned anyway.
+                'relevance_score': article.get('relevance_score', '')
+                    if article.get('relevance_score') is not None else ''
             }
             csv_writer.writerow(row)
 
@@ -185,7 +191,7 @@ def run_comparison(prefix: str, output_dir: str = 'results'):
     csv_headers = [
         'company', 'industry', 'industry_context', 'location', 'provider', 'headline', 
         'published_by', 'publisher_domain', 'published_date', 'published_date_clean', 
-        'activity_type', 'document_url', 'summary_text'
+        'activity_type', 'document_url', 'summary_text', 'relevance_score'
     ]
     
     # Write companies results
