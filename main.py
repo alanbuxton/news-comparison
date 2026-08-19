@@ -3,19 +3,26 @@ import os
 import argparse
 import csv
 import syracuse_client
-import perplexity_client
+import perplexity_search_client
+import perplexity_agent_client
 import linkup_client
 import exa_client
 import newsapi_client
 import tavily_client
 from examples import industry_location_examples, company_name_examples
-from utils import MIN_DATE, set_error_log_dir
+from utils import MIN_DATE, set_error_log_dir, publisher_domain
 
-# Excluding NewsAPI because it generates too much noise
+# Excluding NewsAPI because it generates too much noise.
+# Perplexity ships two different APIs with very different result shapes:
+#   Search — /search, real indexed pages, no publisher field, 20 results max
+#   Agent  — /v1/agent, LLM-synthesised summaries with publisher names
+# Comment out whichever is not wanted for a given run. The Agent client replaced
+# the Sonar (/chat/completions) one, which Perplexity retires on 2026-09-27.
 CLIENTS = {"Exa": exa_client, 
            "Linkup": linkup_client, 
         #    "NewsAPI": newsapi_client, 
-           "Perplexity": perplexity_client, 
+           "Perplexity Search": perplexity_search_client, 
+           "Perplexity Agent": perplexity_agent_client, 
            "Syracuse": syracuse_client, 
            "Tavily": tavily_client,
         }
@@ -108,6 +115,9 @@ def write_articles_to_csv(csv_writer, company=None, industry=None, industry_cont
                 'provider': provider,
                 'headline': clean_text(article.get('headline', '')),
                 'published_by': clean_text(article.get('published_by', '')),
+                # Derived centrally rather than per-client: every provider gets
+                # the same treatment, and none can forget to populate it.
+                'publisher_domain': publisher_domain(article.get('document_url', '')),
                 'published_date': article.get('published_date', ''),
                 'published_date_clean': article.get('published_date_clean', ''),
                 'activity_type': clean_text(article.get('activity_type', '')),
@@ -174,7 +184,7 @@ def run_comparison(prefix: str, output_dir: str = 'results'):
     # Define CSV headers
     csv_headers = [
         'company', 'industry', 'industry_context', 'location', 'provider', 'headline', 
-        'published_by', 'published_date', 'published_date_clean', 
+        'published_by', 'publisher_domain', 'published_date', 'published_date_clean', 
         'activity_type', 'document_url', 'summary_text'
     ]
     

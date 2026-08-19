@@ -6,7 +6,7 @@ Providers currently in the comparison:
 
 - [Exa](https://exa.ai)
 - [Linkup](https://linkup.so)
-- [Perplexity](https://perplexity.ai)
+- [Perplexity](https://perplexity.ai) *(two entries: Search API and Agent API)*
 - [Syracuse](https://syracuse.1145.am) *(author's project)*
 - [Tavily](https://tavily.com)
 

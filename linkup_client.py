@@ -1,5 +1,6 @@
 from linkup import LinkupClient
 from utils import LINKUP_API_KEY, MAX_DATE, MIN_DATE, log_error
+from queries import company_prose_query, industry_prose_query
 import json
 from datetime import datetime, timezone
 
@@ -65,29 +66,16 @@ def output_schema():
     }
     return json.dumps(schema)
 
+OUTPUT_INSTRUCTION = (
+    "Return the source title, publication date, publication name and URL for "
+    "each news item, with a summary of 2-3 sentences."
+)
+
 def industry_query(industry, industry_context, location):
-    industry_str = industry.strip()
-    if industry_context:
-        industry_str = f"{industry.strip()} ({industry_context.strip()})".strip()
-    prompt = (f"Fetch recent news related to the {industry_str} industry in {location}.\n"
-    "Focus on:\n"
-    "- Market trends and macroeconomic developments\n"
-    "- Regulatory or policy updates\n"
-    "- Major deals, innovations, or disruptions\n"
-    "- Any mention of key players in the space\n\n"
-    "Return source titles, publication dates, and a short summary for each news item.\n\n"
-    "Only include content from credible business, trade, specialized or regional news sources."
-    )
-    return prompt
+    return f"{industry_prose_query(industry, industry_context, location)}\n{OUTPUT_INSTRUCTION}"
 
 def company_query(company_name):
-    prompt = (f"Find recent news mentioning {company_name}.\n\n"
-    "Prioritize:\n- Product launches, strategic moves, M&A activity\n- Financial performance or investment news\n"
-    "- Regulatory issues or market positioning updates\n- Regional relevance or expansion activities\n\n"
-    "Summarize each relevant article in 2-3 sentences, including source, date, and URL.\n"
-    "Only include information from trustworthy business or industry-specific media outlets."
-    )
-    return prompt
+    return f"{company_prose_query(company_name)}\n{OUTPUT_INSTRUCTION}"
 
 def do_query(query, query_context: str):
     if LINKUP_API_KEY is None or LINKUP_API_KEY.strip() == '' or LINKUP_API_KEY == 'my_linkup_key':
@@ -96,7 +84,7 @@ def do_query(query, query_context: str):
     try:
         client = LinkupClient(api_key=LINKUP_API_KEY)
         response = client.search(query=query,
-            depth="standard",
+            depth="deep",
             output_type="structured",
             structured_output_schema=output_schema(),
             include_images=False,

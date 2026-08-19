@@ -8,10 +8,10 @@ import pytest
 from analyse import (
     CAP_PRECISION_LIMIT,
     CAP_PRECISION_THRESHOLD,
-    CAP_RECENCY_HARD_LIMIT,
-    CAP_RECENCY_HARD_THRESHOLD,
-    CAP_RECENCY_SOFT_LIMIT,
-    CAP_RECENCY_SOFT_THRESHOLD,
+    CAP_METADATA_HARD_LIMIT,
+    CAP_METADATA_HARD_THRESHOLD,
+    CAP_METADATA_SOFT_LIMIT,
+    CAP_METADATA_SOFT_THRESHOLD,
     CAP_TRUST_LIMIT,
     CAP_TRUST_THRESHOLD,
     STALE_DAYS,
@@ -24,10 +24,19 @@ from analyse import (
     _normalise_url,
     _recompute_provider,
     _render_item,
+    _variant_groups,
+    _variant_key,
+    build_evidence_index,
     classify_date,
+    classify_publisher,
     format_companies_data,
+    group_rows,
     make_anonymization,
     parse_scorecard,
+    variant_block,
+    variant_consistency,
+    variant_table_md,
+    verify_evidence,
 )
 
 # ---------------------------------------------------------------------------
@@ -40,7 +49,7 @@ REF = datetime(2026, 4, 20, tzinfo=timezone.utc)
 def _prov(precision=8, coverage=7, recency=9, story_quality=7, trust=9, label="A"):
     """Minimal valid provider dict for testing (matches the current 5-axis rubric).
 
-    Positional order matches RUBRIC_AXES: precision, coverage, recency_integrity,
+    Positional order matches RUBRIC_AXES: precision, coverage, metadata_integrity,
     story_quality, trust. Does not include weighted/final/caps_applied — the
     model no longer emits those; parse_scorecard/_recompute_provider compute
     them from the axis scores.
@@ -50,7 +59,7 @@ def _prov(precision=8, coverage=7, recency=9, story_quality=7, trust=9, label="A
         "axes": {
             "precision":         {"score": precision,      "evidence": ["x"]},
             "coverage":          {"score": coverage,        "evidence": ["x"]},
-            "recency_integrity": {"score": recency,         "evidence": ["x"]},
+            "metadata_integrity": {"score": recency,         "evidence": ["x"]},
             "story_quality":     {"score": story_quality,   "evidence": ["x"]},
             "trust":             {"score": trust,           "evidence": ["x"]},
         },
@@ -137,18 +146,27 @@ class TestDupGroups:
         assert groups[2] != groups[0]
         assert _dup_count(groups) == 1
 
-    def test_same_headline_stem_same_source_is_dup(self):
+    def test_same_headline_stem_is_dup_across_outlets(self):
         # Stem matching is exact after lowercasing + stripping non-alphanumerics.
-        # Same source + same stem → dup; different source → NOT a dup.
+        # The same story syndicated to three outlets is two duplicates — the
+        # publisher name is deliberately not part of the key, so providers that
+        # return one are not judged differently from providers that do not.
         arts = [
             self._make(url="https://a.com/x", source="Reuters", headline="Acme buys Beta!!!"),
             self._make(url="https://b.com/y", source="Reuters", headline="Acme BUYS Beta..."),
-            self._make(url="https://c.com/z", source="Bloomberg", headline="Acme buys Beta!!!"),
+            self._make(url="https://c.com/z", source="", headline="Acme buys Beta!!!"),
         ]
         groups = _compute_dup_groups(arts)
-        assert groups[0] == groups[1]
-        assert groups[2] != groups[0]
-        assert _dup_count(groups) == 1
+        assert groups[0] == groups[1] == groups[2]
+        assert _dup_count(groups) == 2
+
+    def test_different_headlines_not_dup_when_publisher_blank(self):
+        # Blank publisher must not collapse unrelated stories together.
+        arts = [
+            self._make(url="https://a.com/x", source="", headline="Acme buys Beta"),
+            self._make(url="https://b.com/y", source="", headline="Gamma opens plant"),
+        ]
+        assert _dup_count(_compute_dup_groups(arts)) == 0
 
     def test_normalised_url_matches(self):
         arts = [
@@ -196,7 +214,7 @@ class TestApplyCaps:
     def _axes(self, prec=8, rec=9, trust=9):
         return {
             "precision":         {"score": prec},
-            "recency_integrity": {"score": rec},
+            "metadata_integrity": {"score": rec},
             "trust":             {"score": trust},
         }
 
@@ -205,23 +223,23 @@ class TestApplyCaps:
         assert final == 7.5
         assert caps == []
 
-    def test_recency_hard_cap(self):
-        final, caps = _apply_caps(self._axes(rec=CAP_RECENCY_HARD_THRESHOLD), weighted=8.0)
-        assert "recency_hard" in caps
-        assert final <= CAP_RECENCY_HARD_LIMIT
+    def test_metadata_hard_cap(self):
+        final, caps = _apply_caps(self._axes(rec=CAP_METADATA_HARD_THRESHOLD), weighted=8.0)
+        assert "metadata_hard" in caps
+        assert final <= CAP_METADATA_HARD_LIMIT
 
-    def test_recency_soft_cap(self):
-        final, caps = _apply_caps(self._axes(rec=CAP_RECENCY_SOFT_THRESHOLD), weighted=8.0)
-        assert "recency_soft" in caps
-        assert final <= CAP_RECENCY_SOFT_LIMIT
+    def test_metadata_soft_cap(self):
+        final, caps = _apply_caps(self._axes(rec=CAP_METADATA_SOFT_THRESHOLD), weighted=8.0)
+        assert "metadata_soft" in caps
+        assert final <= CAP_METADATA_SOFT_LIMIT
 
-    def test_recency_between_thresholds(self):
+    def test_metadata_between_thresholds(self):
         # rec just above hard threshold → only soft cap
-        rec = CAP_RECENCY_HARD_THRESHOLD + 1
-        assert rec <= CAP_RECENCY_SOFT_THRESHOLD
+        rec = CAP_METADATA_HARD_THRESHOLD + 1
+        assert rec <= CAP_METADATA_SOFT_THRESHOLD
         final, caps = _apply_caps(self._axes(rec=rec), weighted=8.0)
-        assert "recency_soft" in caps
-        assert "recency_hard" not in caps
+        assert "metadata_soft" in caps
+        assert "metadata_hard" not in caps
 
     def test_trust_cap(self):
         final, caps = _apply_caps(self._axes(trust=CAP_TRUST_THRESHOLD), weighted=8.0)
@@ -235,17 +253,17 @@ class TestApplyCaps:
 
     def test_multiple_caps_take_minimum(self):
         final, caps = _apply_caps(
-            self._axes(rec=CAP_RECENCY_HARD_THRESHOLD, trust=CAP_TRUST_THRESHOLD),
+            self._axes(rec=CAP_METADATA_HARD_THRESHOLD, trust=CAP_TRUST_THRESHOLD),
             weighted=8.0,
         )
-        assert "recency_hard" in caps
+        assert "metadata_hard" in caps
         assert "trust" in caps
-        assert final <= min(CAP_RECENCY_HARD_LIMIT, CAP_TRUST_LIMIT)
+        assert final <= min(CAP_METADATA_HARD_LIMIT, CAP_TRUST_LIMIT)
 
     def test_no_cap_when_just_above_threshold(self):
-        _, caps = _apply_caps(self._axes(rec=CAP_RECENCY_SOFT_THRESHOLD + 1), weighted=7.0)
-        assert "recency_soft" not in caps
-        assert "recency_hard" not in caps
+        _, caps = _apply_caps(self._axes(rec=CAP_METADATA_SOFT_THRESHOLD + 1), weighted=7.0)
+        assert "metadata_soft" not in caps
+        assert "metadata_hard" not in caps
 
 
 # ---------------------------------------------------------------------------
@@ -274,7 +292,7 @@ class TestRecomputeProvider:
     def test_caps_applied_set_correctly(self):
         p = _prov(recency=1)
         _recompute_provider(p)
-        assert "recency_hard" in p["caps_applied"]
+        assert "metadata_hard" in p["caps_applied"]
 
 
 # ---------------------------------------------------------------------------
@@ -379,7 +397,7 @@ class TestFormatArticle:
         assert any("STALE" in l for l in lines)
 
     def test_dup_marker_shown(self):
-        lines = _format_article(2, self._art(), REF, dup_marker="DUP of #1")
+        lines = _format_article(2, self._art(), REF, markers=["DUP of #1"])
         assert "DUP of #1" in lines[0]
 
     def test_summary_truncated(self):
@@ -414,7 +432,7 @@ class TestRenderItem:
 
     def test_respects_max_articles(self):
         arts = self._make_articles(10)
-        lines, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=3)
+        lines, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=3)
         shown = [l for l in lines if l.strip().startswith(tuple("0123456789"))]
         assert len(shown) <= 3
         assert any("more articles not shown" in l for l in lines)
@@ -422,12 +440,93 @@ class TestRenderItem:
     def test_counts_dups(self):
         arts = self._make_articles(2)
         arts[1]["document_url"] = arts[0]["document_url"]  # force dup
-        _, dup_count = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
+        _, dup_count, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
         assert dup_count == 1
 
     def test_no_articles(self):
-        lines, dup_count = _render_item("Company", "Acme", [], [], REF, max_articles=15)
-        assert any("No articles" in l for l in lines)
+        lines, dup_count, _ = _render_item("Company", "Acme", [], [], REF, max_articles=15)
+        assert any("NO RESULTS RETURNED" in l for l in lines)
+        assert dup_count == 0
+
+
+# ---------------------------------------------------------------------------
+# classify_publisher / no-publisher reporting
+# ---------------------------------------------------------------------------
+
+class TestClassifyPublisher:
+    def test_published(self):
+        assert classify_publisher({"published_by": "Reuters"}) == "published"
+
+    def test_missing_key(self):
+        assert classify_publisher({}) == "no_publisher"
+
+    def test_empty_string(self):
+        assert classify_publisher({"published_by": ""}) == "no_publisher"
+
+    def test_whitespace_only(self):
+        assert classify_publisher({"published_by": "   "}) == "no_publisher"
+
+    def test_none_value(self):
+        # CSV round-trips can yield None rather than ""
+        assert classify_publisher({"published_by": None}) == "no_publisher"
+
+    def test_domain_does_not_count_as_a_publisher(self):
+        # A domain is derivable from any URL — crediting it would score every
+        # provider identically and measure nothing.
+        art = {"published_by": "", "document_url": "https://www.reuters.com/x"}
+        assert classify_publisher(art) == "no_publisher"
+
+
+class TestNoPublisherRendering:
+    def _art(self, source, url="https://www.example.com/x"):
+        return {
+            "published_date_clean": "2026-04-10T00:00:00+00:00",
+            "headline": "Acme Q1 results",
+            "published_by": source,
+            "document_url": url,
+            "summary_text": "Acme reported strong earnings.",
+        }
+
+    def test_no_publisher_flag_shown(self):
+        lines = _format_article(1, self._art(""), REF)
+        assert "NO PUBLISHER" in lines[0]
+
+    def test_domain_shown_alongside_missing_publisher(self):
+        # The judge must see the domain, since that is why a missing publisher
+        # is weighted below a missing date.
+        lines = _format_article(1, self._art("", "https://www.reuters.com/x"), REF)
+        assert "NO PUBLISHER ⚠ (reuters.com)" in lines[0]
+
+    def test_domain_shown_alongside_present_publisher(self):
+        lines = _format_article(1, self._art("Reuters", "https://www.reuters.com/x"), REF)
+        assert "| Reuters (reuters.com)" in lines[0]
+        assert "NO PUBLISHER" not in lines[0]
+
+    def test_no_domain_parens_when_url_missing(self):
+        lines = _format_article(1, self._art("", ""), REF)
+        assert "NO PUBLISHER ⚠" in lines[0]
+        assert "()" not in lines[0]
+
+    def test_stored_domain_column_preferred(self):
+        art = self._art("", "https://www.example.com/x")
+        art["publisher_domain"] = "override.com"
+        assert "(override.com)" in _format_article(1, art, REF)[0]
+
+    def test_item_header_counts_no_publisher(self):
+        arts = [self._art(""), self._art(""), self._art("Reuters")]
+        lines, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
+        assert "2 no-publisher" in lines[0]
+
+    def test_item_header_omits_when_all_published(self):
+        arts = [self._art("Reuters")]
+        lines, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
+        assert "no-publisher" not in lines[0]
+
+    def test_unrelated_headlines_not_dup_when_publisher_blank(self):
+        arts = [self._art("", "https://reuters.com/a"),
+                self._art("", "https://apnews.com/b")]
+        arts[1]["headline"] = "Gamma opens new plant"
+        _, dup_count, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
         assert dup_count == 0
 
 
@@ -457,6 +556,22 @@ class TestFormatCompaniesData:
         out = format_companies_data(rows, p2l, max_articles=15, reference_date=REF)
         assert "dup: 1" in out
 
+    def test_no_publisher_in_provider_header(self):
+        def _row(source, url):
+            return {
+                "provider": "Perplexity Search", "company": "Acme",
+                "headline": f"Acme news {url}", "published_by": source,
+                "published_date_clean": "2026-04-10T00:00:00+00:00",
+                "published_date": "", "document_url": url,
+                "summary_text": "", "industry": "", "location": "", "activity_type": "",
+            }
+        rows = [_row("", "https://example.com/1"),
+                _row("", "https://example.com/2"),
+                _row("Reuters", "https://reuters.com/3")]
+        _, p2l = make_anonymization(["Perplexity Search"])
+        out = format_companies_data(rows, p2l, max_articles=15, reference_date=REF)
+        assert "no-publisher: 2 (67%)" in out
+
 
 # ---------------------------------------------------------------------------
 # make_anonymization
@@ -477,3 +592,174 @@ class TestMakeAnonymization:
         # After 20 shuffles, at least two should differ (probability of all identical ≈ 0)
         unique = {tuple(sorted(m.items())) for m in mappings}
         assert len(unique) > 1
+
+
+# ---------------------------------------------------------------------------
+# Spelling variants
+# ---------------------------------------------------------------------------
+
+def _crow(company, url, provider="Exa", headline=None):
+    return {
+        "provider": provider, "company": company,
+        "headline": headline or f"{company} news {url}", "published_by": "Reuters",
+        "published_date_clean": "2026-04-10T00:00:00+00:00",
+        "published_date": "", "document_url": url,
+        "summary_text": "", "industry": "", "location": "", "activity_type": "",
+    }
+
+
+class TestVariantKey:
+    def test_folds_accents_case_and_punctuation(self):
+        assert _variant_key("Klöckner Pentaplast") == _variant_key("Klockner Pentaplast")
+        assert _variant_key("KLOCKNER-PENTAPLAST") == _variant_key("Klockner Pentaplast")
+
+    def test_distinct_names_do_not_collide(self):
+        assert _variant_key("Borouge") != _variant_key("Borealis")
+
+    def test_empty_name(self):
+        assert _variant_key("") == ""
+
+
+class TestVariantGroups:
+    def test_groups_variants_and_drops_singletons(self):
+        groups = _variant_groups(["Klöckner Pentaplast", "Klockner Pentaplast", "Borouge"])
+        assert groups == [["Klockner Pentaplast", "Klöckner Pentaplast"]]
+
+    def test_no_variants_returns_empty(self):
+        assert _variant_groups(["Borouge", "Westrock"]) == []
+
+
+class TestVariantConsistency:
+    def test_overlap_and_counts(self):
+        rows = [
+            _crow("Klöckner Pentaplast", "https://r.com/a"),
+            _crow("Klöckner Pentaplast", "https://r.com/b"),
+            _crow("Klockner Pentaplast", "https://r.com/a"),
+        ]
+        _, p2l = make_anonymization(["Exa"])
+        groups = variant_consistency(group_rows(rows, p2l, "companies"))
+        assert len(groups) == 1
+        stats = groups[0]["providers"]["A"]
+        # variants are sorted: unaccented first
+        assert stats["counts"] == [1, 2]
+        assert stats["shared"] == 1
+        assert stats["union"] == 2
+        assert stats["overlap"] == 0.5
+
+    def test_identical_results_score_one(self):
+        rows = [
+            _crow("Klöckner Pentaplast", "https://r.com/a"),
+            _crow("Klockner Pentaplast", "https://r.com/a"),
+        ]
+        _, p2l = make_anonymization(["Exa"])
+        stats = variant_consistency(group_rows(rows, p2l, "companies"))[0]["providers"]["A"]
+        assert stats["overlap"] == 1.0
+        assert "spelling-insensitive" in variant_block(
+            variant_consistency(group_rows(rows, p2l, "companies")), "Company"
+        )
+
+    def test_answers_only_one_spelling_is_flagged(self):
+        """Exa answers both spellings; Linkup only the accented one. The pair is
+        visible because some provider returned rows for each spelling."""
+        rows = [
+            _crow("Klöckner Pentaplast", "https://r.com/a"),
+            _crow("Klockner Pentaplast", "https://r.com/a"),
+            _crow("Klöckner Pentaplast", "https://r.com/b", provider="Linkup"),
+        ]
+        _, p2l = make_anonymization(["Exa", "Linkup"])
+        groups = variant_consistency(group_rows(rows, p2l, "companies"))
+        stats = groups[0]["providers"][p2l["Linkup"]]
+        assert stats["counts"] == [0, 1]
+        assert stats["overlap"] == 0.0
+        assert stats["answered"] == ["Klöckner Pentaplast"]
+        assert "answers only" in variant_block(groups, "Company")
+
+    def test_pair_needs_both_spellings_in_the_run(self):
+        """A spelling no provider returned anything for leaves no CSV rows, so
+        the pair cannot be detected — documented limitation, asserted here."""
+        rows = [_crow("Klöckner Pentaplast", "https://r.com/a")]
+        _, p2l = make_anonymization(["Exa"])
+        assert variant_consistency(group_rows(rows, p2l, "companies")) == []
+
+    def test_error_only_spelling_still_forms_a_pair(self):
+        """An all-errors spelling does leave rows, so the pair stays visible."""
+        rows = [
+            _crow("Klöckner Pentaplast", "https://r.com/a"),
+            _crow("Klockner Pentaplast", "", headline="*** ERROR ***"),
+        ]
+        _, p2l = make_anonymization(["Exa"])
+        groups = variant_consistency(group_rows(rows, p2l, "companies"))
+        assert len(groups) == 1
+        assert groups[0]["providers"]["A"]["counts"] == [0, 1]
+
+    def test_error_rows_are_excluded(self):
+        rows = [
+            _crow("Klöckner Pentaplast", "", headline="*** ERROR ***"),
+            _crow("Klockner Pentaplast", "https://r.com/a"),
+        ]
+        _, p2l = make_anonymization(["Exa"])
+        stats = variant_consistency(group_rows(rows, p2l, "companies"))[0]["providers"]["A"]
+        assert stats["counts"] == [1, 0]
+
+    def test_no_pairs_yields_no_section(self):
+        rows = [_crow("Borouge", "https://r.com/a")]
+        _, p2l = make_anonymization(["Exa"])
+        groups = variant_consistency(group_rows(rows, p2l, "companies"))
+        assert groups == []
+        assert variant_block(groups, "Company") == ""
+        assert variant_table_md(groups, {"A": "Exa"}) == ""
+
+
+class TestVariantRendering:
+    def test_section_appears_in_prompt_data(self):
+        rows = [
+            _crow("Klöckner Pentaplast", "https://r.com/a"),
+            _crow("Klockner Pentaplast", "https://r.com/b"),
+        ]
+        _, p2l = make_anonymization(["Exa"])
+        out = format_companies_data(rows, p2l, max_articles=15, reference_date=REF)
+        assert "SPELLING-VARIANT CONSISTENCY" in out
+        assert "overlap 0%" in out
+
+    def test_section_absent_without_pairs(self):
+        rows = [_crow("Borouge", "https://r.com/a")]
+        _, p2l = make_anonymization(["Exa"])
+        out = format_companies_data(rows, p2l, max_articles=15, reference_date=REF)
+        assert "SPELLING-VARIANT CONSISTENCY" not in out
+
+    def test_table_decodes_provider_names(self):
+        rows = [
+            _crow("Klöckner Pentaplast", "https://r.com/a"),
+            _crow("Klockner Pentaplast", "https://r.com/a"),
+        ]
+        _, p2l = make_anonymization(["Exa"])
+        groups = variant_consistency(group_rows(rows, p2l, "companies"))
+        table = variant_table_md(groups, {"A": "Exa"})
+        assert "| Exa |" in table
+        assert "100%" in table
+
+
+class TestVariantEvidenceIndex:
+    def test_citing_the_other_spelling_is_not_a_hallucination(self):
+        """A provider that answered only the accented spelling may legitimately
+        be discussed under the unaccented one — they are the same entity."""
+        rows = [_crow("Klöckner Pentaplast", "https://r.com/a")]
+        _, p2l = make_anonymization(["Exa"])
+        alias_map, answered = build_evidence_index(rows, p2l, "companies")
+        scorecard = {"providers": [{
+            "label": "A",
+            "axes": {"precision": {"score": 5, "evidence": [
+                "Klockner Pentaplast: returned a clean Reuters item"]}},
+        }]}
+        assert verify_evidence(scorecard, alias_map, answered) == 0
+
+    def test_unrelated_entity_still_warns(self):
+        rows = [_crow("Klöckner Pentaplast", "https://r.com/a")]
+        _, p2l = make_anonymization(["Exa"])
+        alias_map, answered = build_evidence_index(rows, p2l, "companies")
+        alias_map["borouge"] = {"borouge"}
+        scorecard = {"providers": [{
+            "label": "A",
+            "axes": {"precision": {"score": 5, "evidence": ["Borouge: invented example"]}},
+        }]}
+        assert verify_evidence(scorecard, alias_map, answered) == 1

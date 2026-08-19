@@ -1,6 +1,7 @@
 import os
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
+from urllib.parse import urlparse
 import json
 
 load_dotenv()
@@ -14,6 +15,23 @@ TAVILY_API_KEY = os.environ.get('TAVILY_API_KEY')
 MAX_DATE = datetime.now(tz=timezone.utc)
 MIN_DATE = MAX_DATE - timedelta(days=90)
 ERROR_LOG_DIR = "results/errors"
+
+def publisher_domain(url: str) -> str:
+    """Hostname of an article URL, minus any leading "www.".
+
+    Derived centrally for every provider so no provider is credited or
+    penalised for a publisher name its API never actually returned. Scoring
+    runs on the provider-supplied `published_by`; this is the weaker fallback
+    shown alongside it, since a domain is usually enough to judge credibility.
+    """
+    if not url:
+        return ""
+    try:
+        netloc = urlparse(url).netloc.lower()
+    except Exception:
+        return ""
+    return netloc[4:] if netloc.startswith("www.") else netloc
+
 
 def set_error_log_dir(dir_path: str):
     global ERROR_LOG_DIR

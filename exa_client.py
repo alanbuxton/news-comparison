@@ -1,7 +1,7 @@
 from utils import EXA_API_KEY, MIN_DATE, MAX_DATE, log_error
 from datetime import datetime
 from exa_py import Exa
-from urllib.parse import urlparse
+from queries import company_keyword_query, industry_keyword_query
 
 PROVIDER_NAME = "Exa"
 
@@ -30,26 +30,10 @@ def get_company_articles_for(company: str):
     return sorted(articles, key=lambda x: x.get("published_date", ""), reverse=True)
 
 def industry_query(industry, industry_context, location):
-    industry_str = industry.strip()
-    if industry_context:
-        industry_str = f"{industry.strip()} ({industry_context.strip()})".strip()
-    prompt = (f"Fetch recent news related to the {industry_str} industry in {location}.\n"
-    "Focus on:\n"
-    "- Market trends and macroeconomic developments\n"
-    "- Regulatory or policy updates\n"
-    "- Major deals, innovations, or disruptions\n"
-    "- Any mention of key players in the space\n\n"
-    "Only include content from credible business, trade, specialized or regional news sources."
-    )
-    return prompt
+    return industry_keyword_query(industry, industry_context, location)
 
 def company_query(company_name):
-    prompt = (f"Find recent news mentioning {company_name}.\n\n"
-    "Prioritize:\n- Product launches, strategic moves, M&A activity\n- Financial performance or investment news\n"
-    "- Regulatory issues or market positioning updates\n- Regional relevance or expansion activities\n\n"
-    "Only include information from trustworthy business or industry-specific media outlets."
-    )
-    return prompt
+    return company_keyword_query(company_name)
 
 def do_query(query, query_context: str):
     if EXA_API_KEY is None or EXA_API_KEY.strip() == '' or EXA_API_KEY == 'my_exa_key':
@@ -61,7 +45,7 @@ def do_query(query, query_context: str):
             end_published_date=MAX_DATE.isoformat(),
             start_published_date=MIN_DATE.isoformat(),
             category="news",
-            num_results=50,
+            num_results=20,
             type="auto",
             contents={
                 "highlights": True
@@ -75,16 +59,17 @@ def do_query(query, query_context: str):
 def item_to_article(item, query_context: str):
     try:
         pub_date = datetime.fromisoformat(item.published_date)
-        parsed_url = urlparse(item.url)
         top_highlight = item.highlights[0] if len(item.highlights) > 0 else ""
         top_highlight = top_highlight.replace("\n", " ")
-        author_string = f" ({item.author})" if item.author else ""
         return {
             "headline": item.title,
             "published_date_clean": pub_date,
             "published_date": item.published_date,
             "summary_text": top_highlight,
-            "published_by": f"{parsed_url.netloc}{author_string}",
+            # Exa returns no publisher name. `item.author` is not one — it is
+            # sometimes a journalist, sometimes a publication — so it is not
+            # used here. The domain is derived centrally in main.py instead.
+            "published_by": "",
             "document_url": item.url,
         }
     except Exception as e:

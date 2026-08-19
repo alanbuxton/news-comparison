@@ -24,10 +24,12 @@ uv add --dev <package> # add dev dependency
 | `main.py` | Runs all providers, writes companies.csv + industries.csv |
 | `analyse.py` | Calls Claude API with anonymised data, writes analysis markdown |
 | `examples.py` | Company names and industry/location combos used in queries |
-| `utils.py` | Shared config: API key loading, 90-day date window, error logging |
+| `utils.py` | Shared config: API key loading, 90-day date window, error logging, `publisher_domain` |
+| `queries.py` | Canonical query text shared by all providers |
 | `exa_client.py` | Exa provider wrapper |
 | `linkup_client.py` | Linkup provider wrapper |
-| `perplexity_client.py` | Perplexity provider wrapper |
+| `perplexity_search_client.py` | Perplexity Search API wrapper (`/search`) |
+| `perplexity_agent_client.py` | Perplexity Agent API wrapper (`/v1/agent`) |
 | `syracuse_client.py` | Syracuse provider wrapper |
 | `tavily_client.py` | Tavily provider wrapper |
 | `newsapi_client.py` | NewsAPI wrapper (currently excluded from CLIENTS in main.py) |
@@ -36,9 +38,118 @@ Results go to `results/{prefix}/` (companies.csv, industries.csv, errors/, AI-an
 
 ## Key design decisions
 
-**Why provider names are anonymised in analyse.py:** The author of this repo is also the author of Syracuse. Any AI model that knows this may unconsciously soften criticism of Syracuse. The anonymisation (random shuffle to letters A–E) ensures the model evaluates on data alone. The decode key is saved locally. Do not remove this feature.
+**Why provider names are anonymised in analyse.py:** The author of this repo is also the author of Syracuse. Any AI model that knows this may unconsciously soften criticism of Syracuse. The anonymisation (random shuffle to letters A, B, C… — one per provider, currently six) ensures the model evaluates on data alone. The decode key is saved locally. Do not remove this feature.
 
-**Why MAX_ARTICLES_PER_QUERY = 15:** This caps the number of articles shown per company/topic per provider to keep the prompt within Claude's context window while still giving enough data to spot patterns (false positives, duplicate articles, missing dates). Increase if the model misses patterns; decrease if costs are a concern.
+**Why there are two Perplexity clients:** Perplexity ships two APIs that behave
+so differently they cannot fairly share one row in the comparison.
+`perplexity_search_client.py` calls `/search`, which returns real indexed pages
+— no model name, no publisher field, and a hard cap of 20 results per query.
+`perplexity_agent_client.py` calls `/v1/agent`, which synthesises an article
+list with publisher names and written summaries. Both are listed in `CLIENTS`;
+comment either out for a given run. `make_anonymization` scales past five
+providers automatically, so running both is safe.
+
+**Why the Agent client replaced the Sonar one:** Perplexity retires
+`/chat/completions` on 2026-09-27, so benchmarking it is not useful to anyone
+choosing a provider now. Sonar tiers map onto Agent presets (`sonar` → `fast`,
+`sonar-pro` → `low`, `sonar-reasoning-pro` → `medium`, `sonar-deep-research` →
+`high`); the client uses `low`, the old `sonar-pro` equivalent, set as `PRESET`.
+The old client is recoverable with `git show 5380b36:perplexity_client.py`.
+
+**Why the Agent client puts the date window in the prompt:** `/v1/agent` rejects
+`search_after_date_filter` / `search_before_date_filter` with `unknown field`,
+unlike both Sonar and the Search API. The window is therefore requested in the
+prompt and genuinely enforced by `filter_recent_real_articles` in `main.py`.
+
+**Why the Agent client ignores the `search_results` blocks:** the response
+carries the raw retrieved pages alongside the synthesised answer, and it would
+be easy to cross-check returned URLs against them. Doing so would hide
+fabricated URLs — a defect this benchmark exists to detect, and Sonar's historic
+failure mode (see the 2026-05-11 and 2026-03-31 runs). The synthesis path is
+read as-is, on purpose. Reading the raw pages instead would also just duplicate
+what `perplexity_search_client.py` already measures.
+
+**Why `examples.py` queries some names twice:** "Klöckner Pentaplast" and
+"Klockner Pentaplast" are one company under two spellings. `analyse.py` folds
+queried names on accent/case/punctuation (`_variant_key`), and where two names
+collapse to the same key it emits a `SPELLING-VARIANT CONSISTENCY` section:
+per provider, the article count for each spelling and the share of returned
+URLs common to both. Previously the judge saw the two as unrelated companies
+and the robustness question — does the provider still find the company when
+the caller omits the umlaut? — never reached the report. The section is
+harness-computed ground truth, feeds `coverage` (answering one spelling only is
+a missed entity) and `precision` (junk under one spelling), and is also written
+into the saved `.md` and the JSON scorecard as `spelling_variants`, so the
+finding lands whether or not the model cites it. Pairs are detected from names
+present in the CSV, never from the current `examples.py` — re-analysing an old
+run must not be reinterpreted through today's query list.
+
+**Why some `examples.py` rows are commented out:** rows tagged `# CUT:` put
+every provider in the same bucket across the 2026-05-28, 2026-07-05 and
+2026-08-09 runs (all junk, all good, or a duplicate of another row), so they
+burned API calls and prompt budget without separating anyone. Cut on
+2026-08-19. Worth re-testing occasionally — a provider improving could make one
+discriminating again.
+
+**Why Tavily's dates changed in 2026-08:** `tavily_client.py` requested
+`topic="news"` — which per Tavily's docs "includes `published_date` metadata" —
+but `item_to_article` hardcoded `published_date` to `""`, so every Tavily row
+landed dateless. That is the origin of the "100% no-date" verdicts in every run
+up to and including 2026-08-09 (4,406 undated articles in 2026-07-05 alone) and
+the recency caps those triggered. It was a bug in this repo, not a Tavily
+defect. Results from before this fix understate Tavily and are not comparable
+with later runs on the date axis.
+
+**Why `published_by` and `publisher_domain` are separate:** only some APIs
+return a publisher name (Linkup, Syracuse, Perplexity Agent). Exa, Tavily and
+Perplexity Search return none. Exa's client used to synthesise one from
+`netloc` plus `item.author`, which made it look better than Perplexity Search on
+identical underlying data — and `item.author` is unreliable anyway, sometimes a
+journalist and sometimes a publication. Now `published_by` holds only what the
+provider actually gave, and `publisher_domain` is derived from the URL centrally
+in `main.py` so every provider gets it identically. Scoring runs on
+`published_by`; the domain is shown to the judge alongside, which is why a
+missing publisher is weighted at roughly half the severity of a missing date
+rather than equally. Do not credit the domain as a publisher — it is derivable
+from any URL, so it would score every provider the same and measure nothing.
+`classify_publisher` sets the flag, the provider header carries a
+`no-publisher: N (X%)` count, and the axis that scores it was renamed from
+`recency_integrity` to `metadata_integrity` when publishers joined dates on it.
+
+**Why duplicate detection keys on the headline stem alone:** it used to key on
+`(published_by, headline_stem)`. Once `published_by` became genuinely blank for
+three providers, that key collapsed unrelated stories together for them while
+letting providers that do return a name escape cross-outlet syndication
+detection. A matching 60-char stem is the same story whoever carried it, and the
+stem is available for every provider.
+
+**Why query wording lives in `queries.py`:** the per-client prompts had drifted.
+Some providers were told to prefer "credible business, trade, specialized or
+regional news sources" and others were not, which quietly advantaged the ones
+that got the steer. The substance is defined once now, in two forms — `keyword`
+for retrieval engines (Exa, Tavily, Perplexity Search) and `prose` for
+LLM-driven ones (Linkup, Perplexity Agent). Clients append only output-format
+wording, which is an API constraint rather than part of the question. Syracuse
+takes structured parameters and uses none of it.
+
+**Why company and industry topic lists are separate:** normalising both onto one
+company-shaped list ("financial performance", "supplier risk") made Linkup
+return 0 articles for `BOPET | CN`, a topic that returns ~10 under the industry
+list — verified by bisecting the query. Company news and industry news are
+different questions; what is normalised is that every provider gets the *same*
+list for a given query type, not that both query types share one list.
+`test_clients.py` pins the two apart.
+
+**Why Linkup runs at `depth="deep"`:** it was on `"standard"` while Tavily ran
+at `search_depth="advanced"`, so Linkup was being benchmarked on its basic tier
+against Tavily's premium one. Linkup's high error rates in earlier runs may
+partly reflect that.
+
+**Why Syracuse gets no date window:** its API supports only "last 7 / 30 / 90
+days" rather than explicit bounds, so the 90-day window is left to
+`filter_recent_real_articles` in `main.py`.
+
+**Why `DEFAULT_MAX_ARTICLES` = 15:** This caps the number of articles shown per company/topic per provider to keep the prompt within Claude's context window while still giving enough data to spot patterns (false positives, duplicate articles, missing dates). Increase if the model misses patterns; decrease if costs are a concern.
 
 **Why the system prompt forbids hedging:** The point of this tool is to get honest competitive intelligence about where Syracuse falls short. A model that hedges or refuses to rank defeats the purpose.
 
@@ -51,9 +162,10 @@ Both CSVs share the same columns:
 | `company` | Populated for company queries |
 | `industry` | Populated for industry queries |
 | `location` | Populated for industry queries |
-| `provider` | One of: Exa, Linkup, Perplexity, Syracuse, Tavily |
+| `provider` | One of: Exa, Linkup, Perplexity Search, Perplexity Agent, Syracuse, Tavily |
 | `headline` | Article title; `*** ERROR ***` for failed calls |
-| `published_by` | Publisher / news source name |
+| `published_by` | Publisher name **as supplied by the provider**; blank if its API returns none |
+| `publisher_domain` | Hostname of `document_url`, derived centrally in `main.py` for every provider |
 | `published_date` | Raw date string from provider |
 | `published_date_clean` | Parsed datetime with timezone |
 | `activity_type` | Optional classification from provider (e.g. M&A, Earnings) |

@@ -22,12 +22,14 @@ import random
 import re
 import string
 import time
+import unicodedata
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 
 import anthropic
 from dotenv import load_dotenv
+from utils import publisher_domain
 
 load_dotenv()
 
@@ -38,21 +40,21 @@ STALE_DAYS = 90             # articles older than this are flagged as stale
 
 # Rubric: five axes summing to 1.0. Tuneable in one place.
 RUBRIC_WEIGHTS = {
-    "precision":         0.35,
-    "coverage":          0.20,
-    "recency_integrity": 0.15,
-    "story_quality":     0.15,
-    "trust":             0.15,
+    "precision":          0.35,
+    "coverage":           0.20,
+    "metadata_integrity": 0.15,
+    "story_quality":      0.15,
+    "trust":              0.15,
 }
 RUBRIC_AXES = list(RUBRIC_WEIGHTS.keys())
 
 # Hard caps on the final score. Encode the user's stated priorities directly:
-# false positives, missing dates, and hallucinations cannot be outweighed by
-# strength on other axes.
-CAP_RECENCY_HARD_THRESHOLD = 3   # recency_integrity ≤ 3
-CAP_RECENCY_HARD_LIMIT     = 5.0
-CAP_RECENCY_SOFT_THRESHOLD = 5   # recency_integrity ≤ 5
-CAP_RECENCY_SOFT_LIMIT     = 7.0
+# false positives, missing dates, missing publishers, and hallucinations cannot
+# be outweighed by strength on other axes.
+CAP_METADATA_HARD_THRESHOLD = 3   # metadata_integrity ≤ 3
+CAP_METADATA_HARD_LIMIT     = 5.0
+CAP_METADATA_SOFT_THRESHOLD = 5   # metadata_integrity ≤ 5
+CAP_METADATA_SOFT_LIMIT     = 7.0
 CAP_TRUST_THRESHOLD        = 4   # trust ≤ 4
 CAP_TRUST_LIMIT            = 4.0
 CAP_PRECISION_THRESHOLD    = 3   # precision ≤ 3
@@ -67,6 +69,22 @@ def _parse_clean_date(raw: str) -> datetime | None:
         return datetime.fromisoformat(raw)
     except ValueError:
         return None
+
+
+def article_domain(art: dict) -> str:
+    """Domain of the article URL. Prefer the column written by main.py; derive it
+    for older results files that predate that column."""
+    stored = (art.get("publisher_domain") or "").strip()
+    return stored or publisher_domain(art.get("document_url", ""))
+
+
+def classify_publisher(art: dict) -> str:
+    """Return "no_publisher" or "published", based only on the publisher name the
+    provider actually supplied. The domain is not a substitute: it is derivable
+    from any URL, so crediting it would score every provider identically and
+    measure nothing. It is shown to the judge alongside, which is why a missing
+    publisher weighs less than a missing date."""
+    return "published" if (art.get("published_by") or "").strip() else "no_publisher"
 
 
 def classify_date(art: dict, reference: datetime) -> str:
@@ -137,7 +155,11 @@ _MARKET_REPORT_SOURCES = {
 
 
 def _is_market_report(art: dict) -> bool:
+    # Check the publisher name and the domain: providers that return no
+    # publisher name would otherwise escape source-based detection entirely.
     if (art.get("published_by") or "").strip().lower() in _MARKET_REPORT_SOURCES:
+        return True
+    if article_domain(art) in _MARKET_REPORT_SOURCES:
         return True
     return bool(_MARKET_REPORT_RE.search(art.get("headline") or ""))
 
@@ -147,7 +169,7 @@ def _compute_dup_groups(articles: list[dict]) -> list[int]:
     duplicates: same canonical URL, or (failing that) same source+headline-stem.
     Returns a list parallel to ``articles``."""
     url_to_group: dict[str, int] = {}
-    pair_to_group: dict[tuple[str, str], int] = {}
+    pair_to_group: dict[str, int] = {}
     groups: list[int] = []
     next_id = 1
     for art in articles:
@@ -155,11 +177,14 @@ def _compute_dup_groups(articles: list[dict]) -> list[int]:
         if url_key and url_key in url_to_group:
             groups.append(url_to_group[url_key])
             continue
-        stem_key = (
-            (art.get("published_by") or "").strip().lower(),
-            _headline_stem(art.get("headline", "")),
-        )
-        if stem_key[1] and stem_key in pair_to_group:
+        # Key on the headline stem alone. Keying on the publisher name (as this
+        # used to) makes dup detection depend on whether a provider's API
+        # returns one: providers that return nothing get a blank key that
+        # collapses unrelated stories together, while those that do escape
+        # cross-outlet syndication detection entirely. A matching 60-char stem
+        # is the same story regardless of who carried it.
+        stem_key = _headline_stem(art.get("headline", ""))
+        if stem_key and stem_key in pair_to_group:
             gid = pair_to_group[stem_key]
             groups.append(gid)
             if url_key:
@@ -170,7 +195,7 @@ def _compute_dup_groups(articles: list[dict]) -> list[int]:
         groups.append(gid)
         if url_key:
             url_to_group[url_key] = gid
-        if stem_key[1]:
+        if stem_key:
             pair_to_group[stem_key] = gid
     return groups
 
@@ -178,6 +203,166 @@ def _compute_dup_groups(articles: list[dict]) -> list[int]:
 def _dup_count(groups: list[int]) -> int:
     """Number of duplicate articles (i.e. excess rows beyond one canonical per group)."""
     return len(groups) - len(set(groups))
+
+
+# --- Spelling variants -----------------------------------------------------
+# examples.py deliberately queries some entities under two spellings that differ
+# only by an accent or punctuation ("Klöckner Pentaplast" / "Klockner
+# Pentaplast"). Without this comparison the judge sees them as two unrelated
+# entities and the robustness question — can a provider find the company when
+# the caller types the name without the umlaut? — never reaches the report.
+
+_VARIANT_STRIP_RE = re.compile(r"[^a-z0-9]+")
+
+# Below this URL overlap, two spellings of one name are answered inconsistently
+# enough to be worth flagging to the judge.
+VARIANT_OVERLAP_FLAG = 0.5
+
+
+def _variant_key(name: str) -> str:
+    """Fold a queried name to accents-, case- and punctuation-insensitive form.
+    Two queried names sharing a key are spellings of the same entity."""
+    folded = unicodedata.normalize("NFKD", name or "").encode("ascii", "ignore").decode()
+    return _VARIANT_STRIP_RE.sub("", folded.lower())
+
+
+def _variant_groups(names: list[str]) -> list[list[str]]:
+    """Group queried names that differ only by accent, case or punctuation.
+    Singletons are dropped — a name with no variant has nothing to compare."""
+    by_key: dict[str, list[str]] = defaultdict(list)
+    for name in names:
+        key = _variant_key(name)
+        if key:
+            by_key[key].append(name)
+    return [sorted(group) for _, group in sorted(by_key.items()) if len(group) > 1]
+
+
+def variant_consistency(
+    data: dict[str, dict[str, list[dict]]]
+) -> list[dict]:
+    """For each spelling-variant group, per provider: how many articles came
+    back for each spelling and how far the returned URL sets overlap.
+
+    ``data`` is the label → item-name → articles mapping the formatters build.
+    Returns [] when the run queried no variant pairs, so the whole feature costs
+    nothing on a query set that has none.
+
+    Limitation: the pair is discovered from the names present in the CSV, not
+    from examples.py — re-analysing an old run must not be reinterpreted through
+    today's query list. Error rows still carry their name, so an all-errors
+    spelling stays visible; a spelling for which every provider returned zero
+    results leaves no rows at all and the pair goes undetected.
+    """
+    all_names = sorted({name for items in data.values() for name in items})
+    groups = _variant_groups(all_names)
+    out: list[dict] = []
+    for variants in groups:
+        per_provider: dict[str, dict] = {}
+        for label in sorted(data):
+            url_sets = []
+            counts = []
+            for name in variants:
+                real = [
+                    a for a in data[label].get(name, [])
+                    if a.get("headline") != "*** ERROR ***"
+                ]
+                counts.append(len(real))
+                url_sets.append(
+                    {u for u in (_normalise_url(a.get("document_url", "")) for a in real) if u}
+                )
+            union = set().union(*url_sets)
+            shared = set.intersection(*url_sets) if url_sets else set()
+            per_provider[label] = {
+                "counts": counts,
+                "shared": len(shared),
+                "union": len(union),
+                "overlap": (len(shared) / len(union)) if union else None,
+                "answered": [n for n, c in zip(variants, counts) if c],
+            }
+        out.append({"variants": variants, "providers": per_provider})
+    return out
+
+
+def _variant_verdict(stats: dict, variants: list[str]) -> str:
+    """One-phrase read on a provider's handling of one variant pair."""
+    answered = stats["answered"]
+    if not answered:
+        return "no results for either spelling"
+    if len(answered) < len(variants):
+        return f"answers only \"{answered[0]}\" ⚠"
+    overlap = stats["overlap"]
+    if overlap is None:
+        return "no URLs to compare"
+    if overlap >= 0.99:
+        return "identical results — spelling-insensitive"
+    if overlap < VARIANT_OVERLAP_FLAG:
+        return "largely different results for the two spellings ⚠"
+    return "partially overlapping results"
+
+
+def variant_block(groups: list[dict], kind: str) -> str:
+    """Render the variant comparison for the prompt. Empty string when the run
+    has no variant pairs."""
+    if not groups:
+        return ""
+    lines = [
+        f"\n{'=' * 60}",
+        "SPELLING-VARIANT CONSISTENCY  (harness-computed — ground truth)",
+        "=" * 60,
+        f"These {kind.lower()} names were queried under two spellings that differ",
+        "only by accent, case or punctuation — they are the same real entity.",
+        "A robust provider returns the same articles for both. Overlap is the",
+        "share of returned URLs common to both spellings.",
+    ]
+    for group in groups:
+        variants = group["variants"]
+        lines.append(f"\n  {' vs '.join(variants)}")
+        for label, stats in group["providers"].items():
+            counts = " vs ".join(str(c) for c in stats["counts"])
+            overlap = (
+                f"{100 * stats['overlap']:.0f}%" if stats["overlap"] is not None else "n/a"
+            )
+            lines.append(
+                f"    PROVIDER {label}: {counts} articles  |  "
+                f"{stats['shared']}/{stats['union']} URLs shared  |  overlap {overlap}"
+                f"  |  {_variant_verdict(stats, variants)}"
+            )
+    return "\n".join(lines) + "\n"
+
+
+def variant_table_md(groups: list[dict], label_to_provider: dict) -> str:
+    """Markdown table of the same comparison, appended to the saved .md with
+    providers decoded. Written by the harness so the finding reaches the report
+    whether or not the model chose to cite it."""
+    if not groups:
+        return ""
+    lines = [
+        "## Spelling-variant consistency (harness — authoritative)",
+        "",
+        "Entities queried under two spellings that differ only by accent, case or",
+        "punctuation. Overlap is the share of returned URLs common to both.",
+    ]
+    for group in groups:
+        variants = group["variants"]
+        lines += [
+            "",
+            f"**{' vs '.join(variants)}**",
+            "",
+            "| Provider | " + " | ".join(f"articles for “{v}”" for v in variants)
+            + " | shared URLs | overlap | read |",
+            "|---|" + "---|" * (len(variants) + 3),
+        ]
+        for label, stats in group["providers"].items():
+            counts = " | ".join(str(c) for c in stats["counts"])
+            overlap = (
+                f"{100 * stats['overlap']:.0f}%" if stats["overlap"] is not None else "—"
+            )
+            provider = label_to_provider.get(label, label)
+            lines.append(
+                f"| {provider} | {counts} | {stats['shared']}/{stats['union']} "
+                f"| {overlap} | {_variant_verdict(stats, variants)} |"
+            )
+    return "\n".join(lines) + "\n"
 
 
 def reference_date_from_results_dir(results_dir: str) -> datetime:
@@ -201,7 +386,7 @@ providers against a fixed rubric. Your output drives a numeric scorecard, not
 a prose review.
 
 Non-negotiable rules:
-1. Score every provider on every axis (precision, coverage, recency_integrity,
+1. Score every provider on every axis (precision, coverage, metadata_integrity,
    story_quality, trust). Use the full 0–10 range. A 7 across the board
    is a refusal to judge — if the data shows a 3, write 3. Refusing to
    differentiate is itself a failure mode.
@@ -211,7 +396,20 @@ Non-negotiable rules:
    like "many results were off-topic" without examples are malformed and will
    be rejected.
 3. Pre-computed flags in the data are ground truth — use them directly:
-     - `[NO DATE ⚠]` and `STALE>90d ⚠` drive recency_integrity.
+     - `[NO DATE ⚠]`, `STALE>90d ⚠` and `NO PUBLISHER ⚠` drive
+       metadata_integrity. Weight the two unequally:
+         * `no-date` is the severe one. A date cannot be recovered from
+           anywhere else in the row, and without it the consumer cannot tell
+           whether a story is from this week or three years ago. A large
+           `no-date: N (X%)` share alone holds this axis at or below 3.
+         * `no-publisher` is real but lesser. Every article shows its domain in
+           parentheses — `| NO PUBLISHER ⚠ (reuters.com)` — and a domain is
+           usually enough to judge credibility, so the information is degraded
+           rather than absent. Weight it at roughly half the severity of
+           `no-date`. A large `no-publisher: N (X%)` share alone should not
+           push this axis below about 5.
+       Do not treat a named publisher as evidence of quality on its own; judge
+       the outlet, whether it arrives as a name or a domain.
      - `[DUP of #N ⚠]` flags and the `dup: N` count in each provider header
        drive uniqueness.
      - `[MKT-REPORT ⚠]` flags and the `mkt-report: N` header count identify
@@ -219,6 +417,11 @@ Non-negotiable rules:
      - `[NO RESULTS RETURNED ⚠]` items and the `answered: X/Y` count in each
        provider header drive coverage.
      - `*** ERROR ***` rows and the `errors: N` header count drive trust.
+     - The `SPELLING-VARIANT CONSISTENCY` section, when present, pairs queried
+       names that are the same real entity spelled two ways (accent, case or
+       punctuation). Answering one spelling and not the other is a coverage
+       failure. Clean results for one spelling and wrong-entity noise for the
+       other is a precision failure. Quote the overlap percentages.
    Do not re-judge dates or re-detect duplicates. Quote the header counts.
 4. The rubric prioritises avoiding false positives over finding every story.
    A provider that returns 5 clean on-topic articles beats one that returns
@@ -240,9 +443,16 @@ Score each provider on these five 0–10 axes. Weights are fixed (sum to 1.0):
 |-------------------|--------|---------------------------------------------------------|-----------------------------------------------------------------|
 | precision         | 0.35   | 100% of returned articles are relevant and on-topic. **No results → score 0** | Any off-topic, wrong-entity, not-news, or stale content; or no results returned |
 | coverage          | 0.20   | At least one real, relevant article for nearly every queried entity (`answered: X/Y` header is ground truth) | Multiple queried entities return no results at all      |
-| recency_integrity | 0.15   | 0 no-date, 0 stale (header counts)                     | Large no-date or stale share                                    |
+| metadata_integrity | 0.15  | 0 no-date, 0 stale, publisher named on nearly every row | Large no-date or stale share (severe); large no-publisher share (about half as severe) |
 | story_quality     | 0.15   | Summaries let user decide without clicking              | Boilerplate, cookie banners, "subscribe to read"                |
 | trust             | 0.15   | 0 errors, no suspicious URLs                            | Hallucinated URLs/facts; high error rate                        |
+
+SPELLING-VARIANT PAIRS
+If the data carries a `SPELLING-VARIANT CONSISTENCY` section, the two spellings
+in each pair are one entity, not two. Treat a provider that answers only one of
+them as having missed that entity for `coverage` — the caller cannot be relied
+on to type the accent — and score `precision` on the worse of the two spellings.
+A provider whose two spellings return the same URLs is robust; say so.
 
 For each axis, output a 0–10 score and an `evidence` array of 1–4 short strings.
 Each evidence string MUST name a queried entity (or industry+location) and quote
@@ -251,12 +461,12 @@ a specific headline, source, or counted pattern. Anonymous claims are malformed.
 SCORING — COMPUTED BY THE HARNESS, NOT BY YOU
 Your axis scores are the only scoring input. After you respond, the harness
 computes, for each provider:
-  weighted = 0.35·precision + 0.20·coverage + 0.15·recency_integrity
+  weighted = 0.35·precision + 0.20·coverage + 0.15·metadata_integrity
            + 0.15·story_quality + 0.15·trust
-  hard caps: recency_integrity ≤ 3 → final ≤ 5.0; recency_integrity ≤ 5 →
+  hard caps: metadata_integrity ≤ 3 → final ≤ 5.0; metadata_integrity ≤ 5 →
   final ≤ 7.0; trust ≤ 4 → final ≤ 4.0; precision ≤ 3 → final ≤ 5.0
   final = min(weighted, applicable caps); ranking = final descending, ties
-  broken by precision then recency_integrity.
+  broken by precision then metadata_integrity.
 Do NOT compute or output weighted, final, caps, a ranking, or any claim about
 which provider is best overall — LLM arithmetic is unreliable and any ordering
 you state will be discarded. Score each axis on its own merits.
@@ -273,7 +483,7 @@ section. No prose inside the JSON block.
       "axes": {
         "precision":         {"score": 0, "evidence": ["..."]},
         "coverage":          {"score": 0, "evidence": ["..."]},
-        "recency_integrity": {"score": 0, "evidence": ["..."]},
+        "metadata_integrity": {"score": 0, "evidence": ["..."]},
         "story_quality":     {"score": 0, "evidence": ["..."]},
         "trust":             {"score": 0, "evidence": ["..."]}
       },
@@ -381,7 +591,8 @@ WHAT COUNTS AS BAD (FP)
 - FP-not-news: About Us pages, product catalogues, consumer guides, company
   registration / registry / directory listings, social media posts, forum
   threads, personal blogs.
-- FP-stale / FP-no-date / FP-dup: see header counts (ground truth).
+- FP-stale / FP-no-date / FP-dup: see header counts (ground truth). A missing
+  publisher is NOT a false positive — the article's domain is still shown.
 - FP-halluc: suspicious URL patterns; invented facts.
 - Errors: `*** ERROR ***` rows — header `errors: N` is ground truth.
 
@@ -457,8 +668,8 @@ Rules:
   — the JSON numbers win.
 - Quote each provider's `final` score (one decimal place, out of 10) in parens.
 - If a provider has any entries in `caps_applied`, mention the engaged cap
-  (e.g. "recency cap" or "trust cap") and the underlying reason (e.g. "12 no-date
-  results", "fabricated Reuters URLs").
+  (e.g. "metadata cap" or "trust cap") and the underlying reason (e.g. "12
+  no-date results", "fabricated Reuters URLs").
 - Be specific — name a queried entity from `evidence` to back the reason.
 - Each ranking bullet is a single sentence covering all five providers in rank order
   (use the `ranking` array).
@@ -533,8 +744,11 @@ def _format_article(
     for marker in markers or []:
         label_parts.append(f"[{marker} ⚠]")
     label_parts.append(headline)
-    if source:
-        label_parts.append(f"| {source}")
+    domain = article_domain(art)
+    domain_part = f" ({domain})" if domain else ""
+    label_parts.append(
+        f"| {source}{domain_part}" if source else f"| NO PUBLISHER ⚠{domain_part}"
+    )
     lines.append(f"    {index}. {' '.join(label_parts)}")
     if url:
         lines.append(f"       URL: {url}")
@@ -549,6 +763,10 @@ def _date_counts(arts: list[dict], reference_date: datetime) -> tuple[int, int]:
     return no_date, stale
 
 
+def _no_publisher_count(arts: list[dict]) -> int:
+    return sum(1 for a in arts if classify_publisher(a) == "no_publisher")
+
+
 def _group_summary(
     label: str,
     all_real: list[dict],
@@ -561,6 +779,7 @@ def _group_summary(
     kind: str,
 ) -> list[str]:
     no_date, stale = _date_counts(all_real, reference_date)
+    no_publisher = _no_publisher_count(all_real)
     total = len(all_real)
 
     def with_pct(n: int) -> str:
@@ -573,6 +792,7 @@ def _group_summary(
             f"PROVIDER {label}  |  answered: {answered}/{universe} {kind_plural}  "
             f"|  total articles: {total}  |  errors: {total_errors}  "
             f"|  no-date: {with_pct(no_date)}  |  stale (>{STALE_DAYS}d): {with_pct(stale)}  "
+            f"|  no-publisher: {with_pct(no_publisher)}  "
             f"|  dup: {with_pct(total_dups)}  |  mkt-report: {with_pct(total_mkt)}"
         ),
         "=" * 60,
@@ -589,11 +809,14 @@ def _item_header(
     mkt: int,
 ) -> str:
     no_date, stale = _date_counts(real, reference_date)
+    no_publisher = _no_publisher_count(real)
     parts = [f"{len(real)} articles"]
     if errors:
         parts.append(f"{len(errors)} errors")
     if no_date:
         parts.append(f"{no_date} no-date")
+    if no_publisher:
+        parts.append(f"{no_publisher} no-publisher")
     if stale:
         parts.append(f"{stale} stale")
     if dup:
@@ -646,33 +869,39 @@ def _render_item(
     return lines, item_dup, item_mkt
 
 
-def format_companies_data(
-    rows: list[dict], provider_to_label: dict, max_articles: int, reference_date: datetime
-) -> str:
-    # Group: label → company → articles
+def group_rows(
+    rows: list[dict], provider_to_label: dict, query_type: str
+) -> dict[str, dict[str, list[dict]]]:
+    """Group raw CSV rows as label → item name → articles. Shared by the prompt
+    formatters and the harness-computed variant table so both see one grouping."""
     data: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
     for row in rows:
         label = provider_to_label.get(row.get("provider", ""), row.get("provider", ""))
-        data[label][row.get("company", "")].append(row)
+        if query_type == "companies":
+            name = row.get("company", "")
+        else:
+            name = f"{row.get('industry', '')} | {row.get('location', '')}"
+            # Surface the query's intended sense of the industry term (e.g.
+            # "Film" meaning plastic film, not cinema) so the judge scores
+            # against it.
+            context = (row.get("industry_context") or "").strip()
+            if context:
+                name = f"{name} (intent: {context})"
+        data[label][name].append(row)
+    return data
 
+
+def format_companies_data(
+    rows: list[dict], provider_to_label: dict, max_articles: int, reference_date: datetime
+) -> str:
+    data = group_rows(rows, provider_to_label, "companies")
     return _format_grouped("Company", data, reference_date, max_articles)
 
 
 def format_industries_data(
     rows: list[dict], provider_to_label: dict, max_articles: int, reference_date: datetime
 ) -> str:
-    # Group: label → topic → articles
-    data: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
-    for row in rows:
-        label = provider_to_label.get(row.get("provider", ""), row.get("provider", ""))
-        topic = f"{row.get('industry', '')} | {row.get('location', '')}"
-        # Surface the query's intended sense of the industry term (e.g. "Film"
-        # meaning plastic film, not cinema) so the judge scores against it.
-        context = (row.get("industry_context") or "").strip()
-        if context:
-            topic = f"{topic} (intent: {context})"
-        data[label][topic].append(row)
-
+    data = group_rows(rows, provider_to_label, "industries")
     return _format_grouped("Topic", data, reference_date, max_articles)
 
 
@@ -729,6 +958,11 @@ def _format_grouped(
         for block in item_blocks:
             lines.extend(block)
 
+    # Spelling-variant pairs are queried as separate items, so the per-item
+    # blocks above cannot show that two of them are the same entity. Append the
+    # cross-item comparison so the judge can score robustness to spelling.
+    lines.append(variant_block(variant_consistency(data), kind))
+
     return "\n".join(lines)
 
 
@@ -775,15 +1009,15 @@ def _apply_caps(axes: dict, weighted: float) -> tuple[float, list[str]]:
     """Recompute final score and engaged caps from axis scores."""
     caps: list[str] = []
     final = weighted
-    rec = axes["recency_integrity"]["score"]
+    meta = axes["metadata_integrity"]["score"]
     trust = axes["trust"]["score"]
     prec = axes["precision"]["score"]
-    if rec <= CAP_RECENCY_HARD_THRESHOLD:
-        caps.append("recency_hard")
-        final = min(final, CAP_RECENCY_HARD_LIMIT)
-    elif rec <= CAP_RECENCY_SOFT_THRESHOLD:
-        caps.append("recency_soft")
-        final = min(final, CAP_RECENCY_SOFT_LIMIT)
+    if meta <= CAP_METADATA_HARD_THRESHOLD:
+        caps.append("metadata_hard")
+        final = min(final, CAP_METADATA_HARD_LIMIT)
+    elif meta <= CAP_METADATA_SOFT_THRESHOLD:
+        caps.append("metadata_soft")
+        final = min(final, CAP_METADATA_SOFT_LIMIT)
     if trust <= CAP_TRUST_THRESHOLD:
         caps.append("trust")
         final = min(final, CAP_TRUST_LIMIT)
@@ -840,7 +1074,7 @@ def parse_scorecard(analysis_text: str) -> dict:
         key=lambda p: (
             -p["final"],
             -p["axes"]["precision"]["score"],
-            -p["axes"]["recency_integrity"]["score"],
+            -p["axes"]["metadata_integrity"]["score"],
         )
     )
     data["ranking"] = [p["label"] for p in data["providers"]]
@@ -894,6 +1128,12 @@ def build_evidence_index(
     """
     alias_map: dict[str, set] = defaultdict(set)
     answered: dict[str, set] = defaultdict(set)
+    variant_aliases: dict[str, set] = defaultdict(set)
+    if query_type == "companies":
+        for row in rows:
+            name = (row.get("company") or "").strip()
+            if name:
+                variant_aliases[_variant_key(name)].add(name.lower())
     for row in rows:
         if row.get("headline") == "*** ERROR ***":
             continue
@@ -905,6 +1145,12 @@ def build_evidence_index(
             key = name.lower()
             # Very short names substring-match too freely to be useful.
             aliases = {key} if len(key) >= 4 else set()
+            # A spelling-variant pair is one entity: evidence naming either
+            # spelling is legitimate if the provider answered either, so map
+            # every variant's alias onto this key as well.
+            for other in variant_aliases.get(_variant_key(name), ()):  # noqa: B023
+                if len(other) >= 4:
+                    aliases.add(other)
         else:
             industry = (row.get("industry") or "").strip()
             location = (row.get("location") or "").strip()
@@ -1080,6 +1326,17 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     companies_notes = extract_notes(companies_analysis)
     industries_notes = extract_notes(industries_analysis)
 
+    companies_variants = variant_consistency(
+        group_rows(companies_rows, provider_to_label, "companies")
+    )
+    industries_variants = variant_consistency(
+        group_rows(industries_rows, provider_to_label, "industries")
+    )
+    print(
+        "Spelling-variant pairs found: "
+        f"{len(companies_variants)} companies, {len(industries_variants)} topics"
+    )
+
     print("Verifying evidence strings against the data…")
     alias_map, answered = build_evidence_index(companies_rows, provider_to_label, "companies")
     n_warn = verify_evidence(companies_scorecard, alias_map, answered)
@@ -1116,6 +1373,9 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         f.write(companies_analysis)
         f.write("\n\n---\n\n")
         f.write(scorecard_table_md(companies_scorecard))
+        if companies_variants:
+            f.write("\n---\n\n")
+            f.write(variant_table_md(companies_variants, label_to_provider))
 
     industries_path = os.path.join(ai_dir, f"claude-industries-{timestamp}.md")
     with open(industries_path, "w") as f:
@@ -1126,6 +1386,14 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         f.write(industries_analysis)
         f.write("\n\n---\n\n")
         f.write(scorecard_table_md(industries_scorecard))
+        if industries_variants:
+            f.write("\n---\n\n")
+            f.write(variant_table_md(industries_variants, label_to_provider))
+
+    # Keep the comparison in the machine-readable scorecards too, so a later run
+    # can diff spelling robustness without re-parsing the markdown.
+    companies_scorecard["spelling_variants"] = companies_variants
+    industries_scorecard["spelling_variants"] = industries_variants
 
     companies_json_path = os.path.join(ai_dir, f"claude-companies-{timestamp}.json")
     with open(companies_json_path, "w") as f:
