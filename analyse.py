@@ -587,7 +587,7 @@ Non-negotiable rules:
    A provider that returns 5 clean on-topic articles beats one that returns
    30 articles half of which are wrong-entity, About Us pages, or social
    posts. Reflect this in precision.
-5. You do not know who built any of these providers. Treat A, B, C, D, E as
+5. You do not know who built any of these providers. Treat __LABEL_LIST__ as
    interchangeable labels. Score on the data alone.
 6. Output exactly the JSON scorecard schema given, inside a single ```json
    fenced block, followed by a short ## Notes prose section. Do not add
@@ -669,8 +669,9 @@ ordering — the harness computes the official ranking from your axis scores.
 """
 
 COMPANIES_PROMPT = """\
-Five news search providers (labelled A–E, real names hidden) were each asked to
-return news articles about specific companies over the past 90 days.
+__N_PROVIDERS_CAP__ news search providers (labelled __LABELS__, real names
+hidden) were each asked to return news articles about specific companies over
+the past 90 days.
 
 USER CONTEXT
 The consumer is either a human business professional or an AI agent that just
@@ -723,9 +724,9 @@ __DATA__
 """
 
 INDUSTRIES_PROMPT = """\
-Five news search providers (labelled A–E, real names hidden) were each asked to
-return news articles about specific industry/location combinations over the
-past 90 days.
+__N_PROVIDERS_CAP__ news search providers (labelled __LABELS__, real names
+hidden) were each asked to return news articles about specific
+industry/location combinations over the past 90 days.
 
 USER CONTEXT
 The consumer is either a human business professional or an AI agent reviewing
@@ -791,7 +792,7 @@ INDUSTRIES_PROMPT = _build_prompt(INDUSTRIES_PROMPT, "industries")
 
 README_SUMMARY_PROMPT = """\
 Two scorecards are below — one for company queries, one for industry/location
-queries. Providers are coded A–E.
+queries. Providers are coded __LABELS__.
 
 Decode key: __DECODE_KEY__
 
@@ -840,8 +841,8 @@ Rules:
   (e.g. "metadata cap" or "trust cap") and the underlying reason (e.g. "12
   no-date results", "fabricated Reuters URLs").
 - Be specific — name a queried entity from `evidence` to back the reason.
-- Each ranking bullet is a single sentence covering all five providers in rank order
-  (use the `ranking` array).
+- Each ranking bullet is a single sentence covering all __N_PROVIDERS__ providers
+  in rank order (use the `ranking` array).
 - No [Details](...) links.
 
 ---
@@ -890,6 +891,31 @@ def make_anonymization(providers: list[str]) -> tuple[dict, dict]:
     label_to_provider = dict(zip(letters, shuffled))
     provider_to_label = {v: k for k, v in label_to_provider.items()}
     return label_to_provider, provider_to_label
+
+
+_NUMBER_WORDS = {
+    1: "one", 2: "two", 3: "three", 4: "four", 5: "five",
+    6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten",
+}
+
+
+def fill_provider_counts(text: str, labels: list[str]) -> str:
+    """Fill the provider-count placeholders in a prompt.
+
+    Providers are discovered from the CSV, so the count is not fixed — running
+    both Perplexity clients makes it six. The prompt text used to hardcode
+    "Five … A–E", which told the model to rank fewer providers than the data
+    actually contained.
+    """
+    labels = sorted(labels)
+    word = _NUMBER_WORDS.get(len(labels), str(len(labels)))
+    span = f"{labels[0]}–{labels[-1]}" if len(labels) > 1 else labels[0]
+    return (
+        text.replace("__N_PROVIDERS_CAP__", word.capitalize())
+        .replace("__N_PROVIDERS__", word)
+        .replace("__LABEL_LIST__", ", ".join(labels))
+        .replace("__LABELS__", span)
+    )
 
 
 def _format_article(
@@ -1142,12 +1168,19 @@ def _format_grouped(
 # API call
 # ---------------------------------------------------------------------------
 
-def call_claude(client: anthropic.Anthropic, model: str, data_text: str, prompt_template: str) -> str:
+def call_claude(
+    client: anthropic.Anthropic,
+    model: str,
+    data_text: str,
+    prompt_template: str,
+    labels: list[str],
+) -> str:
     char_count = len(data_text)
     token_estimate = char_count // 4
     print(f"  Data size: ~{char_count:,} chars / ~{token_estimate:,} tokens")
 
-    user_message = prompt_template.replace("__DATA__", data_text)
+    user_message = fill_provider_counts(prompt_template, labels).replace("__DATA__", data_text)
+    system_prompt = fill_provider_counts(SYSTEM_PROMPT, labels)
     for attempt in range(4):
         try:
             # claude-opus-4-7 rejects the temperature param as deprecated, so
@@ -1155,7 +1188,7 @@ def call_claude(client: anthropic.Anthropic, model: str, data_text: str, prompt_
             response = client.messages.create(
                 model=model,
                 max_tokens=12288,
-                system=SYSTEM_PROMPT,
+                system=system_prompt,
                 messages=[{"role": "user", "content": user_message}],
             )
             text_block = next(b for b in response.content if b.type == "text")
@@ -1409,7 +1442,7 @@ def generate_readme_summary(
     industries_scorecard = {k: v for k, v in industries_scorecard.items() if k != "ranking_rationale"}
     headline = _headline_sentence(companies_scorecard, industries_scorecard, label_to_provider)
     prompt = (
-        README_SUMMARY_PROMPT
+        fill_provider_counts(README_SUMMARY_PROMPT, list(label_to_provider))
         .replace("__DECODE_KEY__", decode_key)
         .replace("__DATE__", run_date)
         .replace("__HEADLINE__", headline)
@@ -1478,7 +1511,9 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     companies_data = format_companies_data(companies_rows, provider_to_label, max_articles, reference_date)
 
     print("Calling Claude for companies analysis…")
-    companies_analysis = call_claude(client, model, companies_data, COMPANIES_PROMPT)
+    companies_analysis = call_claude(
+        client, model, companies_data, COMPANIES_PROMPT, list(label_to_provider)
+    )
 
     # Pause to avoid hitting the per-minute token rate limit between the two calls
     print("\nWaiting 60s to stay within token-per-minute rate limit…")
@@ -1489,7 +1524,9 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     industries_data = format_industries_data(industries_rows, provider_to_label, max_articles, reference_date)
 
     print("Calling Claude for industries analysis…")
-    industries_analysis = call_claude(client, model, industries_data, INDUSTRIES_PROMPT)
+    industries_analysis = call_claude(
+        client, model, industries_data, INDUSTRIES_PROMPT, list(label_to_provider)
+    )
 
     # Parse and recompute server-side
     print("\nParsing scorecards…")

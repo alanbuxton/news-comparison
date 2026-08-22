@@ -29,11 +29,16 @@ from analyse import (
     _variant_groups,
     _variant_key,
     build_evidence_index,
+    COMPANIES_PROMPT,
+    INDUSTRIES_PROMPT,
+    README_SUMMARY_PROMPT,
+    SYSTEM_PROMPT,
     classify_date,
     classify_publisher,
     format_companies_data,
     group_rows,
     make_anonymization,
+    fill_provider_counts,
     parse_scorecard,
     score_block,
     score_diagnostics,
@@ -597,6 +602,52 @@ class TestMakeAnonymization:
         # After 20 shuffles, at least two should differ (probability of all identical ≈ 0)
         unique = {tuple(sorted(m.items())) for m in mappings}
         assert len(unique) > 1
+
+    def test_six_providers_get_six_letters(self):
+        providers = [
+            "Exa", "Linkup", "Perplexity Agent", "Perplexity Search",
+            "Syracuse", "Tavily",
+        ]
+        l2p, _ = make_anonymization(providers)
+        assert set(l2p.keys()) == set("ABCDEF")
+        assert set(l2p.values()) == set(providers)
+
+
+# ---------------------------------------------------------------------------
+# fill_provider_counts
+# ---------------------------------------------------------------------------
+
+class TestFillProviderCounts:
+    TEMPLATE = (
+        "__N_PROVIDERS_CAP__ providers (labelled __LABELS__). "
+        "Treat __LABEL_LIST__ alike. Cover all __N_PROVIDERS__ providers."
+    )
+
+    def test_five_providers(self):
+        out = fill_provider_counts(self.TEMPLATE, list("ABCDE"))
+        assert out == (
+            "Five providers (labelled A\u2013E). "
+            "Treat A, B, C, D, E alike. Cover all five providers."
+        )
+
+    def test_six_providers(self):
+        out = fill_provider_counts(self.TEMPLATE, list("ABCDEF"))
+        assert "Six providers (labelled A\u2013F)" in out
+        assert "Treat A, B, C, D, E, F alike" in out
+        assert "all six providers" in out
+
+    def test_single_provider_has_no_range(self):
+        out = fill_provider_counts(self.TEMPLATE, ["A"])
+        assert "labelled A)" in out
+        assert "\u2013" not in out
+
+    def test_prompts_carry_no_hardcoded_count(self):
+        for prompt in (SYSTEM_PROMPT, COMPANIES_PROMPT, INDUSTRIES_PROMPT,
+                       README_SUMMARY_PROMPT):
+            filled = fill_provider_counts(prompt, list("ABCDEF"))
+            assert "A\u2013E" not in filled
+            assert "five providers" not in filled
+            assert "Five news search providers" not in filled
 
 
 # ---------------------------------------------------------------------------

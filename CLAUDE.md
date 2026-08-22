@@ -47,7 +47,8 @@ so differently they cannot fairly share one row in the comparison.
 `perplexity_agent_client.py` calls `/v1/agent`, which synthesises an article
 list with publisher names and written summaries. Both are listed in `CLIENTS`;
 comment either out for a given run. `make_anonymization` scales past five
-providers automatically, so running both is safe.
+providers automatically, and the prompt text takes its provider count and label
+range from the run via `fill_provider_counts`, so running both is safe.
 
 **Why the Agent client replaced the Sonar one:** Perplexity retires
 `/chat/completions` on 2026-09-27, so benchmarking it is not useful to anyone
