@@ -133,6 +133,18 @@ trustworthy date.
 
 (In reverse order) 
 
+### 2026-08-22
+
+Perplexity Agent 1st in both query types.
+
+- **Companies:** Perplexity Agent 1st (9.1/10 — broad 35/42 coverage with clean metadata and tight relevance, e.g. Alpek Polyester Argentina plant closure and Lusha Systems €2m GDPR fine), Syracuse 2nd (7.2/10 — clean well-sourced results but leaves 18/42 entities unanswered including HPCL Mittal Energy and Sigma Chemtrade), Linkup 3rd (6.3/10 — tight on-topic answers for Borouge and RainFocus but only 17/42 answered plus 2 Bloomberg errors), Exa 4th (5.0/10 — metadata cap engaged for 100% no-publisher rows, and pads Fritz Foss with Danfoss/Foss & Company wrong-entity results), Perplexity Search 5th (5.0/10 — metadata and precision caps engaged, systematic wrong-entity padding e.g. BERKSHIRE LABELS returning Berkshire Hathaway/Buffett news), Tavily last (2.2/10 — metadata, trust and precision caps engaged, with 74% of results self-scored below 0.2 and Dine Cartonnages answered with Facebook mummy-sacrifice posts).
+- **Industries:** Perplexity Agent 1st (9.0/10 — quantified on-intent summaries like Road Freight Europe's 148.0 contract-rate index and only 2 mkt-report rows across the run), Syracuse 2nd (7.8/10 — broad 270-article coverage but ~16% market-report noise and wrong-entity matches like JD.com/Ceconomy under Construction and Leica under Film-CN), Exa 3rd (7.0/10 — metadata cap for 100% no-publisher rows, uniform 20-per-topic depth undermined by Chinese-language ag-investor pages in Film-CN), Perplexity Search 4th (5.0/10 — metadata and precision caps engaged, 36% mkt-report share with Molasses/Oceania returning 17/20 openPR/IndexBox forecasts), Linkup 5th (4.0/10 — trust cap engaged from 3 errors on a 34-article base and 8/20 topics empty including Film-CN and LOGISTICS Western Africa), Tavily last (3.3/10 — metadata, trust and precision caps engaged, with 58% mkt-report share and wrong-entity "ISWAP logistics suppliers" Boko Haram hits in Western Africa).
+
+**Recommendation for autonomous use** (agent or human acting without manual filtering):
+
+- **Companies:** **Use Perplexity Agent** — final 9.1 and precision 9 with zero caps engaged, and it declines to fabricate on obscure queries rather than pad with wrong-entity results.
+- **Industries:** **Use Perplexity Agent** — final 9.0 and precision 9 with no caps engaged, delivering quantified decision-ready
+
 ### 2026-08-09
 
 No single winner: Syracuse 1st for companies, Exa 1st for industries.

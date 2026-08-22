@@ -1,0 +1,21 @@
+{
+  "label_to_provider": {
+    "A": "Syracuse",
+    "B": "Perplexity Agent",
+    "C": "Exa",
+    "D": "Perplexity Search",
+    "E": "Linkup",
+    "F": "Tavily"
+  },
+  "provider_to_label": {
+    "Syracuse": "A",
+    "Perplexity Agent": "B",
+    "Exa": "C",
+    "Perplexity Search": "D",
+    "Linkup": "E",
+    "Tavily": "F"
+  },
+  "model": "claude-opus-4-7",
+  "max_articles_per_item": 15,
+  "generated_at": "20260822-181459"
+}

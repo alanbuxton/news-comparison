@@ -1,0 +1,50 @@
+[15:38:46] PARSE_ARTICLE - company=Bloomberg
+Error: Invalid isoformat string: '2025-XX-XXT00:00:00Z'
+Data: {
+  "headline": "Bloomberg Scores Major Private Markets Move, Buys Canoe",
+  "publication_date": "2025-XX-XXT00:00:00Z",
+  "summary": "Bloomberg acquired Canoe Intelligence, an AI-driven data management platform for private markets, marking its most significant acquisition since Barclays Risk Analytics. This move enhances Bloomberg's private market data capabilities and integrates AI to improve investment lifecycle insights.",
+  "source": "Family Wealth Report",
+  "url": "https://www.familywealthreport.com/article.php/Bloomberg-Scores-Major-Private-Markets-Move,-Buys-Canoe"
+}
+--------------------------------------------------------------------------------
+[15:38:46] PARSE_ARTICLE - company=Bloomberg
+Error: Invalid isoformat string: '2025-XX-XXT00:00:00Z'
+Data: {
+  "headline": "Bloomberg Growth Strategy in 2025: 5 Moves, 3 Risks",
+  "publication_date": "2025-XX-XXT00:00:00Z",
+  "summary": "Bloomberg L.P. focuses on expanding in corporate treasury, risk, wealth management, and public-sector analytics, targeting Asia-Pacific, Middle East, and India. The company leverages AI, including BloombergGPT, to enhance its terminal services while emphasizing regional market adaptation and regulatory compliance.",
+  "source": "Pestel-analysis.com",
+  "url": "https://pestel-analysis.com/blogs/growth-strategy/bloomberg"
+}
+--------------------------------------------------------------------------------
+[16:07:17] PARSE_ARTICLE - industry=PE Resins, industry_str=Elastomer, HDPE Bio, LDPE C4, location=US
+Error: month must be in 1..12
+Data: {
+  "headline": "HDPE Packaging Market Forecast Points Higher Toward 2035, Driven by Biopharma Expansion and Sustainability Mandates",
+  "publication_date": "2026-00-00T00:00:00Z",
+  "source": "IndexBox",
+  "url": "https://www.indexbox.io/blog/hdpe-packaging-market-forecast-points-higher-toward-2035-driven-by-biopharma-expansion-and-sustainability-mandates/",
+  "summary": "The global HDPE packaging market is expected to grow at a CAGR of 4.8% from 2026 to 2035, driven by healthcare, industrial production, and consumer goods sectors. Sustainability mandates are reshaping resin sourcing with increased use of bio-circular HDPE and post-consumer recyclate (PCR). The market is becoming more regionally diversified with disciplined procurement behavior."
+}
+--------------------------------------------------------------------------------
+[16:07:17] PARSE_ARTICLE - industry=PE Resins, industry_str=Elastomer, HDPE Bio, LDPE C4, location=US
+Error: month must be in 1..12
+Data: {
+  "headline": "High-Density Polyethylene (HDPE) Market Size and Share, 2034",
+  "publication_date": "2026-00-00T00:00:00Z",
+  "source": "Market Data Forecast",
+  "url": "https://www.marketdataforecast.com/market-reports/high-density-polyethylene-market",
+  "summary": "The HDPE market is expanding with rising demand for agricultural mulch films, geomembranes, and protective liners, growing at a CAGR of 6.7% from 2026 to 2034. North American recycled HDPE (rHDPE) production capacity has increased, supporting sustainability goals. Key resin grades like PE-100 dominate due to superior performance in high-stress applications."
+}
+--------------------------------------------------------------------------------
+[16:07:17] PARSE_ARTICLE - industry=PE Resins, industry_str=Elastomer, HDPE Bio, LDPE C4, location=US
+Error: month must be in 1..12
+Data: {
+  "headline": "Resine di polietilene (PE) | HDPE, LDPE e LLDPE per film, stampaggio per soffiaggio e iniezione | Longchang",
+  "publication_date": "2026-00-00T00:00:00Z",
+  "source": "Longchang",
+  "url": "https://www.lcpetrochemical.com/it/Polyethylene-pl46120647.html",
+  "summary": "Longchang offers a comprehensive portfolio of HDPE, LDPE, and LLDPE resins designed for efficient processing and durability in film, blow molding, and injection molding applications. The company emphasizes regulatory compliance and sustainability, including food contact suitability and circular economy strategies. Their products serve diverse sectors such as packaging, healthcare, agriculture, automotive, and construction."
+}
+--------------------------------------------------------------------------------

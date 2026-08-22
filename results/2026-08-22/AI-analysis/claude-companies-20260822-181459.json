@@ -1,0 +1,550 @@
+{
+  "query_type": "companies",
+  "providers": [
+    {
+      "label": "B",
+      "axes": {
+        "precision": {
+          "score": 9,
+          "evidence": [
+            "Alpek Polyester: 3 tightly on-topic articles about Argentina plant closure, Q2 EBITDA guidance, war-related opportunity",
+            "Linklaters: 11 relevant articles on Webber Wentzel alliance end, US expansion, FY26 results",
+            "Lusha Systems: 6 focused articles on Italian \u20ac2m GDPR fine",
+            "Mistral AI: 8 articles all specifically about the French AI company, no wrong-entity noise"
+          ]
+        },
+        "coverage": {
+          "score": 8,
+          "evidence": [
+            "answered: 35/42 companies \u2014 highest of any provider except C/D/F",
+            "Only 7 no-results: BERKSHIRE LABELS, Fritz Foss, ICOF EUROPE, IMPACT RETAIL, NUBIZ PLASTIC, SEERTECH SOLUTIONS, ZETA TECHNICAL SERVICES",
+            "Answered obscure entities: Dine Cartonnages (1 article legal notice), HPCL Mittal Energy (1 ICRA rating article), Sigma Chemtrade (1 CARE Ratings), TRICON DRY CHEMICALS (2 articles including Colombian Supreme Court case)"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "no-date: 0 (0%), stale: 0 (0%), no-publisher: 0 (0%)",
+            "Consistent publisher naming: 'Reuters', 'Bloomberg', 'MLex', 'The Wall Street Journal', 'Financial Times'"
+          ]
+        },
+        "story_quality": {
+          "score": 9,
+          "evidence": [
+            "CBS News Paramount coverage includes substantive M&A context: 'Paramount Skydance said all options, including a possible sale of CNN, were being considered'",
+            "Coles: 'ACCC probes Aldi, Coles after Four Corners tomato-sourcing claims' with detailed context on Chinese tomato allegations",
+            "Sigma Chemtrade: single article gives credit downgrade rationale ('CARE Ratings downgraded... to CARE B+')"
+          ]
+        },
+        "trust": {
+          "score": 10,
+          "evidence": [
+            "errors: 0",
+            "Consistently reputable sources: Reuters, Bloomberg, WSJ, MLex, ICIS",
+            "0 mkt-report flags"
+          ]
+        }
+      },
+      "verdict": "Best-balanced provider: broad coverage combined with clean metadata, informative summaries, and no obvious noise.",
+      "weighted": 9.1,
+      "final": 9.1,
+      "caps_applied": []
+    },
+    {
+      "label": "A",
+      "axes": {
+        "precision": {
+          "score": 7,
+          "evidence": [
+            "CBS News: 20 on-topic articles about CBS News/60 Minutes staffing, Bari Weiss, Scott Pelley firing",
+            "Dominion Energy: strong M&A coverage of NextEra merger, Spanberger intervention",
+            "ExxonMobil: 19 relevant articles on Q2 earnings, Guyana, Rovuma LNG",
+            "Some noise: Bloomberg 'Ariel Levy to join 60 Minutes' filed under CBS News is fine, but ExxonMobil Petrobras profit article is peripheral name-drop"
+          ]
+        },
+        "coverage": {
+          "score": 4,
+          "evidence": [
+            "answered: 24/42 companies \u2014 18 entities returned NO RESULTS including BERKSHIRE LABELS, CHARTER NEX FILMS, Dine Cartonnages, HPCL Mittal Energy, ICOF EUROPE, Jindal Films, Klockner Pentaplast (unaccented), LUSHA SYSTEMS, Sigma Chemtrade, TRICON DRY CHEMICALS, Universal McCann, ZETA TECHNICAL SERVICES",
+            "Spelling-variant failure: answered 'Kl\u00f6ckner Pentaplast' with 3 articles but 0 for 'Klockner Pentaplast'"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 9,
+          "evidence": [
+            "no-date: 0 (0%), stale: 0 (0%), no-publisher: 0 (0%)",
+            "Named publishers throughout: 'Rio Times Online', 'Plastics News', 'Bloomberg', 'Reuters'"
+          ]
+        },
+        "story_quality": {
+          "score": 8,
+          "evidence": [
+            "Coles: substantive summaries e.g. 'Coles Ends Talks For Takeover of Petbarn Chain; Shares Gain' with context",
+            "Constellium Q2 earnings summary explains record profitability and cash flow",
+            "Some short/truncated summaries e.g. Borouge Q2 'Borouge reports 23% rise in Q2 net profit as Ruwais operations recover.' is just the headline repeated"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "errors: 0",
+            "URLs from reputable domains: reuters.com, bloomberg.com, cnn.com, spglobal.com",
+            "1 mkt-report flag on Constellium (alcircle.com), 3 total mkt-report across run"
+          ]
+        }
+      },
+      "verdict": "Clean, well-formatted results with strong metadata and no errors, but leaves 18 of 42 queried entities completely unanswered including obscure but real companies.",
+      "weighted": 7.15,
+      "final": 7.15,
+      "caps_applied": []
+    },
+    {
+      "label": "E",
+      "axes": {
+        "precision": {
+          "score": 7,
+          "evidence": [
+            "Where it answers, results are tightly on-topic: Borouge 8 articles all about the UAE petrochemicals company, RainFocus 9 articles all about the event platform",
+            "Linklaters 10 articles all about the law firm's transactions and expansions",
+            "Gandhar Oil 6 articles all about Q1 profit surge and refinery operations",
+            "Bloomberg returns only 2 articles due to *** ERROR *** \u2014 but they are relevant"
+          ]
+        },
+        "coverage": {
+          "score": 2,
+          "evidence": [
+            "answered: 17/42 companies \u2014 worst coverage of any provider except by design",
+            "25 no-results including major public companies: ALPEK POLYESTER, BERKSHIRE LABELS, CBS News, CHARTER NEX FILMS, CHEP, Dine Cartonnages, Entertainment Partners, ExxonMobil, GREEN BAY PACKAGING, HAIER, ICOF EUROPE, IMPACT RETAIL, Jindal Films, Klockner Pentaplast, Kl\u00f6ckner Pentaplast, LUSHA SYSTEMS, Little Island Productions, NUBIZ PLASTIC, REGUS BUSINESS CENTERS, SEERTECH SOLUTIONS, Sigma Chemtrade, TRICON DRY CHEMICALS, Universal McCann, ZETA TECHNICAL SERVICES"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "no-date: 0, stale: 0, no-publisher: 0",
+            "Publishers named clearly: 'Rio Times Online', 'AGBI', 'Reuters', 'Bloomberg'"
+          ]
+        },
+        "story_quality": {
+          "score": 8,
+          "evidence": [
+            "RainFocus Sales Module summary: 'The module integrates with CRMs like Salesforce, providing sales leadership with visibility...' - substantive",
+            "Constellium Q2 summary quotes revenue and buyback specifics",
+            "Coles Greencross article summarizes both the abandonment and the ACCC opposition context"
+          ]
+        },
+        "trust": {
+          "score": 5,
+          "evidence": [
+            "errors: 2 (Bloomberg entity failure)",
+            "Where it answers, sources are reputable (Reuters, Bloomberg, ad-hoc-news.de, Investing.com)",
+            "Error rate 2/42 = ~5% is material for a company query"
+          ]
+        }
+      },
+      "verdict": "High-quality but low-yield: when it answers, results are relevant and well-formatted, but it fails to answer well over half of the queried companies.",
+      "weighted": 6.3,
+      "final": 6.3,
+      "caps_applied": []
+    },
+    {
+      "label": "C",
+      "axes": {
+        "precision": {
+          "score": 4,
+          "evidence": [
+            "Bloomberg query: returns generic Bloomberg news wire content like 'Nvidia Will Back First Phase of OpenAI Ohio Project' and 'Alibaba to Sell Gaming Arm' rather than news ABOUT Bloomberg",
+            "IMPACT RETAIL: returns wrong-entity 'Ayala launches ACX Retail', 'Angel & Rocket Plans Major Expansion in India', 'Impact.com's $340M Secondary Raise' \u2014 none about a company called Impact Retail",
+            "Fritz Foss: 20 articles on Danfoss, F&F Korean brand, Foss & Company tax equity \u2014 wrong entities",
+            "TRICON DRY CHEMICALS: mostly generic chemical M&A (Tronox, Tinicum, GracoRoberts) not the queried entity"
+          ]
+        },
+        "coverage": {
+          "score": 9,
+          "evidence": [
+            "answered: 42/42 companies \u2014 always returns 20 articles per company",
+            "But 'answers' for Fritz Foss, IMPACT RETAIL, SEERTECH SOLUTIONS, ZETA TECHNICAL SERVICES are mostly wrong-entity padding"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 3,
+          "evidence": [
+            "no-publisher: 840 (100%) \u2014 every single row has NO PUBLISHER \u26a0",
+            "Domains still visible (e.g. finance.yahoo.com, bloomberg.com, prnewswire.com) so information is degraded rather than absent",
+            "0 no-date, 0 stale is a positive"
+          ]
+        },
+        "story_quality": {
+          "score": 6,
+          "evidence": [
+            "Alpek Polyester Q2 earnings summary provides detail: 'Operating Free Cash Flow: $127 million'",
+            "Some summaries are raw scraped fragments: Bloomberg entry has 'Alibaba Group Holding Ltd. is selling its gaming arm in a deal worth at least $1.5 billion' followed by menu artifacts",
+            "LinkedIn posts appear as sources for Alpek ('Rildo Magalh\u00e3es | linkedin.com') \u2014 social media FP-not-news"
+          ]
+        },
+        "trust": {
+          "score": 6,
+          "evidence": [
+            "errors: 0",
+            "dup: 24 (3%) higher than peers",
+            "mkt-report: 8 flags",
+            "LinkedIn and social sources for company research reduce trust: Alpek entry #4 is a LinkedIn profile page"
+          ]
+        }
+      },
+      "verdict": "Answers every company but pads obscure queries with wrong-entity results, strips publisher names entirely, and includes LinkedIn/social sources.",
+      "weighted": 5.45,
+      "final": 5.0,
+      "caps_applied": [
+        "metadata_hard"
+      ]
+    },
+    {
+      "label": "D",
+      "axes": {
+        "precision": {
+          "score": 3,
+          "evidence": [
+            "BERKSHIRE LABELS: 20 articles almost entirely about Berkshire Hathaway (Buffett, Alphabet stake), not label manufacturer \u2014 wrong-entity failure",
+            "CBS News: articles about CSPi Q3, Cirrus Logic, Paramount-Warner, Castle Biosciences, Essilorluxottica \u2014 many unrelated to CBS News specifically",
+            "Fritz Foss: 20 articles on Danfoss, DEUTZ acquiring FFG, JFB/XTEND, FinanceFeeds \u2014 all wrong entities",
+            "CHEP: articles on StoneX AMG, Osapiens/Nasdaq, Xylem/Cornell Pump, Chevron/Hess \u2014 mostly unrelated M&A",
+            "NUBIZ PLASTIC returns Nuo Therapeutics, Nu Holdings, Nocopi \u2014 name-similarity errors",
+            "SEERTECH SOLUTIONS returns Ambiq, Serve Robotics, Semtech \u2014 wrong entities"
+          ]
+        },
+        "coverage": {
+          "score": 9,
+          "evidence": [
+            "answered: 42/42 \u2014 full coverage",
+            "But many answers are wrong-entity padding; genuine coverage for e.g. HPCL Mittal Energy is 20 HPCL-related articles (correct); Dine Cartonnages answered with UNFI, News Corp, Hilton Food \u2014 none about the queried entity"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 3,
+          "evidence": [
+            "no-publisher: 840 (100%) \u2014 same total-strip as C",
+            "0 no-date, 0 stale",
+            "Domains present in parens so recoverable"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "Dominion Energy summary quotes specific figures: 'Q2 2026 operating earnings of $0.79 a share, ahead of Wall Street's $0.75 estimate'",
+            "Constellium: 'record segment adjusted EBITDA of $439 million' with context",
+            "Some summaries are broken markdown fragments: Berkshire Hathaway 'Stay Informed Download the App...' includes navigation cruft"
+          ]
+        },
+        "trust": {
+          "score": 6,
+          "evidence": [
+            "errors: 0",
+            "Wrong-entity results systematically returned for obscure companies reduce trust: querying 'BERKSHIRE LABELS' should not return Warren Buffett news",
+            "dup: 3 (0%) low"
+          ]
+        }
+      },
+      "verdict": "Nominal 100% answer rate hides systematic wrong-entity padding for obscure queries, plus universal stripping of publisher names.",
+      "weighted": 5.25,
+      "final": 5.0,
+      "caps_applied": [
+        "metadata_hard",
+        "precision"
+      ]
+    },
+    {
+      "label": "F",
+      "axes": {
+        "precision": {
+          "score": 1,
+          "evidence": [
+            "Self-reported relevance: 74% of results scored below 0.2 by the provider itself \u2014 12 items answered with 154 articles it scored entirely below 0.2",
+            "Fritz Foss best-score 0.044: returns TradingView reprints and unrelated finance news",
+            "Kl\u00f6ckner Pentaplast best-score 0.093 \u2014 returns Bayer/Perfuse Therapeutics, Iran war coverage, Smurfit Westrock France investment \u2014 none about kp",
+            "ALPEK POLYESTER best-score 0.145 \u2014 returns P2 Science, Reuters Iran war coverage, Fedrigoni Self-Adhesives",
+            "Dine Cartonnages: 9 articles including Facebook posts about mummy sacrifice, National Girlfriends Day, and Etsy risk assessment templates \u2014 utter noise",
+            "Bloomberg query returns Wikipedia article and Facebook posts"
+          ]
+        },
+        "coverage": {
+          "score": 4,
+          "evidence": [
+            "answered: 42/42 nominally but 12 items are pure noise per self-reported scoring",
+            "Genuine coverage for e.g. Coles is only 6 articles; NECTAR 360 SERVICES gets 1 result with NO DATE"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 2,
+          "evidence": [
+            "no-publisher: 476 (100%) \u2014 every row missing publisher",
+            "no-date: 74 (16%) \u2014 severe, most severe metadata failure of any provider \u2014 buyer cannot tell if article is recent",
+            "Numerous NO DATE \u26a0 flags across Bloomberg, CBS News, Dine Cartonnages, Little Island Productions, MISTRAL AI SAS"
+          ]
+        },
+        "story_quality": {
+          "score": 3,
+          "evidence": [
+            "Many summaries are raw scraped navigation cruft: multiple entries contain fragments like 'Home page Seeking Alpha - Power to Investors Search for Symbols'",
+            "Dine Cartonnages entries include SVG path data and Facebook UI HTML in summary text",
+            "Some summaries are single line marketing snippets from Instagram/Facebook posts"
+          ]
+        },
+        "trust": {
+          "score": 2,
+          "evidence": [
+            "errors: 0 (nominal) but 74% of results self-scored below 0.2 relevance \u2014 provider knows results are poor",
+            "Sources include Facebook.com, Instagram.com, Etsy.com, Eventbrite.com, xn----ymcba6ad7a3a9iez.net (junk domain) for company research",
+            "12 items answered with 154 articles all scored below 0.2 \u2014 precision failure the article list itself does not reveal"
+          ]
+        }
+      },
+      "verdict": "Answers every query but the results are largely noise \u2014 the provider's own relevance scores show it knew 74% of its output was weak, metadata is degraded by 16% no-date rate, and sources include social media and junk domains.",
+      "weighted": 2.2,
+      "final": 2.2,
+      "caps_applied": [
+        "metadata_hard",
+        "trust",
+        "precision"
+      ]
+    }
+  ],
+  "ranking": [
+    "B",
+    "A",
+    "E",
+    "C",
+    "D",
+    "F"
+  ],
+  "spelling_variants": [
+    {
+      "variants": [
+        "Klockner Pentaplast",
+        "Kl\u00f6ckner Pentaplast"
+      ],
+      "providers": {
+        "A": {
+          "counts": [
+            0,
+            3
+          ],
+          "shared": 0,
+          "union": 3,
+          "overlap": 0.0,
+          "answered": [
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "B": {
+          "counts": [
+            6,
+            3
+          ],
+          "shared": 3,
+          "union": 6,
+          "overlap": 0.5,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "C": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 11,
+          "union": 29,
+          "overlap": 0.3793103448275862,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "D": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 16,
+          "union": 24,
+          "overlap": 0.6666666666666666,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "E": {
+          "counts": [
+            0,
+            0
+          ],
+          "shared": 0,
+          "union": 0,
+          "overlap": null,
+          "answered": []
+        },
+        "F": {
+          "counts": [
+            2,
+            20
+          ],
+          "shared": 0,
+          "union": 22,
+          "overlap": 0.0,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        }
+      }
+    }
+  ],
+  "self_reported_scores": {
+    "A": {
+      "total": 205,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "B": {
+      "total": 216,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "C": {
+      "total": 840,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "D": {
+      "total": 840,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "E": {
+      "total": 63,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "F": {
+      "total": 476,
+      "scored": 476,
+      "median": 0.056355799,
+      "bands": [
+        291,
+        59,
+        50,
+        56,
+        20
+      ],
+      "weak": 350,
+      "weak_items": [
+        [
+          "Fritz Foss",
+          20,
+          0.044187542
+        ],
+        [
+          "Kl\u00f6ckner Pentaplast",
+          20,
+          0.0926305
+        ],
+        [
+          "ALPEK POLYESTER",
+          20,
+          0.14520046
+        ],
+        [
+          "CHEP",
+          20,
+          0.120615035
+        ],
+        [
+          "TRICON DRY CHEMICALS",
+          20,
+          0.171755
+        ],
+        [
+          "RAINFOCUS",
+          20,
+          0.112532035
+        ],
+        [
+          "ICOF EUROPE",
+          10,
+          0.16202202
+        ],
+        [
+          "Dine Cartonnages",
+          9,
+          0.022631409
+        ],
+        [
+          "NUBIZ PLASTIC",
+          5,
+          0.024800576
+        ],
+        [
+          "Universal McCann",
+          4,
+          0.081381105
+        ],
+        [
+          "IMPACT RETAIL",
+          4,
+          0.1673414
+        ],
+        [
+          "Little Island Productions",
+          2,
+          0.044835445
+        ]
+      ]
+    }
+  }
+}

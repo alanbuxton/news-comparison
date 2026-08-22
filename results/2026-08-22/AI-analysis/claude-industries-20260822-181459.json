@@ -1,0 +1,399 @@
+{
+  "query_type": "industries",
+  "providers": [
+    {
+      "label": "B",
+      "axes": {
+        "precision": {
+          "score": 9,
+          "evidence": [
+            "CONSTRUCTION|Europe: Eurostat construction production, S&P Global UK Construction PMI, Cemex EU cartel \u2014 all strictly on-topic strategic developments",
+            "Film|CN (BOPP/BOPET/PE): ChemAnalyst BOPET price drop, Zhonglun New Materials BOPP line commissioning, China packaging rules \u2014 all match the plastic-film intent",
+            "Whey|Northern Europe: Arla-DMK merger, DMK \u20ac26M Edewecht WPC80 plant, Vivici \u20ac12.5M EIC grant \u2014 precisely on-intent",
+            "mkt-report: only 2 (1%) across the entire run"
+          ]
+        },
+        "coverage": {
+          "score": 8,
+          "evidence": [
+            "answered: 20/20 topics, 167 articles",
+            "HR SERVICES|Mid Atlantic only 4 articles and Molasses|Oceania only 3, but each is genuinely relevant (Maryland FAMLI, Queensland sugar terminals)",
+            "Converter Foil|NA covered with Ball Corp earnings, Century Aluminum restart, tariff proclamations"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "no-date: 0 (0%), stale: 0, no-publisher: 0, dup: 0 per header"
+          ]
+        },
+        "story_quality": {
+          "score": 9,
+          "evidence": [
+            "Road Freight|Europe: 'European road-freight benchmark showed contract rates at 148.0 index points, up 7.9 points quarter on quarter' \u2014 quantified and decision-ready",
+            "PE Resins|US: 'US LDPE Prices Fall 16.54% in Early July 2026' with cited drivers",
+            "Summaries consistently include figures, dates and named actors"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "errors: 0",
+            "Sources include Reuters, Eurostat, European Commission, S&P Global, Chicago Fed, FDA, IRU \u2014 high-credibility mix"
+          ]
+        }
+      },
+      "verdict": "Small article counts per topic but exceptionally clean: on-topic, informative summaries, credible sources and zero metadata defects; the only weakness is thinner volume than some rivals.",
+      "weighted": 8.95,
+      "final": 8.95,
+      "caps_applied": []
+    },
+    {
+      "label": "A",
+      "axes": {
+        "precision": {
+          "score": 6,
+          "evidence": [
+            "CONSTRUCTION|Europe returned strong on-topic items like 'PORR awarded contract for X-FAB semiconductor factory in Germany' and Welsh wind farm contract, but also off-topic 'JD.com offers concessions in EU probe of Ceconomy takeover' (retail M&A, not construction)",
+            "Cheese/Milk Powders|US included 4 MKT-REPORT items and off-topic 'NH gets another $7 million from PFAS drinking water settlements' \u2014 chemical litigation, not food ingredients",
+            "Film|CN (BOPP/BOPET/PE) polluted by cinema-adjacent 'Hollyland lance le Pyro 5 4K' and 'HSG Emerges as Leading Bidder to Buy Stake in Leica Camera' \u2014 wrong-entity film",
+            "mkt-report: 44 (16%) across the run inflates volume with market-research SEO pages"
+          ]
+        },
+        "coverage": {
+          "score": 9,
+          "evidence": [
+            "answered: 20/20 topics with 270 articles total",
+            "Molasses|Oceania returned only 1 article and it was a MKT-REPORT, and Converter Foil|NA only 1 article \u2014 thin but present",
+            "PAPER|Northern Europe well-covered with Mets\u00e4, Stora Enso, Valmet, S\u00f6dra actual news"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "no-date: 0 (0%), stale: 0 (0%), no-publisher: 0 (0%), dup: 1 (0%) per header"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "PAPER|Northern Europe summaries like Mets\u00e4 \u20ac25M Muoto investment and Stora Enso Veitsiluoto closure give actionable detail",
+            "Some items truncated ('Land O'Lakes Expands Tulare Dairy Protein Production' one-line summary)",
+            "Market report items give numeric detail but are boilerplate SEO"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "errors: 0 per header",
+            "Sources span reputable outlets (Reuters, AP, SCMP, Business Standard, Mining Weekly) with plausible URLs"
+          ]
+        }
+      },
+      "verdict": "Broad, dated, well-sourced coverage with clean metadata, but ~16% market-report noise and recurring wrong-entity matches (JD.com/Ceconomy in Construction, Leica in Film-CN) dilute precision.",
+      "weighted": 7.8,
+      "final": 7.8,
+      "caps_applied": []
+    },
+    {
+      "label": "C",
+      "axes": {
+        "precision": {
+          "score": 6,
+          "evidence": [
+            "Molasses|Oceania (sugar & sweeteners intent) is dominated by Fiji sugar-industry stories (Lautoka mill, FSC privatisation) \u2014 relevant to sugar sector but geographically Fiji/Oceania edge cases; also includes off-region 'Indonesian govt tightens refined sugar imports'",
+            "LOGISTICS|Western Africa mostly on-topic (Lekki Port, CMA CGM KORA EXPRESS, MSC feeder) but includes IndexBox market report",
+            "Film|CN heavily polluted by ag-investor Chinese-language pages ('\u590d\u5408\u96c6\u6d41\u4f53PP\u57fa\u819c\u56fd\u4ea7\u5316','\u5fb7\u51a0\u65b0\u6750') and 4 duplicates flagged",
+            "HR SERVICES|Mid Atlantic tightly on-topic (Maryland FAMLI, Alliant/Nava, Aramark/Penn Medicine direct plan)"
+          ]
+        },
+        "coverage": {
+          "score": 10,
+          "evidence": [
+            "answered: 20/20 with 400 articles, ~20 per topic across the board",
+            "LABORATORY|Africa returned real items like Talbot SANAS-accredited lab, UNBS Uganda food-safety labs, Africa CDC procurement notice"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 5,
+          "evidence": [
+            "no-publisher: 400 (100%) \u2014 every row shows only a domain in parentheses; publisher name never surfaced",
+            "no-date: 0, stale: 0, dup: 7 (2%) \u2014 dates fully present so the severe axis is intact",
+            "Per the rubric, no-publisher is the lesser defect but at 100% it is still material"
+          ]
+        },
+        "story_quality": {
+          "score": 6,
+          "evidence": [
+            "Summaries often show raw HTML-scrape artefacts: 'Production in construction down by 1.3% in the euro area and by 1.0% in the EU - Euro indicators - Eurostat ... down by 1.3% in ...'",
+            "Chinese-language rows in Film|CN show minimal English summary, forcing click-through",
+            "Better items (e.g. Emirates NBD/HSBC Egypt, Nigeria NPERA law) do carry decision-ready content"
+          ]
+        },
+        "trust": {
+          "score": 8,
+          "evidence": [
+            "errors: 0",
+            "URLs point to real domains (ec.europa.eu, reuters.com, businessday.ng, mysteel.com); no hallucination pattern"
+          ]
+        }
+      },
+      "verdict": "Very deep coverage with 20 articles per topic, but the universal missing-publisher tag, scraped/truncated summaries and pockets of foreign-language or wrong-entity noise (Film|CN Chinese ag-invest pages) drag down usability.",
+      "weighted": 6.95,
+      "final": 6.95,
+      "caps_applied": [
+        "metadata_soft"
+      ]
+    },
+    {
+      "label": "D",
+      "axes": {
+        "precision": {
+          "score": 3,
+          "evidence": [
+            "mkt-report: 143 (36%) \u2014 over a third of results are market-research/SEO landing pages, far beyond the \u22642/topic tolerance",
+            "Molasses|Oceania: 17 of 20 items are MKT-REPORT (LinkedIn/openPR/IndexBox forecast pages), essentially no real news",
+            "SOLVENTS: 15 of 20 items are MKT-REPORT (Ketones Market Size, Ethyl Acetate Market forecasts)",
+            "Converter Foil|NA mixes genuine Reuters items with LinkedIn 'Aluminium Foil Market Regional Performance' SEO posts"
+          ]
+        },
+        "coverage": {
+          "score": 10,
+          "evidence": [
+            "answered: 20/20, 400 articles, 20 per topic uniformly"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 5,
+          "evidence": [
+            "no-publisher: 400 (100%) \u2014 publisher name absent on every row (only domain shown)",
+            "no-date: 0, stale: 0, dup: 2 (0%) \u2014 the severe axis is clean",
+            "Consistent with rubric: universal no-publisher caps this axis around 5"
+          ]
+        },
+        "story_quality": {
+          "score": 4,
+          "evidence": [
+            "Cheese/Milk Powders|US: 'Chr. Hansen Holding, Fonterra, DowDuPont, DSM, Archer Daniels Midland, Saputo, Arla Foods, and CSK Food are key players' \u2014 vendor list, no news",
+            "Packaging|Oceania item 1 summary is a bare company list ('Smurfit Westrock, International Paper, DS Smith\u2026')",
+            "Molasses|Oceania rows return market-report tables and CAGR sentences instead of story text"
+          ]
+        },
+        "trust": {
+          "score": 7,
+          "evidence": [
+            "errors: 0",
+            "URLs resolve to real market-research domains, but heavy LinkedIn-pulse and openPR reliance ('linkedin.com/pulse/...','openpr.com/news/...') reduces editorial trust"
+          ]
+        }
+      },
+      "verdict": "Uniform 20-per-topic depth is undercut by 36% market-report share, universal missing publishers and boilerplate 'key players' summaries \u2014 technically comprehensive but low signal for a strategic reader.",
+      "weighted": 5.45,
+      "final": 5.0,
+      "caps_applied": [
+        "metadata_soft",
+        "precision"
+      ]
+    },
+    {
+      "label": "E",
+      "axes": {
+        "precision": {
+          "score": 7,
+          "evidence": [
+            "IT & TELECOM|Northern Africa returned strong on-topic items: MTN Ghana 80-site expansion, Ethio Telecom-Huawei partnership, Ookla 5G North Africa review",
+            "Cheese/Milk Powders|US: Cowsmo 'Big 7 pivot to protein and cheese' and DairyNews 'Record Cheese Production' are on-intent",
+            "Only 4 MKT-REPORT items across 34 articles (12%)"
+          ]
+        },
+        "coverage": {
+          "score": 3,
+          "evidence": [
+            "answered: 12/20 topics \u2014 8 topics returned '[NO RESULTS RETURNED \u26a0]' including CONVERTING AND FINISHING MACHINES|Southern Asia, Film|CN, HR SERVICES|Mid Atlantic, LABORATORY|Africa, LIQUIDS|Southern Africa, LOGISTICS|Western Africa, Molasses|Oceania, SOLVENTS",
+            "Where it did answer, article counts are thin (Whey|Northern Europe: 1 article; PROFESSIONAL SERVICES|LATAM: 1 article; Road Freight|Europe: 1 article)"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "no-date: 0, stale: 0, no-publisher: 0, dup: 0 per header"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "IT&TELECOM summaries specify numeric detail: 'MTN Ghana announced a $1.1 billion investment plan to construct 80 new network sites'",
+            "Arla-DMK Whey item gives strategic context",
+            "Some entries are aggregator/index pages ('Industry News & Developments Archives - Page 2 of 21')"
+          ]
+        },
+        "trust": {
+          "score": 4,
+          "evidence": [
+            "errors: 3 per header \u2014 non-trivial rate over only 34 articles",
+            "PE Resins|US errors surfaced, and the two visible PE-Resins items are both MKT-REPORT (ChemOrbis landing, Precedence US Polyolefin)"
+          ]
+        }
+      },
+      "verdict": "When it answers it stays close to the intent with clean metadata, but 40% of topics return nothing and 3 errors on a small base make it unreliable as a primary source.",
+      "weighted": 6.2,
+      "final": 4.0,
+      "caps_applied": [
+        "trust"
+      ]
+    },
+    {
+      "label": "F",
+      "axes": {
+        "precision": {
+          "score": 2,
+          "evidence": [
+            "mkt-report: 105 (58%) \u2014 the majority of results are market-research SEO pages (MarketDataForecast, FortuneBusinessInsights, MarketsandMarkets, Precedence)",
+            "SELF-REPORTED: 59% of its 181 articles scored below 0.2; HR SERVICES|Mid Atlantic answered with 9 articles best-scored only 0.069 \u2014 it knew the topic was poor",
+            "LOGISTICS|Western Africa polluted by wrong-entity 'ISWAP logistics suppliers' Boko Haram counter-insurgency stories ('Troops Arrest Two Suspected ISWAP Logistics Suppliers In Borno')",
+            "Molasses|Oceania is 5 of 6 MKT-REPORT plus a CELH zero-sugar energy-drink piece \u2014 nothing on Oceania sugar/molasses supply"
+          ]
+        },
+        "coverage": {
+          "score": 6,
+          "evidence": [
+            "answered: 20/20 but many topics are thin: LABORATORY|Africa 1 article, Packaging|Oceania 4, Converter Foil|NA 2",
+            "Volume padded by market reports rather than real coverage of the queried region/industry"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 3,
+          "evidence": [
+            "no-publisher: 181 (100%) \u2014 universal",
+            "no-date: 16 (9%) \u2014 the severe defect: rows like 'Lathe Machine Market Size, Share' and 'LFZ, Firm Announce Joint Venture' carry [NO DATE \u26a0]",
+            "dup: 5 (3%) including 5 duplicates of the ICIS rLDPE pricing release in PE Resins|US"
+          ]
+        },
+        "story_quality": {
+          "score": 3,
+          "evidence": [
+            "Many summaries are navigation/site-map text: 'Read + Brands - FreightWaves - American Shipper - Modern Shipper' (Road Freight|Europe Amazon LTL item)",
+            "HR SERVICES rows include 'BMC Site Map' and generic ResearchGate abstracts, unusable for a business reader",
+            "Facebook/Instagram/LinkedIn social-post rows in Converting Machines and HR SERVICES"
+          ]
+        },
+        "trust": {
+          "score": 3,
+          "evidence": [
+            "errors: 0 in header, but LOGISTICS|Western Africa is dominated by military/insurgency stories that were retrieved on a keyword match to 'logistics suppliers' \u2014 indicates weak entity resolution",
+            "Provider self-reported that a whole topic (HR SERVICES) was answered with 9 items it scored \u22640.069 \u2014 returning results it knew were poor"
+          ]
+        }
+      },
+      "verdict": "High mkt-report share, universal missing publishers, 9% missing dates, wrong-entity 'ISWAP logistics' matches and self-flagged low-quality answers make this the least trustworthy result set for a strategic reader.",
+      "weighted": 3.25,
+      "final": 3.25,
+      "caps_applied": [
+        "metadata_hard",
+        "trust",
+        "precision"
+      ]
+    }
+  ],
+  "ranking": [
+    "B",
+    "A",
+    "C",
+    "D",
+    "E",
+    "F"
+  ],
+  "spelling_variants": [],
+  "self_reported_scores": {
+    "A": {
+      "total": 270,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "B": {
+      "total": 167,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "C": {
+      "total": 400,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "D": {
+      "total": 400,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "E": {
+      "total": 34,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "F": {
+      "total": 181,
+      "scored": 181,
+      "median": 0.16178352,
+      "bands": [
+        67,
+        39,
+        22,
+        35,
+        18
+      ],
+      "weak": 106,
+      "weak_items": [
+        [
+          "HR SERVICES | Mid Atlantic (intent: CORPORATE SOCIAL RESPONSIBILITY (CSR), EMPLOYEE HEALTH INSURANCE, FLEET MANAGEMENT)",
+          9,
+          0.06917
+        ]
+      ]
+    }
+  }
+}
