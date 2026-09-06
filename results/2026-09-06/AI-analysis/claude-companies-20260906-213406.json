@@ -1,0 +1,400 @@
+{
+  "query_type": "companies",
+  "providers": [
+    {
+      "label": "C",
+      "axes": {
+        "precision": {
+          "score": 9,
+          "evidence": [
+            "Coles: 14/14 on-topic (ABC News profit, AFR Accenture deal, Guardian facial recognition)",
+            "Linklaters: 11 articles all on-topic (Law.com Abu Dhabi hire, Reuters US gains)",
+            "Dine Cartonnages returned exactly one legal notice about the actual French company",
+            "0 mkt-report, only 2 dup"
+          ]
+        },
+        "coverage": {
+          "score": 6,
+          "evidence": [
+            "answered: 33/42 \u2014 misses BERKSHIRE LABELS, CHARTER NEX FILMS, Fritz Foss, ICOF EUROPE, IMPACT RETAIL, NUBIZ PLASTIC, SEERTECH SOLUTIONS, Sigma Chemtrade, ZETA TECHNICAL SERVICES",
+            "Klockner spelling variants: only 18% overlap between the two \u26a0"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "no-date: 0, stale: 0, no-publisher: 0",
+            "Publishers cleanly named e.g. 'Reuters', 'CNBC', 'Packaging Dive'"
+          ]
+        },
+        "story_quality": {
+          "score": 9,
+          "evidence": [
+            "Rich narrative summaries: Dominion 'reported adjusted second-quarter earnings of $0.79 per share, above the $0.68 analyst consensus'",
+            "Snowflake summary details '$300 million' Saudi investment with regional specifics"
+          ]
+        },
+        "trust": {
+          "score": 10,
+          "evidence": [
+            "errors: 0, no suspicious URLs",
+            "Sources are mainstream outlets (Reuters, CNBC, ABC News, WealthBriefing)"
+          ]
+        }
+      },
+      "verdict": "Highest-quality summaries and cleanest metadata, but declines to answer ~20% of queried entities.",
+      "weighted": 8.7,
+      "final": 8.7,
+      "caps_applied": []
+    },
+    {
+      "label": "A",
+      "axes": {
+        "precision": {
+          "score": 8,
+          "evidence": [
+            "Alpek results are on-topic (Rio Times Argentina plant closure, Plastics News lawsuit)",
+            "Coles coverage is substantive (7NEWS Palantir contract, Reuters annual profit)",
+            "Bloomberg query returned some off-topic name-drops like Simple Flying 'Airbus Resumes A330neo' where Bloomberg is merely cited as source",
+            "Only 3 mkt-report (2%) and 2 dup (1%) \u2014 minimal noise"
+          ]
+        },
+        "coverage": {
+          "score": 4,
+          "evidence": [
+            "answered: 25/42 \u2014 17 entities returned no results including BERKSHIRE LABELS, CHARTER NEX FILMS, HPCL Mittal Energy, Jindal Films, Sigma Chemtrade, Universal McCann, ICOF EUROPE, IMPACT RETAIL",
+            "Both Klockner spellings answered with same single article (100% overlap)"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "no-date: 0 (0%), stale: 0 (0%), no-publisher: 0 (0%) per header",
+            "Publishers named cleanly e.g. 'Rio Times Online', 'Bloomberg', 'Reuters'"
+          ]
+        },
+        "story_quality": {
+          "score": 8,
+          "evidence": [
+            "Summaries informative: Borouge 'declares $656mln interim dividend for 2026' with specifics",
+            "ExxonMobil Q2 summary quotes '$14.5 billion' profit and per-share detail",
+            "Some summaries brief (e.g. Constellium Q2 headline-only)"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "errors: 0, no suspicious URLs",
+            "URLs resolve to established outlets (reuters.com, bloomberg.com, prnewswire.com)"
+          ]
+        }
+      },
+      "verdict": "Clean metadata and disciplined precision, but nearly 40% of queried entities return nothing \u2014 a serious coverage gap.",
+      "weighted": 7.65,
+      "final": 7.65,
+      "caps_applied": []
+    },
+    {
+      "label": "E",
+      "axes": {
+        "precision": {
+          "score": 4,
+          "evidence": [
+            "Fritz Foss returned Foss & Company tax equity, FOSS acquisition of Wasatch Photonics, Federal Signal, Sygnum bank \u2014 none the queried entity",
+            "NUBIZ PLASTIC returned Nubz dog treats, NUBURU laser company, n\u00fcbo baby brand \u2014 no target match",
+            "SEERTECH SOLUTIONS returned SEER Robotics, Serstech, SEERS (Korean pharma), SeeTrue \u2014 wrong entities",
+            "Charter Nex Films query returned Charter Communications Cox deal, Boliden/Nexa Resources, NexPoint Materials \u2014 off-target"
+          ]
+        },
+        "coverage": {
+          "score": 9,
+          "evidence": [
+            "answered: 42/42 with 20 articles each",
+            "Klockner spelling variants both answered but only 29% URL overlap \u26a0"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 5,
+          "evidence": [
+            "no-publisher: 840 (100%) \u2014 publisher shown only as domain e.g. '(bloomberg.com)', '(reuters.com)'",
+            "no-date: 0, stale: 0",
+            "46 dup (5%) \u2014 highest dup rate of all providers"
+          ]
+        },
+        "story_quality": {
+          "score": 5,
+          "evidence": [
+            "Many summaries include ellipsis truncation and stray navigation: 'Regus opens HQ office, coworking space near downtown Allen | Allen | Community Impact ...'",
+            "Some summaries carry raw parsing artifacts (ticker ellipsis '... :ALPKF)')",
+            "Substantive content still present (Snowflake Q2 revenue $1.55bn, EPS 62c)"
+          ]
+        },
+        "trust": {
+          "score": 6,
+          "evidence": [
+            "errors: 0",
+            "Heavy syndication and low-authority aggregators: 'lifestyle.thepointnews.com', 'lifestyle.massnews.com', 'lifestyle.lincolnlabs.com' repeated across RainFocus results",
+            "5% dup rate suggests weak de-duplication"
+          ]
+        }
+      },
+      "verdict": "Full coverage and no errors, but many results are wrong-entity, aggregator-syndicated, and publisher names are lost across the board.",
+      "weighted": 5.6,
+      "final": 5.6,
+      "caps_applied": [
+        "metadata_soft"
+      ]
+    },
+    {
+      "label": "B",
+      "axes": {
+        "precision": {
+          "score": 3,
+          "evidence": [
+            "BERKSHIRE LABELS query returned entirely wrong entity \u2014 Berkshire Hathaway insurance/PE coverage instead of the UK label maker",
+            "CHARTER NEX FILMS returned Charter Communications/Cox and unrelated 'nexTC' items",
+            "Fritz Foss returned FOSS analytical instruments, Foss & Company tax equity, and Federal Signal \u2014 no queried entity match",
+            "NECTAR 360 SERVICES returned Nektar Therapeutics and unrelated 'Nectar One'; ZETA TECHNICAL SERVICES returned Zeta Global marketing"
+          ]
+        },
+        "coverage": {
+          "score": 9,
+          "evidence": [
+            "answered: 42/42 \u2014 every entity got 20 articles",
+            "Klockner spelling variants: 20 vs 20 but only 38% URL overlap \u26a0"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 5,
+          "evidence": [
+            "no-publisher: 840 (100%) \u2014 every row shows domain only e.g. '| NO PUBLISHER \u26a0 (theglobeandmail.com)'",
+            "no-date: 0, stale: 0 \u2014 dates intact"
+          ]
+        },
+        "story_quality": {
+          "score": 6,
+          "evidence": [
+            "Some summaries substantive (Alpek Q2 '$407 million EBITDA')",
+            "Many rows show boilerplate/nav text: 'Bij Yahoo gebruiken we Cookies...' on ExxonMobil Q2, 'Dac\u0103 dori\u021bi s\u0103 personaliza\u021bi' on Dominion",
+            "LinkedIn post fragments used as summaries"
+          ]
+        },
+        "trust": {
+          "score": 7,
+          "evidence": [
+            "errors: 0",
+            "URLs generally valid but many aggregator/syndicated sources (finanznachrichten.de, tradingview.com syndications)"
+          ]
+        }
+      },
+      "verdict": "Perfect coverage headline is undermined by wrong-entity results for less-famous names and heavy publisher-name loss.",
+      "weighted": 5.55,
+      "final": 5.0,
+      "caps_applied": [
+        "metadata_soft",
+        "precision"
+      ]
+    },
+    {
+      "label": "D",
+      "axes": {
+        "precision": {
+          "score": 4,
+          "evidence": [
+            "BERKSHIRE LABELS returned Berkshire Hathaway insurance/investment content \u2014 wrong entity",
+            "FLINT GROUP returned FLINT Corp (Canadian energy services) not the printing ink company, and 'FLIN' product launch item",
+            "Deloitte returned only one PR item and its duplicate \u2014 thin",
+            "Klockner spelling coverage: answers only 'Klockner Pentaplast' not 'Kl\u00f6ckner Pentaplast' (0% overlap)"
+          ]
+        },
+        "coverage": {
+          "score": 2,
+          "evidence": [
+            "answered: 15/42 \u2014 27 entities returned no results (Alpek, CBS News, Constellium, Deloitte partial, Little Island Productions, Linklaters, Mistral, Snowflake, Westrock, etc all zero)",
+            "errors: 18 including 10 errors on SNOWFLAKE query alone"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 9,
+          "evidence": [
+            "no-date: 0, stale: 0, no-publisher: 0 per header",
+            "One suspicious future date on ExxonMobil (2026-10-31) but publishers named"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "Summaries include specifics: Borouge 'net profit dips; eyes better H2 plant utilisation'",
+            "Some analytical summaries with pros/cons framing (HPCL)"
+          ]
+        },
+        "trust": {
+          "score": 3,
+          "evidence": [
+            "errors: 18 (33% of answered set) \u2014 10 errors on SNOWFLAKE alone, 4 on Deloitte, 2 on NECTAR 360, 2 on Bloomberg",
+            "One future-dated article on ExxonMobil (2026-10-31)"
+          ]
+        }
+      },
+      "verdict": "Half the queries returned nothing and error rate is extreme, especially for major names like Snowflake.",
+      "weighted": 4.65,
+      "final": 4.0,
+      "caps_applied": [
+        "trust"
+      ]
+    }
+  ],
+  "ranking": [
+    "C",
+    "A",
+    "E",
+    "B",
+    "D"
+  ],
+  "spelling_variants": [
+    {
+      "variants": [
+        "Klockner Pentaplast",
+        "Kl\u00f6ckner Pentaplast"
+      ],
+      "providers": {
+        "A": {
+          "counts": [
+            1,
+            1
+          ],
+          "shared": 1,
+          "union": 1,
+          "overlap": 1.0,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "B": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 11,
+          "union": 29,
+          "overlap": 0.3793103448275862,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "C": {
+          "counts": [
+            4,
+            9
+          ],
+          "shared": 2,
+          "union": 11,
+          "overlap": 0.18181818181818182,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "D": {
+          "counts": [
+            1,
+            0
+          ],
+          "shared": 0,
+          "union": 1,
+          "overlap": 0.0,
+          "answered": [
+            "Klockner Pentaplast"
+          ]
+        },
+        "E": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 9,
+          "union": 31,
+          "overlap": 0.2903225806451613,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        }
+      }
+    }
+  ],
+  "self_reported_scores": {
+    "A": {
+      "total": 189,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "B": {
+      "total": 840,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "C": {
+      "total": 207,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "D": {
+      "total": 54,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "E": {
+      "total": 840,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    }
+  }
+}

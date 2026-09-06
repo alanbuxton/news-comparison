@@ -8,7 +8,7 @@ Providers currently in the comparison:
 - [Linkup](https://linkup.so)
 - [Perplexity](https://perplexity.ai) *(two entries: Search API and Agent API)*
 - [Syracuse](https://syracuse.1145.am) *(author's project)*
-- [Tavily](https://tavily.com)
+- [Tavily](https://tavily.com) (Now removed as it's a consistent poor performer in this use case)
 
 ## How it works
 
@@ -87,7 +87,7 @@ The author of this benchmark is also the author of Syracuse. This creates an obv
 
 `analyse.py` addresses this with three measures:
 
-**1. Provider name anonymisation.** Before any data is sent to the AI, the five provider names are randomly shuffled and replaced with letters (A, B, C, D, E). The mapping is stored locally in `decode-key-{timestamp}.json` but the AI never sees it. The AI cannot defer to "Syracuse" because it does not know which label it is.
+**1. Provider name anonymisation.** Before any data is sent to the AI, the provider names are randomly shuffled and replaced with letters (A, B, C, D etc). The mapping is stored locally in `decode-key-{timestamp}.json` but the AI never sees it. The AI cannot defer to "Syracuse" because it does not know which label it is.
 
 **2. Unsparing system prompt.** The model is explicitly instructed that hedging is forbidden, that every negative claim must be backed by a specific article example, and that it must produce a strict rank order — not a "different providers suit different needs" conclusion. The instruction to describe what each lower-ranked provider would need to fix to reach first place forces the model to articulate concrete gaps rather than glossing over them.
 
@@ -132,6 +132,20 @@ trustworthy date.
 ## Results history
 
 (In reverse order) 
+
+### 2026-09-06
+
+(Stopped testing Tavily now because it's a consistent poor performer).
+
+Perplexity Agent 1st in both query types.
+
+- **Companies:** Perplexity Agent 1st (8.7/10 — cleanest metadata and on-topic precision, e.g. Coles returned 14/14 on-topic including the AFR Accenture deal), Syracuse 2nd (7.7/10 — disciplined precision on Alpek and Coles but 17 of 42 entities returned nothing including BERKSHIRE LABELS and Jindal Films), Exa 3rd (5.6/10 — full 42/42 coverage but wrong-entity results for Fritz Foss and NUBIZ PLASTIC and a metadata cap engaged for 840 no-publisher rows), Perplexity Search 4th (5.0/10 — metadata and precision caps engaged after BERKSHIRE LABELS returned Berkshire Hathaway content and every row lost its publisher name), Linkup last (4.0/10 — trust cap engaged from 18 errors including 10 on Snowflake alone, with only 15/42 entities answered).
+- **Industries:** Perplexity Agent 1st (9.5/10 — 20/20 topics with primary-source URLs like ec.europa.eu and ams.usda.gov and only 1 market-report across 167 articles), Syracuse 2nd (7.9/10 — clean metadata on Road Freight|Europe but Converter Foil|Northern America and Molasses|Oceania returned zero and CONSTRUCTION|Europe was polluted by Haier/UEFA and Apple/BASF items), Linkup 3rd (6.75/10 — full 20/20 coverage but a metadata cap engaged for 400 no-publisher rows and 14 of 20 Laboratory|Africa items were IndexBox market reports), Perplexity Search 4th (5.0/10 — metadata and precision caps engaged after 34% market-report share including 16 landing pages in Molasses|Oceania and every publisher missing), Linkup last (4.0/10 — trust cap engaged from 10 errors on Film|CN and 12 of 20 topics returning no results including Solvents and Whey|N.Europe).
+
+**Recommendation for autonomous use** (agent or human acting without manual filtering):
+
+- **Companies:** **Use Perplexity Agent** — final 8.7 and precision 9 with no caps engaged, delivering on-topic results with named publishers like Reuters and CNBC.
+- **Industries:** **Use Perplexity Agent** — final 9.5 and precision 9 with no caps engaged, returning primary-source URLs and near-zero market-report noise across all 20 topics.
 
 ### 2026-08-22
 

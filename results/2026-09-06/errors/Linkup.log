@@ -1,0 +1,280 @@
+[19:02:23] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "New Era Mergers & Acquisitions Strategies | Deloitte Global",
+  "publication_date": null,
+  "summary": "Deloitte reports a decade-low total deal value in 2023 at US$2.6 trillion amid macroeconomic challenges but notes strong deal volumes and megadeals. Companies are urged to optimize portfolios, pursue opportunistic deals to safeguard supply chains, and capture digital transformation through M&A as a core growth strategy.",
+  "source": "Deloitte",
+  "url": "https://www.deloitte.com/uk/en/issues/resilience/gx-charting-new-horizons.html"
+}
+--------------------------------------------------------------------------------
+[19:02:23] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "Strategic M&A Consulting Market: A Comprehensive Study by Leading Key Players: Deloitte, PwC, KPMG",
+  "publication_date": null,
+  "summary": "The global strategic M&A consulting market is growing as companies seek durable competitive advantages beyond traditional acquisition advisory. Deloitte is a key player, with strong demand in Europe and expansion in Asia-Pacific driven by international expansion, technology acquisitions, supply-chain restructuring, and sector consolidation.",
+  "source": "HTF Market Intelligence Consulting Private Limited via openPR.com",
+  "url": "https://www.openpr.com/news/4603416/strategic-m-a-consulting-market-a-comprehensive-study"
+}
+--------------------------------------------------------------------------------
+[19:02:23] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "2026 investment management outlook | Deloitte Insights",
+  "publication_date": null,
+  "summary": "Deloitte highlights increased M&A activity in investment management, with a 46% surge in deal volume in early 2025. Firms are focusing on strategic partnerships, product innovation, and regulatory easing in the US, particularly around private market fundraising and new product launches, to enhance competitive positioning.",
+  "source": "Deloitte Insights",
+  "url": "https://www.deloitte.com/us/en/insights/industry/financial-services/financial-services-industry-outlooks/investment-management-industry-outlook.html"
+}
+--------------------------------------------------------------------------------
+[19:02:23] PARSE_ARTICLE - company=Deloitte
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "M&A strategy pivots | Deloitte Insights",
+  "publication_date": null,
+  "summary": "Deloitte's 2025 M&A Trends survey shows US executives prioritizing market expansion and technology access through foreign deals, while geopolitical tensions encourage reshoring and regional deals. The shift toward nonbank lending and private equity financing supports deal execution despite market volatility, with new C-suite roles addressing M&A complexities.",
+  "source": "Deloitte Insights",
+  "url": "https://www.deloitte.com/us/en/insights/topics/business-strategy-growth/m-and-a-strategy-pivots.html"
+}
+--------------------------------------------------------------------------------
+[19:03:13] PARSE_ARTICLE - company=Bloomberg
+Error: day is out of range for month
+Data: {
+  "headline": "Bloomberg Scores Major Private Markets Move, Buys Canoe",
+  "publication_date": "2025-09-00T00:00:00Z",
+  "summary": "Bloomberg acquired Canoe Intelligence, an AI-driven platform for private markets data management, marking its most significant acquisition since Barclays Risk Analytics. This move enhances Bloomberg's private market data coverage and AI capabilities.",
+  "source": "Family Wealth Report",
+  "url": "https://www.familywealthreport.com/article.php/Bloomberg-Scores-Major-Private-Markets-Move,-Buys-Canoe"
+}
+--------------------------------------------------------------------------------
+[19:03:13] PARSE_ARTICLE - company=Bloomberg
+Error: month must be in 1..12
+Data: {
+  "headline": "Bloomberg Growth Strategy in 2025: 5 Moves, 3 Risks",
+  "publication_date": "2025-00-00T00:00:00Z",
+  "summary": "Bloomberg L.P. focuses on expanding in corporate treasury, risk, wealth management, and public-sector analytics, with regional growth plans targeting Asia-Pacific, the Middle East, and India. The company leverages AI, including BloombergGPT, to deepen client trust and enhance its terminal offerings.",
+  "source": "Pestel-analysis.com",
+  "url": "https://pestel-analysis.com/blogs/growth-strategy/bloomberg"
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: 'February 25, 2026'
+Data: {
+  "headline": "SNOW ($SNOW) Launches AI & Real-Time Ops: Transforming Beyond Analytics",
+  "publication_date": "February 25, 2026",
+  "source": "ValueSense",
+  "url": "https://valuesense.io/news/1026",
+  "summary": "Snowflake announced expansion beyond data analytics into AI, observability, and real-time operations, aiming to add $1.8B in annual revenue by 2027. This strategic move positions Snowflake to address larger enterprise workloads and diversify revenue streams, despite short-term margin pressure and execution risks."
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: 'August 7, 2026'
+Data: {
+  "headline": "Snowflake Inc Stock (SNOW) Closed Up by 3.37% on Aug 7: Key Drivers Unveiled",
+  "publication_date": "August 7, 2026",
+  "source": "TradingKey",
+  "url": "https://www.tradingkey.com/news/market-movers/262089649-market-movers-snow-20260807",
+  "summary": "Snowflake shares rose due to increased institutional focus on data warehousing and AI monetization amid CEO transition and strategy shift toward GenAI. The company defends market share by maintaining cloud-agnostic appeal, important in a multi-cloud regulatory environment."
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Should I Buy Snowflake Stock in 2026? Complete UAE Investor Guide",
+  "publication_date": "2026",
+  "source": "HelloSafe",
+  "url": "https://hellosafe.ae/investing/stock-market/stocks/snowflake",
+  "summary": "Snowflake is accelerating international expansion, especially in the Middle East, with new partnerships and resource commitments supporting AI-powered cloud transformation aligned with UAE Vision 2030. The company is positioned as a leader in data infrastructure and AI innovation."
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: 'May 30, 2026'
+Data: {
+  "headline": "Snowflake Q1 FY27 2026: $6B AWS Pact, Natoma Deal Drive 36% Surge",
+  "publication_date": "May 30, 2026",
+  "source": "Business 2.0 News",
+  "url": "https://business20channel.tv/snowflake-q1-fy27-2026-6b-aws-pact-natoma-deal-drive-36-surg-30-may-2026",
+  "summary": "Snowflake announced a $6 billion five-year strategic collaboration with AWS covering AI workloads and expansion into 10 new AWS regions. The company also acquired Natoma, enhancing governance for AI agents, strengthening its competitive positioning in AI data cloud services."
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Snowflake Summit 2025: Game-Changing Platform Innovations Unveiled",
+  "publication_date": "2025",
+  "source": "Allata",
+  "url": "https://www.allata.com/insights/snowflake-summit-2025-game-changing-platform-innovations-unveiled/",
+  "summary": "Snowflake acquired Crunchy Data to launch Snowflake Postgres, integrating AI-ready PostgreSQL into its platform. Innovations include adaptive compute, AI-powered catalog management, and Cortex Agents, enhancing operational excellence and accelerating AI-driven digital transformation."
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Snowflake Surges Following Quarterly Results, Strategic Partnership, and Acquisition",
+  "publication_date": "2026",
+  "source": "MarketScreener Hong Kong",
+  "url": "https://hk.marketscreener.com/news/snowflake-surges-following-quarterly-results-strategic-partnership-and-acquisition-ce7f5ddadc8bf224",
+  "summary": "Snowflake reported $1.39bn revenue beating estimates, driven by 34% product revenue growth. The company raised full-year guidance and announced a $6bn AWS infrastructure deal plus acquisition of Natoma to enhance AI governance and enterprise AI adoption."
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Snowflake Mission Statement, Vision & Core Values",
+  "publication_date": "2026",
+  "source": "StockIntent",
+  "url": "https://www.stockintent.com/blog/snowflake-mission-statement-vision-core-values",
+  "summary": "Snowflake's vision has expanded to become the platform for the AI era, emphasizing AI-first architecture, workload consolidation, and ecosystem density. Investments focus on governance, security, and cross-cloud collaboration to address enterprise risk and compliance needs."
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Snowflake Faces Legal Scrutiny Amid Strategic Shifts",
+  "publication_date": "2026",
+  "source": "Stocks Today",
+  "url": "https://stockstoday.com/snowflake-faces-legal-scrutiny-amid-strategic-shifts/",
+  "summary": "Snowflake is under investigation by Kaplan Fox & Kilsheimer for potential securities law violations. Despite this, the company continues strategic moves including the Observe acquisition and integration of Google's Gemini-3 AI model, with mixed analyst views on stock valuation and risks."
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Who Owns Snowflake: Largest Shareholders & Brands Owned By",
+  "publication_date": "2026",
+  "source": "Brands Owned By",
+  "url": "https://brandsownedby.com/who-owns-snowflake/",
+  "summary": "Snowflake operates with a top-down leadership model and regional base in the Netherlands for EU operations. The 2025 acquisition of Crunchy Data enabled Snowflake Postgres, integrating PostgreSQL database services into its AI Data Cloud platform."
+}
+--------------------------------------------------------------------------------
+[19:07:00] PARSE_ARTICLE - company=SNOWFLAKE
+Error: Invalid isoformat string: '2026'
+Data: {
+  "headline": "Snowflake Summit 2026 recap: 25+ announcements",
+  "publication_date": "2026",
+  "source": "Flexera",
+  "url": "https://www.flexera.com/blog/perspectives/snowflake-summit-2026/",
+  "summary": "Snowflake expanded its partnership with Anthropic and launched Claude models on its Cortex AI platform. The company emphasized real-time operational agility and innovation in AI-driven workflows, highlighting customer use cases across industries and reinforcing its market positioning."
+}
+--------------------------------------------------------------------------------
+[19:15:40] PARSE_ARTICLE - company=NECTAR 360 SERVICES
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "Nectar360 achieves retail media certification and TAG demonetises illegal World Cup streaming: Latest industry moves",
+  "publication_date": null,
+  "summary": "This article mentions recent mergers, expansions, partnerships, and acquisitions in the performance marketing sector, including Nectar360's retail media certification achievement.",
+  "source": "Performance Marketing World",
+  "url": "https://www.performancemarketingworld.com/article/1963577/nectar360-achieves-retail-media-certification-tag-demonetises-illegal-world-cup-streaming-latest-industry-moves"
+}
+--------------------------------------------------------------------------------
+[19:15:40] PARSE_ARTICLE - company=NECTAR 360 SERVICES
+Error: fromisoformat: argument must be str
+Data: {
+  "headline": "Nectar maximises potential of Hong Kong & GBA landscape with tailored data insights",
+  "publication_date": null,
+  "summary": "Nectar offers comprehensive data insights tailored to the Hong Kong and Greater Bay Area markets, covering demographics, digital footprints, and influencer preferences to help businesses make data-driven decisions and elevate marketing strategies in the region.",
+  "source": "Nectar LinkedIn",
+  "url": "https://hk.linkedin.com/company/nectardata"
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "BOPP Films Market Size, Future Growth and Forecast 2034",
+  "publication_date": "2023",
+  "publication_name": "Strategic Packaging Insights",
+  "url": "https://www.strategicpackaginginsights.com/report/bopp-films-market",
+  "summary": "The BOPP Films market is projected to grow from $32.92 billion in 2025 to $51.94 billion by 2034, driven by demand for flexible packaging and sustainability. China leads with a $10.5 billion market and 7% CAGR, supported by government initiatives and manufacturing strength. Key players focus on innovation, eco-friendly products, and strategic partnerships amid regulatory challenges on plastic usage."
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2022'
+Data: {
+  "headline": "China BOPP Film Market Trends and Key Players",
+  "publication_date": "2022",
+  "publication_name": "Firsta Group",
+  "url": "https://www.firstagroup.com/resources/bopp-plastic-bags.html",
+  "summary": "The Chinese BOPP film market is fragmented with many local and global vendors. Major players include Qingdao Kingchuan Packaging, RuiYann Industrial, and Zhejiang Haibin Film Technology. Innovations such as lightweight 8-micron BOPP films are emerging, with companies tailoring production to customer needs and expanding capacity through vertical and horizontal integration."
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "A New Era for BOPP: China\u2019s Mega-Scale & Strategic Playbooks",
+  "publication_date": "2023",
+  "publication_name": "Portfolio P+",
+  "url": "https://portfolio-pplus.com/Communicator/Details/5651",
+  "summary": "China is reshaping the global BOPP market with massive capacity expansions reaching 1 million MT annually. Fujian Zhongjing Petrochemical Group integrates upstream propane to BOPP production for cost leadership, while Forop Advanced Materials partners with Br\u00fcckner Maschinenbau to target high-end specialty applications. This dual strategy positions China as a leader in both cost and quality in BOPP films."
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPP Films Market Growth Forecast to 2035: Flexible Packaging and Sustainability Drive Demand",
+  "publication_date": "2024",
+  "publication_name": "IndexBox",
+  "url": "https://www.indexbox.io/blog/bopp-films-market-forecast-points-higher-toward-2035-driven-by-flexible-packaging-demand-and-sustainability-mandates/",
+  "summary": "The BOPP films market is expanding with trends including high-barrier films for pharmaceuticals, mono-material blister packaging for recyclability, and specialty films for electronics and agriculture. Key global players include Uflex, Cosmo Films, Jindal Poly Films, and Taghleef Industries. Sustainability and advanced features like UV resistance and tamper-evident packaging are driving innovation."
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "China Dominates Global BOPP Film Market with Capacity Expansion and Sustainability Focus",
+  "publication_date": "2023",
+  "publication_name": "Lucintel",
+  "url": "https://www.lucintel.com/bopp-film-market.aspx",
+  "summary": "China leads the global BOPP film market with rapid capacity growth and technological upgrades, focusing on high-performance films for food and consumer goods packaging. Government support for sustainable manufacturing encourages recyclable and biodegradable films. Domestic companies invest heavily in R&D and export expansion, aligning with regulatory and consumer demands for eco-friendly packaging."
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "BOPP Films Market Size and Trends in Asia Pacific and US",
+  "publication_date": "2023",
+  "publication_name": "Grand View Research",
+  "url": "https://www.grandviewresearch.com/industry-analysis/bopp-films-market-report",
+  "summary": "Asia-Pacific, led by China and India, is the fastest-growing BOPP films market due to urbanization, rising incomes, and e-commerce growth. The US market emphasizes sustainability and recyclability, with innovations in bio-based films. Key companies like Jindal Poly Films, Taghleef Industries, and Cosmo Films invest in R&D to improve film properties and meet evolving industry needs."
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "Biaxially Oriented Polyethylene Terephthalate (BOPET) Films Market Expansion and Innovations",
+  "publication_date": "2024",
+  "publication_name": "Prophecy Market Insights",
+  "url": "https://www.prophecymarketinsights.com/market_insight/biaxially-oriented-polyethylene-terephthalate-bopet-films-market-5617",
+  "summary": "BOPET films market is growing with key players like Toray Industries and SKC Co. expanding capacity and launching eco-friendly bio-based films. Recent innovations focus on sustainable packaging for food and beverage sectors, addressing demand for recyclable and high-performance materials. The market is expected to grow at a CAGR of 5.9% through 2034, driven by packaging and e-commerce growth."
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2024'
+Data: {
+  "headline": "BOPP Films Packaging Market Trends in North America, Europe, and Asia",
+  "publication_date": "2024",
+  "publication_name": "Persistence Market Research",
+  "url": "https://www.persistencemarketresearch.com/market-research/bopp-films-packaging-market.asp",
+  "summary": "North America\u2019s BOPP films demand is driven by e-commerce and advanced barrier technologies, with regulatory emphasis on FDA compliance and recyclability. Europe is influenced by Packaging and Packaging Waste Regulation mandating recyclability by 2030, prompting investments in mono-material BOPP films. Asia sees rapid growth from urbanization and food packaging demand, with capacity expansions in India and Southeast Asia focusing on specialty grades."
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2023'
+Data: {
+  "headline": "Metalized BOPP Films Industry in Asia-Pacific: Innovation and Sustainability",
+  "publication_date": "2023",
+  "publication_name": "HTF Market Insights",
+  "url": "https://www.htfmarketinsights.com/report/4444175-asiapacific-metalized-biaxially-oriented-polypropylene-bopp-films-market",
+  "summary": "The Asia-Pacific metalized BOPP films market, dominated by China, is evolving with innovations in metallization technologies enhancing barrier properties and sustainability. Government policies promote recyclable metalized films, supporting investments in advanced manufacturing. Strategic collaborations and product diversification address growing demand in pharmaceuticals, electronics, and biodegradable alternatives."
+}
+--------------------------------------------------------------------------------
+[19:26:33] PARSE_ARTICLE - industry=Film, industry_str=BOPP Film, BOPET, PE Film, location=CN
+Error: Invalid isoformat string: '2025'
+Data: {
+  "headline": "Bopp Films Market Size to Hit USD 35 Billion by 2035 with Sustainability Focus",
+  "publication_date": "2025",
+  "publication_name": "Statifacts",
+  "url": "https://www.statifacts.com/outlook/bopp-films-market",
+  "summary": "The global BOPP films market is projected to grow to USD 35 billion by 2035 at a CAGR of 6.1%, driven by demand in food packaging, adhesives, and industrial uses. Sustainability and regulatory compliance are key growth factors, with manufacturers optimizing supply chains and adopting eco-friendly products. Major players like Taghleef Industries and Jindal Poly Films focus on strategic acquisitions and innovation to maintain competitive advantage."
+}
+--------------------------------------------------------------------------------
