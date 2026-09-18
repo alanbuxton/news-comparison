@@ -33,7 +33,7 @@ def get_industry_articles_for(industry: str, industry_context: str, location: st
     industry_context_items = [s.strip() for s in industry_context.split(",")]
     params = [("industry", industry)]
     if location:
-        params.append(("location", location))
+        params.append(("activity_location", location))
     params += [("industry_context", ctx) for ctx in industry_context_items]
     resp = call_syracuse_activities("industry-location", params, query_context)
     articles = parse_response(resp, query_context)
