@@ -1,0 +1,421 @@
+{
+  "query_type": "companies",
+  "providers": [
+    {
+      "label": "A",
+      "axes": {
+        "precision": {
+          "score": 9,
+          "evidence": [
+            "Alpek: all 6 articles are on-topic company news (S&P/BMV IPC inclusion, Q2 earnings, UK PET safeguard investigation)",
+            "Coles: 13 clean articles on ACCC Kalgoorlie tribunal, electric supermarket opening, FY26 results",
+            "Linklaters: all 8 articles are firm-specific (Wachtell hire, Paul Weiss hires, Webber Wentzel alliance end)",
+            "0 mkt-report, 0 dup, 0 stale \u2014 extremely clean feed"
+          ]
+        },
+        "coverage": {
+          "score": 7,
+          "evidence": [
+            "answered: 35/42; 7 companies returned no results (BERKSHIRE LABELS, Fritz Foss, NUBIZ PLASTIC, SEERTECH SOLUTIONS, Sigma Chemtrade, TRICON DRY CHEMICALS, ZETA TECHNICAL SERVICES)",
+            "Only 1 article each for CHEP, Dine Cartonnages, ICOF EUROPE, IMPACT RETAIL",
+            "Spelling variant Klockner/Kl\u00f6ckner: only 38% overlap \u2014 inconsistent across spellings"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header shows no-date: 0 (0%), stale: 0 (0%), no-publisher: 0 (0%)",
+            "Every article carries a named publisher (Reuters, Bloomberg, Gulf News, ABC News, etc.)",
+            "Every article carries a valid date within window"
+          ]
+        },
+        "story_quality": {
+          "score": 9,
+          "evidence": [
+            "Coles ABC News summary explains $1.1B profit and $235M underpayment provision distinctly",
+            "Dominion Energy Reuters summary quotes $1 billion/year Virginia supplier program specifics",
+            "Gandhar Oil summaries include specific figures (\u20b9205.9 crore PAT, 689% YoY)",
+            "Summaries are informative enough to decide clickthrough without boilerplate"
+          ]
+        },
+        "trust": {
+          "score": 10,
+          "evidence": [
+            "errors: 0 in header",
+            "URLs point to legitimate publishers (reuters.com, bloomberg.com, gov.uk, abc.net.au)",
+            "No suspicious URL patterns observed"
+          ]
+        }
+      },
+      "verdict": "Cleanest feed in the run with excellent metadata and summaries, but leaves 7/42 companies unanswered and shows spelling-variant fragility on Klockner/Kl\u00f6ckner.",
+      "weighted": 8.9,
+      "final": 8.9,
+      "caps_applied": []
+    },
+    {
+      "label": "C",
+      "axes": {
+        "precision": {
+          "score": 8,
+          "evidence": [
+            "Bloomberg: 20 articles, but several are about Clay (AI startup) and Smack Technologies \u2014 tangential name-drops rather than Bloomberg-focused",
+            "Coles: 20 clean articles (krill oil removal, Flybuys change, Palantir contract ended)",
+            "Constellium: 10 tightly on-topic articles (Q2 guidance raise, EOS partnership, Changchun JV exit)",
+            "Linklaters: 20 articles all firm-specific (Verlinvest, Glencore, Wachtell dealmaker)"
+          ]
+        },
+        "coverage": {
+          "score": 5,
+          "evidence": [
+            "answered: 25/42 \u2014 17 companies returned nothing (BERKSHIRE LABELS, CHARTER NEX FILMS, Dine Cartonnages, Fritz Foss, HPCL Mittal Energy, ICOF EUROPE, IMPACT RETAIL, Jindal Films, LUSHA SYSTEMS, Little Island Productions, NECTAR 360 SERVICES, NUBIZ PLASTIC, SEERTECH SOLUTIONS, Sigma Chemtrade, TRICON DRY CHEMICALS, Universal McCann, ZETA TECHNICAL SERVICES)",
+            "Alpek: only 1 article; CHEP: only 1 article",
+            "Spelling variants Klockner/Kl\u00f6ckner: 100% identical \u2014 spelling-insensitive"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header: no-date 0, stale 0, no-publisher 0",
+            "Every row shows named publisher (Reuters, Bloomberg, TheWrap, Yahoo Finance)",
+            "Timestamps include precise datetime not just date"
+          ]
+        },
+        "story_quality": {
+          "score": 9,
+          "evidence": [
+            "Dominion-NextEra Reuters summary specifies $1B/year Virginia supplier program",
+            "Coles Palantir story explains 3-year contract ending 2027",
+            "ExxonMobil Venezuela story cites Petromonagas Orinoco Belt specifics",
+            "Summaries consistently informative"
+          ]
+        },
+        "trust": {
+          "score": 10,
+          "evidence": [
+            "errors: 0",
+            "URLs resolve to established publishers (reuters.com, bloomberg.com, cnbc.com, hollywoodreporter.com)",
+            "No hallucinated content patterns detected"
+          ]
+        }
+      },
+      "verdict": "High quality where it answers, with perfect metadata and spelling-insensitive matching, but leaves 40% of queried companies with no results at all.",
+      "weighted": 8.15,
+      "final": 8.15,
+      "caps_applied": []
+    },
+    {
+      "label": "E",
+      "axes": {
+        "precision": {
+          "score": 8,
+          "evidence": [
+            "Constellium: both articles on-topic (Changchun JV exit, Q2 2026 results)",
+            "Dominion Energy: 5 articles all specific (NextEra Virginia package, CVOW cost rise, Q2 AI demand)",
+            "Linklaters: 4 articles all about FY26 record results and US expansion",
+            "Gandhar Oil: 3 clean articles on AGM, Q1 FY27 results",
+            "Impact Retail management buyout article is on-topic"
+          ]
+        },
+        "coverage": {
+          "score": 2,
+          "evidence": [
+            "answered: 18/42 \u2014 24 companies returned zero results (ALPEK POLYESTER, Borouge, CHARTER NEX FILMS, CHEP, COLES, Deloitte, ExxonMobil, Fritz Foss, GREEN BAY PACKAGING, HAIER, HPCL Mittal Energy, ICOF EUROPE, International Paper, Kl\u00f6ckner Pentaplast, Little Island Productions, NECTAR 360, NUBIZ, RAINFOCUS, SEERTECH, SNOWFLAKE, Sigma Chemtrade, TRICON, Westrock, ZETA)",
+            "Even answered companies get only 1-5 articles",
+            "Spelling variants: answers 'Klockner Pentaplast' (1 article) but not 'Kl\u00f6ckner Pentaplast' (0) \u2014 spelling-fragile \u26a0"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header: no-date 0, stale 0, no-publisher 0",
+            "Every row shows named publisher (Reuters, Fox News, City A.M., Benzinga)",
+            "0 duplicates"
+          ]
+        },
+        "story_quality": {
+          "score": 8,
+          "evidence": [
+            "Constellium Q2 summary gives $2.7B revenue and $439M EBITDA specifics",
+            "Linklaters summary details \u00a32.48m PPEP and 11.6% pre-tax profit growth",
+            "Dominion-NextEra summary quotes $2.25B bill credit pool and $100M workforce fund",
+            "Summaries are analytical rather than boilerplate"
+          ]
+        },
+        "trust": {
+          "score": 8,
+          "evidence": [
+            "errors: 0",
+            "URLs mostly resolve to legitimate sources",
+            "One suspicious URL: reisingergooch.com regulatory docket review reads as niche/possibly synthesized",
+            "Some URLs like industryanalysts.com and directorstalkinterviews.com are generic domains rather than article-specific"
+          ]
+        }
+      },
+      "verdict": "Sparse but high-quality selective results with strong metadata; catastrophically low coverage answering fewer than half of queried companies.",
+      "weighted": 7.1,
+      "final": 7.1,
+      "caps_applied": []
+    },
+    {
+      "label": "B",
+      "axes": {
+        "precision": {
+          "score": 4,
+          "evidence": [
+            "BERKSHIRE LABELS: 20 results but nearly all are Berkshire Hathaway (Buffett succession, Berkshire Residential Investments MF1 acquisition) \u2014 wrong-entity FPs",
+            "CHEP: results dominated by Cheplapharm/Sanofi pharma deal and Vishay CHEP thin-film resistors \u2014 wrong entities",
+            "Fritz Foss: 20 results none about the entity (Rapidus arkivet, osapiens, GNU GPL Wikipedia)",
+            "NUBIZ PLASTIC: results are National Plastic Industries, InterTabac, Nubo bio company \u2014 wrong entities",
+            "Dine Cartonnages: Dine Brands Global (IHOP/Applebee's) dominates \u2014 wrong entity",
+            "TRICON DRY CHEMICALS: results are Tricon Energy, Trinity Capital, Tri Polarcon \u2014 wrong entities"
+          ]
+        },
+        "coverage": {
+          "score": 9,
+          "evidence": [
+            "answered: 42/42 \u2014 every queried entity produced results",
+            "Spelling variants Klockner/Kl\u00f6ckner both answered with 74% overlap",
+            "But nominal coverage inflated by wrong-entity matches"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 5,
+          "evidence": [
+            "Header: no-date 0 (0%), stale 0 (0%), no-publisher 839 (100%) \u2014 every row missing publisher name",
+            "Domain shown in parentheses (linkedin.com, finance.yahoo.com, investing.com) partly compensates",
+            "dup: 21 (3%), mkt-report: 9 (1%) \u2014 minor noise"
+          ]
+        },
+        "story_quality": {
+          "score": 6,
+          "evidence": [
+            "Many summaries are informative (Borouge Q2 revenue $1.4B, Alpek EBITDA guidance)",
+            "But numerous rows are boilerplate: 'Americas+1 212 318 2000 EMEA+44 20 7330 7500' repeated across Bloomberg entries",
+            "CBS News entry '9/20: CBS Weekend News' is a video listing, not article substance"
+          ]
+        },
+        "trust": {
+          "score": 7,
+          "evidence": [
+            "errors: 0 in header",
+            "No hallucinated URLs detected \u2014 links resolve to real domains",
+            "But heavy reliance on investing.com regional mirrors (uk./za./ng./ca.) inflates apparent volume"
+          ]
+        }
+      },
+      "verdict": "Maximal coverage and volume but seriously undermined by wrong-entity contamination on ambiguous names and universal missing-publisher metadata.",
+      "weighted": 5.9,
+      "final": 5.9,
+      "caps_applied": [
+        "metadata_soft"
+      ]
+    },
+    {
+      "label": "D",
+      "axes": {
+        "precision": {
+          "score": 4,
+          "evidence": [
+            "BERKSHIRE LABELS: 20 results but mostly label industry M&A tangentially mentioning Berkshire Labels (Asteria Group, Sopano) \u2014 broader-than-asked",
+            "CHEP: Cheplapharm/Sanofi and CHS/OCP North America dominate \u2014 wrong entities",
+            "Fritz Foss: 20 results are FOSS Group, Foss & Company tax equity, unrelated Foss/Fritz mentions \u2014 wrong entities",
+            "NUBIZ PLASTIC: results are Medytox Nubiju, Nubo bio, InterTabac \u2014 wrong entities",
+            "Sigma Chemtrade: results include Sigma Lithium, Sigma Healthcare, Trison Wells, ContextLogic gChem \u2014 wrong entities",
+            "TRICON DRY CHEMICALS: results are EMCO, Tricon Energy, PetChem, StanChem \u2014 wrong entities"
+          ]
+        },
+        "coverage": {
+          "score": 9,
+          "evidence": [
+            "answered: 42/42",
+            "Spelling variants Klockner/Kl\u00f6ckner: both answered, 38% overlap \u2014 largely different result sets \u26a0",
+            "Nominal coverage inflated by wrong-entity matches on ambiguous names"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 5,
+          "evidence": [
+            "Header: no-date 0 (0%), stale 0 (0%), no-publisher 840 (100%) \u2014 every article missing publisher",
+            "Domain shown in URL parentheses (prnewswire.com, bloomberg.com, reuters.com) offers partial compensation",
+            "dup: 34 (4%), mkt-report: 10 (1%)"
+          ]
+        },
+        "story_quality": {
+          "score": 6,
+          "evidence": [
+            "Deloitte summaries are substantive (Wavicle acquisition, ControlCatalyst.AI launch)",
+            "Bloomberg entries reduced to headline+one-liner (e.g., Dangote refinery, Enbridge/Tallgrass)",
+            "Some summaries are boilerplate page fragments rather than article substance"
+          ]
+        },
+        "trust": {
+          "score": 7,
+          "evidence": [
+            "errors: 0",
+            "URLs resolve to real publisher/wire domains",
+            "No hallucinated URLs detected but heavy volume of press-release aggregators (prnewswire, businesswire, globenewswire)"
+          ]
+        }
+      },
+      "verdict": "Broad coverage at scale but riddled with wrong-entity matches on ambiguous names, universal missing-publisher metadata, and spelling-variant inconsistency.",
+      "weighted": 5.9,
+      "final": 5.9,
+      "caps_applied": [
+        "metadata_soft"
+      ]
+    }
+  ],
+  "ranking": [
+    "A",
+    "C",
+    "E",
+    "B",
+    "D"
+  ],
+  "spelling_variants": [
+    {
+      "variants": [
+        "Klockner Pentaplast",
+        "Kl\u00f6ckner Pentaplast"
+      ],
+      "providers": {
+        "A": {
+          "counts": [
+            4,
+            7
+          ],
+          "shared": 3,
+          "union": 8,
+          "overlap": 0.375,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "B": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 17,
+          "union": 23,
+          "overlap": 0.7391304347826086,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "C": {
+          "counts": [
+            10,
+            10
+          ],
+          "shared": 10,
+          "union": 10,
+          "overlap": 1.0,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "D": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 11,
+          "union": 29,
+          "overlap": 0.3793103448275862,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "E": {
+          "counts": [
+            1,
+            0
+          ],
+          "shared": 0,
+          "union": 1,
+          "overlap": 0.0,
+          "answered": [
+            "Klockner Pentaplast"
+          ]
+        }
+      }
+    }
+  ],
+  "self_reported_scores": {
+    "A": {
+      "total": 178,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "B": {
+      "total": 839,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "C": {
+      "total": 305,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "D": {
+      "total": 840,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "E": {
+      "total": 35,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    }
+  }
+}

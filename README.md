@@ -133,6 +133,19 @@ trustworthy date.
 
 (In reverse order) 
 
+### 2026-09-27
+
+Perplexity Agent 1st in both query types.
+
+- **Companies:** Perplexity Agent 1st (8.9/10 — cleanest feed with on-topic hits like Coles ACCC Kalgoorlie tribunal and Linklaters' Wachtell hire), Syracuse 2nd (8.2/10 — tight Constellium Q2 guidance and Linklaters coverage but 17/42 companies unanswered), Linkup 3rd (7.1/10 — sharp Dominion-NextEra Virginia summaries yet only 18/42 answered), Perplexity Search 4th (5.9/10 — metadata cap engaged for 100% missing publishers, and CHEP query returned Cheplapharm/Vishay wrong-entity noise), Exa last (5.9/10 — metadata cap engaged for 100% missing publishers, with Fritz Foss pulling FOSS Group and Foss & Company tax equity instead of the queried entity).
+- **Industries:** Perplexity Agent 1st (9.3/10 — on-intent Sidike BOPET expansion and Canada HS 7607 foil tariff pieces with named publishers throughout), Linkup 2nd (7.3/10 — analytical INEOS Saltend acetyls mothballing summary but 11/20 topics empty including Film|CN and CONSTRUCTION|Europe), Exa 3rd (6.8/10 — metadata cap engaged for 100% missing publishers, with 14% market-report share dragging LABORATORY|Africa into IndexBox forecast pages), Syracuse 4th (6.3/10 — HR SERVICES|Mid Atlantic drifted into Humana/Royal Caribbean analyst calls and Converter Foil|Northern America returned nothing), Perplexity Search last (5.0/10 — metadata and precision caps engaged for 100% missing publishers and 33% market-report share, with Packaging Boxes|IN filled by Justdial directory listings).
+
+**Recommendation for autonomous use** (agent or human acting without manual filtering):
+
+- **Companies:** **Use Perplexity Agent** — final 8.9 and precision 9 with no caps engaged, delivering a feed clean enough to trust unfiltered for the 35/42 companies it answers.
+- **Industries:** **Use Perplexity Agent** — final 9.3 and precision 9 with no caps engaged, the only provider combining named publishers, dated rows, and on-intent trade-press coverage.
+
+
 ### 2026-09-06
 
 (Stopped testing Tavily now because it's a consistent poor performer).
