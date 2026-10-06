@@ -24,6 +24,7 @@ from analyse import (
     _normalise_url,
     _recompute_provider,
     _render_item,
+    _is_not_news,
     WEAK_SCORE,
     _score_of,
     _variant_groups,
@@ -442,7 +443,7 @@ class TestRenderItem:
 
     def test_respects_max_articles(self):
         arts = self._make_articles(10)
-        lines, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=3)
+        lines, _, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=3)
         shown = [l for l in lines if l.strip().startswith(tuple("0123456789"))]
         assert len(shown) <= 3
         assert any("more articles not shown" in l for l in lines)
@@ -450,11 +451,11 @@ class TestRenderItem:
     def test_counts_dups(self):
         arts = self._make_articles(2)
         arts[1]["document_url"] = arts[0]["document_url"]  # force dup
-        _, dup_count, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
+        _, dup_count, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
         assert dup_count == 1
 
     def test_no_articles(self):
-        lines, dup_count, _ = _render_item("Company", "Acme", [], [], REF, max_articles=15)
+        lines, dup_count, _, _ = _render_item("Company", "Acme", [], [], REF, max_articles=15)
         assert any("NO RESULTS RETURNED" in l for l in lines)
         assert dup_count == 0
 
@@ -524,19 +525,19 @@ class TestNoPublisherRendering:
 
     def test_item_header_counts_no_publisher(self):
         arts = [self._art(""), self._art(""), self._art("Reuters")]
-        lines, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
+        lines, _, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
         assert "2 no-publisher" in lines[0]
 
     def test_item_header_omits_when_all_published(self):
         arts = [self._art("Reuters")]
-        lines, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
+        lines, _, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
         assert "no-publisher" not in lines[0]
 
     def test_unrelated_headlines_not_dup_when_publisher_blank(self):
         arts = [self._art("", "https://reuters.com/a"),
                 self._art("", "https://apnews.com/b")]
         arts[1]["headline"] = "Gamma opens new plant"
-        _, dup_count, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
+        _, dup_count, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=15)
         assert dup_count == 0
 
 
@@ -648,6 +649,81 @@ class TestFillProviderCounts:
             assert "A\u2013E" not in filled
             assert "five providers" not in filled
             assert "Five news search providers" not in filled
+
+
+class TestNotNews:
+    """Social posts, forum threads, videos and company About pages are FP-not-news
+    under the rubric. Flagged by the harness, like market reports, so the count is
+    the same however the judge reads the rows, and covers rows past the shown cap."""
+
+    def _art(self, url, headline="Acme news"):
+        return {"published_date_clean": "2026-04-10T00:00:00+00:00", "headline": headline,
+                "published_by": "", "document_url": url, "summary_text": "s"}
+
+    @pytest.mark.parametrize("url", [
+        "https://www.facebook.com/acme/posts/123",
+        "https://m.facebook.com/story.php?id=1",
+        "https://uk.linkedin.com/posts/acme_launch-activity-1",
+        "https://x.com/acme/status/1",
+        "https://www.reddit.com/r/plastics/comments/abc",
+        "https://www.youtube.com/watch?v=abc",
+        "https://acme.com/about-us",
+        "https://www.acme.com/en/company/about/",
+        "https://acme.com/who-we-are",
+    ])
+    def test_flags_social_posts_and_about_pages(self, url):
+        assert _is_not_news(self._art(url))
+
+    @pytest.mark.parametrize("url", [
+        "https://www.reuters.com/business/acme-buys-rival-2026-04-10/",
+        "https://economictimes.indiatimes.com/news/company/corporate-trends/acme/articleshow/1.cms",
+        "https://www.bloomberg.com/news/articles/2026-04-10/acme-about-to-list",
+        "https://notfacebook.com/acme",
+        "https://www.acme.com/about-us/news/2026/acme-opens-plant",
+        "https://acme.com/about/press-releases/q1-results",
+        "https://www.linklaters.com/about-us/news-and-deals/deals/2026/august/linklaters-advises-x",
+        "https://www.deloitte.com/us/en/about/press-room/deloitte-announces-ma-platform.html",
+        "https://www.uwstout.edu/about-us/news-center/university-partner-award-green-bay-packaging",
+    ])
+    def test_leaves_news_alone(self, url):
+        assert not _is_not_news(self._art(url))
+
+    def test_flagged_inline_and_counted_beyond_the_shown_cap(self):
+        arts = [self._art(f"https://reuters.com/{i}", f"Headline {i}") for i in range(3)]
+        arts.append(self._art("https://www.facebook.com/acme/posts/1", "Hidden post"))
+        lines, _, _, not_news = _render_item("Company", "Acme", arts, [], REF, max_articles=3)
+        assert not_news == 1
+        assert "1 not-news" in lines[0]
+        arts.insert(0, arts.pop())
+        lines, _, _, _ = _render_item("Company", "Acme", arts, [], REF, max_articles=3)
+        assert any("[NOT-NEWS ⚠] Hidden post" in l for l in lines)
+
+    def test_provider_header_carries_the_count(self):
+        rows = [{"provider": "Exa", "company": "Acme", **self._art("https://x.com/acme/status/1")}]
+        out = format_companies_data(rows, {"Exa": "A"}, 20, REF)
+        assert "not-news: 1 (100%)" in out
+
+    def test_judge_is_told_the_flag_is_ground_truth_and_costs_precision(self):
+        system = " ".join(SYSTEM_PROMPT.split())
+        assert "`[NOT-NEWS ⚠]` flags and the `not-news: N` header count" in system
+        for prompt in (COMPANIES_PROMPT, INDUSTRIES_PROMPT):
+            assert "[NOT-NEWS ⚠]" in prompt
+            assert "FP-not-news" in prompt
+
+
+class TestProviderTextIsClaims:
+    """Only the harness's flags are ground truth. Everything a provider returns —
+    headline, summary, publisher, any label — is that provider's claim, whoever the
+    provider is: an LLM summary can invent facts, and a confident label can make a
+    wrong-entity row look relevant. The rule names no provider's format."""
+
+    def test_every_provider_field_is_a_claim(self):
+        prompt = " ".join(SYSTEM_PROMPT.split())
+        assert "is that provider's claim, not ground truth, whichever provider" in prompt
+        assert "headline, summary, publisher, and any label or note" in prompt
+
+    def test_rule_is_not_shaped_to_one_provider(self):
+        assert "bracketed" not in SYSTEM_PROMPT
 
 
 # ---------------------------------------------------------------------------

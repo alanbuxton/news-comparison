@@ -50,13 +50,21 @@ def parse_response(resp_json, query_context: str) -> list[dict]:
         log_error(PROVIDER_NAME, "PARSE_RESPONSE", query_context, str(e), resp_json)
         return []
 
+def matched_prefix(item: dict) -> str:
+    """Why a company-search row is there: the searched company's name and role in it.
+    rationale: test_clients.TestSyracuse"""
+    matched = item.get('matched_organizations') or []
+    if not matched:
+        return ""
+    return "[" + "; ".join(f"{m['name']}: {m['role']}" for m in matched) + "] "
+
 def item_to_article(item: dict, query_context: str):
     try:
         return {
             "headline": item['headline'],
             "published_date_clean": datetime.fromisoformat(item["published_date"]),
             "published_date": item["published_date"],
-            "summary_text": item['document_extract'],
+            "summary_text": matched_prefix(item) + item['document_extract'],
             "published_by": item['published_by'],
             "document_url": item['document_url'],
             "activity_type": item['activity_class'],

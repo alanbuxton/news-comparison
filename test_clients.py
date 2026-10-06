@@ -6,6 +6,7 @@ import pytest
 
 import perplexity_search_client as pxs
 import queries as q
+import syracuse_client as sy
 import tavily_client as tv
 from utils import set_error_log_dir
 
@@ -99,6 +100,36 @@ class TestPerplexitySearch:
 
     def test_response_without_results_key(self):
         assert pxs.perplexity_response_to_articles({}, "ctx") == []
+
+
+# ---------------------------------------------------------------------------
+# Syracuse matched organizations
+#
+# Every other provider's summary is chosen for the query: a written summary, or
+# the passage the search engine matched. Syracuse's extract is the article's
+# lead, which on a funding round never reaches the investor list. The API names
+# the searched company and its role in `matched_organizations`; carrying that into
+# the summary lets the judge see why the row is there.
+# ---------------------------------------------------------------------------
+
+class TestSyracuse:
+    def _item(self, **kw):
+        base = {"headline": "Clay raises $115M", "published_date": "2026-09-09T12:00:00+00:00",
+                "document_extract": "Clay raised a Series D.", "published_by": "Business Wire",
+                "document_url": "https://x.com/1", "activity_class": "CorporateFinanceActivity"}
+        base.update(kw)
+        return base
+
+    def test_matched_organizations_lead_the_summary(self):
+        art = sy.item_to_article(self._item(matched_organizations=[
+            {"name": "Bloomberg Beta", "role": "investor", "uri": "u1"},
+            {"name": "Bloomberg", "role": "partnership", "uri": "u2"}]), "ctx")
+        assert art["summary_text"] == ("[Bloomberg Beta: investor; Bloomberg: partnership] "
+                                       "Clay raised a Series D.")
+
+    def test_summary_unchanged_without_matched_organizations(self):
+        for item in (self._item(), self._item(matched_organizations=None)):
+            assert sy.item_to_article(item, "ctx")["summary_text"] == "Clay raised a Series D."
 
 
 # ---------------------------------------------------------------------------

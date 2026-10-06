@@ -150,6 +150,23 @@ partly reflect that.
 days" rather than explicit bounds, so the 90-day window is left to
 `filter_recent_real_articles` in `main.py`.
 
+**Why Syracuse summaries can open with a `[Name: role]` note:** every other
+provider's summary is chosen for the query — an LLM-written summary (Perplexity
+Agent, Linkup) or the passage the engine matched (Exa highlights, Perplexity
+Search snippets). Syracuse's `document_extract` is the article's lead whatever
+the query, so on a funding round it never reaches the investor list, and the
+judge read Bloomberg Beta's investments as name-drops (2026-09-27 run). The
+Syracuse API names the searched company and its role in each row
+(`matched_organizations`, part of its default simple output since 2026-10),
+and `syracuse_client.py` puts it at the head of `summary_text`, the field every
+provider fills. It is mapped from what the API returns to any caller, never
+built in p-v-s. A confident label could make a wrong-entity row look relevant,
+but so could an LLM summary that invents facts, so the judge rule is general
+and names no format: only the harness's flags are ground truth, and every
+provider field — headline, summary, publisher, any label — is that provider's
+claim, judged by what the whole row supports. Runs before and after this change
+are not comparable on Syracuse company precision.
+
 **Why Exa and Tavily are capped at 20 results:** `num_results` / `max_results`
 is the caller's request, not a measure of the provider, and asking Exa for 50
 and Tavily for 100 while others are structurally limited to provide only 
@@ -182,7 +199,27 @@ providers). Exa is the other half of the finding: it returns no score under
 for a company with 45 good hits and one with none. That absence is reported as a
 usability limitation, not scored as a precision failure.
 
-**Why `DEFAULT_MAX_ARTICLES` = 15:** This caps the number of articles shown per company/topic per provider to keep the prompt within Claude's context window while still giving enough data to spot patterns (false positives, duplicate articles, missing dates). Increase if the model misses patterns; decrease if costs are a concern.
+**Why `DEFAULT_MAX_ARTICLES` = 20:** every provider returns at most 20 per
+query, so 20 shows the judge everything. It was 15 from the first version
+(2026-03-08), set for context-window headroom and never tuned. At 15 the cap hid
+rows only from the high-volume providers — Exa and Perplexity Search on every
+item, Syracuse on some — and rows 16–20 are where wrong-entity padding sits, so
+their precision was judged on their best rows while the low-volume providers
+were judged on everything. Going to 20 costs roughly a quarter more input
+tokens per judge call (estimated ~230k → ~290k for companies on the 2026-09-27
+data). Lower it only if a prompt stops fitting, and then prefer sampling across
+the list to truncating its tail.
+
+**Why there is a `[NOT-NEWS ⚠]` flag:** the rubric always counted social posts,
+forum threads, videos and About pages as FP-not-news, but nothing detected them,
+so whether they cost precision depended on the judge noticing a domain. The
+harness now flags them like market reports (`_is_not_news`: social/forum/video
+domains, plus About-page path segments unless a newsroom segment such as
+`/news-and-deals/` or `/press-room/` is present — those are press releases),
+counts them over every row, and the prompt makes each flagged row an FP. On the
+2026-09-27 data it flags 135 Perplexity Search and 14 Exa rows (almost all
+LinkedIn posts and Pulse articles) and none from the other providers. The flag
+is a floor: catalogues, registry listings and blogs still rely on the judge.
 
 **Why the system prompt forbids hedging:** The point of this tool is to get honest competitive intelligence about where Syracuse falls short. A model that hedges or refuses to rank defeats the purpose.
 

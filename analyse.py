@@ -35,7 +35,7 @@ from utils import publisher_domain
 load_dotenv()
 
 DEFAULT_MODEL = "claude-opus-4-7"
-DEFAULT_MAX_ARTICLES = 15   # per company/topic per provider
+DEFAULT_MAX_ARTICLES = 20   # per company/topic per provider
 MAX_SUMMARY_CHARS = 200     # truncate summaries to keep prompt manageable
 STALE_DAYS = 90             # articles older than this are flagged as stale
 
@@ -163,6 +163,35 @@ def _is_market_report(art: dict) -> bool:
     if article_domain(art) in _MARKET_REPORT_SOURCES:
         return True
     return bool(_MARKET_REPORT_RE.search(art.get("headline") or ""))
+
+
+# Not news under the rubric: social posts, forum threads and videos, wherever
+# they are hosted on the platform.
+_NOT_NEWS_DOMAINS = {
+    "facebook.com", "fb.com", "instagram.com", "linkedin.com", "x.com",
+    "twitter.com", "reddit.com", "youtube.com", "youtu.be", "tiktok.com",
+    "threads.net", "quora.com", "pinterest.com",
+}
+# A company's own About pages. Matched as whole path segments: news sites file
+# stories under sections like /company/, so "company" alone is not a signal.
+_ABOUT_PAGE_SEGMENTS = {
+    "about", "about-us", "aboutus", "about_us", "who-we-are", "our-story",
+    "our-company", "company-profile",
+}
+# A newsroom filed under About publishes press releases, which are news:
+# /news-and-deals/, /press-room/, /news-center/, /press-releases/ ...
+def _is_newsroom_segment(seg: str) -> bool:
+    return "news" in seg or seg.startswith("press") or seg == "releases"
+
+
+def _is_not_news(art: dict) -> bool:
+    parts = urlsplit(art.get("document_url") or "")
+    host = (parts.hostname or "").lower()
+    if any(host == d or host.endswith("." + d) for d in _NOT_NEWS_DOMAINS):
+        return True
+    segments = {seg.lower() for seg in parts.path.split("/") if seg}
+    return (bool(segments & _ABOUT_PAGE_SEGMENTS)
+            and not any(_is_newsroom_segment(seg) for seg in segments))
 
 
 def _compute_dup_groups(articles: list[dict]) -> list[int]:
@@ -567,6 +596,11 @@ Non-negotiable rules:
        drive uniqueness.
      - `[MKT-REPORT ⚠]` flags and the `mkt-report: N` header count identify
        market-research-report landing pages / SEO announcements.
+     - `[NOT-NEWS ⚠]` flags and the `not-news: N` header count identify social
+       posts, forum threads, videos and company About pages. Every flagged row
+       is FP-not-news: count each one against precision and quote the counts.
+       The flag is a floor, not a ceiling — other not-news content (product
+       catalogues, registry listings, personal blogs) still needs your reading.
      - `[NO RESULTS RETURNED ⚠]` items and the `answered: X/Y` count in each
        provider header drive coverage.
      - `*** ERROR ***` rows and the `errors: N` header count drive trust.
@@ -587,9 +621,17 @@ Non-negotiable rules:
    A provider that returns 5 clean on-topic articles beats one that returns
    30 articles half of which are wrong-entity, About Us pages, or social
    posts. Reflect this in precision.
-5. You do not know who built any of these providers. Treat __LABEL_LIST__ as
+5. Only the pre-computed flags are ground truth. Everything else in a row —
+   headline, summary, publisher, and any label or note a provider attaches — is
+   that provider's claim, not ground truth, whichever provider returned it.
+   Judge relevance from what the row's content as a whole supports. A claim the
+   rest of the row contradicts or does not support (a label naming the queried
+   company on a story about a different one, a summary stating facts the
+   headline and source do not bear out) does not make the row relevant: count it
+   against precision, and against trust where it looks invented.
+6. You do not know who built any of these providers. Treat __LABEL_LIST__ as
    interchangeable labels. Score on the data alone.
-6. Output exactly the JSON scorecard schema given, inside a single ```json
+7. Output exactly the JSON scorecard schema given, inside a single ```json
    fenced block, followed by a short ## Notes prose section. Do not add
    fields, do not omit fields, do not put commentary inside the JSON block.
 """
@@ -714,6 +756,11 @@ NOTE on market-report landing pages: flagged inline as `[MKT-REPORT ⚠]`; the
 header `mkt-report: N` count is ground truth. For a company query they are
 off-topic noise — count as FP-not-news.
 
+NOTE on social posts, forum threads, videos and About pages: flagged inline as
+`[NOT-NEWS ⚠]`; the header `not-news: N` count is ground truth and covers rows
+beyond those shown. Every flagged row is FP-not-news and counts against
+precision — the company's own LinkedIn post or About page is not news about it.
+
 __RUBRIC__
 
 ---
@@ -772,6 +819,11 @@ provides useful state-of-market context — count those as on-topic (TP /
 TP-thin). Beyond that, surplus copies are noise — count the excess as
 FP-not-news, and treat a provider whose results are dominated by them as a
 precision failure. Do not blanket-penalise.
+
+NOTE on social posts, forum threads, videos and About pages: flagged inline as
+`[NOT-NEWS ⚠]`; the header `not-news: N` count is ground truth and covers rows
+beyond those shown. Every flagged row is FP-not-news and counts against
+precision.
 
 __RUBRIC__
 
@@ -969,6 +1021,7 @@ def _group_summary(
     reference_date: datetime,
     total_dups: int,
     total_mkt: int,
+    total_not_news: int,
     answered: int,
     universe: int,
     kind: str,
@@ -988,7 +1041,8 @@ def _group_summary(
             f"|  total articles: {total}  |  errors: {total_errors}  "
             f"|  no-date: {with_pct(no_date)}  |  stale (>{STALE_DAYS}d): {with_pct(stale)}  "
             f"|  no-publisher: {with_pct(no_publisher)}  "
-            f"|  dup: {with_pct(total_dups)}  |  mkt-report: {with_pct(total_mkt)}"
+            f"|  dup: {with_pct(total_dups)}  |  mkt-report: {with_pct(total_mkt)}  "
+            f"|  not-news: {with_pct(total_not_news)}"
         ),
         "=" * 60,
     ]
@@ -1002,6 +1056,7 @@ def _item_header(
     reference_date: datetime,
     dup: int,
     mkt: int,
+    not_news: int,
 ) -> str:
     no_date, stale = _date_counts(real, reference_date)
     no_publisher = _no_publisher_count(real)
@@ -1018,6 +1073,8 @@ def _item_header(
         parts.append(f"{dup} dup")
     if mkt:
         parts.append(f"{mkt} mkt-report")
+    if not_news:
+        parts.append(f"{not_news} not-news")
     return f"\n  {kind}: {name}  ({', '.join(parts)})"
 
 
@@ -1028,20 +1085,24 @@ def _render_item(
     errors: list,
     reference_date: datetime,
     max_articles: int,
-) -> tuple[list[str], int, int]:
+) -> tuple[list[str], int, int, int]:
     """Render one item (company or topic) in the provider's own result order —
     that is what a real consumer sees, and re-sorting by recency would bias the
     shown sample toward date-clustered newswire spam.
-    Returns (lines, dup_count, mkt_report_count) for this item."""
+    Returns (lines, dup_count, mkt_report_count, not_news_count) for this item,
+    counted over every article, shown or not."""
     groups = _compute_dup_groups(real)
     item_dup = _dup_count(groups)
     mkt_flags = [_is_market_report(a) for a in real]
     item_mkt = sum(mkt_flags)
+    not_news_flags = [_is_not_news(a) for a in real]
+    item_not_news = sum(not_news_flags)
 
-    lines = [_item_header(kind, name, real, errors, reference_date, item_dup, item_mkt)]
+    lines = [_item_header(kind, name, real, errors, reference_date, item_dup, item_mkt,
+                          item_not_news)]
     if not real:
         lines.append("    [NO RESULTS RETURNED ⚠]")
-        return lines, item_dup, item_mkt
+        return lines, item_dup, item_mkt, item_not_news
 
     shown = real[:max_articles]
     shown_groups = groups[: len(shown)]
@@ -1056,12 +1117,14 @@ def _render_item(
             markers.append(f"DUP of #{canon}")
         if mkt_flags[i - 1]:
             markers.append("MKT-REPORT")
+        if not_news_flags[i - 1]:
+            markers.append("NOT-NEWS")
         lines.extend(_format_article(i, art, reference_date, markers))
 
     if len(real) > max_articles:
         lines.append(f"    … {len(real) - max_articles} more articles not shown")
 
-    return lines, item_dup, item_mkt
+    return lines, item_dup, item_mkt, item_not_news
 
 
 def group_rows(
@@ -1125,11 +1188,12 @@ def _format_grouped(
             for arts in items.values()
         )
 
-        # First render each item to get per-item dup/mkt counts; then prepend
+        # First render each item to get per-item flag counts; then prepend
         # the provider header with the aggregate totals.
         item_blocks: list[list[str]] = []
         total_dups = 0
         total_mkt = 0
+        total_not_news = 0
         answered = 0
         for name in all_names:
             all_arts = items.get(name, [])
@@ -1137,17 +1201,18 @@ def _format_grouped(
             real = [a for a in all_arts if a.get("headline") != "*** ERROR ***"]
             if real:
                 answered += 1
-            block, item_dup, item_mkt = _render_item(
+            block, item_dup, item_mkt, item_not_news = _render_item(
                 kind, name, real, errors, reference_date, max_articles
             )
             total_dups += item_dup
             total_mkt += item_mkt
+            total_not_news += item_not_news
             item_blocks.append(block)
 
         lines.extend(
             _group_summary(
                 label, all_real, total_errors, reference_date,
-                total_dups, total_mkt, answered, len(all_names), kind,
+                total_dups, total_mkt, total_not_news, answered, len(all_names), kind,
             )
         )
         for block in item_blocks:
