@@ -8,7 +8,7 @@ Providers currently in the comparison:
 - [Linkup](https://linkup.so)
 - [Perplexity](https://perplexity.ai) *(two entries: Search API and Agent API)*
 - [Syracuse](https://syracuse.1145.am) *(author's project)*
-- [Tavily](https://tavily.com) (Now removed as it's a consistent poor performer in this use case)
+- [Tavily](https://tavily.com) *(left out of runs since 2026-09-06 as a consistently poor performer for this use case)*
 
 ## How it works
 
@@ -17,117 +17,9 @@ Two types of query are benchmarked:
 - **Company queries** — news about specific named companies (e.g. ExxonMobil, Commerzbank, Klöckner Pentaplast). The mix deliberately includes large well-known companies, mid-tier companies, and small/obscure companies with low digital footprint.
 - **Industry/location queries** — news about an industry sector in a geography (e.g. PE Resins in the US, Road Freight in Europe).
 
-For each query, every provider is called with the same parameters and its results are written to a shared CSV. An AI judge then scores the results.
+For each query, every provider is asked for news from the last 90 days using the same query text, and its results are written to a shared CSV. An AI judge then scores each provider on precision, coverage, metadata (dates and publishers), story quality and trust. It sees the providers only as anonymised letters, so it cannot tell which one is Syracuse.
 
-## Running the benchmark
-
-### 1. Setup
-
-Copy `.env.sample` to `.env` and fill in your API keys:
-
-```sh
-cp .env.sample .env
-```
-
-Keys needed:
-
-| Variable | Provider |
-|---|---|
-| `EXA_API_KEY` | Exa |
-| `LINKUP_API_KEY` | Linkup |
-| `PERPLEXITY_API_KEY` | Perplexity |
-| `SYRACUSE_API_KEY` | Syracuse |
-| `TAVILY_API_KEY` | Tavily |
-| `ANTHROPIC_API_KEY` | Claude (for analysis step) |
-
-### 2. Run the comparison
-
-```sh
-uv run python main.py 2026-03-08
-```
-
-This writes results to `results/2026-03-08/`:
-
-```
-results/2026-03-08/
-  companies.csv     # all provider results for company queries
-  industries.csv    # all provider results for industry/location queries
-  errors/           # per-provider error logs
-```
-
-### 3. Run the AI analysis
-
-```sh
-uv run python analyse.py results/2026-03-08
-```
-
-This writes to `results/2026-03-08/AI-analysis/`:
-
-```
-  claude-companies-{timestamp}.md    # scored analysis for company queries
-  claude-industries-{timestamp}.md   # scored analysis for industry queries
-  decode-key-{timestamp}.json        # maps A/B/C/D/E back to real provider names
-```
-
-You can also analyse a previous run:
-
-```sh
-uv run python analyse.py results/2026-03-02
-```
-
-And use a cheaper model for quick iteration:
-
-```sh
-uv run python analyse.py results/2026-03-08 --model claude-sonnet-4-6
-```
-
-## Anti-bias design
-
-The author of this benchmark is also the author of Syracuse. This creates an obvious risk: any AI with knowledge of Syracuse — and knowledge that it is being evaluated by its author — might soften its criticism or give it undeserved benefit of the doubt.
-
-`analyse.py` addresses this with three measures:
-
-**1. Provider name anonymisation.** Before any data is sent to the AI, the provider names are randomly shuffled and replaced with letters (A, B, C, D etc). The mapping is stored locally in `decode-key-{timestamp}.json` but the AI never sees it. The AI cannot defer to "Syracuse" because it does not know which label it is.
-
-**2. Unsparing system prompt.** The model is explicitly instructed that hedging is forbidden, that every negative claim must be backed by a specific article example, and that it must produce a strict rank order — not a "different providers suit different needs" conclusion. The instruction to describe what each lower-ranked provider would need to fix to reach first place forces the model to articulate concrete gaps rather than glossing over them.
-
-**3. Consistent evaluation criteria.** The prompt specifies the same criteria for every provider: precision (false positive rate), coverage of obscure entities, date accuracy, summary usability (can you understand the story without clicking?), source quality, paywall accessibility, and hallucination risk.
-
-## Interpreting the output
-
-The analysis files use Provider A/B/C/D/E throughout. To decode:
-
-1. Open the `decode-key-{timestamp}.json` file alongside the analysis:
-   ```json
-   { "label_to_provider": { "A": "Exa", "B": "Syracuse", ... } }
-   ```
-
-2. The analysis will have ranked providers 1st–5th and listed specific improvements needed for each. Cross-reference with the decode key to identify which provider is which.
-
-3. Pay particular attention to the **"What each provider needs to fix"** section — this is where the most actionable competitive intelligence lives.
-
-Note: the mapping is re-randomised on every run of `analyse.py`, so Provider A in one run is not necessarily the same as Provider A in another.
-
-## What is evaluated
-
-Queries ask each provider for news from the last 90 days. The AI judge scores
-results against these criteria:
-
-| Criterion | What counts as failure |
-|---|---|
-| Precision | Article is about a completely different company/industry that merely shares a name fragment (false positive) |
-| Significance | Company/industry is mentioned but nothing useful is communicated — trivial name-drops in unrelated roundups |
-| Coverage | No results at all for obscure or small companies |
-| Date presence | Article has no publication date — the user cannot tell whether the news is current. Treated as a major failure. |
-| Recency | Article is dated more than 90 days before the run date. The query window is 90 days; older results are off-scope by construction and equivalent to a wrong-topic result. |
-| Summary usability | Raw scraped boilerplate (nav menus, cookie banners) instead of a distilled summary |
-| Source quality | Aggregators that add no value, product pages, "About Us" content, market research landing pages. Press releases are fine. |
-| Paywall | Source is subscriber-only with no usable preview |
-| Hallucination | URLs that do not correspond to real published articles; invented facts in summaries |
-
-A provider with a large share of no-date or stale (>90d) results cannot rank
-1st regardless of other strengths: the data is non-actionable without a
-trustworthy date.
+For setup, how to run it, the anti-bias design and the scoring criteria, see [HOW-IT-WORKS.md](HOW-IT-WORKS.md).
 
 ## Results history
 
