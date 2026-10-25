@@ -1,0 +1,411 @@
+{
+  "query_type": "companies",
+  "providers": [
+    {
+      "label": "E",
+      "axes": {
+        "precision": {
+          "score": 9,
+          "evidence": [
+            "Alpek: all 4 rows on-topic Q3 earnings (Milenio, Investing.com, Rio Times, El Economista)",
+            "ExxonMobil 11 Reuters-sourced rows all specific (Rovuma LNG, Joliet refinery, Guyana LNG, Papua LNG)",
+            "Only 1 MKT-REPORT flag total (Coles Supermarkets Retail World)",
+            "Little Island Productions returned a BBC trailer story about Onwards and Sideways \u2014 appears to be a different production entity (plausible miss)"
+          ]
+        },
+        "coverage": {
+          "score": 5,
+          "evidence": [
+            "answered 35/42 companies but with thin volume (188 total articles vs 316-840 for peers); missed BERKSHIRE LABELS, Dine Cartonnages, Fritz Foss, NUBIZ PLASTIC, SEERTECH SOLUTIONS, Sigma Chemtrade, TRICON DRY CHEMICALS entirely",
+            "Spelling pair: Klockner 10 vs Kl\u00f6ckner 8 at only 29% overlap \u2014 largely different results flagged by harness",
+            "Thin tails: RAINFOCUS 1 article, Universal McCann 1, ICOF EUROPE 1, Little Island Productions 1, IMPACT RETAIL 1"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header: no-date 0, stale 0, no-publisher 0",
+            "Every row names a reputable publisher (Reuters, Packaging Europe, Investing.com, The Irish Times, Milenio)",
+            "dup 0 (0%) \u2014 cleanest of all five"
+          ]
+        },
+        "story_quality": {
+          "score": 9,
+          "evidence": [
+            "Summaries are editorially rewritten and informative (Snowflake: 'beat analysts' expectations for its fiscal second-quarter results and raised its fiscal 2027 product-revenue forecast to $6.07 billion from $5.84 billion')",
+            "Dominion summary quotes 'operating earnings of 79 cents per share and revenue of $4.48 billion'",
+            "Mistral Voxtral 3: 'transcription in more than 50 languages and speech synthesis in more than 35'"
+          ]
+        },
+        "trust": {
+          "score": 10,
+          "evidence": [
+            "errors: 0",
+            "0 dups, 0 no-date, 0 no-publisher \u2014 ground truth clean",
+            "URLs point to real primary sources (reuters.com, bbc.com, bloomberg not present but prnewswire/businesswire absent too \u2014 editorial sourcing only)"
+          ]
+        }
+      },
+      "verdict": "Smallest volume but the cleanest and most editorially curated results; the price is weak coverage of obscure entities and inconsistency across spelling variants.",
+      "weighted": 8.5,
+      "final": 8.5,
+      "caps_applied": []
+    },
+    {
+      "label": "A",
+      "axes": {
+        "precision": {
+          "score": 7,
+          "evidence": [
+            "Bloomberg, Deloitte, Linklaters, Dominion Energy returned clean company-specific headlines (Deloitte: 'FRC fines Deloitte \u00a36.05m over Go-Ahead Group audit lapses')",
+            "Coles had 1 MKT-REPORT flag (gymnast Ali Coles unrelated to supermarket)",
+            "ExxonMobil, Snowflake, CBS News sets had 5 dups total but very few wrong-entity",
+            "Jindal Films: AssetBuilt real-estate asset-sale listing is thin name-drop"
+          ]
+        },
+        "coverage": {
+          "score": 7,
+          "evidence": [
+            "answered 26/42 companies; missed ALPEK POLYESTER, BERKSHIRE LABELS, CHARTER NEX FILMS, CHEP, Dine Cartonnages, Fritz Foss, HPCL Mittal Energy, ICOF EUROPE, IMPACT RETAIL, NUBIZ PLASTIC, SEERTECH SOLUTIONS, Sigma Chemtrade, TRICON DRY CHEMICALS, Universal McCann, ZETA TECHNICAL SERVICES",
+            "Klockner/Kl\u00f6ckner Pentaplast spelling pair: identical 100% overlap (3 vs 3)",
+            "Strong depth on returned entities (20 articles each for Bloomberg, Borouge, Coles, Deloitte, ExxonMobil, Snowflake, International Paper, Westrock, Linklaters, Mistral AI, Dominion, Haier)"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header: no-date 0 (0%), stale 0 (0%), no-publisher 0 (0%)",
+            "Every row names a publisher (e.g., 'The Irish Times (irishtimes.com)', 'Plastics News (plasticsnews.com)')",
+            "dup 5 (2%) is minor"
+          ]
+        },
+        "story_quality": {
+          "score": 8,
+          "evidence": [
+            "Snippets informative and specific (Constellium: 'Q2 revenue rising 31% year over year to $2.75 billion and adjusted EBITDA reaching $439 million')",
+            "Borouge dividend story quotes '$656 million, equivalent to 8.1 fils per share'",
+            "Some rows truncate mid-sentence ('Borouge Opens $ 105M Polypropylene Facility in Austria.' repeated as title+body)"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "errors: 0 header count",
+            "URLs resolve to real outlets (prnewswire.com, businesswire.com, bloomberg.com, reuters sources)",
+            "No sign of hallucinated URLs across Bloomberg/Deloitte/ExxonMobil samples"
+          ]
+        }
+      },
+      "verdict": "Clean metadata and tight on-topic retrieval for the companies it answers, but it refuses the long tail \u2014 16 of 42 entities returned nothing.",
+      "weighted": 7.9,
+      "final": 7.9,
+      "caps_applied": []
+    },
+    {
+      "label": "C",
+      "axes": {
+        "precision": {
+          "score": 4,
+          "evidence": [
+            "BERKSHIRE LABELS: all 20 rows are wrong entity \u2014 Berkshire Hathaway/Residential/Grey/Financial Services, Bershka clothing, Barron McCann; zero are about the UK label printer",
+            "SEERTECH SOLUTIONS: 20 rows are SEERS Technology (medical wearables), SurvTech Solutions, Seer Inc proteomics \u2014 none match queried entity (3 dups too)",
+            "LUSHA SYSTEMS: on-target with Italian Garante fine coverage",
+            "ICOF EUROPE: returned CoFICAB (Tunisian cable), iCO Products fire nozzles, ICOF Dominican training institute \u2014 wrong entities, 2 dups"
+          ]
+        },
+        "coverage": {
+          "score": 8,
+          "evidence": [
+            "answered 42/42 companies \u2014 full coverage attempt",
+            "Spelling pair: Klockner 20 vs Kl\u00f6ckner 20 but only 60% URL overlap \u2014 same entity returned different sets",
+            "Coverage inflated: many 'answered' rows for obscure entities (Fritz Foss, NUBIZ PLASTIC, ZETA TECHNICAL SERVICES, SEERTECH) are wrong-entity filler"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 4,
+          "evidence": [
+            "Header: no-publisher 840 (100%) \u2014 every single row flagged NO PUBLISHER \u26a0, publisher recoverable only from domain (einpresswire.com, linkedin.com, prnewswire.com)",
+            "no-date 0, stale 0 \u2014 dates clean",
+            "dup 14 (2%), not-news 2 \u2014 low"
+          ]
+        },
+        "story_quality": {
+          "score": 6,
+          "evidence": [
+            "Snippets often raw-scraped boilerplate (Bloomberg Technology row: 'As technology continues to reshape financial services, regulators and policy setters are embarking on a range of digital-finance initiatives')",
+            "Many headlines include junk tails ('|CHEMOURS USD 450 mn package agreed in PFAS deal...')",
+            "Some clean summaries (Deloitte Risk Clarity launch; Snowflake convertible notes)"
+          ]
+        },
+        "trust": {
+          "score": 5,
+          "evidence": [
+            "errors: 0",
+            "No hallucinated URLs detected in spot checks",
+            "But precision collapse on BERKSHIRE LABELS/SEERTECH/ICOF/Fritz Foss \u2014 provider returned wrong-entity content without warning, which is a trust failure"
+          ]
+        }
+      },
+      "verdict": "Answers everything but stuffs the long tail with wrong-entity results, strips every publisher name, and leaves raw-scraped boilerplate in summaries.",
+      "weighted": 5.25,
+      "final": 5.25,
+      "caps_applied": [
+        "metadata_soft"
+      ]
+    },
+    {
+      "label": "D",
+      "axes": {
+        "precision": {
+          "score": 3,
+          "evidence": [
+            "IMPACT RETAIL: 20 rows are supermarket/retail industry roundups and FMCG newsletters \u2014 zero are about the Leicester cosmetics marketing agency; 2 dups, 1 not-news",
+            "Dine Cartonnages: 20 rows are Dine Brands IHOP/Applebee's, Duni AB napkins, FMCG retail roundups \u2014 zero about French carton manufacturer; 6 dups",
+            "SEERTECH SOLUTIONS: 20 rows are M&A newsletters, Seer Inc proteomics, SEERS Technology Korea \u2014 none match the queried entity; 2 dups",
+            "Fritz Foss, NUBIZ PLASTIC, Little Island Productions, TRICON DRY CHEMICALS similarly filled with aggregator/newsletter noise; Dine 6 dups, ICOF 2 dups + 1 not-news"
+          ]
+        },
+        "coverage": {
+          "score": 7,
+          "evidence": [
+            "answered 42/42 companies but much of the long tail is wrong-entity filler",
+            "Spelling pair: Klockner 20 vs Kl\u00f6ckner 20 at 60% overlap",
+            "Core blue-chips (Bloomberg, Deloitte, Linklaters, ExxonMobil, Dominion, Snowflake) got substantive 20-article results"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 4,
+          "evidence": [
+            "Header: no-publisher 840 (100%) \u2014 every row flagged NO PUBLISHER \u26a0, recoverable only from domain (law360.com, cfotech.news, linkedin.com)",
+            "no-date 0, stale 0 \u2014 dates clean",
+            "dup 43 (5%) higher than peers, mkt-report 4, not-news 12"
+          ]
+        },
+        "story_quality": {
+          "score": 5,
+          "evidence": [
+            "Many rows are aggregator table-of-contents dumps (Impact Retail row: 'Debenhams posts its first profit in five years\u2014but the \u00a328.3 million includes a large non-cash effect' then 'Frasers takes control of HUGO BOSS')",
+            "Linklaters row for 'Applied Intelligence' is a navigation menu scrape",
+            "Mixed with clear quotes elsewhere (Haier: 'Carrier Global completed the sale of its Commercial Refrigeration business to Haier Group for a stated transaction value of $775 million')"
+          ]
+        },
+        "trust": {
+          "score": 5,
+          "evidence": [
+            "errors: 0",
+            "No hallucinated URLs seen",
+            "But self-attributed labels like 'Nubiz Plastic' tagged on InterTabac Dortmund trade-show stories, and SEERTECH tagged on Wire financial roundups, show the provider classifies loosely"
+          ]
+        }
+      },
+      "verdict": "Attempts every company but drowns the long tail in wrong-entity aggregator pages, strips every publisher, and dups 5% of rows; the headline-brand coverage is competent.",
+      "weighted": 4.55,
+      "final": 4.55,
+      "caps_applied": [
+        "metadata_soft",
+        "precision"
+      ]
+    },
+    {
+      "label": "B",
+      "axes": {
+        "precision": {
+          "score": 6,
+          "evidence": [
+            "Of 16 articles returned, most are on-topic (Constellium: 'Scrap Shortage Puts Constellium Recycling Plans at Risk'; Mistral: 'Mistral raises \u20ac3B as sovereign AI becomes big business')",
+            "Jindal Films CEO interview is a vendor profile piece but names the queried company",
+            "Regus set gave 4 clean IWG/Regus openings"
+          ]
+        },
+        "coverage": {
+          "score": 1,
+          "evidence": [
+            "answered 7/42 companies; 35 entities returned nothing including Bloomberg, Deloitte, ExxonMobil, Coles, Haier, Linklaters, Snowflake, Westrock, International Paper, CBS News",
+            "Spelling pair: Klockner Pentaplast 0 vs Kl\u00f6ckner Pentaplast 2 \u2014 answered only one spelling",
+            "errors: 201 header count indicates systemic retrieval failure"
+          ]
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "Header: no-date 0, stale 0, no-publisher 0",
+            "Each row cites a named publisher ('Utility Dive (utilitydive.com)', 'TechCrunch (techcrunch.com)')"
+          ]
+        },
+        "story_quality": {
+          "score": 8,
+          "evidence": [
+            "Summaries are concise and informative (Dominion: 'Dominion raised the estimated cost of its 2.6-GW Coastal Virginia Offshore Wind project by about $288 million')",
+            "Snowflake breach writeup provides specifics ('used previously stolen credentials to access customer accounts without MFA')"
+          ]
+        },
+        "trust": {
+          "score": 3,
+          "evidence": [
+            "errors: 201 header count \u2014 ALPEK 8, Deloitte 11, HAIER 10, Universal McCann 10, Linklaters 10, Westrock 10 errors reported",
+            "Zero articles for Bloomberg/Deloitte/ExxonMobil despite 6-11 errors each suggests infrastructure failure, not hallucination"
+          ]
+        }
+      },
+      "verdict": "When it answers, metadata and summaries are clean, but 201 errors and only 7 of 42 entities answered make it unusable as a news tool.",
+      "weighted": 5.45,
+      "final": 4.0,
+      "caps_applied": [
+        "trust"
+      ]
+    }
+  ],
+  "ranking": [
+    "E",
+    "A",
+    "C",
+    "D",
+    "B"
+  ],
+  "spelling_variants": [
+    {
+      "variants": [
+        "Klockner Pentaplast",
+        "Kl\u00f6ckner Pentaplast"
+      ],
+      "providers": {
+        "A": {
+          "counts": [
+            3,
+            3
+          ],
+          "shared": 3,
+          "union": 3,
+          "overlap": 1.0,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "B": {
+          "counts": [
+            0,
+            2
+          ],
+          "shared": 0,
+          "union": 2,
+          "overlap": 0.0,
+          "answered": [
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "C": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 15,
+          "union": 25,
+          "overlap": 0.6,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "D": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 15,
+          "union": 25,
+          "overlap": 0.6,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "E": {
+          "counts": [
+            10,
+            8
+          ],
+          "shared": 4,
+          "union": 14,
+          "overlap": 0.2857142857142857,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        }
+      }
+    }
+  ],
+  "self_reported_scores": {
+    "A": {
+      "total": 316,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "B": {
+      "total": 16,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "C": {
+      "total": 840,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "D": {
+      "total": 840,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "E": {
+      "total": 188,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    }
+  }
+}

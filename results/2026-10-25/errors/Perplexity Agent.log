@@ -1,0 +1,56 @@
+[14:38:12] API_QUERY - company=Sigma Chemtrade
+Error: HTTPSConnectionPool(host='api.perplexity.ai', port=443): Read timed out. (read timeout=300)
+Data: {
+  "payload": {
+    "preset": "low",
+    "instructions": "You are a market research analyst with deep knowledge of Sigma Chemtrade and its history.",
+    "input": "Find recent news mentioning Sigma Chemtrade.\nFocus on:\n- product launches, strategic moves and M&A activity\n- financial performance and investment news\n- regulatory issues and market positioning\n- supplier risk\n- regional relevance and expansion activities\n\nOnly include content from credible business, trade, specialist or regional news outlets. Prioritise more recent news articles.\nFor each source cited, provide a separate summary of that source's content.\nOnly include articles published between 2026-07-27 and 2026-10-25. Do not include anything published outside that window.\nReturn one object per source with the following fields: headline, summary_text, published_date, published_by, document_url. published_date must be an ISO 8601 date. published_by must be the name of the publication that published the article.",
+    "text": {
+      "format": {
+        "type": "json_schema",
+        "name": "articles",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "headline": {
+                    "type": "string"
+                  },
+                  "summary_text": {
+                    "type": "string"
+                  },
+                  "published_date": {
+                    "type": "string"
+                  },
+                  "published_by": {
+                    "type": "string"
+                  },
+                  "document_url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "headline",
+                  "summary_text",
+                  "published_date",
+                  "published_by",
+                  "document_url"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "items"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}
+--------------------------------------------------------------------------------

@@ -133,6 +133,18 @@ trustworthy date.
 
 (In reverse order) 
 
+### 2026-10-25
+
+Perplexity Agent 1st in both query types.
+
+- **Companies:** Perplexity Agent 1st (8.5/10 — cleanest metadata and editorially rewritten summaries, e.g. Snowflake's raised $6.07B FY27 product-revenue forecast), Syracuse 2nd (7.9/10 — tight on-topic hits like the Deloitte £6.05m FRC fine but refuses 16 of 42 entities), Exa 3rd (5.25/10 — full 42/42 attempt but metadata soft-cap for 100% no-publisher rows plus wrong-entity filler on BERKSHIRE LABELS returning Berkshire Hathaway/Bershka), Perplexity Search 4th (4.55/10 — metadata and precision caps engaged for 100% no-publisher plus Dine Cartonnages returning Applebee's/IHOP earnings), Linkup last (4.0/10 — trust cap engaged for 201 errors and only 7/42 companies answered, zero results for Bloomberg/Deloitte/ExxonMobil).
+- **Industries:** Perplexity Agent 1st (9.15/10 — zero errors and zero missing metadata across 148 rows with quantified summaries like FrieslandCampina's €90m Borculo WPI doubling), Syracuse 2nd (8.1/10 — substantive coverage like CMA CGM's Tema/Freetown/Monrovia surcharges but two full DNFs on Converter Foil and Molasses | Oceania), Exa 3rd (7.0/10 — metadata soft-cap for 100% no-publisher plus heavy non-English content in Film | CN despite full 20/20 topic coverage), Perplexity Search last-but-one (4.45/10 — metadata and precision caps engaged for 100% no-publisher and 24% market-report pollution, e.g. 14 of 20 Molasses | Oceania rows are IndexBox/Spherical Insights landing pages), Linkup last (4.0/10 — trust cap engaged for 118 errors across 20 topics and only 7/20 answered).
+
+**Recommendation for autonomous use** (agent or human acting without manual filtering):
+
+- **Companies:** **Use Perplexity Agent** — final 8.5 and precision 9 with no caps engaged, and editorial curation (reputable publishers, zero dups, zero no-date rows) means an agent can trust the output unfiltered.
+- **Industries:** **Use Perplexity Agent** — final 9.15 and precision 9 with no caps engaged, clean metadata and quantified summaries clear the bar for unfiltered agent consumption.
+
 ### 2026-09-27
 
 Perplexity Agent 1st in both query types.

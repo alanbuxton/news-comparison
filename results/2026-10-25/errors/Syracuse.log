@@ -1,0 +1,14 @@
+[16:11:16] PARSE_ARTICLE - industry=SOLVENTS, industry_context=Ethyl Acetate, Acetone, MEK, location=
+Error: can only concatenate str (not "NoneType") to str
+Data: {
+  "activity_class": "IndustrySectorUpdate",
+  "uri": "https://1145.am/db/23002884/Acetone-Sunsirs:_China-Market",
+  "label": "second major rally of the year during \"Golden September.",
+  "headline": "SunSirs: China's MMA Market Sees a \"Golden September\" Rally",
+  "document_extract": null,
+  "published_date": "2026-10-09T06:09:32.000000000Z",
+  "published_by": "SunSirs",
+  "document_url": "https://www.sunsirs.com/commodity-news/petail-36642.html",
+  "matched_organizations": null
+}
+--------------------------------------------------------------------------------
