@@ -23,7 +23,7 @@ uv add --dev <package> # add dev dependency
 |---|---|
 | `main.py` | Runs all providers, writes companies.csv + industries.csv |
 | `analyse.py` | Calls Claude API with anonymised data, writes analysis markdown |
-| `examples.py` | Company names and industry/location combos used in queries |
+| `examples.py` | Company names, company profiles, made-up control companies and industry/location combos |
 | `utils.py` | Shared config: API key loading, 90-day date window, error logging, `publisher_domain` |
 | `queries.py` | Canonical query text shared by all providers |
 | `exa_client.py` | Exa provider wrapper |
@@ -34,7 +34,7 @@ uv add --dev <package> # add dev dependency
 | `tavily_client.py` | Tavily provider wrapper |
 | `newsapi_client.py` | NewsAPI wrapper (currently excluded from CLIENTS in main.py) |
 
-Results go to `results/{prefix}/` (companies.csv, industries.csv, errors/, AI-analysis/).
+Results go to `results/{prefix}/` (companies.csv, industries.csv, queries.json, errors/, AI-analysis/).
 
 ## Key design decisions
 
@@ -143,8 +143,20 @@ list for a given query type, not that both query types share one list.
 
 **Why Linkup runs at `depth="deep"`:** it was on `"standard"` while Tavily ran
 at `search_depth="advanced"`, so Linkup was being benchmarked on its basic tier
-against Tavily's premium one. Linkup's high error rates in earlier runs may
-partly reflect that.
+against Tavily's premium one.
+
+**Why Linkup's error rates fell in 2026-10:** almost all of them were a bug in
+this repo, like Tavily's dates. Linkup's schema asks for a date-time, but it
+writes dates as its model reads them ("October 7, 2026") or as prose when it
+has none ("Not stated in the supplied source"), and `linkup_client.py` parsed
+with `datetime.fromisoformat`, turning every such article into an `*** ERROR
+***` row. Every run from 2026-02-10 to 2026-10-25 was affected (319 rows in
+2026-10-25, 251 in 2026-07-05), driving Linkup's trust caps and low coverage.
+`utils.parse_loose_date` now reads ISO, RFC 2822 and written-out dates, and
+Linkup, Perplexity Agent and Tavily all keep an article with an unreadable date
+as undated, scored on `metadata_integrity`, never as an error. The 2026-10-25
+CSVs were repaired from `errors/Linkup.log`, which holds every failed item's
+raw JSON. Earlier runs were not, and understate Linkup on trust and coverage.
 
 **Why Syracuse gets no date window:** its API supports only "last 7 / 30 / 90
 days" rather than explicit bounds, so the 90-day window is left to
@@ -220,6 +232,81 @@ counts them over every row, and the prompt makes each flagged row an FP. On the
 2026-09-27 data it flags 135 Perplexity Search and 14 Exa rows (almost all
 LinkedIn posts and Pulse articles) and none from the other providers. The flag
 is a floor: catalogues, registry listings and blogs still rely on the judge.
+
+**Why company precision and coverage are counted, not judged:** in the
+2026-10-25 run the single big judge call skipped Perplexity Agent's six Zeta
+Global rows for "ZETA TECHNICAL SERVICES" entirely (precision 9, company counted
+as answered), and on a re-run of identical data moved coverage by two points. An
+interim fix that asked the same judge for a per-company checklist found the rows
+but changed no score. Now `label_company_rows` makes one small call per company
+showing every provider's rows for it — shuffled under opaque ids, so the
+labeller cannot see which provider a row came from — and labels each row
+`on_target` / `name_drop` / `wrong_entity` / `not_news`. `company_row_metrics`
+counts: precision = 10 × clean share of shown rows (clean = on-target and not
+flagged dup/stale/undated/market-report/not-news); coverage = 10 × (companies
+with a clean row − `PADDED_ITEM_PENALTY` × (padded companies + control companies
+answered)) / companies. `apply_company_metrics` overwrites the judge's two
+scores (kept as `judge_score`) before caps and ranking. The labels are still a
+model's reading, so they are saved per run as `row-labels-{timestamp}.json` and
+shown to the big judge inline. Industries are unchanged: wrong segment/region is
+too fuzzy for a row label. Company precision/coverage from runs analysed before
+2026-10-26 are not comparable with later ones.
+
+**Why padding scores below silence:** the rubric always said false positives
+matter more than false negatives, but a company answered only with wrong-entity
+rows scored the same as one left unanswered. A caller acts on padding, while
+silence tells them to look elsewhere. With `PADDED_ITEM_PENALTY` = 1.0 each
+padded company cancels one genuinely answered company.
+
+**Why `examples.py` has `company_profiles`:** without them the judge guessed who
+an obscure company was — it called ZETA TECHNICAL SERVICES "a Dubai firm" and
+Tricon Dry Chemicals "Indian", and so labelled Tricon Energy, the actual parent,
+as a wrong entity. Profiles go to the labeller and judge only, never to
+providers, which get the bare name as a real caller would. Companies that could
+not be identified are deliberately left without one: a wrong profile turns
+correct rows into "wrong entity", which is worse than no profile.
+
+**Why there are made-up control companies, invented fresh each run:** every
+article returned for a company that does not exist is a false positive by
+construction — the one precision measure that needs no judge. They are queried
+like any other company, kept out of the judge's and labeller's data (showing
+them would reveal which names are fake), and counted against precision and
+coverage. The first version used three fixed names in `examples.py`, but this
+repo is public: once pushed, those names exist on the web and a provider
+returning the GitHub page would be "right". `make_control_companies` now
+invents names per run (invented syllables plus a sector suffix, no
+English-word parts) and they are recorded only in that run's `queries.json`. A
+generated name can still collide with a real firm, so the companies report
+flags any control answered by two or more *selective* providers — ones that
+left at least one other control unanswered — for a human to check; it is still
+counted. Providers that answer every control are ignored for this: in the
+2026-10-25 run Exa and Perplexity Search returned 20 rows for each of the
+three, so a "half the providers" rule flagged "Mariel Labels" on their padding
+plus a single Syracuse hit.
+
+**Why there is a "How sure is the ranking?" section:** with ~40 companies, a
+0.5-point gap between providers can be nothing more than which companies
+happen to be in `examples.py`. Since company precision and coverage are
+counted, `bootstrap_company_metrics` can resample the companies (paired: all
+providers on the same resample) 2000 times at no API cost and recount
+precision, coverage, final score and rank. It reports 95% ranges, how often
+each provider held its rank, and how often it stayed ahead of the next one;
+under `SEPARATION_THRESHOLD` (90%) the README summary is told to call the pair
+not clearly separated. Only company sampling is covered — the judge's axes and
+the row labels are held fixed — so it understates the true uncertainty.
+
+**Why `main.py` writes `queries.json`:** a control company answered by nobody
+leaves no rows in the CSV, so the analysis could not tell it was queried. The
+manifest records every queried company, its profile and whether it is a
+control. `main.py PREFIX --manifest-only` backfills one onto an older run for
+its profiles; it is marked `backfilled` and lists no controls, and the analysis
+then takes the queried-company list from the CSV, not from today's examples.
+`main.py PREFIX --add-controls` does the same but also queries fresh controls
+and appends them to that run's `companies.csv`. It asks only the providers
+already in the CSV, so a provider enabled since cannot enter the analysis having
+answered nothing but made-up names, and it refuses a run that already has
+controls. The controls are queried a day or more after the real companies,
+which matters little for names that should return nothing.
 
 **Why the system prompt forbids hedging:** The point of this tool is to get honest competitive intelligence about where Syracuse falls short. A model that hedges or refuses to rank defeats the purpose.
 

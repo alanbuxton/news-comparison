@@ -35,13 +35,28 @@ uv run python main.py 2026-03-08
 ```
 
 Each provider is asked for news from the last 90 days, at most 20 results per
-query. Results are written to `results/2026-03-08/`:
+query. Alongside the real companies, three made-up companies, with new names each run, are queried as
+controls (see [Controls](#made-up-control-companies)). Results are written to
+`results/2026-03-08/`:
 
 ```
 results/2026-03-08/
   companies.csv     # all provider results for company queries
   industries.csv    # all provider results for industry/location queries
+  queries.json      # what was queried: company profiles, which names are controls
   errors/           # per-provider error logs
+```
+
+To add company profiles to an older run before re-analysing it:
+
+```sh
+uv run python main.py 2026-10-25 --manifest-only
+```
+
+To add control companies to an older run as well (this replaces `--manifest-only`, and calls the APIs of the providers already in that run):
+
+```sh
+uv run python main.py 2026-10-25 --add-controls
 ```
 
 Failed calls appear in the CSVs as rows with headline `*** ERROR ***`. They
@@ -60,6 +75,7 @@ claude-companies-{timestamp}.md     # scored analysis for company queries
 claude-companies-{timestamp}.json   # machine-readable scorecard
 claude-industries-{timestamp}.md    # scored analysis for industry queries
 claude-industries-{timestamp}.json
+row-labels-{timestamp}.json         # per-row labels behind company precision and coverage
 decode-key-{timestamp}.json         # maps the anonymised letters back to provider names
 ```
 
@@ -71,6 +87,7 @@ Other options:
 uv run python analyse.py results/2026-03-02                          # re-analyse an older run
 uv run python analyse.py results/2026-03-08 --model claude-sonnet-4-6 # cheaper model for quick iteration
 uv run python analyse.py results/2026-03-08 --max-articles 15        # show the judge fewer articles per item
+uv run python analyse.py results/2026-03-08 --label-model claude-sonnet-4-6  # cheaper model for the row-labelling pass
 uv run python analyse.py results/2026-03-08 --readme-only            # regenerate the README summary from existing analysis files
 ```
 
@@ -89,7 +106,7 @@ The author of this benchmark is also the author of Syracuse. This creates an obv
 
 **3. Ground-truth flags computed by the harness.** Dates, duplicates, market-report pages, not-news pages, missing publishers and errors are detected in code, not left to the model's judgement (see [Flags](#flags-computed-by-the-harness)). Everything a provider returns — headline, summary, publisher, any label — is treated as that provider's claim, to be checked against the rest of the row.
 
-**4. The harness does the arithmetic.** The model only scores each axis. The weighted score, the caps and the final ranking are computed in code, so the model cannot quietly reorder providers.
+**4. The harness does the arithmetic.** The model only scores each axis. The weighted score, the caps and the final ranking are computed in code, so the model cannot quietly reorder providers. For company queries, precision and coverage are not scored by the model at all: they are counted from per-row labels (see [How company precision and coverage are counted](#how-company-precision-and-coverage-are-counted)).
 
 ## What is evaluated
 
@@ -104,6 +121,46 @@ Each provider is scored 0–10 on five axes, separately for company queries and 
 | Trust | 15% | No errors, no suspicious URLs | Hallucinated URLs or facts; high error rate |
 
 The scoring prefers avoiding false positives over finding every story: 5 clean on-topic articles beat 30 articles of which half are about the wrong company.
+
+For industry queries the judge scores all five areas. For company queries it scores metadata integrity, story quality and trust, and the harness counts precision and coverage (below).
+
+### How company precision and coverage are counted
+
+Before the main judging call, a separate pass labels every row, one company at a time. It sees every provider's rows for that company, shuffled and unlabelled so it cannot tell which provider returned which. It also gets a one-line **profile** of the company that was meant (from `examples.py`; providers never see it). Each row gets one of four labels:
+
+| Label | Meaning |
+|---|---|
+| On target | Substantive news about the company, or its parent, subsidiary or brand |
+| Name-drop | The right company, mentioned only in passing |
+| Wrong entity | A different organisation sharing part of the name, or unrelated content |
+| Not news | About pages, listings, job ads, social posts, report landing pages |
+
+A row is **clean** if it is on target and not flagged as a duplicate, stale, undated, market report or not news.
+
+- **Precision** = 10 × clean rows ÷ all rows shown.
+- **Coverage** = 10 × (companies with at least one clean row − companies answered *only* with false positives) ÷ companies queried.
+
+Returning only junk for a company therefore scores *worse* than returning nothing. The rubric ranks avoiding false positives above finding everything, and a caller acts on junk but knows to look elsewhere after silence.
+
+The labels come from a model too, so they are saved with each run (`row-labels-{timestamp}.json`) and shown inline to the main judge.
+
+### Made-up control companies
+
+Three plausible but non-existent companies are queried alongside the real ones. Any article returned for one is a false positive with no judging needed. Control rows count against precision, each control company answered counts against coverage like a padded company, and the judge never sees them, since that would reveal which names are fake.
+
+The names are invented afresh for every run (`make_control_companies` in `examples.py`) and recorded only in that run's `queries.json`. A fixed list would stop working once published, because the names would then exist on the web. An invented name can still turn out to belong to a real company, so the report flags any control answered by two or more providers that left another control unanswered. Providers that answer every control are just padding, and say nothing about any one name. Check a flagged control's headlines before trusting it.
+
+### How sure is the ranking?
+
+About 40 companies are queried, so some of the gap between providers is just which companies happen to be on the list. Because company precision and coverage are counted rather than judged, the harness can resample the companies 2000 times, using the same resample for every provider, and recount precision, coverage, final score and rank each time. The companies report shows:
+
+- a 95% range for each provider's final score, precision and coverage
+- how often each provider kept its rank
+- how often it stayed ahead of the provider ranked below it
+
+A provider ahead in under 90% of resamples is marked *not separated* from the next one, and the README summary says so rather than calling it a win.
+
+This only measures which companies were sampled. The judge's scores and the row labels are held fixed, so the real uncertainty is wider than shown.
 
 ### Caps
 
@@ -148,6 +205,10 @@ The analysis files use the anonymised letters throughout. To decode:
 
 2. In each analysis `.md`, the **Recomputed scorecard** table is authoritative: the axis scores are the model's, and the weighted score, caps, final score and rank are recomputed by the harness. If numbers in the model's raw output disagree with it, the table wins.
 
-3. The evidence strings under each axis and the **Notes** section say what each provider got wrong, with examples. That is where the most actionable competitive intelligence lives.
+3. In the companies `.md`, the **Row labels and controls** section gives the counted precision and coverage next to the judge's own view (in brackets), the label counts, each provider's padded companies, and any control companies it answered.
+
+4. In the companies `.md`, **How sure is the ranking?** shows which adjacent providers are within noise of each other. Don't read a gap between two providers marked *not separated* as a real difference.
+
+5. The evidence strings under each axis and the **Notes** section say what each provider got wrong, with examples. That is where the most actionable competitive intelligence lives.
 
 Note: the mapping is re-randomised on every run of `analyse.py`, so Provider A in one run is not necessarily the same as Provider A in another.

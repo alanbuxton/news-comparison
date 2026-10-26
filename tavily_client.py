@@ -1,9 +1,8 @@
 from tavily import TavilyClient
-from utils import TAVILY_API_KEY, MAX_DATE, MIN_DATE, log_error
+from utils import TAVILY_API_KEY, MAX_DATE, MIN_DATE, log_error, parse_loose_date
 from queries import company_keyword_query, industry_keyword_query
 import json
 from datetime import datetime, timezone
-from email.utils import parsedate_to_datetime
 
 PROVIDER_NAME = "Tavily"
 
@@ -54,22 +53,16 @@ def do_query(query, query_context):
 def parse_published_date(raw: str, query_context: str):
     """Tavily returns published_date only when topic="news" (its docs: "Set to
     news for news sources (includes published_date metadata)"). The format is
-    not contractually fixed, so try ISO 8601 then RFC 2822 before giving up.
-    An unparseable date is blank, not an error row — same as a genuinely absent
-    one."""
+    not contractually fixed. An unparseable date is blank, not an error row —
+    same as a genuinely absent one."""
     if not raw:
         return ""
-    for parser in (datetime.fromisoformat, parsedate_to_datetime):
-        try:
-            parsed = parser(raw)
-        except Exception:
-            continue
-        if parsed.tzinfo is None:
-            parsed = parsed.replace(tzinfo=timezone.utc)
-        return parsed
-    log_error(PROVIDER_NAME, "PARSE_DATE", query_context,
-              f"unrecognised published_date format: {raw!r}", {"published_date": raw})
-    return ""
+    parsed = parse_loose_date(raw)
+    if parsed is None:
+        log_error(PROVIDER_NAME, "PARSE_DATE", query_context,
+                  f"unrecognised published_date format: {raw!r}", {"published_date": raw})
+        return ""
+    return parsed
 
 
 def item_to_article(item: dict, query_context: str):

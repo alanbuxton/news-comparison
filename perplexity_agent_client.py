@@ -18,7 +18,7 @@ purpose.
 """
 
 import requests
-from utils import PERPLEXITY_API_KEY, MIN_DATE, MAX_DATE, log_error
+from utils import PERPLEXITY_API_KEY, MIN_DATE, MAX_DATE, log_error, parse_loose_date
 from queries import company_prose_query, industry_prose_query, industry_str
 from datetime import date, datetime, timezone
 import json
@@ -83,10 +83,14 @@ def parse_perplexity_responses(perplexity_content: list, query_context: str) -> 
     articles = []
     for item in perplexity_content:
         try:
-            pub_date = datetime.fromisoformat(item["published_date"])  # Needs Python 3.11 or higher to work
-            if isinstance(pub_date, date) and pub_date.tzinfo is None:
-                pub_date = pub_date.replace(tzinfo=timezone.utc)
-            item["published_date_clean"] = pub_date
+            # Same rule as Linkup: an unreadable date is a blank date, scored as
+            # undated, not an error row.
+            pub_date = parse_loose_date(item.get("published_date", ""))
+            if pub_date is None:
+                log_error(PROVIDER_NAME, "PARSE_DATE", query_context,
+                          f"unrecognised published_date: {item.get('published_date')!r}", item)
+            item["published_date_clean"] = pub_date or ""
+            item.setdefault("published_date", "")
             articles.append(item)
         except Exception as e:
             log_error(PROVIDER_NAME, "PARSE_DATE", query_context, str(e), item)

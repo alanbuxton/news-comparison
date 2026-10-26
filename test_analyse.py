@@ -35,6 +35,16 @@ from analyse import (
     README_SUMMARY_PROMPT,
     SYSTEM_PROMPT,
     classify_date,
+    PADDED_ITEM_PENALTY,
+    apply_company_metrics,
+    bootstrap_company_metrics,
+    bootstrap_md,
+    build_label_request,
+    company_metrics_md,
+    company_row_metrics,
+    load_query_manifest,
+    parse_label_response,
+    split_controls,
     classify_publisher,
     format_companies_data,
     group_rows,
@@ -1009,3 +1019,290 @@ class TestScoreRendering:
         # The prompt text quotes WEAK_SCORE; they must not drift apart.
         diag = _diag([_srow("Acme", "https://a.com/1", 0.02)])
         assert f"below {WEAK_SCORE}" in score_block(diag, "Company")
+
+
+# ---------------------------------------------------------------------------
+# Company row labels, controls and harness-computed precision/coverage
+# ---------------------------------------------------------------------------
+
+def _groups(rows):
+    return group_rows(rows, {"Exa": "A", "Perplexity Agent": "B"}, "companies")
+
+
+def _zeta(n, provider="Perplexity Agent", stem="Zeta Global story"):
+    return [_crow("ZETA TECHNICAL SERVICES", f"https://z.com/{i}", provider=provider,
+                  headline=f"{stem} number {i}") for i in range(n)]
+
+
+def _labels(**by_company):
+    """_labels(B={"Acme": ["on_target", "wrong_entity"]}) → row_labels shape."""
+    return {
+        prov: {name: [None if l is None else {"label": l, "about": ""} for l in ls]
+               for name, ls in items.items()}
+        for prov, items in by_company.items()
+    }
+
+
+class TestQueryManifest:
+    def test_missing_manifest_means_no_profiles_or_controls(self, tmp_path):
+        m = load_query_manifest(str(tmp_path))
+        assert m == {"profiles": {}, "controls": set(), "queried": None}
+
+    def test_reads_profiles_controls_and_queried(self, tmp_path):
+        (tmp_path / "queries.json").write_text(json.dumps({"companies": [
+            {"name": "Acme", "profile": "Widget maker", "control": False},
+            {"name": "Nobody", "profile": "", "control": False},
+            {"name": "Korvessa", "profile": "", "control": True},
+        ]}))
+        m = load_query_manifest(str(tmp_path))
+        assert m["profiles"] == {"Acme": "Widget maker"}
+        assert m["controls"] == {"Korvessa"}
+        assert m["queried"] == ["Acme", "Nobody"]
+
+    def test_backfilled_manifest_is_profiles_only(self, tmp_path):
+        (tmp_path / "queries.json").write_text(json.dumps({"backfilled": True, "companies": [
+            {"name": "Acme", "profile": "Widget maker", "control": False}]}))
+        assert load_query_manifest(str(tmp_path))["queried"] is None
+
+
+class TestSplitControls:
+    def test_controls_leave_judge_data(self):
+        rows = _zeta(1) + [_crow("Korvessa", "https://k.com/1", provider="Exa")]
+        real, ctrl = split_controls(_groups(rows), {"Korvessa"})
+        assert "Korvessa" not in real["A"] and "Korvessa" in ctrl["A"]
+        assert "A" in real  # provider still present even if it only hit a control
+
+    def test_judge_never_sees_control_names(self):
+        rows = _zeta(1) + [_crow("Korvessa", "https://k.com/1", provider="Exa")]
+        text = format_companies_data(rows, {"Exa": "A", "Perplexity Agent": "B"}, 20, REF,
+                                     controls={"Korvessa"})
+        assert "Korvessa" not in text
+
+
+class TestLabelRequest:
+    def test_rows_are_shuffled_under_opaque_ids_and_mapped_back(self):
+        rows = _zeta(3) + _zeta(2, provider="Exa")
+        prompt, id_map = build_label_request("ZETA TECHNICAL SERVICES", "", _groups(rows), 20)
+        assert sorted(id_map.values()) == [("A", 1), ("A", 2), ("B", 1), ("B", 2), ("B", 3)]
+        assert "Provider" not in prompt and "PROVIDER" not in prompt
+        assert "none supplied" in prompt
+
+    def test_profile_is_shown(self):
+        prompt, _ = build_label_request("ZETA TECHNICAL SERVICES", "Dubai MEP firm",
+                                        _groups(_zeta(1)), 20)
+        assert "Profile: Dubai MEP firm" in prompt
+
+    def test_only_shown_rows_are_sent(self):
+        _, id_map = build_label_request("ZETA TECHNICAL SERVICES", "", _groups(_zeta(5)), 3)
+        assert len(id_map) == 3
+
+    def test_deterministic_for_same_name(self):
+        g = _groups(_zeta(6) + _zeta(6, provider="Exa"))
+        assert build_label_request("ZETA TECHNICAL SERVICES", "", g, 20) == \
+            build_label_request("ZETA TECHNICAL SERVICES", "", g, 20)
+
+
+class TestParseLabelResponse:
+    def test_keeps_valid_entries_only(self):
+        id_map = {"r1": ("A", 1), "r2": ("A", 2)}
+        text = 'Sure:\n{"rows": [{"id": "r1", "label": "wrong_entity", "about": "Zeta Global"},' \
+               '{"id": "r2", "label": "maybe"}, {"id": "r9", "label": "on_target"}]}'
+        assert parse_label_response(text, id_map) == {
+            "r1": {"label": "wrong_entity", "about": "Zeta Global"}}
+
+    def test_garbage_returns_empty(self):
+        assert parse_label_response("no json here", {"r1": ("A", 1)}) == {}
+
+
+class TestCompanyRowMetrics:
+    def _m(self, rows, labels, controls=(), queried=None):
+        real, ctrl = split_controls(_groups(rows), set(controls))
+        return company_row_metrics(real, ctrl, labels, REF, 20, queried)
+
+    def test_padded_company_cancels_an_answered_one(self):
+        rows = _zeta(2) + [_crow("Acme", "https://a.com/1", provider="Perplexity Agent")]
+        m = self._m(rows, _labels(B={"ZETA TECHNICAL SERVICES": ["wrong_entity"] * 2,
+                                      "Acme": ["on_target"]}))["B"]
+        assert m["answered"] == 1 and len(m["padded"]) == 1
+        assert m["coverage"] == round(10 * (1 - PADDED_ITEM_PENALTY) / 2, 1)
+        assert m["precision"] == round(10 * 1 / 3, 1)
+
+    def test_padding_scores_below_silence(self):
+        # Same answered company; one provider pads a second, the other is silent.
+        rows = ([_crow("Acme", "https://a.com/1", provider="Perplexity Agent")] + _zeta(2)
+                + [_crow("Acme", "https://a.com/2", provider="Exa")])
+        m = self._m(rows, _labels(B={"Acme": ["on_target"],
+                                      "ZETA TECHNICAL SERVICES": ["wrong_entity"] * 2},
+                                   A={"Acme": ["on_target"]}))
+        assert m["B"]["coverage"] < m["A"]["coverage"]
+
+    def test_control_hits_count_against_precision_and_coverage(self):
+        rows = [_crow("Acme", "https://a.com/1", provider="Exa"),
+                _crow("Korvessa", "https://k.com/1", provider="Exa"),
+                _crow("Korvessa", "https://k.com/2", provider="Exa")]
+        m = self._m(rows, _labels(A={"Acme": ["on_target"]}), controls={"Korvessa"})["A"]
+        assert m["control_rows"] == 2 and len(m["control_hits"]) == 1
+        assert m["precision"] == round(10 / 3, 1)
+        assert m["coverage"] == 0.0  # 1 answered − 1 control hit, out of 1 company
+
+    def test_duplicate_on_target_row_is_not_clean(self):
+        rows = [_crow("Acme", "https://a.com/1", provider="Exa", headline="Acme buys Beta"),
+                _crow("Acme", "https://b.com/1", provider="Exa", headline="Acme buys Beta")]
+        m = self._m(rows, _labels(A={"Acme": ["on_target", "on_target"]}))["A"]
+        assert m["clean"] == 1 and m["flagged"] == 1
+
+    def test_unlabelled_rows_leave_the_denominator(self):
+        rows = [_crow("Acme", f"https://a.com/{i}", provider="Exa") for i in range(2)]
+        m = self._m(rows, _labels(A={"Acme": ["on_target", None]}))["A"]
+        assert m["unlabelled"] == 1 and m["precision"] == 10.0
+
+    def test_queried_company_nobody_answered_counts_in_universe(self):
+        rows = [_crow("Acme", "https://a.com/1", provider="Exa")]
+        m = self._m(rows, _labels(A={"Acme": ["on_target"]}), queried=["Acme", "Ghost"])["A"]
+        assert m["universe"] == 2 and m["coverage"] == 5.0
+
+    def test_no_rows_means_precision_zero(self):
+        rows = [_crow("Acme", "https://a.com/1", provider="Exa", headline="*** ERROR ***")]
+        assert self._m(rows, {})["A"]["precision"] == 0.0
+
+
+class TestApplyCompanyMetrics:
+    def test_replaces_scores_keeps_judge_view_and_reranks(self):
+        card = {"providers": [_prov(precision=9, label="A"), _prov(precision=5, label="B")]}
+        metrics = {
+            "A": dict(precision=2.0, coverage=5.0, clean=1, labelled_rows=5, wrong_entity=4,
+                      name_drop=0, not_news=0, flagged=0, control_rows=0, answered=1,
+                      universe=2, padded=[], control_hits=[]),
+            "B": dict(precision=9.0, coverage=7.0, clean=9, labelled_rows=10, wrong_entity=1,
+                      name_drop=0, not_news=0, flagged=0, control_rows=0, answered=2,
+                      universe=2, padded=[], control_hits=[]),
+        }
+        apply_company_metrics(card, metrics)
+        a = next(p for p in card["providers"] if p["label"] == "A")
+        assert a["axes"]["precision"]["score"] == 2.0
+        assert a["axes"]["precision"]["judge_score"] == 9
+        assert "precision" in a["caps_applied"]
+        assert card["ranking"] == ["B", "A"]
+
+
+def _metrics_from(per_item_by_label):
+    """Metrics in company_row_metrics' shape from {label: {company: (clean, labelled)}}."""
+    out = {}
+    for lb, items in per_item_by_label.items():
+        per_item = {n: {"clean": c, "labelled": l} for n, (c, l) in items.items()}
+        clean = sum(c for c, _ in items.values())
+        labelled = sum(l for _, l in items.values())
+        out[lb] = dict(precision=round(10 * clean / labelled, 1) if labelled else 0.0,
+                       coverage=0.0, per_item=per_item, control_rows=0, control_hits=[])
+    return out
+
+
+def _ranked_card(metrics):
+    card = {"providers": [_prov(precision=m["precision"], label=lb)
+                          for lb, m in metrics.items()]}
+    from analyse import _recompute_provider, _rank_providers
+    for p in card["providers"]:
+        _recompute_provider(p)
+    return _rank_providers(card)
+
+
+class TestBootstrap:
+    def test_per_item_tallies_match_answered_and_padded(self):
+        rows = _zeta(2) + [_crow("Acme", "https://a.com/1", provider="Perplexity Agent")]
+        real, ctrl = split_controls(_groups(rows), set())
+        m = company_row_metrics(real, ctrl, _labels(B={
+            "ZETA TECHNICAL SERVICES": ["wrong_entity"] * 2, "Acme": ["on_target"]}),
+            REF, 20)["B"]
+        assert m["per_item"] == {"Acme": {"clean": 1, "labelled": 1},
+                                 "ZETA TECHNICAL SERVICES": {"clean": 0, "labelled": 2}}
+
+    def test_clear_winner_is_separated(self):
+        names = [f"C{i}" for i in range(30)]
+        metrics = _metrics_from({"A": {n: (5, 5) for n in names},
+                                 "B": {n: (1, 5) for n in names}})
+        boot = bootstrap_company_metrics(metrics, _ranked_card(metrics), resamples=200)
+        assert boot["A"]["rank"] == 1 and boot["A"]["ahead_of_next"] == 1.0
+        assert boot["A"]["held_rank"] == 1.0
+        assert boot["B"]["ahead_of_next"] is None
+
+    def test_near_tie_is_not_separated_and_marked(self):
+        names = [f"C{i}" for i in range(30)]
+        # A and B are equally good overall, but on different companies.
+        a = {n: ((5, 5) if i % 2 else (2, 5)) for i, n in enumerate(names)}
+        b = {n: ((2, 5) if i % 2 else (5, 5)) for i, n in enumerate(names)}
+        metrics = _metrics_from({"A": a, "B": b})
+        card = _ranked_card(metrics)
+        boot = bootstrap_company_metrics(metrics, card, resamples=200)
+        top = card["ranking"][0]
+        assert boot[top]["ahead_of_next"] < 0.9
+        assert "(not separated)" in bootstrap_md(boot, card, {"A": "Exa", "B": "Syracuse"})
+
+    def test_point_estimate_inside_range_and_deterministic(self):
+        names = [f"C{i}" for i in range(20)]
+        metrics = _metrics_from({"A": {n: (i % 4, 4) for i, n in enumerate(names)}})
+        card = _ranked_card(metrics)
+        boot = bootstrap_company_metrics(metrics, card, resamples=300)
+        lo, hi = boot["A"]["precision_range"]
+        assert lo <= metrics["A"]["precision"] <= hi
+        assert boot == bootstrap_company_metrics(metrics, card, resamples=300)
+
+    def test_no_companies_means_no_bootstrap(self):
+        assert bootstrap_company_metrics({}, {"providers": []}) == {}
+
+
+class TestControlNames:
+    def test_distinct_and_never_a_real_queried_name(self):
+        import random
+        from examples import company_name_examples, make_control_companies
+        real = {n.lower() for n in company_name_examples}
+        for seed in range(50):
+            names = make_control_companies(random.Random(seed), 3)
+            assert len(set(names)) == 3
+            assert not real & {n.lower() for n in names}
+
+    def test_main_draws_fresh_names_rather_than_a_fixed_list(self):
+        import examples
+        assert not hasattr(examples, "control_companies")
+
+
+class TestCompanyLabelRendering:
+    def test_judge_sees_profile_and_label_markers(self):
+        rows = _zeta(2)
+        text = format_companies_data(
+            rows, {"Perplexity Agent": "B"}, 20, REF,
+            profiles={"ZETA TECHNICAL SERVICES": "Technical services firm"},
+            row_labels={"B": {"ZETA TECHNICAL SERVICES": [
+                {"label": "wrong_entity", "about": "Zeta Global"}, None]}},
+        )
+        assert "Profile: Technical services firm" in text
+        assert "[WRONG ENTITY: Zeta Global ⚠]" in text
+
+    def test_prompt_explains_harness_scores_companies(self):
+        assert "COMPANY PROFILES AND ROW LABELS" in COMPANIES_PROMPT
+        assert "ROW LABELS" not in INDUSTRIES_PROMPT
+
+    def test_report_decodes_and_lists_controls(self):
+        rows = [_crow("Korvessa", "https://k.com/1", provider="Exa", headline="Korvessa wins")]
+        real, ctrl = split_controls(_groups(rows), {"Korvessa"})
+        metrics = company_row_metrics(real, ctrl, {}, REF, 20, ["Acme"])
+        card = {"providers": [_prov(label="A")]}
+        md = company_metrics_md(metrics, card, {"A": "Exa"})
+        assert "| Exa |" in md
+        assert "CONTROL Korvessa (made-up): 1 rows — Korvessa wins" in md
+        assert "check the headlines" not in md
+
+    def test_control_flagged_only_when_selective_providers_agree(self):
+        controls = {"Korvessa", "Draymont"}
+        def md_for(rows):
+            real, ctrl = split_controls(_groups(rows), controls)
+            metrics = company_row_metrics(real, ctrl, {}, REF, 20, ["Acme"])
+            card = {"providers": [_prov(label="A"), _prov(label="B")]}
+            return company_metrics_md(metrics, card, {"A": "Exa", "B": "Agent"}, controls)
+        k = lambda p, i: _crow("Korvessa", f"https://k.com/{p}{i}", provider=p)
+        d = lambda p: _crow("Draymont", f"https://d.com/{p}", provider=p)
+        # Exa pads every control; only Agent is selective → no flag.
+        assert "check the headlines" not in md_for(
+            [k("Exa", 1), d("Exa"), k("Perplexity Agent", 1)])
+        # Both selective and both answer Korvessa → flag it.
+        md = md_for([k("Exa", 1), k("Perplexity Agent", 1), d("Exa"), d("Perplexity Agent")][:2])
+        assert md.rstrip().endswith("Korvessa")

@@ -7,6 +7,8 @@ import pytest
 import perplexity_search_client as pxs
 import queries as q
 import syracuse_client as sy
+import linkup_client as lk
+import perplexity_agent_client as pxa
 import tavily_client as tv
 from utils import set_error_log_dir
 
@@ -64,6 +66,52 @@ class TestTavilyPublishedDate:
         art = tv.item_to_article({"url": "https://x.com/1", "content": "c"}, "ctx")
         assert art["headline"] == "*** ERROR ***"
         assert art["document_url"] == "https://x.com/1"
+
+
+# ---------------------------------------------------------------------------
+# LLM-written dates (Linkup, Perplexity Agent)
+#
+# Linkup writes dates the way its model reads them ("October 7, 2026") or as
+# prose when it has none. The client used to turn every non-ISO date into an
+# ERROR row: 319 of them in the 2026-10-25 run, which put Linkup under the trust
+# cap. An unreadable date is now a blank date, scored as undated.
+# ---------------------------------------------------------------------------
+
+def _lk_item(date):
+    return {"headline": "H", "publication_date": date, "summary": "s",
+            "source": "Business Wire", "url": "https://x.com/1"}
+
+
+class TestLLMWrittenDates:
+    @pytest.mark.parametrize("raw", ["October 7, 2026", "7 October 2026",
+                                     "Oct 7, 2026", "2026-10-07"])
+    def test_linkup_written_out_dates_parse(self, raw):
+        art = lk.item_to_article(_lk_item(raw), "ctx")
+        assert art["headline"] == "H"
+        assert art["published_date_clean"] == datetime(2026, 10, 7, tzinfo=timezone.utc)
+
+    @pytest.mark.parametrize("raw", ["Not stated in the supplied source",
+                                     "2025 (exact date not provided)", "2026-08", ""])
+    def test_linkup_missing_date_is_undated_not_error(self, raw):
+        art = lk.item_to_article(_lk_item(raw), "ctx")
+        assert art["headline"] == "H"
+        assert art["published_date_clean"] == ""
+        assert art["published_date"] == raw
+
+    def test_linkup_missing_url_is_still_an_error(self):
+        item = _lk_item("October 7, 2026"); del item["url"]
+        assert lk.item_to_article(item, "ctx")["headline"] == "*** ERROR ***"
+
+    def test_agent_unreadable_date_is_undated_not_error(self):
+        arts = pxa.parse_perplexity_responses([
+            {"headline": "H", "summary_text": "s", "published_date": "Not stated",
+             "published_by": "P", "document_url": "https://x.com/1"},
+            {"headline": "G", "summary_text": "s", "published_date": "October 7, 2026",
+             "published_by": "P", "document_url": "https://x.com/2"},
+        ], "ctx")
+        assert [a["headline"] for a in arts].count("*** ERROR ***") == 0
+        dates = {a["headline"]: a["published_date_clean"] for a in arts}
+        assert dates == {"H": "", "G": datetime(2026, 10, 7, tzinfo=timezone.utc)}
 
 
 # ---------------------------------------------------------------------------

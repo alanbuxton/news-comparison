@@ -547,6 +547,528 @@ def score_table_md(diag: dict[str, dict], label_to_provider: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
+# --- Company row labels (companies only) -----------------------------------
+# Company precision and coverage are computed by the harness, not scored by the
+# judge. A separate pass labels every shown row, one small call per company with
+# every provider's rows for that company together, and the harness counts.
+# Why: the single big judge call scored on overall impression. It skipped
+# Perplexity Agent's six Zeta Global rows for "ZETA TECHNICAL SERVICES"
+# entirely, and moved coverage two points between runs on identical data
+# (2026-10-25). A small per-company prompt gets the labeller's full attention,
+# and the numbers are counted rather than guessed. The labels are still a
+# model's reading — they are saved per run so they can be audited.
+
+ROW_LABELS = ("on_target", "name_drop", "wrong_entity", "not_news")
+
+# A company answered only with false positives is worse than one left
+# unanswered: the caller acts on padding but knows to look elsewhere after
+# silence. Each padded company (and each control company answered) cancels this
+# many genuinely answered ones in the coverage score.
+PADDED_ITEM_PENALTY = 1.0
+
+LABEL_WORKERS = 4
+
+
+def load_query_manifest(results_dir: str) -> dict:
+    """Read queries.json written by main.py. Returns profiles, control names and
+    — unless the manifest was backfilled onto an older run — the full list of
+    queried companies. Runs without a manifest get no profiles and no controls."""
+    path = os.path.join(results_dir, "queries.json")
+    if not os.path.exists(path):
+        return {"profiles": {}, "controls": set(), "queried": None}
+    with open(path, encoding="utf-8") as f:
+        manifest = json.load(f)
+    companies = manifest.get("companies", [])
+    return {
+        "profiles": {c["name"]: c["profile"] for c in companies if c.get("profile")},
+        "controls": {c["name"] for c in companies if c.get("control")},
+        "queried": None if manifest.get("backfilled") else
+                   [c["name"] for c in companies if not c.get("control")],
+    }
+
+
+def split_controls(
+    data: dict[str, dict[str, list[dict]]], controls: set[str]
+) -> tuple[dict, dict]:
+    """Split grouped company data into (real companies, control companies)."""
+    real: dict = defaultdict(dict)
+    ctrl: dict = defaultdict(dict)
+    for label, items in data.items():
+        real[label]  # every provider keeps an entry even if it only hit controls
+        for name, arts in items.items():
+            (ctrl if name in controls else real)[label][name] = arts
+    return real, ctrl
+
+
+def _real_rows(arts: list[dict]) -> list[dict]:
+    return [a for a in arts if a.get("headline") != "*** ERROR ***"]
+
+
+LABEL_SYSTEM_PROMPT = """\
+You label news search results for whether they are about one queried company.
+Be strict and literal: a row is on-target only if the row itself supports it.
+Everything in a row — headline, summary, publisher — is the search provider's
+claim; judge from what the whole row supports. Output JSON only."""
+
+LABEL_PROMPT = """\
+Queried company: __NAME__
+Profile: __PROFILE__
+
+Label every row below with exactly one of:
+- on_target: substantive news about the queried company, or about a parent,
+  subsidiary or brand of it (the profile names some) — it says something
+  specific about the company.
+- name_drop: the right company, but only mentioned in passing — a roundup, a
+  list, or a story about something else with nothing specific about it.
+- wrong_entity: not about the queried company — a different organisation that
+  shares part of the name, or content unrelated to the company.
+- not_news: not a news article or press release — About, product or catalogue
+  pages, directory or registry listings, job ads, social posts, forum threads,
+  videos, market-research report pages.
+
+With no profile, label a row on_target or name_drop only if it plausibly
+concerns an organisation of exactly the queried name; a company sharing only
+part of the name is wrong_entity. Rows come from several search providers,
+shuffled; judge each on its own.
+
+For each wrong_entity row, also say in a few words who it is really about.
+
+Return only this JSON, with one entry for every row id:
+{"rows": [{"id": "r1", "label": "wrong_entity", "about": "Zeta Global (ad-tech)"},
+          {"id": "r2", "label": "on_target"}]}
+
+ROWS
+__ROWS__
+"""
+
+
+def _label_row_text(row_id: str, art: dict) -> str:
+    headline = (art.get("headline") or "").strip()
+    source = (art.get("published_by") or "").strip()
+    domain = article_domain(art)
+    summary = (art.get("summary_text") or "").strip()
+    if len(summary) > MAX_SUMMARY_CHARS:
+        summary = summary[:MAX_SUMMARY_CHARS] + "…"
+    who = " ".join(p for p in (source, f"({domain})" if domain else "") if p)
+    line = f"{row_id}. {headline}" + (f" | {who}" if who else "")
+    return line + (f"\n    {summary}" if summary else "")
+
+
+def build_label_request(
+    name: str, profile: str, data: dict[str, dict[str, list[dict]]], max_articles: int
+) -> tuple[str, dict[str, tuple[str, int]]]:
+    """Prompt for one company plus the map row-id → (provider label, 1-based row
+    index among that provider's shown rows). Rows are shuffled across providers
+    under opaque ids, seeded by the name so a re-run labels the same prompt."""
+    rows = [
+        (label, i, art)
+        for label in sorted(data)
+        for i, art in enumerate(_real_rows(data[label].get(name, []))[:max_articles], 1)
+    ]
+    random.Random(name).shuffle(rows)
+    id_map: dict[str, tuple[str, int]] = {}
+    texts = []
+    for n, (label, i, art) in enumerate(rows, 1):
+        row_id = f"r{n}"
+        id_map[row_id] = (label, i)
+        texts.append(_label_row_text(row_id, art))
+    prompt = (
+        LABEL_PROMPT.replace("__NAME__", name)
+        .replace("__PROFILE__", profile or "none supplied — judge from the name alone")
+        .replace("__ROWS__", "\n".join(texts))
+    )
+    return prompt, id_map
+
+
+def parse_label_response(text: str, id_map: dict) -> dict[str, dict]:
+    """Return row-id → {"label", "about"} for valid entries; others are dropped."""
+    start, end = text.find("{"), text.rfind("}")
+    if start < 0 or end <= start:
+        return {}
+    try:
+        data = json.loads(text[start:end + 1])
+    except json.JSONDecodeError:
+        return {}
+    out: dict[str, dict] = {}
+    for entry in data.get("rows", []) if isinstance(data, dict) else []:
+        if not isinstance(entry, dict):
+            continue
+        row_id, label = entry.get("id"), entry.get("label")
+        if row_id in id_map and label in ROW_LABELS:
+            out[row_id] = {"label": label, "about": entry.get("about") or ""}
+    return out
+
+
+def _label_one_company(client, model: str, prompt: str, id_map: dict) -> dict[str, dict]:
+    labels: dict[str, dict] = {}
+    # One retry if the labeller drops rows; whatever is still missing is
+    # reported as unlabelled rather than guessed.
+    for _ in range(2):
+        for attempt in range(4):
+            try:
+                response = client.messages.create(
+                    model=model,
+                    max_tokens=8000,
+                    system=LABEL_SYSTEM_PROMPT,
+                    messages=[{"role": "user", "content": prompt}],
+                )
+                break
+            except anthropic.RateLimitError:
+                if attempt == 3:
+                    raise
+                time.sleep(30 * (attempt + 1))
+        text = next(b for b in response.content if b.type == "text").text
+        labels.update(parse_label_response(text, id_map))
+        if len(labels) == len(id_map):
+            break
+    return labels
+
+
+def label_company_rows(
+    client, model: str, data: dict[str, dict[str, list[dict]]],
+    profiles: dict[str, str], max_articles: int,
+) -> dict[str, dict[str, list[dict | None]]]:
+    """Label every shown row of every company. Returns label → company → one
+    entry per shown row ({"label", "about"}, or None if left unlabelled)."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    names = sorted({name for items in data.values() for name in items})
+    requests = {
+        name: build_label_request(name, profiles.get(name, ""), data, max_articles)
+        for name in names
+    }
+    requests = {n: r for n, r in requests.items() if r[1]}
+
+    def work(name):
+        prompt, id_map = requests[name]
+        return name, _label_one_company(client, model, prompt, id_map)
+
+    out: dict[str, dict[str, list]] = defaultdict(dict)
+    for label, items in data.items():
+        for name, arts in items.items():
+            out[label][name] = [None] * len(_real_rows(arts)[:max_articles])
+    with ThreadPoolExecutor(max_workers=LABEL_WORKERS) as pool:
+        for done, (name, labels) in enumerate(pool.map(work, requests), 1):
+            id_map = requests[name][1]
+            for row_id, entry in labels.items():
+                label, i = id_map[row_id]
+                out[label][name][i - 1] = entry
+            missing = len(id_map) - len(labels)
+            print(f"  [{done}/{len(requests)}] {name}: {len(labels)} rows labelled"
+                  + (f", {missing} unlabelled ⚠" if missing else ""))
+    return out
+
+
+def company_row_metrics(
+    data: dict[str, dict[str, list[dict]]],
+    controls: dict[str, dict[str, list[dict]]],
+    row_labels: dict[str, dict[str, list[dict | None]]],
+    reference_date: datetime,
+    max_articles: int,
+    queried: list[str] | None = None,
+) -> dict[str, dict]:
+    """Per provider: precision and coverage computed from the row labels.
+
+    A row is *clean* if labelled on_target and not otherwise disqualified by a
+    harness flag (duplicate, stale, undated, market report, not-news) — the same
+    things the rubric counts as false positives. Precision = 10 × clean share of
+    labelled shown rows, with every control-company row counted as a false
+    positive. A company is *answered* if it has a clean row and *padded* if the
+    provider returned rows but none clean. Coverage = 10 × (answered −
+    PADDED_ITEM_PENALTY × (padded + controls answered)) / companies, floored at 0.
+    """
+    names = set(queried or ()) | {n for items in data.values() for n in items}
+    universe = len(names)
+    out: dict[str, dict] = {}
+    for label in sorted(set(data) | set(controls)):
+        counts = dict.fromkeys(ROW_LABELS, 0)
+        counts.update(clean=0, flagged=0, unlabelled=0)
+        answered: list[str] = []
+        padded: list[dict] = []
+        # Per-company tallies, kept so bootstrap_company_metrics can resample
+        # companies without re-deriving anything.
+        per_item = {n: {"clean": 0, "labelled": 0} for n in sorted(names)}
+        for name, arts in sorted(data.get(label, {}).items()):
+            real = _real_rows(arts)
+            if not real:
+                continue
+            shown = real[:max_articles]
+            groups = _compute_dup_groups(real)[: len(shown)]
+            first_seen: set[int] = set()
+            labels = row_labels.get(label, {}).get(name) or [None] * len(shown)
+            clean_here = 0
+            wrong_about: list[str] = []
+            for art, gid, entry in zip(shown, groups, labels):
+                is_dup = gid in first_seen
+                first_seen.add(gid)
+                flagged = (
+                    is_dup
+                    or classify_date(art, reference_date) != "recent"
+                    or _is_market_report(art)
+                    or _is_not_news(art)
+                )
+                if entry is None:
+                    counts["unlabelled"] += 1
+                    continue
+                counts[entry["label"]] += 1
+                if entry["label"] == "wrong_entity" and entry.get("about"):
+                    wrong_about.append(entry["about"])
+                if entry["label"] == "on_target":
+                    if flagged:
+                        counts["flagged"] += 1
+                    else:
+                        clean_here += 1
+            counts["clean"] += clean_here
+            per_item[name] = {
+                "clean": clean_here,
+                "labelled": sum(1 for e in labels if e is not None),
+            }
+            if clean_here:
+                answered.append(name)
+            elif any(labels):
+                padded.append({
+                    "item": name,
+                    "rows": len(shown),
+                    "about": sorted(set(wrong_about))[:4],
+                })
+        control_hits = []
+        for name, arts in sorted(controls.get(label, {}).items()):
+            real = _real_rows(arts)
+            if real:
+                control_hits.append({
+                    "item": name,
+                    "rows": len(real[:max_articles]),
+                    "headlines": [a.get("headline", "") for a in real[:3]],
+                })
+        control_rows = sum(c["rows"] for c in control_hits)
+        labelled = sum(counts[k] for k in ROW_LABELS) + control_rows
+        precision = round(10 * counts["clean"] / labelled, 1) if labelled else 0.0
+        net = len(answered) - PADDED_ITEM_PENALTY * (len(padded) + len(control_hits))
+        coverage = round(max(0.0, 10 * net / universe), 1) if universe else 0.0
+        out[label] = {
+            "precision": precision,
+            "coverage": coverage,
+            "universe": universe,
+            "answered": len(answered),
+            "padded": padded,
+            "control_hits": control_hits,
+            "control_rows": control_rows,
+            "labelled_rows": labelled,
+            "per_item": per_item,
+            **counts,
+        }
+    return out
+
+
+def apply_company_metrics(scorecard: dict, metrics: dict[str, dict]) -> dict:
+    """Replace the judge's company precision and coverage with the harness's,
+    keeping the judge's numbers as `judge_score`, then recompute and re-rank."""
+    for prov in scorecard["providers"]:
+        m = metrics.get(prov["label"])
+        if not m:
+            continue
+        axes = prov["axes"]
+        axes["precision"]["judge_score"] = axes["precision"]["score"]
+        axes["precision"]["score"] = m["precision"]
+        axes["precision"]["evidence"].insert(0, (
+            f"harness: {m['clean']}/{m['labelled_rows']} shown rows clean; "
+            f"{m['wrong_entity']} wrong-entity, {m['name_drop']} name-drop, "
+            f"{m['not_news']} not-news, {m['flagged']} on-target but flagged, "
+            f"{m['control_rows']} rows for made-up control companies"
+        ))
+        axes["coverage"]["judge_score"] = axes["coverage"]["score"]
+        axes["coverage"]["score"] = m["coverage"]
+        axes["coverage"]["evidence"].insert(0, (
+            f"harness: {m['answered']}/{m['universe']} companies with a clean row; "
+            f"{len(m['padded'])} answered only with false positives; "
+            f"{len(m['control_hits'])} made-up control companies answered"
+        ))
+        _recompute_provider(prov)
+    _rank_providers(scorecard)
+    return scorecard
+
+
+# Resampling the queried companies shows how much of a gap between providers is
+# just which ~40 companies happened to be in examples.py. Paired: every provider
+# is scored on the same resample, as they were all asked the same companies.
+BOOTSTRAP_RESAMPLES = 2000
+# A provider is "clearly ahead" of the next only if it stays ahead in at least
+# this share of resamples.
+SEPARATION_THRESHOLD = 0.9
+
+
+def _percentile(values: list[float], q: float) -> float:
+    ordered = sorted(values)
+    return ordered[min(len(ordered) - 1, int(q * len(ordered)))]
+
+
+def bootstrap_company_metrics(
+    metrics: dict[str, dict], scorecard: dict,
+    resamples: int = BOOTSTRAP_RESAMPLES, seed: int = 0,
+) -> dict[str, dict]:
+    """Resample the real companies with replacement and recount precision,
+    coverage, final score and rank for every provider each time.
+
+    Only company sampling is measured. The judge-scored axes are held at their
+    values, control-company hits are held fixed, and labelling noise is not
+    covered, so the true uncertainty is wider than this. Run after
+    apply_company_metrics, so the scorecard holds the counted scores.
+    """
+    labels = [p["label"] for p in scorecard["providers"] if p["label"] in metrics]
+    if not labels:
+        return {}
+    names = sorted(next(iter(metrics.values()))["per_item"])
+    if not names:
+        return {}
+    axes = {p["label"]: p["axes"] for p in scorecard["providers"]}
+    rng = random.Random(seed)
+    draws: dict[str, dict[str, list]] = {
+        lb: {"precision": [], "coverage": [], "final": [], "rank": []} for lb in labels
+    }
+    ahead = {lb: 0 for lb in labels}  # resamples where lb beats the next-ranked
+    for _ in range(resamples):
+        sample = [rng.choice(names) for _ in names]
+        finals = {}
+        for lb in labels:
+            m = metrics[lb]
+            items = [m["per_item"][n] for n in sample]
+            clean = sum(i["clean"] for i in items)
+            labelled = sum(i["labelled"] for i in items) + m["control_rows"]
+            answered = sum(1 for i in items if i["clean"])
+            padded = sum(1 for i in items if i["labelled"] and not i["clean"])
+            prec = 10 * clean / labelled if labelled else 0.0
+            net = answered - PADDED_ITEM_PENALTY * (padded + len(m["control_hits"]))
+            cov = max(0.0, 10 * net / len(sample))
+            scores = {a: {"score": axes[lb][a]["score"]} for a in RUBRIC_AXES}
+            scores["precision"]["score"] = prec
+            scores["coverage"]["score"] = cov
+            weighted = sum(RUBRIC_WEIGHTS[a] * scores[a]["score"] for a in RUBRIC_AXES)
+            final, _ = _apply_caps(scores, weighted)
+            finals[lb] = (final, prec, scores["metadata_integrity"]["score"])
+            draws[lb]["precision"].append(prec)
+            draws[lb]["coverage"].append(cov)
+            draws[lb]["final"].append(final)
+        order = sorted(labels, key=lambda lb: tuple(-x for x in finals[lb]))
+        for rank, lb in enumerate(order, 1):
+            draws[lb]["rank"].append(rank)
+        for hi, lo in zip(labels, labels[1:]):
+            if finals[hi] > finals[lo]:
+                ahead[hi] += 1
+    out = {}
+    for pos, lb in enumerate(labels, 1):
+        d = draws[lb]
+        out[lb] = {
+            "rank": pos,
+            **{f"{k}_range": [round(_percentile(d[k], 0.025), 1),
+                              round(_percentile(d[k], 0.975), 1)]
+               for k in ("precision", "coverage", "final")},
+            "held_rank": round(d["rank"].count(pos) / resamples, 2),
+            # None for the last-ranked provider: there is no one below it.
+            "ahead_of_next": round(ahead[lb] / resamples, 2) if pos < len(labels) else None,
+        }
+    return out
+
+
+def bootstrap_md(boot: dict[str, dict], scorecard: dict, label_to_provider: dict) -> str:
+    """Markdown table of the resampled ranges and how stable each rank is."""
+    if not boot:
+        return ""
+    final = {p["label"]: p["final"] for p in scorecard["providers"]}
+    lines = [
+        "## How sure is the ranking? (harness)",
+        "",
+        f"The queried companies were resampled {BOOTSTRAP_RESAMPLES} times and",
+        "precision, coverage, final score and rank recounted each time. Ranges are",
+        "95%. This covers only which companies were queried — the judge's axes and",
+        "the row labels are held fixed — so the real uncertainty is wider.",
+        f"Providers ahead of the next in under {SEPARATION_THRESHOLD:.0%} of",
+        "resamples are not clearly separated from it.",
+        "",
+        "| Rank | Provider | final | precision | coverage | held rank | ahead of next |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    for lb, b in sorted(boot.items(), key=lambda kv: kv[1]["rank"]):
+        nxt = b["ahead_of_next"]
+        nxt_s = "—" if nxt is None else (
+            f"{nxt:.0%}" + ("" if nxt >= SEPARATION_THRESHOLD else " (not separated)"))
+        rng = lambda k: f"{b[k + '_range'][0]}–{b[k + '_range'][1]}"
+        lines.append(
+            f"| {b['rank']} | {label_to_provider.get(lb, lb)} "
+            f"| {final.get(lb)} ({rng('final')}) | {rng('precision')} "
+            f"| {rng('coverage')} | {b['held_rank']:.0%} | {nxt_s} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
+def company_metrics_md(
+    metrics: dict[str, dict], scorecard: dict, label_to_provider: dict,
+    controls: set[str] = frozenset(),
+) -> str:
+    """Markdown report of the harness-computed company precision and coverage."""
+    if not metrics:
+        return ""
+    judge = {
+        p["label"]: (p["axes"]["precision"].get("judge_score"),
+                     p["axes"]["coverage"].get("judge_score"))
+        for p in scorecard.get("providers", [])
+    }
+    lines = [
+        "## Row labels and controls (harness — authoritative)",
+        "",
+        "Every shown row was labelled in a separate per-company pass; precision",
+        "and coverage are counted from those labels and replace the judge's",
+        "scores (shown in brackets). A row is clean if on-target and not flagged",
+        "as duplicate, stale, undated, market report or not-news. *Padded*",
+        "companies were answered only with false positives; padded companies and",
+        "answered control companies each cancel "
+        f"{PADDED_ITEM_PENALTY:g} answered company in coverage.",
+        "",
+        "| Provider | precision | coverage | clean rows | wrong-entity | name-drop "
+        "| not-news | flagged | answered | padded | controls hit | unlabelled |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ]
+    order = sorted(metrics, key=lambda lb: label_to_provider.get(lb, lb))
+    for label in order:
+        m = metrics[label]
+        jp, jc = judge.get(label, (None, None))
+        lines.append(
+            f"| {label_to_provider.get(label, label)} "
+            f"| {m['precision']} ({jp}) | {m['coverage']} ({jc}) "
+            f"| {m['clean']}/{m['labelled_rows']} | {m['wrong_entity']} | {m['name_drop']} "
+            f"| {m['not_news']} | {m['flagged']} | {m['answered']}/{m['universe']} "
+            f"| {len(m['padded'])} | {len(m['control_hits'])} "
+            f"| {m['unlabelled']}{' ⚠' if m['unlabelled'] else ''} |"
+        )
+    for label in order:
+        m = metrics[label]
+        if not (m["padded"] or m["control_hits"]):
+            continue
+        lines += ["", f"**{label_to_provider.get(label, label)}**", ""]
+        for p in m["padded"]:
+            about = f" — {'; '.join(p['about'])}" if p["about"] else ""
+            lines.append(f"- {p['item']}: {p['rows']} rows, none clean{about}")
+        for c in m["control_hits"]:
+            heads = "; ".join(h[:70] for h in c["headlines"])
+            lines.append(f"- CONTROL {c['item']} (made-up): {c['rows']} rows — {heads}")
+    # Control names are invented per run, so one can collide with a real firm.
+    # A provider that answers every control is padding indiscriminately and says
+    # nothing about any one name; two selective providers answering the same
+    # one suggests it is real. Still counted, but flagged for a human to check.
+    all_controls = set(controls) or {c["item"] for m in metrics.values() for c in m["control_hits"]}
+    hit_by: dict[str, int] = defaultdict(int)
+    for m in metrics.values():
+        hits = {c["item"] for c in m["control_hits"]}
+        if hits and hits != all_controls:
+            for name in hits:
+                hit_by[name] += 1
+    suspect = sorted(n for n, k in hit_by.items() if k >= 2)
+    if suspect:
+        lines += ["", "⚠ Answered by two or more providers that left other "
+                  "controls unanswered — check the headlines in case this made-up "
+                  "name belongs to a real company: " + ", ".join(suspect)]
+    return "\n".join(lines) + "\n"
+
+
 def reference_date_from_results_dir(results_dir: str) -> datetime:
     """Use the results folder name (e.g. 2026-04-20) as the reference date;
     fall back to now. Anchoring to the run date means re-analysing old folders
@@ -761,6 +1283,16 @@ NOTE on social posts, forum threads, videos and About pages: flagged inline as
 beyond those shown. Every flagged row is FP-not-news and counts against
 precision — the company's own LinkedIn post or About page is not news about it.
 
+COMPANY PROFILES AND ROW LABELS
+Most company blocks start with a `Profile:` line saying which real company was
+meant. Providers never saw it — they got the bare name. Every shown row also
+carries a label from a separate per-company labelling pass: `[WRONG ENTITY: …]`
+(a different organisation, named), `[NAME-DROP]`, `[LABELLED NOT-NEWS]`, or no
+label when on-target. For company queries the harness computes `precision` and
+`coverage` from these labels and they replace your scores on those two axes.
+Still score both with evidence — your view is kept for comparison — but spend
+your attention on metadata_integrity, story_quality and trust.
+
 __RUBRIC__
 
 ---
@@ -895,6 +1427,14 @@ Rules:
 - Be specific — name a queried entity from `evidence` to back the reason.
 - Each ranking bullet is a single sentence covering all __N_PROVIDERS__ providers
   in rank order (use the `ranking` array).
+- The companies scorecard's `row_label_metrics` were computed by the harness.
+  If a provider answered any made-up control company (`control_hits`), say so
+  in its reason — every such article is a false positive by construction.
+- The companies scorecard's `ranking_uncertainty` was computed by the harness by
+  resampling the queried companies. Where a provider's `ahead_of_next` is below
+  __SEPARATION__, say in the companies bullet that it and the next provider are
+  not clearly separated (e.g. "B and D are within noise of each other"). Do not
+  describe the order between them as a meaningful win.
 - No [Details](...) links.
 
 ---
@@ -1085,6 +1625,8 @@ def _render_item(
     errors: list,
     reference_date: datetime,
     max_articles: int,
+    profile: str = "",
+    row_labels: list[dict | None] | None = None,
 ) -> tuple[list[str], int, int, int]:
     """Render one item (company or topic) in the provider's own result order —
     that is what a real consumer sees, and re-sorting by recency would bias the
@@ -1100,6 +1642,8 @@ def _render_item(
 
     lines = [_item_header(kind, name, real, errors, reference_date, item_dup, item_mkt,
                           item_not_news)]
+    if profile:
+        lines.append(f"    Profile: {profile}")
     if not real:
         lines.append("    [NO RESULTS RETURNED ⚠]")
         return lines, item_dup, item_mkt, item_not_news
@@ -1119,6 +1663,14 @@ def _render_item(
             markers.append("MKT-REPORT")
         if not_news_flags[i - 1]:
             markers.append("NOT-NEWS")
+        entry = row_labels[i - 1] if row_labels and i <= len(row_labels) else None
+        if entry and entry["label"] == "wrong_entity":
+            about = f": {entry['about']}" if entry.get("about") else ""
+            markers.append(f"WRONG ENTITY{about}")
+        elif entry and entry["label"] == "name_drop":
+            markers.append("NAME-DROP")
+        elif entry and entry["label"] == "not_news":
+            markers.append("LABELLED NOT-NEWS")
         lines.extend(_format_article(i, art, reference_date, markers))
 
     if len(real) > max_articles:
@@ -1150,10 +1702,15 @@ def group_rows(
 
 
 def format_companies_data(
-    rows: list[dict], provider_to_label: dict, max_articles: int, reference_date: datetime
+    rows: list[dict], provider_to_label: dict, max_articles: int, reference_date: datetime,
+    profiles: dict[str, str] | None = None,
+    row_labels: dict[str, dict[str, list]] | None = None,
+    controls: set[str] = frozenset(),
 ) -> str:
-    data = group_rows(rows, provider_to_label, "companies")
-    return _format_grouped("Company", data, reference_date, max_articles)
+    # Control companies never reach the judge: their hits are counted
+    # mechanically, and showing them would reveal which names are made up.
+    data, _ = split_controls(group_rows(rows, provider_to_label, "companies"), controls)
+    return _format_grouped("Company", data, reference_date, max_articles, profiles, row_labels)
 
 
 def format_industries_data(
@@ -1168,6 +1725,8 @@ def _format_grouped(
     data: dict[str, dict[str, list[dict]]],
     reference_date: datetime,
     max_articles: int,
+    profiles: dict[str, str] | None = None,
+    row_labels: dict[str, dict[str, list]] | None = None,
 ) -> str:
     # Universe of queried items across all providers. A provider with no rows
     # for an item returned nothing for it — that gap must be rendered, or the
@@ -1202,7 +1761,9 @@ def _format_grouped(
             if real:
                 answered += 1
             block, item_dup, item_mkt, item_not_news = _render_item(
-                kind, name, real, errors, reference_date, max_articles
+                kind, name, real, errors, reference_date, max_articles,
+                (profiles or {}).get(name, ""),
+                (row_labels or {}).get(label, {}).get(name),
             )
             total_dups += item_dup
             total_mkt += item_mkt
@@ -1339,7 +1900,11 @@ def parse_scorecard(analysis_text: str) -> dict:
                     f"Provider {prov.get('label')} axis {axis} has invalid score: {score!r}"
                 )
         _recompute_provider(prov)
+    return _rank_providers(data)
 
+
+def _rank_providers(data: dict) -> dict:
+    """Sort providers by recomputed final score and set `ranking`."""
     data["providers"].sort(
         key=lambda p: (
             -p["final"],
@@ -1504,12 +2069,19 @@ def generate_readme_summary(
     # Older scorecards carry a model-authored ranking_rationale keyed by
     # position; it can contradict the recomputed ranking — never show it.
     companies_scorecard = {k: v for k, v in companies_scorecard.items() if k != "ranking_rationale"}
+    # Per-company tallies are the bootstrap's input, not something to summarise.
+    if "row_label_metrics" in companies_scorecard:
+        companies_scorecard["row_label_metrics"] = {
+            lb: {k: v for k, v in m.items() if k != "per_item"}
+            for lb, m in companies_scorecard["row_label_metrics"].items()
+        }
     industries_scorecard = {k: v for k, v in industries_scorecard.items() if k != "ranking_rationale"}
     headline = _headline_sentence(companies_scorecard, industries_scorecard, label_to_provider)
     prompt = (
         fill_provider_counts(README_SUMMARY_PROMPT, list(label_to_provider))
         .replace("__DECODE_KEY__", decode_key)
         .replace("__DATE__", run_date)
+        .replace("__SEPARATION__", f"{SEPARATION_THRESHOLD:g}")
         .replace("__HEADLINE__", headline)
         .replace("__COMPANIES_SCORECARD__", json.dumps(companies_scorecard, indent=2))
         .replace("__INDUSTRIES_SCORECARD__", json.dumps(industries_scorecard, indent=2))
@@ -1538,7 +2110,8 @@ def generate_readme_summary(
 # Main
 # ---------------------------------------------------------------------------
 
-def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MODEL, max_articles: int = DEFAULT_MAX_ARTICLES):
+def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MODEL,
+        max_articles: int = DEFAULT_MAX_ARTICLES, label_model: str | None = None):
     if output_dir is None:
         output_dir = results_dir
 
@@ -1571,9 +2144,28 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     print(f"Recency reference date (from results dir): {reference_date.date()}  "
           f"| stale threshold: >{STALE_DAYS} days")
 
+    manifest = load_query_manifest(results_dir)
+    print(f"Query manifest: {len(manifest['profiles'])} company profiles, "
+          f"{len(manifest['controls'])} control companies"
+          + ("" if os.path.exists(os.path.join(results_dir, "queries.json"))
+             else " (no queries.json — run predates it)"))
+    company_groups, control_groups = split_controls(
+        group_rows(companies_rows, provider_to_label, "companies"), manifest["controls"]
+    )
+
+    # Company rows are labelled before the judge call so the judge sees the
+    # labels its precision and coverage will be computed from.
+    print(f"Labelling company rows ({label_model or model})…")
+    row_labels = label_company_rows(
+        client, label_model or model, company_groups, manifest["profiles"], max_articles
+    )
+
     # Companies analysis
     print("Formatting companies data…")
-    companies_data = format_companies_data(companies_rows, provider_to_label, max_articles, reference_date)
+    companies_data = format_companies_data(
+        companies_rows, provider_to_label, max_articles, reference_date,
+        manifest["profiles"], row_labels, manifest["controls"],
+    )
 
     print("Calling Claude for companies analysis…")
     companies_analysis = call_claude(
@@ -1596,13 +2188,17 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     # Parse and recompute server-side
     print("\nParsing scorecards…")
     companies_scorecard = parse_scorecard(companies_analysis)
+    companies_metrics = company_row_metrics(
+        company_groups, control_groups, row_labels, reference_date, max_articles,
+        manifest["queried"],
+    )
+    apply_company_metrics(companies_scorecard, companies_metrics)
+    companies_bootstrap = bootstrap_company_metrics(companies_metrics, companies_scorecard)
     industries_scorecard = parse_scorecard(industries_analysis)
     companies_notes = extract_notes(companies_analysis)
     industries_notes = extract_notes(industries_analysis)
 
-    companies_variants = variant_consistency(
-        group_rows(companies_rows, provider_to_label, "companies")
-    )
+    companies_variants = variant_consistency(company_groups)
     industries_variants = variant_consistency(
         group_rows(industries_rows, provider_to_label, "industries")
     )
@@ -1611,9 +2207,7 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         f"{len(companies_variants)} companies, {len(industries_variants)} topics"
     )
 
-    companies_scores = score_diagnostics(
-        group_rows(companies_rows, provider_to_label, "companies")
-    )
+    companies_scores = score_diagnostics(company_groups)
     industries_scores = score_diagnostics(
         group_rows(industries_rows, provider_to_label, "industries")
     )
@@ -1635,6 +2229,12 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     os.makedirs(ai_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+
+    # The labels drive company precision and coverage, so keep them auditable.
+    labels_path = os.path.join(ai_dir, f"row-labels-{timestamp}.json")
+    with open(labels_path, "w") as f:
+        json.dump({"model": label_model or model, "labels": row_labels}, f,
+                  indent=2, ensure_ascii=False)
 
     key_path = os.path.join(ai_dir, f"decode-key-{timestamp}.json")
     with open(key_path, "w") as f:
@@ -1659,6 +2259,13 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
         f.write(companies_analysis)
         f.write("\n\n---\n\n")
         f.write(scorecard_table_md(companies_scorecard))
+        f.write("\n---\n\n")
+        f.write(company_metrics_md(companies_metrics, companies_scorecard, label_to_provider,
+                                   manifest["controls"]))
+        boot_md = bootstrap_md(companies_bootstrap, companies_scorecard, label_to_provider)
+        if boot_md:
+            f.write("\n---\n\n")
+            f.write(boot_md)
         if companies_variants:
             f.write("\n---\n\n")
             f.write(variant_table_md(companies_variants, label_to_provider))
@@ -1689,6 +2296,8 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     companies_scorecard["spelling_variants"] = companies_variants
     industries_scorecard["spelling_variants"] = industries_variants
     companies_scorecard["self_reported_scores"] = companies_scores
+    companies_scorecard["row_label_metrics"] = companies_metrics
+    companies_scorecard["ranking_uncertainty"] = companies_bootstrap
     industries_scorecard["self_reported_scores"] = industries_scores
 
     companies_json_path = os.path.join(ai_dir, f"claude-companies-{timestamp}.json")
@@ -1704,6 +2313,7 @@ def run(results_dir: str, output_dir: str | None = None, model: str = DEFAULT_MO
     print(f"  {industries_path}")
     print(f"  {companies_json_path}")
     print(f"  {industries_json_path}")
+    print(f"  {labels_path}")
     print(f"  {key_path}")
     print(f"\nDecode key:")
     for label, provider in sorted(label_to_provider.items()):
@@ -1835,6 +2445,10 @@ Examples:
         help=f"Max articles per company/topic per provider sent to the model (default: {DEFAULT_MAX_ARTICLES})",
     )
     parser.add_argument(
+        "--label-model",
+        help="Model for the per-company row-labelling pass (default: same as --model)",
+    )
+    parser.add_argument(
         "--readme-only",
         action="store_true",
         help="Skip analysis; generate README snippet from existing AI-analysis files",
@@ -1843,7 +2457,7 @@ Examples:
     if args.readme_only:
         run_readme_only(args.results_dir, args.model)
     else:
-        run(args.results_dir, args.output_dir, args.model, args.max_articles)
+        run(args.results_dir, args.output_dir, args.model, args.max_articles, args.label_model)
 
 
 if __name__ == "__main__":

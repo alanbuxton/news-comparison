@@ -2,6 +2,8 @@ from datetime import datetime, timezone, time, date
 import os
 import argparse
 import csv
+import json
+import random
 import syracuse_client
 import perplexity_search_client
 import perplexity_agent_client
@@ -9,7 +11,9 @@ import linkup_client
 import exa_client
 import newsapi_client
 import tavily_client
-from examples import industry_location_examples, company_name_examples
+from examples import (
+    industry_location_examples, company_name_examples, company_profiles, make_control_companies,
+)
 from utils import MIN_DATE, set_error_log_dir, publisher_domain
 
 # Excluding NewsAPI because it generates too much noise.
@@ -24,15 +28,15 @@ CLIENTS = {"Exa": exa_client,
            "Perplexity Search": perplexity_search_client, 
            "Perplexity Agent": perplexity_agent_client, 
            "Syracuse": syracuse_client, 
-           "Tavily": tavily_client,
+#           "Tavily": tavily_client,
         }
 
-def compare_company_results(company: str, csv_writer=None):
+def compare_company_results(company: str, csv_writer=None, clients=None):
     """Compare company results across providers and write to CSV"""
     results_summary = []
     results_details = {}
     
-    for provider, client in CLIENTS.items():
+    for provider, client in (clients or CLIENTS).items():
         start_time = datetime.now(tz=timezone.utc)
         arts = client.get_company_articles_for(company)
         end_time = datetime.now(tz=timezone.utc)
@@ -173,6 +177,59 @@ def print_articles(arts):
     articles_output = format_articles(arts)
     print('\n'.join(articles_output))
 
+def write_query_manifest(run_dir: str, controls: list[str], backfilled: bool = False) -> str:
+    """Record what was queried and who each company is. analyse.py reads it to
+    show the judge company profiles and to score control companies — which,
+    answered by nobody, would otherwise leave no trace in the CSV at all."""
+    path = os.path.join(run_dir, "queries.json")
+    manifest = {
+        # A backfilled manifest is today's query list, not necessarily that
+        # run's: analyse.py then uses it for profiles only, never to decide
+        # which companies were queried.
+        "backfilled": backfilled,
+        "companies": [
+            {"name": name, "profile": company_profiles.get(name, ""), "control": False}
+            for name in company_name_examples
+        ] + [
+            {"name": name, "profile": "", "control": True} for name in controls
+        ],
+    }
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2, ensure_ascii=False)
+    return path
+
+def add_controls_to_run(run_dir: str) -> str:
+    """Query fresh control companies for an existing run and append them to its
+    companies.csv, so an older run can be re-analysed with controls. Only the
+    providers already in that run are asked: one enabled since would otherwise
+    appear in the analysis having answered nothing but the made-up names."""
+    manifest_path = os.path.join(run_dir, "queries.json")
+    if os.path.exists(manifest_path):
+        with open(manifest_path, encoding="utf-8") as f:
+            if any(c.get("control") for c in json.load(f).get("companies", [])):
+                raise SystemExit(f"{manifest_path} already lists control companies")
+    companies_file = os.path.join(run_dir, "companies.csv")
+    with open(companies_file, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        headers = reader.fieldnames
+        providers = sorted({row["provider"] for row in reader})
+    missing = [p for p in providers if p not in CLIENTS]
+    if missing:
+        raise SystemExit(f"Not enabled in CLIENTS, so cannot be asked: {missing}")
+    clients = {p: CLIENTS[p] for p in providers}
+    set_error_log_dir(os.path.join(run_dir, "errors"))
+
+    controls = make_control_companies(random.SystemRandom())
+    print(f"Adding controls to {run_dir} via {', '.join(providers)}")
+    with open(companies_file, "a", newline="", encoding="utf-8") as f:
+        csv_writer = csv.DictWriter(f, fieldnames=headers, extrasaction="ignore")
+        for name in controls:
+            print(f"  - {name}")
+            summary, _ = compare_company_results(name, csv_writer=csv_writer, clients=clients)
+            print("    " + "; ".join(f"{s['provider']} got {s['count']}" for s in summary))
+    # Still backfilled: the real-company list is that run's CSV, not today's examples.
+    return write_query_manifest(run_dir, controls, backfilled=True)
+
 def run_comparison(prefix: str, output_dir: str = 'results'):
     """Run comparison and output results to CSV files"""
     # Create a per-run subdirectory: {output_dir}/{prefix}/
@@ -200,7 +257,10 @@ def run_comparison(prefix: str, output_dir: str = 'results'):
         csv_writer = csv.DictWriter(f, fieldnames=csv_headers)
         csv_writer.writeheader()
         
-        for company_name in company_name_examples:
+        # Controls are queried exactly like real companies; providers cannot
+        # tell them apart. Fresh names every run (see examples.py).
+        control_companies = make_control_companies(random.SystemRandom())
+        for company_name in company_name_examples + control_companies:
             print(f"  - {company_name}")
             summary, details = compare_company_results(company_name, csv_writer=csv_writer)
             # Print summary to console
@@ -223,10 +283,13 @@ def run_comparison(prefix: str, output_dir: str = 'results'):
             summary_str = '; '.join([f"{s['provider']} got {s['count']} in {s['duration']:.2f}s" for s in summary])
             print(f"    {summary_str}")
     
+    manifest_file = write_query_manifest(run_dir, control_companies)
+
     print()
     print("✓ Results written to:")
     print(f"  - {companies_file}")
     print(f"  - {industries_file}")
+    print(f"  - {manifest_file}")
     print(f"  - {run_dir}/errors/ (if any errors occurred)")
 
 def main():
@@ -254,8 +317,31 @@ Examples:
         help='Directory to write output files (default: results)'
     )
     
+    parser.add_argument(
+        '--manifest-only',
+        action='store_true',
+        help='Only write queries.json for an existing run (no API calls). '
+             'Lists no control companies, because that run did not query any.'
+    )
+
+    parser.add_argument(
+        '--add-controls',
+        action='store_true',
+        help='Query fresh made-up control companies for an existing run, append '
+             'them to its companies.csv and write queries.json. Calls the APIs '
+             'of the providers already in that run only.'
+    )
+
     args = parser.parse_args()
-    
+
+    if args.add_controls:
+        print(add_controls_to_run(os.path.join(args.output_dir, args.prefix)))
+        return
+
+    if args.manifest_only:
+        print(write_query_manifest(os.path.join(args.output_dir, args.prefix), controls=[], backfilled=True))
+        return
+
     run_comparison(args.prefix, args.output_dir)
 
 if __name__ == '__main__':

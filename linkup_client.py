@@ -1,5 +1,5 @@
 from linkup import LinkupClient
-from utils import LINKUP_API_KEY, MAX_DATE, MIN_DATE, log_error
+from utils import LINKUP_API_KEY, MAX_DATE, MIN_DATE, log_error, parse_loose_date
 from queries import company_prose_query, industry_prose_query
 import json
 from datetime import datetime, timezone
@@ -98,12 +98,18 @@ def do_query(query, query_context: str):
 
 def item_to_article(item: dict, query_context: str):
     try:
-        pub_date = datetime.fromisoformat(item['publication_date'])
-        pub_date = pub_date.replace(tzinfo=timezone.utc)
+        # The schema asks for date-time, but Linkup writes dates the way its
+        # model reads them ("October 7, 2026") or as prose when it has none
+        # ("Not stated in the supplied source"). Either way the article is kept;
+        # an unreadable date is left blank and scored as undated.
+        pub_date = parse_loose_date(item.get('publication_date', ''))
+        if pub_date is None:
+            log_error(PROVIDER_NAME, "PARSE_DATE", query_context,
+                      f"unrecognised publication_date: {item.get('publication_date')!r}", item)
         return {
             "headline": item['headline'],
-            "published_date_clean": pub_date,
-            "published_date": item["publication_date"],
+            "published_date_clean": pub_date or "",
+            "published_date": item.get("publication_date", ""),
             "summary_text": item.get('summary', ''),
             "published_by": item['source'],
             "document_url": item['url'],

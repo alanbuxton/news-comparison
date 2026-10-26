@@ -1,6 +1,7 @@
 import os
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
+from email.utils import parsedate_to_datetime
 from urllib.parse import urlparse
 import json
 
@@ -31,6 +32,36 @@ def publisher_domain(url: str) -> str:
     except Exception:
         return ""
     return netloc[4:] if netloc.startswith("www.") else netloc
+
+
+# Formats seen from providers whose dates are written by an LLM (Linkup, the
+# Perplexity Agent): "October 7, 2026", "7 October 2026", "Oct 7, 2026".
+_LOOSE_DATE_FORMATS = ("%B %d, %Y", "%d %B %Y", "%b %d, %Y", "%d %b %Y", "%b. %d, %Y")
+
+
+def parse_loose_date(raw: str) -> datetime | None:
+    """Parse a provider's date string: ISO 8601, RFC 2822 or a written-out full
+    date. Returns None for anything else, including partial dates ("2026-08")
+    and prose ("Not stated in the supplied source").
+
+    Callers must keep the article with a blank date rather than turn it into an
+    error row: an unreadable date is a metadata failure, scored on the metadata
+    axis, not an API failure. Linkup's errors in the 2026-10-25 run were all
+    this (319 articles) and wrongly drove its trust cap.
+    """
+    raw = (raw or "").strip()
+    if not raw:
+        return None
+    parsers = [datetime.fromisoformat, parsedate_to_datetime] + [
+        (lambda s, f=f: datetime.strptime(s, f)) for f in _LOOSE_DATE_FORMATS
+    ]
+    for parser in parsers:
+        try:
+            parsed = parser(raw)
+        except Exception:
+            continue
+        return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
+    return None
 
 
 def set_error_log_dir(dir_path: str):
