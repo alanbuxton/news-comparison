@@ -1,0 +1,230 @@
+{
+  "backfilled": true,
+  "companies": [
+    {
+      "name": "ExxonMobil",
+      "profile": "US oil and gas major (Exxon Mobil Corporation), Irving, Texas.",
+      "control": false
+    },
+    {
+      "name": "Borouge",
+      "profile": "UAE polyolefins producer, ADNOC/Borealis joint venture; includes Borouge Group International.",
+      "control": false
+    },
+    {
+      "name": "Sigma Chemtrade",
+      "profile": "",
+      "control": false
+    },
+    {
+      "name": "HPCL Mittal Energy",
+      "profile": "Indian refining and petrochemicals JV of HPCL and Mittal Energy (HMEL); Guru Gobind Singh Refinery, Bathinda.",
+      "control": false
+    },
+    {
+      "name": "Westrock",
+      "profile": "US paper and packaging company, merged with Smurfit Kappa in 2024 to form Smurfit Westrock.",
+      "control": false
+    },
+    {
+      "name": "International Paper",
+      "profile": "US paper and packaging company; acquired DS Smith in 2025.",
+      "control": false
+    },
+    {
+      "name": "Dine Cartonnages",
+      "profile": "Cartonnages Dine, small French corrugated-cardboard packaging maker in Ingersheim (Haut-Rhin), cartonnages-dine.fr.",
+      "control": false
+    },
+    {
+      "name": "Fritz Foss",
+      "profile": "",
+      "control": false
+    },
+    {
+      "name": "Husky Technologies",
+      "profile": "Canadian maker of injection-moulding systems (PET preform and closure tooling), Bolton, Ontario.",
+      "control": false
+    },
+    {
+      "name": "Jindal Films",
+      "profile": "Flexible packaging films business (BOPP, BOPET, coated films) of India's Jindal Poly Films / B C Jindal Group; Jindal Poly Films news counts.",
+      "control": false
+    },
+    {
+      "name": "Klöckner Pentaplast",
+      "profile": "Plastic films and packaging maker (kp), Luxembourg/Germany.",
+      "control": false
+    },
+    {
+      "name": "Klockner Pentaplast",
+      "profile": "Plastic films and packaging maker (kp), Luxembourg/Germany.",
+      "control": false
+    },
+    {
+      "name": "Entertainment Partners",
+      "profile": "US payroll, residuals and production-finance services provider to the film and TV industry (EP), Burbank.",
+      "control": false
+    },
+    {
+      "name": "Universal McCann",
+      "profile": "UM, global media-buying agency, formerly of IPG Mediabrands (IPG acquired by Omnicom).",
+      "control": false
+    },
+    {
+      "name": "Little Island Productions",
+      "profile": "London-based film and TV production company (credits include Patrick Melrose).",
+      "control": false
+    },
+    {
+      "name": "Linklaters",
+      "profile": "Global law firm headquartered in London.",
+      "control": false
+    },
+    {
+      "name": "CBS News",
+      "profile": "US broadcast news division of CBS (Paramount).",
+      "control": false
+    },
+    {
+      "name": "Deloitte",
+      "profile": "Global professional services and audit firm.",
+      "control": false
+    },
+    {
+      "name": "Bloomberg",
+      "profile": "Bloomberg L.P., financial data and media company (includes Bloomberg Beta, its VC arm).",
+      "control": false
+    },
+    {
+      "name": "ALPEK POLYESTER",
+      "profile": "Polyester/PET business of Mexico's Alpek S.A.B. de C.V. (Alfa group); Alpek news counts.",
+      "control": false
+    },
+    {
+      "name": "COLES",
+      "profile": "Coles Group, Australian supermarket and liquor retailer.",
+      "control": false
+    },
+    {
+      "name": "CONSTELLIUM",
+      "profile": "Aluminium rolled and extruded products maker, Paris/US listed.",
+      "control": false
+    },
+    {
+      "name": "SNOWFLAKE",
+      "profile": "Snowflake Inc., US cloud data platform company.",
+      "control": false
+    },
+    {
+      "name": "HAIER",
+      "profile": "Haier Group / Haier Smart Home, Chinese household appliance maker.",
+      "control": false
+    },
+    {
+      "name": "FLINT GROUP",
+      "profile": "Luxembourg-based supplier of printing and packaging inks and print consumables.",
+      "control": false
+    },
+    {
+      "name": "ZETA TECHNICAL SERVICES",
+      "profile": "",
+      "control": false
+    },
+    {
+      "name": "BERKSHIRE LABELS",
+      "profile": "UK self-adhesive label and shrink-sleeve printer, Hungerford; part of the Asteria group.",
+      "control": false
+    },
+    {
+      "name": "CHEP",
+      "profile": "Pallet and container pooling company owned by Brambles; Brambles news counts.",
+      "control": false
+    },
+    {
+      "name": "TRICON DRY CHEMICALS",
+      "profile": "Dry chemicals / polymers trading arm of Tricon Energy, Houston; Tricon Energy news counts.",
+      "control": false
+    },
+    {
+      "name": "RAINFOCUS",
+      "profile": "US event-management software company (RainFocus), Utah.",
+      "control": false
+    },
+    {
+      "name": "GANDHAR OIL REFINERY",
+      "profile": "Gandhar Oil Refinery (India) Ltd, maker of white oils, lubricants and process oils (Divyol brand), Mumbai.",
+      "control": false
+    },
+    {
+      "name": "IMPACT RETAIL",
+      "profile": "",
+      "control": false
+    },
+    {
+      "name": "REGUS BUSINESS CENTERS",
+      "profile": "Regus, flexible office brand of IWG plc; IWG news counts.",
+      "control": false
+    },
+    {
+      "name": "NECTAR 360 SERVICES",
+      "profile": "Nectar360, Sainsbury's loyalty, retail-media and data subsidiary (Nectar card), UK.",
+      "control": false
+    },
+    {
+      "name": "DOMINION ENERGY",
+      "profile": "US electric and gas utility, Richmond, Virginia.",
+      "control": false
+    },
+    {
+      "name": "LUSHA SYSTEMS",
+      "profile": "Lusha, Israeli B2B contact-data and sales-intelligence company.",
+      "control": false
+    },
+    {
+      "name": "MISTRAL AI SAS",
+      "profile": "Mistral AI, French AI model developer, Paris.",
+      "control": false
+    },
+    {
+      "name": "CHARTER NEX FILMS",
+      "profile": "US plastic film manufacturer, part of Charter Next Generation (CNG); CNG news counts.",
+      "control": false
+    },
+    {
+      "name": "GREEN BAY PACKAGING",
+      "profile": "US paper, containerboard and corrugated packaging company, Green Bay, Wisconsin.",
+      "control": false
+    },
+    {
+      "name": "ICOF EUROPE",
+      "profile": "",
+      "control": false
+    },
+    {
+      "name": "SEERTECH SOLUTIONS",
+      "profile": "Learning-management-system software provider (iLearning PLUS), Lakewood, Colorado.",
+      "control": false
+    },
+    {
+      "name": "NUBIZ PLASTIC",
+      "profile": "Nubiz Plastic (Nantong) Co., Chinese maker of dispensing pumps and sprayers for packaging.",
+      "control": false
+    },
+    {
+      "name": "Veliel Packaging",
+      "profile": "",
+      "control": true
+    },
+    {
+      "name": "Mariel Labels",
+      "profile": "",
+      "control": true
+    },
+    {
+      "name": "Ostumbra Corrugated",
+      "profile": "",
+      "control": true
+    }
+  ]
+}

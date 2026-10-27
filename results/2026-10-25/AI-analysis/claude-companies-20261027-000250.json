@@ -1,0 +1,1814 @@
+{
+  "query_type": "companies",
+  "providers": [
+    {
+      "label": "B",
+      "axes": {
+        "precision": {
+          "score": 9.0,
+          "evidence": [
+            "harness: 170/188 shown rows clean; 13 wrong-entity, 4 name-drop, 0 not-news, 1 on-target but flagged, 0 rows for made-up control companies",
+            "Coles 10 results: all genuine Coles Group news (supplier awards, antitheft tags, FY26 results, Fair Work provision)",
+            "Dominion Energy 8 results: all on-target (SCC staff recommendation, IRP filing, NextEra merger, Q2 earnings)",
+            "ExxonMobil 11 results: all genuine Exxon news (Guyana LNG, refining margin boost, Joliet refinery, Rovuma LNG contracts)",
+            "Only minor stumbles: Little Island Productions [WRONG ENTITY: BBC drama Onwards and Sideways] and 2 wrong-entity rows under NECTAR 360"
+          ],
+          "judge_score": 9
+        },
+        "coverage": {
+          "score": 7.4,
+          "evidence": [
+            "harness: 33/42 companies with a clean row; 2 answered only with false positives; 0 made-up control companies answered",
+            "answered: 35/42 \u2014 missed Berkshire Labels, Dine Cartonnages, Fritz Foss, NUBIZ PLASTIC, Sigma Chemtrade, Tricon Dry Chemicals, Seertech Solutions",
+            "Small/obscure companies systematically absent",
+            "ICOF Europe returns only 1 article, Impact Retail only 1, Rainfocus only 1, Universal McCann only 1"
+          ],
+          "judge_score": 6
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "no-date: 0 (0%), stale: 0 (0%), no-publisher: 0 (0%), dup: 0 (0%)",
+            "Every row has explicit publisher like 'Reuters', 'Packaging Europe', 'ScanX'",
+            "Only 1 mkt-report flag in 188 rows"
+          ]
+        },
+        "story_quality": {
+          "score": 9,
+          "evidence": [
+            "ExxonMobil #2: 'stronger refining margins could lift third-quarter downstream earnings by about $4.5 billion'",
+            "Dominion Energy #7: '$340 million, or 37 cents per share, and adjusted earnings of 79 cents per share. Revenue was $4.48 billion'",
+            "Summaries consistently provide decision-ready specifics without boilerplate"
+          ]
+        },
+        "trust": {
+          "score": 9,
+          "evidence": [
+            "0 errors, no suspicious URLs \u2014 all canonical publisher domains",
+            "Spelling-variant Klockner vs Kl\u00f6ckner: only 29% overlap \u2014 'largely different results' flag, a notable consistency weakness",
+            "Rare wrong-entity label (Little Island Productions returned Onwards and Sideways)"
+          ]
+        }
+      },
+      "verdict": "The cleanest, most trustworthy results in the run \u2014 publisher named every time and precision excellent \u2014 but it quietly skips seven companies and returns thin counts for small firms.",
+      "weighted": 8.83,
+      "final": 8.83,
+      "caps_applied": []
+    },
+    {
+      "label": "D",
+      "axes": {
+        "precision": {
+          "score": 8.5,
+          "evidence": [
+            "harness: 271/318 shown rows clean; 14 wrong-entity, 23 name-drop, 1 not-news, 7 on-target but flagged, 2 rows for made-up control companies",
+            "Bloomberg 20 results all on-target (Crypto Basel analytics, Dublin expansion, Canoe acquisition, FXGO)",
+            "ExxonMobil 20 results all on-target (Shell/Exxon chemicals JV, Guyana licence, refining margin boost)",
+            "Westrock: 7 of 20 are [WRONG ENTITY: Westrock Coffee Company] \u2014 significant pollution",
+            "Little Island Productions: 20/20 wrong-entity (Banijay/Little Princess, Rock Island/Fresh Films, Great Island Productions)"
+          ],
+          "judge_score": 7
+        },
+        "coverage": {
+          "score": 6.0,
+          "evidence": [
+            "harness: 26/42 companies with a clean row; 0 answered only with false positives; 1 made-up control companies answered",
+            "answered: 26/42 \u2014 worst coverage of the five providers",
+            "Missed: ALPEK POLYESTER, Berkshire Labels, Charter Nex Films, CHEP, Dine Cartonnages, Fritz Foss, HPCL Mittal, ICOF Europe, Impact Retail, Little Island, NUBIZ Plastic, Seertech, Sigma Chemtrade, Tricon Dry Chemicals, Universal McCann, Zeta Technical Services"
+          ],
+          "judge_score": 5
+        },
+        "metadata_integrity": {
+          "score": 10,
+          "evidence": [
+            "no-date: 0 (0%), stale: 0 (0%), no-publisher: 0 (0%)",
+            "Publisher named on every row; dup only 5 (2%)",
+            "Timestamps include time-of-day precision (2026-10-22 13:58:30+00:00)"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "Rich entity-role tags like '[ExxonMobil Holdings Corp.: vendor]' and '[Haier Smart Home Co. Ltd.: organization]' are useful",
+            "But many summaries are truncated with ellipses like '...' and 'ExxonMobil Yet to Seek Guyana Licence Extension' \u2014 abrupt",
+            "Deloitte summaries are substantive: 'global FY2026 revenue of US$74.5 billion'"
+          ]
+        },
+        "trust": {
+          "score": 7,
+          "evidence": [
+            "0 errors, dates look authentic with timezone precision",
+            "Spelling-variant Klockner vs Kl\u00f6ckner: 100% overlap \u2014 the only provider that is truly spelling-insensitive",
+            "Tag misfires: Little Island Productions tagged on completely unrelated Banijay/Little Princess story shows weak entity disambiguation"
+          ]
+        }
+      },
+      "verdict": "Metadata and spelling-insensitivity are best-in-class, but answering only 26/42 companies with substantial wrong-entity leakage on smaller firms limits usefulness.",
+      "weighted": 7.78,
+      "final": 7.78,
+      "caps_applied": []
+    },
+    {
+      "label": "C",
+      "axes": {
+        "precision": {
+          "score": 3.6,
+          "evidence": [
+            "harness: 56/154 shown rows clean; 13 wrong-entity, 3 name-drop, 2 not-news, 80 on-target but flagged, 0 rows for made-up control companies",
+            "Bloomberg 5/5 on-target (Crypto Exposure Analytics, Canoe acquisition, Enterprise MCP)",
+            "Dine Cartonnages #2 is [LABELLED NOT-NEWS] trade-exhibition profile, #1 only [NAME-DROP]",
+            "Flint Group: 2 of 3 are [WRONG ENTITY: Flint Group US HVAC platform]",
+            "Westrock: 3 of 7 are [WRONG ENTITY: Westrock Coffee Company]"
+          ],
+          "judge_score": 6
+        },
+        "coverage": {
+          "score": 2.9,
+          "evidence": [
+            "harness: 24/42 companies with a clean row; 12 answered only with false positives; 0 made-up control companies answered",
+            "answered: 36/42 \u2014 missed Fritz Foss, Gandhar Oil Refinery, Green Bay Packaging, International Paper, NUBIZ Plastic, Sigma Chemtrade",
+            "Thin counts: HPCL Mittal 5 articles all no-date, ICOF Europe 1 article, Seertech Solutions 1 article"
+          ],
+          "judge_score": 6
+        },
+        "metadata_integrity": {
+          "score": 3,
+          "evidence": [
+            "no-date: 91 (59%) \u2014 severe; HPCL Mittal Energy all 5 results undated, Haier all 7 undated, Linklaters 9 of 10 undated",
+            "Consumer cannot tell if HMEL #1 ('HMEL to invest Rs 2,600 cr in Punjab') is current or years old",
+            "no-publisher 0%, dup 0% \u2014 small mercy"
+          ]
+        },
+        "story_quality": {
+          "score": 8,
+          "evidence": [
+            "Deloitte #4: 'global FY2026 revenue of US$74.5 billion, up 3.8% in local currency and 5.7% in US dollars'",
+            "Constellium #2: 'Q2 revenue of $2.7 billion and record Segment Adjusted EBITDA, while net income reached $148 million'",
+            "Summaries written in cautious, hedged prose ('the supplied report does not give a precise date') \u2014 informative and honest"
+          ]
+        },
+        "trust": {
+          "score": 6,
+          "evidence": [
+            "0 errors, no hallucinated URLs",
+            "But Haier 7/7 undated, Linklaters 9/10 undated, HPCL 5/5 undated \u2014 pattern suggests date extraction is broken, not that sources lack dates",
+            "Spelling-variant Klockner vs Kl\u00f6ckner: 0% URL overlap \u2014 same entity returns completely different articles"
+          ]
+        }
+      },
+      "verdict": "Thoughtful, well-summarised results with named publishers, but a crippling 59% no-date rate and 0% overlap between accent-variant queries undermines the whole feed.",
+      "weighted": 4.39,
+      "final": 4.39,
+      "caps_applied": [
+        "metadata_hard"
+      ]
+    },
+    {
+      "label": "E",
+      "axes": {
+        "precision": {
+          "score": 5.0,
+          "evidence": [
+            "harness: 448/900 shown rows clean; 353 wrong-entity, 25 name-drop, 7 not-news, 7 on-target but flagged, 60 rows for made-up control companies",
+            "Berkshire Labels: 19/20 wrong-entity (Berkshire Residential, Bershka, Berkshire Hathaway, Berkshire Grey)",
+            "Fritz Foss: 20/20 wrong-entity (FRITZ! router brand, Foss & Company tax equity, Fossil Group, Fritz Hansen)",
+            "Little Island Productions: 20/20 wrong-entity (Banijay Little Princess, Rock Island, Doreen Wilcox Little)",
+            "LUSHA SYSTEMS: strong on-target set (Garante \u20ac2M fine coverage), showing precision is possible when name is unambiguous"
+          ],
+          "judge_score": 3
+        },
+        "coverage": {
+          "score": 4.0,
+          "evidence": [
+            "harness: 31/42 companies with a clean row; 11 answered only with false positives; 3 made-up control companies answered",
+            "answered: 42/42 companies with 20 articles each \u2014 perfect raw coverage",
+            "Even NUBIZ Plastic answered (though 20/20 wrong-entity trade-fair content)"
+          ],
+          "judge_score": 10
+        },
+        "metadata_integrity": {
+          "score": 2,
+          "evidence": [
+            "no-publisher: 840 (100%) \u2014 domain shown but publisher name never extracted, same severe issue as Provider A",
+            "dup: 14 (2%) including Alpek #1 duplicated as #4 in Berkshire Labels, Nubiz Plastic #13 as #14 as #15",
+            "not-news: 2 (0%) \u2014 minimal boilerplate"
+          ]
+        },
+        "story_quality": {
+          "score": 7,
+          "evidence": [
+            "Alpek #1: 'Q3 2026 comparable EBITDA doubled from a year earlier to $276 million' with analyst context",
+            "Deloitte #4: 'The AI-powered, human-led solution combines agentic capabilities with Deloitte...'",
+            "Many rows have truncated headlines like 'EOS and Constellium Strengthen Partnership on Additive Manufacturing Portfolio - toolingtales'"
+          ]
+        },
+        "trust": {
+          "score": 4,
+          "evidence": [
+            "0 errors, URLs look canonical",
+            "But company-name string matching is the only entity gate \u2014 Zeta Technical Services returned 20 Zeta Global ad-tech stories, Sigma Chemtrade returned 20 Sigma Healthcare/Chemtrade Logistics stories",
+            "Spelling-variant Klockner vs Kl\u00f6ckner only 60% overlap \u2014 same entity gets substantially different article sets"
+          ]
+        }
+      },
+      "verdict": "High-volume firehose with the best raw coverage, but the entity disambiguation is naive \u2014 small-company queries become namesake-roundups and 100% no-publisher strips every row of a credibility cue.",
+      "weighted": 4.5,
+      "final": 4.0,
+      "caps_applied": [
+        "metadata_hard",
+        "trust"
+      ]
+    },
+    {
+      "label": "A",
+      "axes": {
+        "precision": {
+          "score": 4.1,
+          "evidence": [
+            "harness: 373/900 shown rows clean; 322 wrong-entity, 14 name-drop, 109 not-news, 22 on-target but flagged, 60 rows for made-up control companies",
+            "Berkshire Labels: 19 of 20 results flagged [WRONG ENTITY: Berkshire Hathaway/Residential/Bending Spoons] \u2014 essentially 0% on-target",
+            "CHARTER NEX FILMS: nearly all 20 are [WRONG ENTITY: Charter Communications, Nex Playground, Henkel, etc.]",
+            "Dine Cartonnages: 20/20 are generic food-industry index pages or Dine Brands, no on-target coverage",
+            "SEERTECH SOLUTIONS: 20/20 wrong-entity (Schwab, Rentokil, QXO, Pistachio, Bolt.new) \u2014 zero on-target"
+          ],
+          "judge_score": 3
+        },
+        "coverage": {
+          "score": 4.5,
+          "evidence": [
+            "harness: 32/42 companies with a clean row; 10 answered only with false positives; 3 made-up control companies answered",
+            "answered: 42/42 companies with 20 articles each \u2014 perfect coverage on paper",
+            "Even obscure Fritz Foss and NUBIZ PLASTIC answered (though content wrong-entity)"
+          ],
+          "judge_score": 10
+        },
+        "metadata_integrity": {
+          "score": 2,
+          "evidence": [
+            "no-publisher: 840 (100%) \u2014 publisher never named; only domain visible",
+            "dup: 43 (5%) across the run including Alpek #3 duplicated as #5, Borouge #13 as #14",
+            "not-news: 12 (1%) including LinkedIn posts for Alpek and Zeta"
+          ]
+        },
+        "story_quality": {
+          "score": 6,
+          "evidence": [
+            "Alpek Q3 2026 summaries give concrete figures ($276M EBITDA, +101% YoY, $990M guidance)",
+            "Borouge item #4 quotes '$1.4 billion revenue, $401 million adjusted EBITDA'",
+            "Many wrong-entity rows still have readable summaries, but Bloomberg entry #16 is a cookie-wall-style page listing"
+          ]
+        },
+        "trust": {
+          "score": 4,
+          "evidence": [
+            "0 errors reported in header",
+            "But rampant mislabelling: Berkshire Hathaway stories returned under 'Berkshire Labels' query, Charter Communications under 'Charter Nex Films' \u2014 provider treated name-match as entity-match",
+            "Spelling-variant pair Klockner vs Kl\u00f6ckner only 60% overlap \u2014 same entity returns substantially different URL sets"
+          ]
+        }
+      },
+      "verdict": "Enormous volume with excellent nominal coverage, but a brittle name-matching layer makes small-company precision collapse to near-zero and 100% no-publisher metadata degrades every row.",
+      "weighted": 4.13,
+      "final": 4.0,
+      "caps_applied": [
+        "metadata_hard",
+        "trust"
+      ]
+    }
+  ],
+  "ranking": [
+    "B",
+    "D",
+    "C",
+    "E",
+    "A"
+  ],
+  "spelling_variants": [
+    {
+      "variants": [
+        "Klockner Pentaplast",
+        "Kl\u00f6ckner Pentaplast"
+      ],
+      "providers": {
+        "A": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 15,
+          "union": 25,
+          "overlap": 0.6,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "B": {
+          "counts": [
+            10,
+            8
+          ],
+          "shared": 4,
+          "union": 14,
+          "overlap": 0.2857142857142857,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "C": {
+          "counts": [
+            5,
+            3
+          ],
+          "shared": 0,
+          "union": 8,
+          "overlap": 0.0,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "D": {
+          "counts": [
+            3,
+            3
+          ],
+          "shared": 3,
+          "union": 3,
+          "overlap": 1.0,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        },
+        "E": {
+          "counts": [
+            20,
+            20
+          ],
+          "shared": 15,
+          "union": 25,
+          "overlap": 0.6,
+          "answered": [
+            "Klockner Pentaplast",
+            "Kl\u00f6ckner Pentaplast"
+          ]
+        }
+      }
+    }
+  ],
+  "self_reported_scores": {
+    "A": {
+      "total": 840,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "B": {
+      "total": 188,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "C": {
+      "total": 154,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "D": {
+      "total": 316,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    },
+    "E": {
+      "total": 840,
+      "scored": 0,
+      "median": null,
+      "bands": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weak": 0,
+      "weak_items": []
+    }
+  },
+  "row_label_metrics": {
+    "A": {
+      "precision": 4.1,
+      "coverage": 4.5,
+      "universe": 42,
+      "answered": 32,
+      "padded": [
+        {
+          "item": "BERKSHIRE LABELS",
+          "rows": 20,
+          "about": [
+            "Berkshire Hathaway",
+            "Berkshire Hathaway / Bending Spoons",
+            "Berkshire Hathaway / Brooks Running",
+            "Berkshire Residential Investments"
+          ]
+        },
+        {
+          "item": "Dine Cartonnages",
+          "rows": 20,
+          "about": [
+            "C-Store finance news roundup",
+            "C-Store finance roundup",
+            "CPG Latest stories index",
+            "CPG business news roundup"
+          ]
+        },
+        {
+          "item": "Fritz Foss",
+          "rows": 20,
+          "about": [
+            "Baker Hughes / Chart Industries",
+            "Boehringer Ingelheim / Evax",
+            "China tech newsflash (Nvidia etc.)",
+            "DRESSi dressing brand launch"
+          ]
+        },
+        {
+          "item": "ICOF EUROPE",
+          "rows": 20,
+          "about": [
+            "Aeon / Aware Health",
+            "Black Kite (cyber risk)",
+            "Cleversoft / FS Assist",
+            "Copla (GRC platform)"
+          ]
+        },
+        {
+          "item": "IMPACT RETAIL",
+          "rows": 20,
+          "about": [
+            "Acne Studios",
+            "Beauty industry roundup",
+            "Carrefour / Codifrance",
+            "Couche-Tard"
+          ]
+        },
+        {
+          "item": "Little Island Productions",
+          "rows": 20,
+          "about": [
+            "All3 robotics",
+            "Ardagh Metal Packaging",
+            "Bell Canada ahlo 2",
+            "Discovery/WBD antitrust"
+          ]
+        },
+        {
+          "item": "NUBIZ PLASTIC",
+          "rows": 20,
+          "about": [
+            "Arburg acquiring Stork IMM",
+            "Coca-Cola Europacific Partners plant upgrade",
+            "InterTabac 2026 trade fair",
+            "InterTabac press event"
+          ]
+        },
+        {
+          "item": "SEERTECH SOLUTIONS",
+          "rows": 20,
+          "about": [
+            "Arclin / Nomex manufacturing",
+            "Bolt.new / Dokai acquisition",
+            "Cribl / CardinalOps",
+            "Factor supply chain platform"
+          ]
+        },
+        {
+          "item": "Sigma Chemtrade",
+          "rows": 20,
+          "about": [
+            "Chemtrade Logistics Income Fund",
+            "NAFDAC Nigeria medicines",
+            "Sigma Healthcare",
+            "Sigma Healthcare (Australian pharmacy)"
+          ]
+        },
+        {
+          "item": "ZETA TECHNICAL SERVICES",
+          "rows": 20,
+          "about": [
+            "Zeta Global (ad-tech)"
+          ]
+        }
+      ],
+      "control_hits": [
+        {
+          "item": "Mariel Labels",
+          "rows": 20,
+          "headlines": [
+            "Category: Magazine Production and Print",
+            "The Packaging Week",
+            "Le fabriquant d'\u00e9tiquettes Sopano passe \u00e0 l'offensive avec trois acquisitions en 2026"
+          ]
+        },
+        {
+          "item": "Ostumbra Corrugated",
+          "rows": 20,
+          "headlines": [
+            "Regulatory & Legal",
+            "The Packaging Week",
+            "Capital & Financial Markets - Packaging News Daily"
+          ]
+        },
+        {
+          "item": "Veliel Packaging",
+          "rows": 20,
+          "headlines": [
+            "The Packaging Week",
+            "Operations & Footprint - Packaging News Daily",
+            "Latest Non-Food Packaging Industry News Insights & Updates - Part 28"
+          ]
+        }
+      ],
+      "control_rows": 60,
+      "labelled_rows": 900,
+      "per_item": {
+        "ALPEK POLYESTER": {
+          "clean": 14,
+          "labelled": 20
+        },
+        "BERKSHIRE LABELS": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "Bloomberg": {
+          "clean": 7,
+          "labelled": 20
+        },
+        "Borouge": {
+          "clean": 16,
+          "labelled": 20
+        },
+        "CBS News": {
+          "clean": 7,
+          "labelled": 20
+        },
+        "CHARTER NEX FILMS": {
+          "clean": 2,
+          "labelled": 20
+        },
+        "CHEP": {
+          "clean": 6,
+          "labelled": 20
+        },
+        "COLES": {
+          "clean": 19,
+          "labelled": 20
+        },
+        "CONSTELLIUM": {
+          "clean": 17,
+          "labelled": 20
+        },
+        "DOMINION ENERGY": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "Deloitte": {
+          "clean": 15,
+          "labelled": 20
+        },
+        "Dine Cartonnages": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "Entertainment Partners": {
+          "clean": 2,
+          "labelled": 20
+        },
+        "ExxonMobil": {
+          "clean": 11,
+          "labelled": 20
+        },
+        "FLINT GROUP": {
+          "clean": 14,
+          "labelled": 20
+        },
+        "Fritz Foss": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "GANDHAR OIL REFINERY": {
+          "clean": 20,
+          "labelled": 20
+        },
+        "GREEN BAY PACKAGING": {
+          "clean": 2,
+          "labelled": 20
+        },
+        "HAIER": {
+          "clean": 19,
+          "labelled": 20
+        },
+        "HPCL Mittal Energy": {
+          "clean": 6,
+          "labelled": 20
+        },
+        "Husky Technologies": {
+          "clean": 17,
+          "labelled": 20
+        },
+        "ICOF EUROPE": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "IMPACT RETAIL": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "International Paper": {
+          "clean": 16,
+          "labelled": 20
+        },
+        "Jindal Films": {
+          "clean": 19,
+          "labelled": 20
+        },
+        "Klockner Pentaplast": {
+          "clean": 19,
+          "labelled": 20
+        },
+        "Kl\u00f6ckner Pentaplast": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "LUSHA SYSTEMS": {
+          "clean": 9,
+          "labelled": 20
+        },
+        "Linklaters": {
+          "clean": 16,
+          "labelled": 20
+        },
+        "Little Island Productions": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "MISTRAL AI SAS": {
+          "clean": 17,
+          "labelled": 20
+        },
+        "NECTAR 360 SERVICES": {
+          "clean": 1,
+          "labelled": 20
+        },
+        "NUBIZ PLASTIC": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "RAINFOCUS": {
+          "clean": 8,
+          "labelled": 20
+        },
+        "REGUS BUSINESS CENTERS": {
+          "clean": 13,
+          "labelled": 20
+        },
+        "SEERTECH SOLUTIONS": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "SNOWFLAKE": {
+          "clean": 17,
+          "labelled": 20
+        },
+        "Sigma Chemtrade": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "TRICON DRY CHEMICALS": {
+          "clean": 2,
+          "labelled": 20
+        },
+        "Universal McCann": {
+          "clean": 2,
+          "labelled": 20
+        },
+        "Westrock": {
+          "clean": 4,
+          "labelled": 20
+        },
+        "ZETA TECHNICAL SERVICES": {
+          "clean": 0,
+          "labelled": 20
+        }
+      },
+      "on_target": 395,
+      "name_drop": 14,
+      "wrong_entity": 322,
+      "not_news": 109,
+      "clean": 373,
+      "flagged": 22,
+      "unlabelled": 0
+    },
+    "B": {
+      "precision": 9.0,
+      "coverage": 7.4,
+      "universe": 42,
+      "answered": 33,
+      "padded": [
+        {
+          "item": "Little Island Productions",
+          "rows": 1,
+          "about": [
+            "BBC drama Onwards and Sideways"
+          ]
+        },
+        {
+          "item": "ZETA TECHNICAL SERVICES",
+          "rows": 6,
+          "about": [
+            "Zeta Global (ad-tech)"
+          ]
+        }
+      ],
+      "control_hits": [],
+      "control_rows": 0,
+      "labelled_rows": 188,
+      "per_item": {
+        "ALPEK POLYESTER": {
+          "clean": 4,
+          "labelled": 4
+        },
+        "BERKSHIRE LABELS": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "Bloomberg": {
+          "clean": 7,
+          "labelled": 7
+        },
+        "Borouge": {
+          "clean": 5,
+          "labelled": 5
+        },
+        "CBS News": {
+          "clean": 3,
+          "labelled": 4
+        },
+        "CHARTER NEX FILMS": {
+          "clean": 4,
+          "labelled": 4
+        },
+        "CHEP": {
+          "clean": 6,
+          "labelled": 6
+        },
+        "COLES": {
+          "clean": 8,
+          "labelled": 10
+        },
+        "CONSTELLIUM": {
+          "clean": 4,
+          "labelled": 4
+        },
+        "DOMINION ENERGY": {
+          "clean": 8,
+          "labelled": 8
+        },
+        "Deloitte": {
+          "clean": 7,
+          "labelled": 7
+        },
+        "Dine Cartonnages": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "Entertainment Partners": {
+          "clean": 1,
+          "labelled": 3
+        },
+        "ExxonMobil": {
+          "clean": 11,
+          "labelled": 11
+        },
+        "FLINT GROUP": {
+          "clean": 5,
+          "labelled": 5
+        },
+        "Fritz Foss": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "GANDHAR OIL REFINERY": {
+          "clean": 7,
+          "labelled": 7
+        },
+        "GREEN BAY PACKAGING": {
+          "clean": 5,
+          "labelled": 5
+        },
+        "HAIER": {
+          "clean": 11,
+          "labelled": 11
+        },
+        "HPCL Mittal Energy": {
+          "clean": 4,
+          "labelled": 4
+        },
+        "Husky Technologies": {
+          "clean": 4,
+          "labelled": 4
+        },
+        "ICOF EUROPE": {
+          "clean": 1,
+          "labelled": 1
+        },
+        "IMPACT RETAIL": {
+          "clean": 1,
+          "labelled": 1
+        },
+        "International Paper": {
+          "clean": 5,
+          "labelled": 5
+        },
+        "Jindal Films": {
+          "clean": 6,
+          "labelled": 6
+        },
+        "Klockner Pentaplast": {
+          "clean": 10,
+          "labelled": 10
+        },
+        "Kl\u00f6ckner Pentaplast": {
+          "clean": 8,
+          "labelled": 8
+        },
+        "LUSHA SYSTEMS": {
+          "clean": 2,
+          "labelled": 2
+        },
+        "Linklaters": {
+          "clean": 8,
+          "labelled": 8
+        },
+        "Little Island Productions": {
+          "clean": 0,
+          "labelled": 1
+        },
+        "MISTRAL AI SAS": {
+          "clean": 7,
+          "labelled": 7
+        },
+        "NECTAR 360 SERVICES": {
+          "clean": 2,
+          "labelled": 4
+        },
+        "NUBIZ PLASTIC": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "RAINFOCUS": {
+          "clean": 1,
+          "labelled": 1
+        },
+        "REGUS BUSINESS CENTERS": {
+          "clean": 7,
+          "labelled": 7
+        },
+        "SEERTECH SOLUTIONS": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "SNOWFLAKE": {
+          "clean": 3,
+          "labelled": 3
+        },
+        "Sigma Chemtrade": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "TRICON DRY CHEMICALS": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "Universal McCann": {
+          "clean": 1,
+          "labelled": 1
+        },
+        "Westrock": {
+          "clean": 4,
+          "labelled": 8
+        },
+        "ZETA TECHNICAL SERVICES": {
+          "clean": 0,
+          "labelled": 6
+        }
+      },
+      "on_target": 171,
+      "name_drop": 4,
+      "wrong_entity": 13,
+      "not_news": 0,
+      "clean": 170,
+      "flagged": 1,
+      "unlabelled": 0
+    },
+    "C": {
+      "precision": 3.6,
+      "coverage": 2.9,
+      "universe": 42,
+      "answered": 24,
+      "padded": [
+        {
+          "item": "BERKSHIRE LABELS",
+          "rows": 2,
+          "about": [
+            "Asteria Group / GT Etiketten (Dutch, different group)"
+          ]
+        },
+        {
+          "item": "Borouge",
+          "rows": 5,
+          "about": []
+        },
+        {
+          "item": "Dine Cartonnages",
+          "rows": 2,
+          "about": []
+        },
+        {
+          "item": "Entertainment Partners",
+          "rows": 2,
+          "about": []
+        },
+        {
+          "item": "HAIER",
+          "rows": 7,
+          "about": []
+        },
+        {
+          "item": "HPCL Mittal Energy",
+          "rows": 5,
+          "about": []
+        },
+        {
+          "item": "ICOF EUROPE",
+          "rows": 1,
+          "about": []
+        },
+        {
+          "item": "IMPACT RETAIL",
+          "rows": 2,
+          "about": [
+            "IMPACT Commerce (Danish e-commerce)",
+            "Impact International (Netherlands retail marketing)"
+          ]
+        },
+        {
+          "item": "Little Island Productions",
+          "rows": 2,
+          "about": []
+        },
+        {
+          "item": "SEERTECH SOLUTIONS",
+          "rows": 1,
+          "about": []
+        },
+        {
+          "item": "TRICON DRY CHEMICALS",
+          "rows": 3,
+          "about": []
+        },
+        {
+          "item": "ZETA TECHNICAL SERVICES",
+          "rows": 6,
+          "about": [
+            "ZETA Group (pharma engineering)",
+            "Zeta Global (ad-tech)"
+          ]
+        }
+      ],
+      "control_hits": [],
+      "control_rows": 0,
+      "labelled_rows": 154,
+      "per_item": {
+        "ALPEK POLYESTER": {
+          "clean": 1,
+          "labelled": 6
+        },
+        "BERKSHIRE LABELS": {
+          "clean": 0,
+          "labelled": 2
+        },
+        "Bloomberg": {
+          "clean": 5,
+          "labelled": 5
+        },
+        "Borouge": {
+          "clean": 0,
+          "labelled": 5
+        },
+        "CBS News": {
+          "clean": 1,
+          "labelled": 4
+        },
+        "CHARTER NEX FILMS": {
+          "clean": 3,
+          "labelled": 3
+        },
+        "CHEP": {
+          "clean": 3,
+          "labelled": 3
+        },
+        "COLES": {
+          "clean": 4,
+          "labelled": 4
+        },
+        "CONSTELLIUM": {
+          "clean": 2,
+          "labelled": 4
+        },
+        "DOMINION ENERGY": {
+          "clean": 2,
+          "labelled": 5
+        },
+        "Deloitte": {
+          "clean": 6,
+          "labelled": 11
+        },
+        "Dine Cartonnages": {
+          "clean": 0,
+          "labelled": 2
+        },
+        "Entertainment Partners": {
+          "clean": 0,
+          "labelled": 2
+        },
+        "ExxonMobil": {
+          "clean": 4,
+          "labelled": 4
+        },
+        "FLINT GROUP": {
+          "clean": 1,
+          "labelled": 3
+        },
+        "Fritz Foss": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "GANDHAR OIL REFINERY": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "GREEN BAY PACKAGING": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "HAIER": {
+          "clean": 0,
+          "labelled": 7
+        },
+        "HPCL Mittal Energy": {
+          "clean": 0,
+          "labelled": 5
+        },
+        "Husky Technologies": {
+          "clean": 2,
+          "labelled": 2
+        },
+        "ICOF EUROPE": {
+          "clean": 0,
+          "labelled": 1
+        },
+        "IMPACT RETAIL": {
+          "clean": 0,
+          "labelled": 2
+        },
+        "International Paper": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "Jindal Films": {
+          "clean": 1,
+          "labelled": 4
+        },
+        "Klockner Pentaplast": {
+          "clean": 2,
+          "labelled": 5
+        },
+        "Kl\u00f6ckner Pentaplast": {
+          "clean": 2,
+          "labelled": 3
+        },
+        "LUSHA SYSTEMS": {
+          "clean": 2,
+          "labelled": 5
+        },
+        "Linklaters": {
+          "clean": 1,
+          "labelled": 10
+        },
+        "Little Island Productions": {
+          "clean": 0,
+          "labelled": 2
+        },
+        "MISTRAL AI SAS": {
+          "clean": 3,
+          "labelled": 5
+        },
+        "NECTAR 360 SERVICES": {
+          "clean": 1,
+          "labelled": 5
+        },
+        "NUBIZ PLASTIC": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "RAINFOCUS": {
+          "clean": 2,
+          "labelled": 2
+        },
+        "REGUS BUSINESS CENTERS": {
+          "clean": 4,
+          "labelled": 9
+        },
+        "SEERTECH SOLUTIONS": {
+          "clean": 0,
+          "labelled": 1
+        },
+        "SNOWFLAKE": {
+          "clean": 2,
+          "labelled": 2
+        },
+        "Sigma Chemtrade": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "TRICON DRY CHEMICALS": {
+          "clean": 0,
+          "labelled": 3
+        },
+        "Universal McCann": {
+          "clean": 1,
+          "labelled": 5
+        },
+        "Westrock": {
+          "clean": 1,
+          "labelled": 7
+        },
+        "ZETA TECHNICAL SERVICES": {
+          "clean": 0,
+          "labelled": 6
+        }
+      },
+      "on_target": 136,
+      "name_drop": 3,
+      "wrong_entity": 13,
+      "not_news": 2,
+      "clean": 56,
+      "flagged": 80,
+      "unlabelled": 0
+    },
+    "D": {
+      "precision": 8.5,
+      "coverage": 6.0,
+      "universe": 42,
+      "answered": 26,
+      "padded": [],
+      "control_hits": [
+        {
+          "item": "Mariel Labels",
+          "rows": 2,
+          "headlines": [
+            "LEADERSHIP EXPERTS WHO STUDIED AI AT OXFORD AND MIT: HUMANITY FIRST, LEADERSHIP NEXT, THEN AI",
+            "From the Front Lines of Catastrophes to the Future of Technology: EFFECT CO. Founder, Mariel Campbell, Selected for Women in Tech Global's Inaugural Entrepreneurship Program"
+          ]
+        }
+      ],
+      "control_rows": 2,
+      "labelled_rows": 318,
+      "per_item": {
+        "ALPEK POLYESTER": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "BERKSHIRE LABELS": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "Bloomberg": {
+          "clean": 15,
+          "labelled": 20
+        },
+        "Borouge": {
+          "clean": 17,
+          "labelled": 20
+        },
+        "CBS News": {
+          "clean": 15,
+          "labelled": 17
+        },
+        "CHARTER NEX FILMS": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "CHEP": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "COLES": {
+          "clean": 16,
+          "labelled": 20
+        },
+        "CONSTELLIUM": {
+          "clean": 13,
+          "labelled": 14
+        },
+        "DOMINION ENERGY": {
+          "clean": 19,
+          "labelled": 20
+        },
+        "Deloitte": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "Dine Cartonnages": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "Entertainment Partners": {
+          "clean": 2,
+          "labelled": 4
+        },
+        "ExxonMobil": {
+          "clean": 17,
+          "labelled": 20
+        },
+        "FLINT GROUP": {
+          "clean": 7,
+          "labelled": 7
+        },
+        "Fritz Foss": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "GANDHAR OIL REFINERY": {
+          "clean": 12,
+          "labelled": 12
+        },
+        "GREEN BAY PACKAGING": {
+          "clean": 2,
+          "labelled": 2
+        },
+        "HAIER": {
+          "clean": 16,
+          "labelled": 20
+        },
+        "HPCL Mittal Energy": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "Husky Technologies": {
+          "clean": 9,
+          "labelled": 9
+        },
+        "ICOF EUROPE": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "IMPACT RETAIL": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "International Paper": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "Jindal Films": {
+          "clean": 1,
+          "labelled": 1
+        },
+        "Klockner Pentaplast": {
+          "clean": 3,
+          "labelled": 3
+        },
+        "Kl\u00f6ckner Pentaplast": {
+          "clean": 3,
+          "labelled": 3
+        },
+        "LUSHA SYSTEMS": {
+          "clean": 1,
+          "labelled": 1
+        },
+        "Linklaters": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "Little Island Productions": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "MISTRAL AI SAS": {
+          "clean": 13,
+          "labelled": 20
+        },
+        "NECTAR 360 SERVICES": {
+          "clean": 1,
+          "labelled": 1
+        },
+        "NUBIZ PLASTIC": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "RAINFOCUS": {
+          "clean": 1,
+          "labelled": 1
+        },
+        "REGUS BUSINESS CENTERS": {
+          "clean": 1,
+          "labelled": 1
+        },
+        "SEERTECH SOLUTIONS": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "SNOWFLAKE": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "Sigma Chemtrade": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "TRICON DRY CHEMICALS": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "Universal McCann": {
+          "clean": 0,
+          "labelled": 0
+        },
+        "Westrock": {
+          "clean": 15,
+          "labelled": 20
+        },
+        "ZETA TECHNICAL SERVICES": {
+          "clean": 0,
+          "labelled": 0
+        }
+      },
+      "on_target": 278,
+      "name_drop": 23,
+      "wrong_entity": 14,
+      "not_news": 1,
+      "clean": 271,
+      "flagged": 7,
+      "unlabelled": 0
+    },
+    "E": {
+      "precision": 5.0,
+      "coverage": 4.0,
+      "universe": 42,
+      "answered": 31,
+      "padded": [
+        {
+          "item": "BERKSHIRE LABELS",
+          "rows": 20,
+          "about": [
+            "Baker Labels",
+            "Berkshire Financial Services",
+            "Berkshire Grey (robotics)",
+            "Berkshire Hathaway"
+          ]
+        },
+        {
+          "item": "Dine Cartonnages",
+          "rows": 20,
+          "about": [
+            "Alma Pack / Le Carton Morocco deal",
+            "Cartonnage de Vaucanson",
+            "Cartonnages d'Auch",
+            "Dine Brands"
+          ]
+        },
+        {
+          "item": "Fritz Foss",
+          "rows": 20,
+          "about": [
+            "EU Cyber Resilience Act article",
+            "FERMAC & MOSS industrial decoration alliance",
+            "FOSS Group Indonesia (fire suppression)",
+            "FRITZ! (AVM router brand)"
+          ]
+        },
+        {
+          "item": "ICOF EUROPE",
+          "rows": 20,
+          "about": [
+            "COFICAB (Tunisian cable group)",
+            "ICOF Dominican Republic (Instituto de Capacitaci\u00f3n Ocoa Futuro)",
+            "ICOP (Italian engineering firm)",
+            "ICOP/Trevi (Italian engineering)"
+          ]
+        },
+        {
+          "item": "IMPACT RETAIL",
+          "rows": 20,
+          "about": [
+            "Alta Group / Fortenova (Serbian retail)",
+            "Empire / Sobeys / Safeway",
+            "Empire Company / Sobeys",
+            "FPG / Constantia Emporium"
+          ]
+        },
+        {
+          "item": "Little Island Productions",
+          "rows": 20,
+          "about": [
+            "Banijay / Little Princess",
+            "Banijay Kids & Family / Little Princess",
+            "Chinese short drama platforms in Korea",
+            "Chorokbaem Media / Reelshort"
+          ]
+        },
+        {
+          "item": "NUBIZ PLASTIC",
+          "rows": 20,
+          "about": [
+            "Bumi Baru Plastik (Indonesia recycling)",
+            "CB Expo cannabis fair in Dortmund",
+            "Mutares/SABIC thermoplastics acquisition",
+            "NUBIZ trade fair in Dortmund"
+          ]
+        },
+        {
+          "item": "SEERTECH SOLUTIONS",
+          "rows": 20,
+          "about": [
+            "SEER TECH (06106.HK) Hong Kong firm",
+            "Seer, Inc. (Nasdaq: SEER) proteomics",
+            "Seer, Inc. (proteomics) buyout",
+            "Seer, Inc. (proteomics) earnings"
+          ]
+        },
+        {
+          "item": "Sigma Chemtrade",
+          "rows": 20,
+          "about": [
+            "Chemtrade Logistics",
+            "Chemtrade Logistics Income Fund",
+            "Sigma Healthcare",
+            "Sigma Healthcare/Chemist Warehouse"
+          ]
+        },
+        {
+          "item": "TRICON DRY CHEMICALS",
+          "rows": 20,
+          "about": [
+            "ALSOK / Nippon Dry-Chemical (Japan)",
+            "Hovione (pharma)",
+            "Intercon Chemical (St. Louis)",
+            "Monument Chemical / Minasolve"
+          ]
+        },
+        {
+          "item": "ZETA TECHNICAL SERVICES",
+          "rows": 20,
+          "about": [
+            "FST Technical Services / Z2",
+            "Zeta (Indian banking-tech)",
+            "Zeta Global (ad-tech)"
+          ]
+        }
+      ],
+      "control_hits": [
+        {
+          "item": "Mariel Labels",
+          "rows": 20,
+          "headlines": [
+            "LabelVie breaks 10bn dirhams in half-year sales - 7news Morocco",
+            "Pavilion and GovSpend Are Partnering to Bring Suppliers Earlier, Warmer Public Sector Opportunities - GovSpend",
+            "EXCLUSIVE: How firms linked to sanctioned Chinese cotton giant sell clothes to U.S. | Reuters"
+          ]
+        },
+        {
+          "item": "Ostumbra Corrugated",
+          "rows": 20,
+          "headlines": [
+            "Ostrea : apr\u00e8s une ann\u00e9e de rodage industriel, le sp\u00e9cialiste des coquillages recycl\u00e9s acc\u00e9l\u00e8re sa croissance - Bretagne \u00c9conomique",
+            "Cirkla, Belmark and Ossid launch resealable fibre trays for food \u2014 Packaging News Daily",
+            "Orora expects lower Group EBIT as Saverglass pressures persist"
+          ]
+        },
+        {
+          "item": "Veliel Packaging",
+          "rows": 20,
+          "headlines": [
+            "Weil Advises OTPP and Trivium Packaging in $3.4B Acquisition by Silgan Holdings and American Industrial Partners - Weil, Gotshal & Manges LLP",
+            "Silgan, private equity acquiring Trivium to create $7.3B packaging giant | Packaging Dive",
+            "Sidley Represents Strategic Partnership Between Silgan and AIP in US$7.3 Billion Transaction to Create Diversified Global Metal Packaging Business | News | Sidley Austin LLP"
+          ]
+        }
+      ],
+      "control_rows": 60,
+      "labelled_rows": 900,
+      "per_item": {
+        "ALPEK POLYESTER": {
+          "clean": 15,
+          "labelled": 20
+        },
+        "BERKSHIRE LABELS": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "Bloomberg": {
+          "clean": 5,
+          "labelled": 20
+        },
+        "Borouge": {
+          "clean": 20,
+          "labelled": 20
+        },
+        "CBS News": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "CHARTER NEX FILMS": {
+          "clean": 6,
+          "labelled": 20
+        },
+        "CHEP": {
+          "clean": 12,
+          "labelled": 20
+        },
+        "COLES": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "CONSTELLIUM": {
+          "clean": 19,
+          "labelled": 20
+        },
+        "DOMINION ENERGY": {
+          "clean": 20,
+          "labelled": 20
+        },
+        "Deloitte": {
+          "clean": 19,
+          "labelled": 20
+        },
+        "Dine Cartonnages": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "Entertainment Partners": {
+          "clean": 10,
+          "labelled": 20
+        },
+        "ExxonMobil": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "FLINT GROUP": {
+          "clean": 16,
+          "labelled": 20
+        },
+        "Fritz Foss": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "GANDHAR OIL REFINERY": {
+          "clean": 17,
+          "labelled": 20
+        },
+        "GREEN BAY PACKAGING": {
+          "clean": 9,
+          "labelled": 20
+        },
+        "HAIER": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "HPCL Mittal Energy": {
+          "clean": 1,
+          "labelled": 20
+        },
+        "Husky Technologies": {
+          "clean": 17,
+          "labelled": 20
+        },
+        "ICOF EUROPE": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "IMPACT RETAIL": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "International Paper": {
+          "clean": 19,
+          "labelled": 20
+        },
+        "Jindal Films": {
+          "clean": 10,
+          "labelled": 20
+        },
+        "Klockner Pentaplast": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "Kl\u00f6ckner Pentaplast": {
+          "clean": 17,
+          "labelled": 20
+        },
+        "LUSHA SYSTEMS": {
+          "clean": 18,
+          "labelled": 20
+        },
+        "Linklaters": {
+          "clean": 20,
+          "labelled": 20
+        },
+        "Little Island Productions": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "MISTRAL AI SAS": {
+          "clean": 20,
+          "labelled": 20
+        },
+        "NECTAR 360 SERVICES": {
+          "clean": 3,
+          "labelled": 20
+        },
+        "NUBIZ PLASTIC": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "RAINFOCUS": {
+          "clean": 11,
+          "labelled": 20
+        },
+        "REGUS BUSINESS CENTERS": {
+          "clean": 20,
+          "labelled": 20
+        },
+        "SEERTECH SOLUTIONS": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "SNOWFLAKE": {
+          "clean": 19,
+          "labelled": 20
+        },
+        "Sigma Chemtrade": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "TRICON DRY CHEMICALS": {
+          "clean": 0,
+          "labelled": 20
+        },
+        "Universal McCann": {
+          "clean": 4,
+          "labelled": 20
+        },
+        "Westrock": {
+          "clean": 11,
+          "labelled": 20
+        },
+        "ZETA TECHNICAL SERVICES": {
+          "clean": 0,
+          "labelled": 20
+        }
+      },
+      "on_target": 455,
+      "name_drop": 25,
+      "wrong_entity": 353,
+      "not_news": 7,
+      "clean": 448,
+      "flagged": 7,
+      "unlabelled": 0
+    }
+  },
+  "ranking_uncertainty": {
+    "B": {
+      "rank": 1,
+      "precision_range": [
+        8.1,
+        9.7
+      ],
+      "coverage_range": [
+        5.7,
+        8.8
+      ],
+      "final_range": [
+        8.2,
+        9.3
+      ],
+      "held_rank": 1.0,
+      "ahead_of_next": 1.0
+    },
+    "D": {
+      "rank": 2,
+      "precision_range": [
+        8.1,
+        8.9
+      ],
+      "coverage_range": [
+        4.5,
+        7.4
+      ],
+      "final_range": [
+        7.4,
+        8.1
+      ],
+      "held_rank": 1.0,
+      "ahead_of_next": 1.0
+    },
+    "C": {
+      "rank": 3,
+      "precision_range": [
+        2.6,
+        4.8
+      ],
+      "coverage_range": [
+        0.0,
+        5.5
+      ],
+      "final_range": [
+        3.6,
+        5.0
+      ],
+      "held_rank": 0.85,
+      "ahead_of_next": 0.85
+    },
+    "E": {
+      "rank": 4,
+      "precision_range": [
+        3.8,
+        6.1
+      ],
+      "coverage_range": [
+        1.2,
+        6.4
+      ],
+      "final_range": [
+        3.6,
+        4.0
+      ],
+      "held_rank": 0.85,
+      "ahead_of_next": 0.99
+    },
+    "A": {
+      "rank": 5,
+      "precision_range": [
+        3.1,
+        5.2
+      ],
+      "coverage_range": [
+        2.1,
+        6.9
+      ],
+      "final_range": [
+        3.4,
+        4.0
+      ],
+      "held_rank": 0.89,
+      "ahead_of_next": null
+    }
+  }
+}
